@@ -5,15 +5,24 @@ export const Navbar = () => {
     return (
         <Fragment>
             <header>
-                <div className="container">
-                    <div className="header-data">
-                        <div className="logo mb-1">
+                <div class="container">
+                    <div class="header-data">
+                        <div class="logo pd-btm">
                             <Link to="/" title=""
                             ><img src="assets/images/Logofornav.png" class="logofornav" alt=""
                                 /></Link>
                         </div>
-                        <div className="search-bar">
-                            {/* This is the place of the search bar  */}
+                        <div class="login_register">
+                            <ul>
+                                <li><Link to="/signup" title="">Register</Link></li>
+                                <li><Link to="/signin" title="">Login</Link></li>
+                            </ul>
+                        </div>
+                        <div class="search-bar st2 " style={{ width: "182px" }}>
+                            <form>
+                                <input type="text" name="search" placeholder="Search..." />
+                                <button type="submit"><i class="la la-search"></i></button>
+                            </form>
                         </div>
                         <nav>
                             <ul>
@@ -52,34 +61,12 @@ export const Navbar = () => {
                             </ul>
                         </nav>
 
-                        {/* <div className="user-account">
-                            <div className="user-info">
-
-                                <Link to="/signup" title="">Sign Up</Link>
-                                <Link to="/signin" title="">Sign In</Link>
-                            </div>
-                        </div> */}
-                        <div class="menu-btn">
-                            <a href="#" title=""><i class="fa fa-bars"></i></a>
-                        </div>
-                        <div class="user-account">
-                            <div class="user-info">
-                                <img src="images/resources/user.png" alt="" />
-                                <a href="#" title="">Authenticate</a>
-                                <i class="la la-sort-down"></i>
-                            </div>
-                            <div class="user-account-settingss" id="users">
 
 
-                                <ul class="us-links">
-                                    <li><Link to="/signup" title="">Sign Up</Link></li>
-                                    <li><Link to="/signin" title="">Sign In</Link></li>
-                                </ul>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
+
             </header>
         </Fragment>
     )

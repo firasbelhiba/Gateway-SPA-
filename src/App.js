@@ -12,6 +12,7 @@ import Signin from './Authentification/Sign in/Pages/Signin';
 import { Fragment } from 'react';
 import { Navbar } from './Shared/layouts/Navbar';
 import { Landing } from './Shared/landing/pages/Landing';
+import { Profile } from './Profile/Pages/Profile';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <section className="">
           <Switch>
             <Route exact path="/" component={Landing} />
+            <Route exact path="/me" component={Profile} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signin" component={Signin} />
           </Switch>

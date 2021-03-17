@@ -1,94 +1,122 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 import './AuthForm.css';
 
 const AuthForm = props => {
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        password2: ''
+    });
+
+    const { name, email, password, password2 } = formData;
+
+    const onChange = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        if (password !== password2) {
+            console.log('password does not match');
+        } else {
+            const newUser = {
+                name,
+                email,
+                password
+            }
+
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                const body = JSON.stringify(newUser);
+
+                const res = await axios.post('http://localhost:5000/api/users', body, config);
+                console.log('yay');
+                console.log(res);
+
+            } catch (error) {
+                console.error(error.response.data);
+            }
+        }
+    }
+
     return (
-        <div class="col-lg-6">
-            <div class="login-sec">
-                <ul class="sign-control">
+        <div className="col-lg-6">
+            <div className="login-sec">
+                <ul className="sign-control">
 
                 </ul>
 
-                <div class="sign_in_sec current" id="tab-2">
-                    <div class="signup-tab">
-                        <i class="fa fa-long-arrow-left"></i>
-                        <h2>
-                            <a
-                                href="https://gambolthemes.net/cdn-cgi/l/email-protection"
-                                class="__cf_email__"
-                                data-cfemail="4b212423252f242e0b2e332a263b272e65282426"
-                            >[email&#160;protected]</a
-                            >
-                        </h2>
-                        <ul>
-                            <li data-tab="tab-3" class="current">
-                                <a href="#" title="">User</a>
-                            </li>
-                            <li data-tab="tab-4">
-                                <a href="#" title="">Company</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="dff-tab current" id="tab-3">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                <div className="sign_in_sec current" id="tab-2">
+
+                    <div className="dff-tab current" id="tab-3">
+                        <form onSubmit={e => onSubmit(e)}>
+                            <div className="row">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="text"
                                             name="name"
+                                            value={name}
                                             placeholder="Full Name"
+                                            onChange={e => onChange(e)}
+                                            required
                                         />
-                                        <i class="la la-user"></i>
+                                        <i className="la la-user"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
-                                            type="text"
-                                            name="country"
-                                            placeholder="Country"
+                                            type="email"
+                                            name="email"
+                                            value={email}
+                                            placeholder="Email"
+                                            onChange={e => onChange(e)}
+                                            required
                                         />
-                                        <i class="la la-globe"></i>
+                                        <i className="fas fa-at"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
-                                        <select>
-                                            <option>Category</option>
-                                            <option>Category 1</option>
-                                            <option>Category 2</option>
-                                            <option>Category 3</option>
-                                            <option>Category 4</option>
-                                        </select>
-                                        <i class="la la-dropbox"></i>
-                                        <span><i class="fa fa-ellipsis-h"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="password"
                                             name="password"
+                                            value={password}
                                             placeholder="Password"
+                                            minLength="6"
+                                            onChange={e => onChange(e)}
+                                            required
                                         />
-                                        <i class="la la-lock"></i>
+                                        <i className="la la-lock"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="password"
-                                            name="repeat-password"
+                                            name="password2"
+                                            value={password2}
                                             placeholder="Repeat Password"
+                                            onChange={e => onChange(e)}
+                                            minLength="6"
+                                            required
                                         />
-                                        <i class="la la-lock"></i>
+                                        <i className="la la-lock"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="checky-sec st2">
-                                        <div class="fgt-sec">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="checky-sec st2">
+                                        <div className="fgt-sec">
                                             <input type="checkbox" name="cc" id="c2" />
                                             <label for="c2">
                                                 <span></span>
@@ -99,7 +127,7 @@ const AuthForm = props => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
+                                <div className="col-lg-12 no-pdd">
                                     <button type="submit" value="submit">
                                         Get Started
                                     </button>
@@ -107,63 +135,62 @@ const AuthForm = props => {
                             </div>
                         </form>
                     </div>
-                    <div class="dff-tab" id="tab-4">
+                    <div className="dff-tab" id="tab-4">
                         <form>
-                            <div class="row">
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                            <div className="row">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="text"
                                             name="company-name"
                                             placeholder="Company Name"
                                         />
-                                        <i class="la la-building"></i>
+                                        <i className="la la-building"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="text"
                                             name="country"
                                             placeholder="Country"
                                         />
-                                        <i class="la la-globe"></i>
+                                        <i className="la la-globe"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="password"
                                             name="password"
                                             placeholder="Password"
                                         />
-                                        <i class="la la-lock"></i>
+                                        <i className="la la-lock"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="sn-field">
                                         <input
                                             type="password"
                                             name="repeat-password"
                                             placeholder="Repeat Password"
                                         />
-                                        <i class="la la-lock"></i>
+                                        <i className="la la-lock"></i>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="checky-sec st2">
-                                        <div class="fgt-sec">
+                                <div className="col-lg-12 no-pdd">
+                                    <div className="checky-sec st2">
+                                        <div className="fgt-sec">
                                             <input type="checkbox" name="cc" id="c3" />
                                             <label for="c3">
                                                 <span></span>
                                             </label>
                                             <small
-                                            >Yes, I understand and agree to the workwise Terms & Conditions.</small
-                                            >
+                                            >Yes, I understand and agree to the workwise Terms & Conditions.</small>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 no-pdd">
+                                <div className="col-lg-12 no-pdd">
                                     <button type="submit" value="submit">
                                         Get Started
                                     </button>

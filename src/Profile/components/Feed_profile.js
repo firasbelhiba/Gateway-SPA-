@@ -355,13 +355,7 @@ export const Feed_profile = () => {
                     <a href="#"><i className="fas fa-eye"></i>Views 50</a>
                 </div>
             </div>
-            <div className="process-comm">
-                <div className="spinner">
-                    <div className="bounce1"></div>
-                    <div className="bounce2"></div>
-                    <div className="bounce3"></div>
-                </div>
-            </div>
+
         </div>
     )
 }

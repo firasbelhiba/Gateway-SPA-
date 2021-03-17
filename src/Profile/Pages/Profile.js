@@ -18,6 +18,7 @@ import { Experience_form } from '../components/Forms/Experience_form'
 import { Education_form } from '../components/Forms/Education_form'
 import { Location_form } from '../components/Forms/Location_form'
 import { Skills_form } from '../components/Forms/Skills_form'
+import { Portfolio_form } from '../components/Forms/Portfolio_form'
 
 export const Profile = () => {
     return (
@@ -81,7 +82,7 @@ export const Profile = () => {
                 <Education_form />
                 <Location_form />
                 <Skills_form />
-                <Portfolio_profile />
+                <Portfolio_form />
             </div>
 
 

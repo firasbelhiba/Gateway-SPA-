@@ -5,23 +5,23 @@ export const Navbar = () => {
     return (
         <Fragment>
             <header>
-                <div class="container">
-                    <div class="header-data">
-                        <div class="logo pd-btm">
+                <div className="container">
+                    <div className="header-data">
+                        <div className="logo pd-btm">
                             <Link to="/" title=""
-                            ><img src="assets/images/Logofornav.png" class="logofornav" alt=""
+                            ><img src="assets/images/Logofornav.png" className="logofornav" alt=""
                                 /></Link>
                         </div>
-                        <div class="login_register">
+                        <div className="login_register">
                             <ul>
                                 <li><Link to="/signup" title="">Register</Link></li>
                                 <li><Link to="/signin" title="">Login</Link></li>
                             </ul>
                         </div>
-                        <div class="search-bar st2 " style={{ width: "182px" }}>
+                        <div className="search-bar st2 " style={{ width: "182px" }}>
                             <form>
                                 <input type="text" name="search" placeholder="Search..." />
-                                <button type="submit"><i class="la la-search"></i></button>
+                                <button type="submit"><i className="la la-search"></i></button>
                             </form>
                         </div>
                         <nav>
@@ -34,13 +34,13 @@ export const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link to="index.html" title="">
-                                        <span><a class="far fa-address-card"></a></span>
+                                        <span><a className="far fa-address-card"></a></span>
                     Forum
                   </Link>
                                 </li>
                                 <li>
                                     <Link to="index.html" title="">
-                                        <span><a class="far fa-question-circle"></a></span>
+                                        <span><a className="far fa-question-circle"></a></span>
                     Q&A
                   </Link>
                                 </li>
@@ -53,7 +53,7 @@ export const Navbar = () => {
 
                                 <li>
                                     <Link to="jobs.html" title="">
-                                        <span><a class="fa fa-user"></a></span>
+                                        <span><a className="fa fa-user"></a></span>
                     Profiles
                   </Link>
                                 </li>

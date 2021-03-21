@@ -4,39 +4,39 @@ import './AuthForm.css';
 
 const AuthForm = props => {
     return (
-        <div class="col-lg-6">
-            <div class="login-sec">
-                <ul class="sign-control">
+        <div className="col-lg-6">
+            <div className="login-sec">
+                <ul className="sign-control">
 
                 </ul>
 
-                <div class="sign_in_sec current" id="tab-1">
+                <div className="sign_in_sec current" id="tab-1">
                     <h3>Sign in</h3>
                     <form>
-                        <div class="row">
-                            <div class="col-lg-12 no-pdd">
-                                <div class="sn-field">
+                        <div className="row">
+                            <div className="col-lg-12 no-pdd">
+                                <div className="sn-field">
                                     <input
                                         type="text"
                                         name="username"
                                         placeholder="Username"
                                     />
-                                    <i class="la la-user"></i>
+                                    <i className="la la-user"></i>
                                 </div>
                             </div>
-                            <div class="col-lg-12 no-pdd">
-                                <div class="sn-field">
+                            <div className="col-lg-12 no-pdd">
+                                <div className="sn-field">
                                     <input
                                         type="password"
                                         name="password"
                                         placeholder="Password"
                                     />
-                                    <i class="la la-lock"></i>
+                                    <i className="la la-lock"></i>
                                 </div>
                             </div>
-                            <div class="col-lg-12 no-pdd">
-                                <div class="checky-sec">
-                                    <div class="fgt-sec">
+                            <div className="col-lg-12 no-pdd">
+                                <div className="checky-sec">
+                                    <div className="fgt-sec">
                                         <input type="checkbox" name="cc" id="c1" />
                                         <label for="c1">
                                             <span></span>
@@ -46,22 +46,22 @@ const AuthForm = props => {
                                     <a href="#" title="">Forgot Password?</a>
                                 </div>
                             </div>
-                            <div class="col-lg-12 no-pdd">
+                            <div className="col-lg-12 no-pdd">
                                 <button type="submit" value="submit">Sign in</button>
                             </div>
                         </div>
                     </form>
-                    <div class="login-resources">
+                    <div className="login-resources">
                         <h4>Login Via Social Account</h4>
                         <ul>
                             <li>
-                                <a href="#" title="" class="fb"
-                                ><i class="fa fa-facebook"></i>Login Via Facebook</a
+                                <a href="#" title="" className="fb"
+                                ><i className="fa fa-facebook"></i>Login Via Facebook</a
                                 >
                             </li>
                             <li>
-                                <a href="#" title="" class="tw"
-                                ><i class="fa fa-twitter"></i>Login Via Twitter</a
+                                <a href="#" title="" className="tw"
+                                ><i className="fa fa-twitter"></i>Login Via Twitter</a
                                 >
                             </li>
                         </ul>

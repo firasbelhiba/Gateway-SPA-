@@ -13,6 +13,7 @@ import { Fragment } from 'react';
 import { Navbar } from './Shared/layouts/Navbar';
 import { Landing } from './Shared/landing/pages/Landing';
 import { Profile } from './Profile/Pages/Profile';
+import { Profiles } from './Profiles/pages/Profiles';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/me" component={Profile} />
+            <Route exact path="/profiles" component={Profiles} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signin" component={Signin} />
           </Switch>

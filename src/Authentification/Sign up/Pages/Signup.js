@@ -8,12 +8,12 @@ import "./Signup.css";
 
 const Signup = () => {
     return (
-        <body class="sign-in">
-            <div class="wrapper">
-                <div class="sign-in-page">
-                    <div class="signin-popup">
-                        <div class="signin-pop">
-                            <div class="row">
+        <body className="sign-in">
+            <div className="wrapper">
+                <div className="sign-in-page">
+                    <div className="signin-popup">
+                        <div className="signin-pop">
+                            <div className="row">
                                 <Introduction />
                                 <AuthForm />
                             </div>

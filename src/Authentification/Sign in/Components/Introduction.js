@@ -3,9 +3,9 @@ import React from 'react';
 import './Introduction.css';
 
 const Introduction = props => {
-    return (<div class="col-lg-6">
-        <div class="cmp-info">
-            <div class="cm-logo">
+    return (<div className="col-lg-6">
+        <div className="cmp-info">
+            <div className="cm-logo">
                 <img src="assets/images/Gateway.png" alt="" />
                 <p>
                     Workwise, is a global freelancing platform and social

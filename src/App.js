@@ -15,25 +15,31 @@ import { Landing } from './Shared/landing/pages/Landing';
 import { Profile } from './Profile/Pages/Profile';
 import { Profiles } from './Profiles/pages/Profiles';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
+
 function App() {
   return (
-    <Router>
-      <Fragment>
-        <Navbar />
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar />
 
-        <section className="">
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/me" component={Profile} />
-            <Route exact path="/profiles" component={Profiles} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/signin" component={Signin} />
-          </Switch>
-        </section>
+          <section className="">
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/me" component={Profile} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/signin" component={Signin} />
+            </Switch>
+          </section>
 
 
-      </Fragment>
-    </Router>
+        </Fragment>
+      </Router>
+    </Provider>
   );
 }
 

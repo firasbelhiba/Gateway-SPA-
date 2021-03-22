@@ -17,6 +17,7 @@ import { Profiles } from './Profiles/pages/Profiles';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import Alert from './Shared/layouts/Alert';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Navbar />
 
           <section className="">
+            <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/me" component={Profile} />

@@ -2,15 +2,15 @@ import React, { Fragment, useState } from 'react';
 
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
+import { register } from '../../../actions/auth';
 
 
 import PropTypes from 'prop-types'
 
 
 import './AuthForm.css';
-import Alert from '../../../Shared/layouts/Alert';
 
-const AuthForm = ({ setAlert }) => {
+const AuthForm = ({ setAlert, register }) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -32,7 +32,7 @@ const AuthForm = ({ setAlert }) => {
 
 
         } else {
-            console.log('success');
+            register({ name, email, password });
         }
     }
 
@@ -196,7 +196,8 @@ const AuthForm = ({ setAlert }) => {
 };
 
 AuthForm.propTypes = {
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
 }
 
-export default connect(null, { setAlert })(AuthForm);
+export default connect(null, { setAlert, register })(AuthForm);

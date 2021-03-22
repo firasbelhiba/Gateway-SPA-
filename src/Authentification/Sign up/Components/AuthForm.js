@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
+import { connect } from 'react-redux';
+import { setAlert } from '../../../actions/alert';
+
 import './AuthForm.css';
 
-const AuthForm = props => {
+const AuthForm = ({ setAlert }) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -20,7 +23,9 @@ const AuthForm = props => {
     const onSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
-            console.log('password does not match');
+            setAlert('password does not match', 'danger');
+
+
         } else {
             console.log('success');
         }
@@ -182,4 +187,4 @@ const AuthForm = props => {
     );
 };
 
-export default AuthForm;
+export default connect(null, { setAlert })(AuthForm);

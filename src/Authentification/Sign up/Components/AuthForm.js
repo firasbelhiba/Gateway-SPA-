@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 import './AuthForm.css';
 
@@ -23,28 +22,7 @@ const AuthForm = props => {
         if (password !== password2) {
             console.log('password does not match');
         } else {
-            const newUser = {
-                name,
-                email,
-                password
-            }
-
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-
-                const body = JSON.stringify(newUser);
-
-                const res = await axios.post('http://localhost:5000/api/users', body, config);
-                console.log('yay');
-                console.log(res);
-
-            } catch (error) {
-                console.error(error.response.data);
-            }
+            console.log('success');
         }
     }
 

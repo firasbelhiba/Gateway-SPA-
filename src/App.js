@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import Signup from './Authentification/Sign up/Pages/Signup';
 import Signin from './Authentification/Sign in/Pages/Signin';
-
+import Forum from './Forum/pages/Forum';
 import { Fragment } from 'react';
 import { Navbar } from './Shared/layouts/Navbar';
 import { Landing } from './Shared/landing/pages/Landing';
@@ -26,6 +26,7 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/me" component={Profile} />
             <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/forum" component={Forum} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signin" component={Signin} />
           </Switch>

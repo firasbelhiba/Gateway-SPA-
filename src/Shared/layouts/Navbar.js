@@ -18,7 +18,7 @@ export const Navbar = () => {
                                 <li><Link to="/signin" title="">Login</Link></li>
                             </ul>
                         </div>
-                        <div className="search-bar st2 " style={{ width: "182px" }}>
+                        <div className="search-bar st2 " style={{ width: "180px" }}>
                             <form>
                                 <input type="text" name="search" placeholder="Search..." />
                                 <button type="submit"><i className="la la-search"></i></button>

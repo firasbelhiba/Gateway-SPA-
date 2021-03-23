@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { Fragment, useState } from 'react';
+
+import { connect } from 'react-redux';
+import { setAlert } from '../../../actions/alert';
+import { register } from '../../../actions/auth';
+
+
+import PropTypes from 'prop-types'
+
 
 import './AuthForm.css';
 
-const AuthForm = props => {
+const AuthForm = ({ setAlert, register }) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -21,187 +28,176 @@ const AuthForm = props => {
     const onSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
-            console.log('password does not match');
+            setAlert('password does not match', 'danger');
+
+
         } else {
-            const newUser = {
-                name,
-                email,
-                password
-            }
-
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-
-                const body = JSON.stringify(newUser);
-
-                const res = await axios.post('http://localhost:5000/api/users', body, config);
-                console.log('yay');
-                console.log(res);
-
-            } catch (error) {
-                console.error(error.response.data);
-            }
+            register({ name, email, password });
         }
     }
 
     return (
-        <div className="col-lg-6">
-            <div className="login-sec">
-                <ul className="sign-control">
+        <Fragment>
 
-                </ul>
+            <div className="col-lg-6">
+                <div className="login-sec">
+                    <ul className="sign-control">
 
-                <div className="sign_in_sec current" id="tab-2">
+                    </ul>
 
-                    <div className="dff-tab current" id="tab-3">
-                        <form onSubmit={e => onSubmit(e)}>
-                            <div className="row">
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={name}
-                                            placeholder="Full Name"
-                                            onChange={e => onChange(e)}
-                                            required
-                                        />
-                                        <i className="la la-user"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={email}
-                                            placeholder="Email"
-                                            onChange={e => onChange(e)}
-                                            required
-                                        />
-                                        <i className="fas fa-at"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="password"
-                                            name="password"
-                                            value={password}
-                                            placeholder="Password"
-                                            minLength="6"
-                                            onChange={e => onChange(e)}
-                                            required
-                                        />
-                                        <i className="la la-lock"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="password"
-                                            name="password2"
-                                            value={password2}
-                                            placeholder="Repeat Password"
-                                            onChange={e => onChange(e)}
-                                            minLength="6"
-                                            required
-                                        />
-                                        <i className="la la-lock"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="checky-sec st2">
-                                        <div className="fgt-sec">
-                                            <input type="checkbox" name="cc" id="c2" />
-                                            <label for="c2">
-                                                <span></span>
-                                            </label>
-                                            <small
-                                            >Yes, I understand and agree to the workwise Terms & Conditions.</small
-                                            >
+                    <div className="sign_in_sec current" id="tab-2">
+
+                        <div className="dff-tab current" id="tab-3">
+                            <form onSubmit={e => onSubmit(e)}>
+                                <div className="row">
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={name}
+                                                placeholder="Full Name"
+                                                onChange={e => onChange(e)}
+                                                required
+                                            />
+                                            <i className="la la-user"></i>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <button type="submit" value="submit">
-                                        Get Started
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div className="dff-tab" id="tab-4">
-                        <form>
-                            <div className="row">
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="text"
-                                            name="company-name"
-                                            placeholder="Company Name"
-                                        />
-                                        <i className="la la-building"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="text"
-                                            name="country"
-                                            placeholder="Country"
-                                        />
-                                        <i className="la la-globe"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="password"
-                                            name="password"
-                                            placeholder="Password"
-                                        />
-                                        <i className="la la-lock"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="sn-field">
-                                        <input
-                                            type="password"
-                                            name="repeat-password"
-                                            placeholder="Repeat Password"
-                                        />
-                                        <i className="la la-lock"></i>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <div className="checky-sec st2">
-                                        <div className="fgt-sec">
-                                            <input type="checkbox" name="cc" id="c3" />
-                                            <label for="c3">
-                                                <span></span>
-                                            </label>
-                                            <small
-                                            >Yes, I understand and agree to the workwise Terms & Conditions.</small>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                value={email}
+                                                placeholder="Email"
+                                                onChange={e => onChange(e)}
+                                                required
+                                            />
+                                            <i className="fas fa-at"></i>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-lg-12 no-pdd">
-                                    <button type="submit" value="submit">
-                                        Get Started
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                value={password}
+                                                placeholder="Password"
+                                                minLength="6"
+                                                onChange={e => onChange(e)}
+                                                required
+                                            />
+                                            <i className="la la-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="password"
+                                                name="password2"
+                                                value={password2}
+                                                placeholder="Repeat Password"
+                                                onChange={e => onChange(e)}
+                                                minLength="6"
+                                                required
+                                            />
+                                            <i className="la la-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="checky-sec st2">
+                                            <div className="fgt-sec">
+                                                <input type="checkbox" name="cc" id="c2" />
+                                                <label for="c2">
+                                                    <span></span>
+                                                </label>
+                                                <small
+                                                >Yes, I understand and agree to the workwise Terms & Conditions.</small
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <button type="submit" value="submit">
+                                            Get Started
                                     </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                        <div className="dff-tab" id="tab-4">
+                            <form>
+                                <div className="row">
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="text"
+                                                name="company-name"
+                                                placeholder="Company Name"
+                                            />
+                                            <i className="la la-building"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="text"
+                                                name="country"
+                                                placeholder="Country"
+                                            />
+                                            <i className="la la-globe"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                placeholder="Password"
+                                            />
+                                            <i className="la la-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="sn-field">
+                                            <input
+                                                type="password"
+                                                name="repeat-password"
+                                                placeholder="Repeat Password"
+                                            />
+                                            <i className="la la-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <div className="checky-sec st2">
+                                            <div className="fgt-sec">
+                                                <input type="checkbox" name="cc" id="c3" />
+                                                <label for="c3">
+                                                    <span></span>
+                                                </label>
+                                                <small
+                                                >Yes, I understand and agree to the workwise Terms & Conditions.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12 no-pdd">
+                                        <button type="submit" value="submit">
+                                            Get Started
+                                    </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Fragment>
     );
 };
 
-export default AuthForm;
+AuthForm.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+}
+
+export default connect(null, { setAlert, register })(AuthForm);

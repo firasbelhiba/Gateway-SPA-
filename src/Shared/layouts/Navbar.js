@@ -33,7 +33,7 @@ export const Navbar = () => {
                   </Link>
                                 </li>
                                 <li>
-                                    <Link to="index.html" title="">
+                                    <Link to="/forum" title="">
                                         <span><a className="far fa-address-card"></a></span>
                     Forum
                   </Link>

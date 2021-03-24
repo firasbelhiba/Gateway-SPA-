@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -59,8 +59,6 @@ function App() {
             </Switch>
             <Chat />
           </section>
-
-
         </Fragment>
       </Router>
     </Provider>

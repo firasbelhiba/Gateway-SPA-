@@ -26,6 +26,7 @@ import Alert from './Shared/layouts/Alert';
 import Chat from './Shared/layouts/Chat';
 import Messages from './Messages/pages/Messages';
 import { loadUser } from './actions/auth';
+import PrivateRoute from "./routing/PrivateRoute";
 
 
 if (localStorage.token) {
@@ -53,7 +54,7 @@ function App() {
               <Route exact path="/me" component={Profile} />
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/messages" component={Messages} />
+              <PrivateRoute exact path="/messages" component={Messages} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/signin" component={Signin} />
             </Switch>

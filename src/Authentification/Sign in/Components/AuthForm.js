@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { login } from '../../../actions/auth';
+import PropTypes from 'prop-types';
 
 import './AuthForm.css';
+import { Redirect } from 'react-router-dom';
 
-const AuthForm = props => {
+const AuthForm = ({ login, isAuthenticated }) => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+
+
+    const { email, password } = formData;
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const onSubmit = async e => {
+        e.preventDefault();
+        login(email, password);
+    }
+
+    // If you are logged in you get redirected to /forum
+    if (isAuthenticated) {
+        return <Redirect to='/forum' />;
+    }
+
+
     return (
         <div className="col-lg-6">
             <div className="login-sec">
@@ -12,14 +38,17 @@ const AuthForm = props => {
 
                 <div className="sign_in_sec current" id="tab-1">
                     <h3>Sign in</h3>
-                    <form>
+                    <form onSubmit={e => onSubmit(e)}>
                         <div className="row">
                             <div className="col-lg-12 no-pdd">
                                 <div className="sn-field">
                                     <input
-                                        type="text"
-                                        name="username"
-                                        placeholder="Username"
+                                        type="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={e => onChange(e)}
+                                        placeholder="Email"
+                                        required
                                     />
                                     <i className="la la-user"></i>
                                 </div>
@@ -29,6 +58,8 @@ const AuthForm = props => {
                                     <input
                                         type="password"
                                         name="password"
+                                        value={password}
+                                        onChange={e => onChange(e)}
                                         placeholder="Password"
                                     />
                                     <i className="la la-lock"></i>
@@ -72,4 +103,14 @@ const AuthForm = props => {
     );
 };
 
-export default AuthForm;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+})
+
+AuthForm.propTypes = {
+    isAuthenticated: PropTypes.bool,
+    login: PropTypes.func.isRequired
+}
+
+
+export default connect(mapStateToProps, { login })(AuthForm)

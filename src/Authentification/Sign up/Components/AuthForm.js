@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import { register } from '../../../actions/auth';
+import { Redirect } from 'react-router-dom';
 
 
 import PropTypes from 'prop-types'
@@ -10,7 +11,7 @@ import PropTypes from 'prop-types'
 
 import './AuthForm.css';
 
-const AuthForm = ({ setAlert, register }) => {
+const AuthForm = ({ setAlert, register, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -34,6 +35,11 @@ const AuthForm = ({ setAlert, register }) => {
         } else {
             register({ name, email, password });
         }
+    }
+
+    // If you are logged in you get redirected to /forum
+    if (isAuthenticated) {
+        return <Redirect to='/forum' />;
     }
 
     return (
@@ -195,9 +201,15 @@ const AuthForm = ({ setAlert, register }) => {
     );
 };
 
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
 AuthForm.propTypes = {
     setAlert: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+
 }
 
-export default connect(null, { setAlert, register })(AuthForm);
+export default connect(mapStateToProps, { setAlert, register })(AuthForm);

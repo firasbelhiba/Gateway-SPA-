@@ -1,9 +1,40 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
-export const Navbar = () => {
+
+const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
+
+  const authLinks = (
+    <ul>
+      <li>
+        <a onClick={logout} to="#!" title="" style={{ color: 'white' }}>
+          Logout
+      </a>
+      </li>
+    </ul>
+  );
+
+
+  const visitorLinks = (
+    <ul>
+      <li>
+        <Link to="/signup" title="">
+          Register
+      </Link>
+      </li>
+      <li>
+        <Link to="/signin" title="">
+          Login
+      </Link>
+      </li>
+    </ul>);
+
   return (
     <Fragment>
+      {!isAuthenticated && <Redirect to='/signin' />}
       <header>
         <div className="container">
           <div className="header-data">
@@ -17,18 +48,7 @@ export const Navbar = () => {
               </Link>
             </div>
             <div className="login_register">
-              <ul>
-                <li>
-                  <Link to="/signup" title="">
-                    Register
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/signin" title="">
-                    Login
-                  </Link>
-                </li>
-              </ul>
+              {!loading && (<Fragment>{isAuthenticated ? authLinks : visitorLinks}</Fragment>)}
             </div>
             <div className="search-bar st2 " style={{ width: "180px" }}>
               <form>
@@ -87,3 +107,14 @@ export const Navbar = () => {
     </Fragment>
   );
 };
+
+Navbar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+})
+
+export default connect(mapStateToProps, { logout })(Navbar);

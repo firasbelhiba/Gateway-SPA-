@@ -9,7 +9,8 @@ import {
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    LOGOUT
 } from './types';
 import React from 'react'
 
@@ -104,6 +105,12 @@ export const login = (email, password) => async dispatch => {
     }
 
 
+}
+
+
+// Logout 
+export const logout = () => dispatch => {
+    dispatch({ type: LOGOUT });
 }
 
 

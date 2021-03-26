@@ -11,7 +11,7 @@ import Signin from './Authentification/Sign in/Pages/Signin';
 import Forum from './Forum/pages/Forum';
 
 import { Fragment, useEffect } from 'react';
-import { Navbar } from './Shared/layouts/Navbar';
+import Navbar from './Shared/layouts/Navbar';
 import { Landing } from './Shared/landing/pages/Landing';
 
 import { Profile } from './Profile/Pages/Profile';

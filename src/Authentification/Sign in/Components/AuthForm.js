@@ -25,7 +25,7 @@ const AuthForm = ({ login, isAuthenticated }) => {
 
     // If you are logged in you get redirected to /forum
     if (isAuthenticated) {
-        return <Redirect to='/forum' />;
+        return <Redirect to='/me' />;
     }
 
 

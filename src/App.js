@@ -14,7 +14,7 @@ import { Fragment, useEffect } from 'react';
 import Navbar from './Shared/layouts/Navbar';
 import { Landing } from './Shared/landing/pages/Landing';
 
-import { Profile } from './Profile/Pages/Profile';
+import Profile from './Profile/Pages/Profile';
 import { Profiles } from './Profiles/pages/Profiles';
 import setAuthToken from './utils/setAuthToken';
 
@@ -33,8 +33,6 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-
-
 function App() {
 
   useEffect(() => {
@@ -51,7 +49,7 @@ function App() {
             <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
-              <Route exact path="/me" component={Profile} />
+              <PrivateRoute exact path="/me" component={Profile} />
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/messages" component={Messages} />

@@ -34,7 +34,6 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 
   return (
     <Fragment>
-      {!isAuthenticated && <Redirect to='/signin' />}
       <header>
         <div className="container">
           <div className="header-data">

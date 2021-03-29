@@ -19,6 +19,7 @@ import { Education_form } from '../components/Forms/Education_form'
 import { Location_form } from '../components/Forms/Location_form'
 import { Skills_form } from '../components/Forms/Skills_form'
 import { Portfolio_form } from '../components/Forms/Portfolio_form'
+import Edit_Profile from '../components/Edit_Profile'
 
 export const Profile = () => {
     return (
@@ -68,6 +69,7 @@ export const Profile = () => {
                                     <div className="col-lg-3">
                                         <div className="right-sidebar">
                                             <Settings />
+                                            <Edit_Profile />
                                             <Widget_portfolio />
                                         </div>
                                     </div>

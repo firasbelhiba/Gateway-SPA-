@@ -29,6 +29,7 @@ import PrivateRoute from "./routing/PrivateRoute";
 import { Profile } from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
 import CreateProfile from "./Me/components/CreateProfile";
+import Profile_edit_form from "./Profile/components/Forms/Profile_edit_form";
 
 
 if (localStorage.token) {
@@ -52,14 +53,15 @@ function App() {
             <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/signin" component={Signin} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/forum" component={Forum} />
               <PrivateRoute exact path="/myprofile" component={Profile} />
               <PrivateRoute exact path="/me" component={Me} />
               <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-              <Route exact path="/forum" component={Forum} />
-              <Route exact path="/profiles" component={Profiles} />
+              <PrivateRoute exact path="/edit-profile" component={Profile_edit_form} />
               <PrivateRoute exact path="/messages" component={Messages} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/signin" component={Signin} />
             </Switch>
             <Chat />
           </section>

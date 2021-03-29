@@ -241,7 +241,7 @@ const CreateProfile = ({ createProfile, history }) => {
                         </fieldset>
 
                         <button className="button" type="submit">Save</button>
-                        <Link to='/dashboard' className="btn btn-light my-1">Go Back</Link>
+                        <Link to='/me' className="btn btn-light my-1">Go Back</Link>
                     </form>
                 </div>
             </div>

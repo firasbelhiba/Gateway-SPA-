@@ -3,11 +3,11 @@ import React from 'react'
 const Post_item = () => {
     return (
         <div>
-            <div class="post-bar">
-                <div class="post_topbar">
-                    <div class="usy-dt">
+            <div className="post-bar">
+                <div className="post_topbar">
+                    <div className="usy-dt">
                         <img src="assets/images/resources/us-pic.png" alt="" />
-                        <div class="usy-name">
+                        <div className="usy-name">
                             <h3>John Doe</h3>
                             <span
                             ><img src="assets/images/clock.png" alt="" />3 min
@@ -15,11 +15,11 @@ const Post_item = () => {
                             >
                         </div>
                     </div>
-                    <div class="ed-opts">
-                        <a href="#" title="" class="ed-opts-open"
-                        ><i class="la la-ellipsis-v"></i
+                    <div className="ed-opts">
+                        <a href="#" title="" className="ed-opts-open"
+                        ><i className="la la-ellipsis-v"></i
                         ></a>
-                        <ul class="ed-options">
+                        <ul className="ed-options">
                             <li><a href="#" title="">Edit Post</a></li>
                             <li><a href="#" title="">Unsaved</a></li>
                             <li><a href="#" title="">Unbid</a></li>
@@ -28,8 +28,8 @@ const Post_item = () => {
                         </ul>
                     </div>
                 </div>
-                <div class="epi-sec">
-                    <ul class="descp">
+                <div className="epi-sec">
+                    <ul className="descp">
                         <li>
                             <img src="assets/images/icon8.png" alt="" /><span
                             >Epic Coder</span
@@ -41,22 +41,22 @@ const Post_item = () => {
                             >
                         </li>
                     </ul>
-                    <ul class="bk-links">
+                    <ul className="bk-links">
                         <li>
                             <a href="#" title=""
-                            ><i class="la la-bookmark"></i
+                            ><i className="la la-bookmark"></i
                             ></a>
                         </li>
                         <li>
                             <a href="#" title=""
-                            ><i class="la la-envelope"></i
+                            ><i className="la la-envelope"></i
                             ></a>
                         </li>
                     </ul>
                 </div>
-                <div class="job_descp">
+                <div className="job_descp">
                     <h3>Senior Wordpress Developer</h3>
-                    <ul class="job-dt">
+                    <ul className="job-dt">
                         <li><a href="#" title="">Full Time</a></li>
                         <li><span>$30 / hr</span></li>
                     </ul>
@@ -66,7 +66,7 @@ const Post_item = () => {
                         quam finibus at. Etiam id magna sit amet...
                                                                 <a href="#" title="">view more</a>
                     </p>
-                    <ul class="skill-tags">
+                    <ul className="skill-tags">
                         <li><a href="#" title="">HTML</a></li>
                         <li><a href="#" title="">PHP</a></li>
                         <li><a href="#" title="">CSS</a></li>
@@ -74,21 +74,21 @@ const Post_item = () => {
                         <li><a href="#" title="">Wordpress</a></li>
                     </ul>
                 </div>
-                <div class="job-status-bar">
-                    <ul class="like-com">
+                <div className="job-status-bar">
+                    <ul className="like-com">
                         <li>
-                            <a href="#"><i class="fas fa-heart"></i> Like</a>
+                            <a href="#"><i className="fas fa-heart"></i> Like</a>
                             <img src="assets/images/liked-img.png" alt="" />
                             <span>25</span>
                         </li>
                         <li>
-                            <a href="#" class="com"
-                            ><i class="fas fa-comment-alt"></i> Comment
+                            <a href="#" className="com"
+                            ><i className="fas fa-comment-alt"></i> Comment
                                                                          15</a
                             >
                         </li>
                     </ul>
-                    <a href="#"><i class="fas fa-eye"></i>Views 50</a>
+                    <a href="#"><i className="fas fa-eye"></i>Views 50</a>
                 </div>
             </div>
         </div>

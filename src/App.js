@@ -14,7 +14,6 @@ import { Fragment, useEffect } from 'react';
 import Navbar from './Shared/layouts/Navbar';
 import { Landing } from './Shared/landing/pages/Landing';
 
-import Profile from './Profile/Pages/Profile';
 import { Profiles } from './Profiles/pages/Profiles';
 import setAuthToken from './utils/setAuthToken';
 
@@ -27,6 +26,8 @@ import Chat from './Shared/layouts/Chat';
 import Messages from './Messages/pages/Messages';
 import { loadUser } from './actions/auth';
 import PrivateRoute from "./routing/PrivateRoute";
+import { Profile } from "./Profile/Pages/Profile";
+import Me from "./Me/pages/Me";
 
 
 if (localStorage.token) {
@@ -39,6 +40,7 @@ function App() {
     store.dispatch(loadUser());
   }, [])
 
+
   return (
     <Provider store={store}>
       <Router>
@@ -49,7 +51,8 @@ function App() {
             <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
-              <PrivateRoute exact path="/me" component={Profile} />
+              <PrivateRoute exact path="/myprofile" component={Profile} />
+              <PrivateRoute exact path="/me" component={Me} />
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/messages" component={Messages} />

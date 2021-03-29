@@ -3,123 +3,123 @@ import React from 'react'
 const Top_profiles = () => {
     return (
         <div>
-            <div class="posts-section">
-                <div class="top-profiles">
-                    <div class="pf-hd">
+            <div className="posts-section">
+                <div className="top-profiles">
+                    <div className="pf-hd">
                         <h3>Top Profiles</h3>
-                        <i class="la la-ellipsis-v"></i>
+                        <i className="la la-ellipsis-v"></i>
                     </div>
-                    <div class="profiles-slider">
-                        <div class="user-profy">
+                    <div className="profiles-slider">
+                        <div className="user-profy">
                             <img src="assets/images/resources/user1.png" alt="" />
                             <h3>John Doe</h3>
                             <span>Graphic Designer</span>
                             <ul>
                                 <li>
-                                    <a href="#" title="" class="followw">Follow</a>
+                                    <a href="#" title="" className="followw">Follow</a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="envlp"
+                                    <a href="#" title="" className="envlp"
                                     ><img src="assets/images/envelop.png" alt=""
                                         /></a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="hire">hire</a>
+                                    <a href="#" title="" className="hire">hire</a>
                                 </li>
                             </ul>
                             <a href="#" title="">View Profile</a>
                         </div>
-                        <div class="user-profy">
+                        <div className="user-profy">
                             <img src="assets/images/resources/user2.png" alt="" />
                             <h3>John Doe</h3>
                             <span>Graphic Designer</span>
                             <ul>
                                 <li>
-                                    <a href="#" title="" class="followw">Follow</a>
+                                    <a href="#" title="" className="followw">Follow</a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="envlp"
+                                    <a href="#" title="" className="envlp"
                                     ><img src="assets/images/envelop.png" alt=""
                                         /></a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="hire">hire</a>
+                                    <a href="#" title="" className="hire">hire</a>
                                 </li>
                             </ul>
                             <a href="#" title="">View Profile</a>
                         </div>
-                        <div class="user-profy">
+                        <div className="user-profy">
                             <img src="assets/images/resources/user3.png" alt="" />
                             <h3>John Doe</h3>
                             <span>Graphic Designer</span>
                             <ul>
                                 <li>
-                                    <a href="#" title="" class="followw">Follow</a>
+                                    <a href="#" title="" className="followw">Follow</a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="envlp"
+                                    <a href="#" title="" className="envlp"
                                     ><img src="assets/images/envelop.png" alt=""
                                         /></a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="hire">hire</a>
+                                    <a href="#" title="" className="hire">hire</a>
                                 </li>
                             </ul>
                             <a href="#" title="">View Profile</a>
                         </div>
-                        <div class="user-profy">
+                        <div className="user-profy">
                             <img src="assets/images/resources/user1.png" alt="" />
                             <h3>John Doe</h3>
                             <span>Graphic Designer</span>
                             <ul>
                                 <li>
-                                    <a href="#" title="" class="followw">Follow</a>
+                                    <a href="#" title="" className="followw">Follow</a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="envlp"
+                                    <a href="#" title="" className="envlp"
                                     ><img src="assets/images/envelop.png" alt=""
                                         /></a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="hire">hire</a>
+                                    <a href="#" title="" className="hire">hire</a>
                                 </li>
                             </ul>
                             <a href="#" title="">View Profile</a>
                         </div>
-                        <div class="user-profy">
+                        <div className="user-profy">
                             <img src="assets/images/resources/user2.png" alt="" />
                             <h3>John Doe</h3>
                             <span>Graphic Designer</span>
                             <ul>
                                 <li>
-                                    <a href="#" title="" class="followw">Follow</a>
+                                    <a href="#" title="" className="followw">Follow</a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="envlp"
+                                    <a href="#" title="" className="envlp"
                                     ><img src="assets/images/envelop.png" alt=""
                                         /></a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="hire">hire</a>
+                                    <a href="#" title="" className="hire">hire</a>
                                 </li>
                             </ul>
                             <a href="#" title="">View Profile</a>
                         </div>
-                        <div class="user-profy">
+                        <div className="user-profy">
                             <img src="assets/images/resources/user3.png" alt="" />
                             <h3>John Doe</h3>
                             <span>Graphic Designer</span>
                             <ul>
                                 <li>
-                                    <a href="#" title="" class="followw">Follow</a>
+                                    <a href="#" title="" className="followw">Follow</a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="envlp"
+                                    <a href="#" title="" className="envlp"
                                     ><img src="assets/images/envelop.png" alt=""
                                         /></a>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="hire">hire</a>
+                                    <a href="#" title="" className="hire">hire</a>
                                 </li>
                             </ul>
                             <a href="#" title="">View Profile</a>

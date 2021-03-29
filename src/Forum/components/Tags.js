@@ -2,7 +2,7 @@ import React from 'react'
 
 const Tags = () => {
     return (
-        <div class="tags-sec full-width">
+        <div className="tags-sec full-width">
             <ul>
                 <li><a href="#" title="">Help Center</a></li>
                 <li><a href="#" title="">About</a></li>
@@ -13,7 +13,7 @@ const Tags = () => {
                 <li><a href="#" title="">Language</a></li>
                 <li><a href="#" title="">Copyright Policy</a></li>
             </ul>
-            <div class="cp-sec">
+            <div className="cp-sec">
                 <img src="images/logo2.png" alt="" />
                 <p><img src="images/cp.png" alt="" />Copyright 2019</p>
             </div>

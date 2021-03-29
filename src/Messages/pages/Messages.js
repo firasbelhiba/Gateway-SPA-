@@ -2,143 +2,143 @@ import React from 'react'
 
 const Messages = () => {
     return (
-        <section class="messages-page">
-            <div class="container">
-                <div class="messages-sec">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12 no-pdd">
-                            <div class="msgs-list">
-                                <div class="msg-title">
+        <section className="messages-page">
+            <div className="container">
+                <div className="messages-sec">
+                    <div className="row">
+                        <div className="col-lg-4 col-md-12 no-pdd">
+                            <div className="msgs-list">
+                                <div className="msg-title">
                                     <h3>Messages</h3>
                                     <ul>
                                         <li>
-                                            <a href="#" title=""><i class="fa fa-cog"></i></a>
+                                            <a href="#" title=""><i className="fa fa-cog"></i></a>
                                         </li>
                                         <li>
                                             <a href="#" title=""
-                                            ><i class="fa fa-ellipsis-v"></i
+                                            ><i className="fa fa-ellipsis-v"></i
                                             ></a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="messages-list">
+                                <div className="messages-list">
                                     <ul>
-                                        <li class="active">
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                        <li className="active">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img1.png" alt="" />
-                                                    <span class="msg-status"></span>
+                                                    <span className="msg-status"></span>
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>John Doe</h3>
                                                     <p>
                                                         Lorem ipsum dolor
                               <img src="images/smley.png" alt="" />
                                                     </p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
-                                                <span class="msg-notifc">1</span>
+                                                <span className="posted_time">1:55 PM</span>
+                                                <span className="msg-notifc">1</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img2.png" alt="" />
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>David Vane</h3>
                                                     <p>Vestibulum ac diam..</p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
+                                                <span className="posted_time">1:55 PM</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img3.png" alt="" />
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>Nancy Dilan</h3>
                                                     <p>Quam vehicula.</p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
+                                                <span className="posted_time">1:55 PM</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img4.png" alt="" />
-                                                    <span class="msg-status"></span>
+                                                    <span className="msg-status"></span>
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>Norman Kenney</h3>
                                                     <p>Nulla quis lorem ut..</p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
+                                                <span className="posted_time">1:55 PM</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img5.png" alt="" />
-                                                    <span class="msg-status"></span>
+                                                    <span className="msg-status"></span>
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>James Dilan</h3>
                                                     <p>Vivamus magna just..</p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
+                                                <span className="posted_time">1:55 PM</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img6.png" alt="" />
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>Mike Dorn</h3>
                                                     <p>Praesent sapien massa.</p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
+                                                <span className="posted_time">1:55 PM</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="usr-msg-details">
-                                                <div class="usr-ms-img">
+                                            <div className="usr-msg-details">
+                                                <div className="usr-ms-img">
                                                     <img src="images/resources/m-img7.png" alt="" />
                                                 </div>
-                                                <div class="usr-mg-info">
+                                                <div className="usr-mg-info">
                                                     <h3>Patrick Morison</h3>
                                                     <p>Convallis a pellente...</p>
                                                 </div>
-                                                <span class="posted_time">1:55 PM</span>
+                                                <span className="posted_time">1:55 PM</span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
-                            <div class="main-conversation-box">
-                                <div class="message-bar-head">
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
+                        <div className="col-lg-8 col-md-12 pd-right-none pd-left-none">
+                            <div className="main-conversation-box">
+                                <div className="message-bar-head">
+                                    <div className="usr-msg-details">
+                                        <div className="usr-ms-img">
                                             <img src="images/resources/m-img1.png" alt="" />
                                         </div>
-                                        <div class="usr-mg-info">
+                                        <div className="usr-mg-info">
                                             <h3>John Doe</h3>
                                             <p>Online</p>
                                         </div>
                                     </div>
-                                    <a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
+                                    <a href="#" title=""><i className="fa fa-ellipsis-v"></i></a>
                                 </div>
-                                <div class="messages-line">
-                                    <div class="main-message-box">
-                                        <div class="messg-usr-img">
+                                <div className="messages-line">
+                                    <div className="main-message-box">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img1.png" alt="" />
                                         </div>
-                                        <div class="message-dt">
-                                            <div class="message-inner-dt img-bx">
+                                        <div className="message-dt">
+                                            <div className="message-inner-dt img-bx">
                                                 <img src="images/resources/mt-img1.png" alt="" />
                                                 <img src="images/resources/mt-img2.png" alt="" />
                                                 <img src="images/resources/mt-img3.png" alt="" />
@@ -146,9 +146,9 @@ const Messages = () => {
                                             <span>Sat, Aug 23, 1:08 PM</span>
                                         </div>
                                     </div>
-                                    <div class="main-message-box ta-right">
-                                        <div class="message-dt">
-                                            <div class="message-inner-dt">
+                                    <div className="main-message-box ta-right">
+                                        <div className="message-dt">
+                                            <div className="message-inner-dt">
                                                 <p>
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing
                                                     elit. Donec rutrum congue leo eget malesuada.
@@ -157,13 +157,13 @@ const Messages = () => {
                                             </div>
                                             <span>Sat, Aug 23, 1:08 PM</span>
                                         </div>
-                                        <div class="messg-usr-img">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img2.png" alt="" />
                                         </div>
                                     </div>
-                                    <div class="main-message-box st3">
-                                        <div class="message-dt st3">
-                                            <div class="message-inner-dt">
+                                    <div className="main-message-box st3">
+                                        <div className="message-dt st3">
+                                            <div className="message-inner-dt">
                                                 <p>
                                                     Cras ultricies ligula.<img
                                                         src="images/smley.png"
@@ -173,13 +173,13 @@ const Messages = () => {
                                             </div>
                                             <span>5 minutes ago</span>
                                         </div>
-                                        <div class="messg-usr-img">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img1.png" alt="" />
                                         </div>
                                     </div>
-                                    <div class="main-message-box ta-right">
-                                        <div class="message-dt">
-                                            <div class="message-inner-dt">
+                                    <div className="main-message-box ta-right">
+                                        <div className="message-dt">
+                                            <div className="message-inner-dt">
                                                 <p>
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing
                                                     elit. Donec rutrum congue leo eget malesuada.
@@ -188,24 +188,24 @@ const Messages = () => {
                                             </div>
                                             <span>Sat, Aug 23, 1:08 PM</span>
                                         </div>
-                                        <div class="messg-usr-img">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img2.png" alt="" />
                                         </div>
                                     </div>
-                                    <div class="main-message-box st3">
-                                        <div class="message-dt st3">
-                                            <div class="message-inner-dt">
+                                    <div className="main-message-box st3">
+                                        <div className="message-dt st3">
+                                            <div className="message-inner-dt">
                                                 <p>Lorem ipsum dolor sit amet</p>
                                             </div>
                                             <span>2 minutes ago</span>
                                         </div>
-                                        <div class="messg-usr-img">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img1.png" alt="" />
                                         </div>
                                     </div>
-                                    <div class="main-message-box ta-right">
-                                        <div class="message-dt">
-                                            <div class="message-inner-dt">
+                                    <div className="main-message-box ta-right">
+                                        <div className="message-dt">
+                                            <div className="message-inner-dt">
                                                 <p>
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing
                                                     elit. Donec rutrum congue leo eget malesuada.
@@ -214,25 +214,25 @@ const Messages = () => {
                                             </div>
                                             <span>Sat, Aug 23, 1:08 PM</span>
                                         </div>
-                                        <div class="messg-usr-img">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img2.png" alt="" />
                                         </div>
                                     </div>
-                                    <div class="main-message-box st3">
-                                        <div class="message-dt st3">
-                                            <div class="message-inner-dt">
+                                    <div className="main-message-box st3">
+                                        <div className="message-dt st3">
+                                            <div className="message-inner-dt">
                                                 <p>....</p>
                                             </div>
                                             <span>Typing...</span>
                                         </div>
-                                        <div class="messg-usr-img">
+                                        <div className="messg-usr-img">
                                             <img src="images/resources/m-img1.png" alt="" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="message-send-area">
+                                <div className="message-send-area">
                                     <form>
-                                        <div class="mf-field">
+                                        <div className="mf-field">
                                             <input
                                                 type="text"
                                                 name="message"
@@ -242,14 +242,14 @@ const Messages = () => {
                                         </div>
                                         <ul>
                                             <li>
-                                                <a href="#" title=""><i class="fa fa-smile-o"></i></a>
+                                                <a href="#" title=""><i className="fa fa-smile-o"></i></a>
                                             </li>
                                             <li>
-                                                <a href="#" title=""><i class="fa fa-camera"></i></a>
+                                                <a href="#" title=""><i className="fa fa-camera"></i></a>
                                             </li>
                                             <li>
                                                 <a href="#" title=""
-                                                ><i class="fa fa-paperclip"></i
+                                                ><i className="fa fa-paperclip"></i
                                                 ></a>
                                             </li>
                                         </ul>

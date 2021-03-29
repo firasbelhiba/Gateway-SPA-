@@ -10,9 +10,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const authLinks = (
     <ul>
       <li>
-        <a onClick={logout} to="#!" title="" style={{ color: 'white' }}>
+        <Link onClick={logout} to="#" title="" style={{ color: 'white' }}>
           Logout
-      </a>
+      </Link>
       </li>
     </ul>
   );
@@ -69,14 +69,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                 </li>
                 <li>
                   <Link to="/forum" title="">
-                    <span><a className="far fa-address-card"></a></span>
+                    <span><i className="far fa-address-card"></i></span>
                     Forum
                   </Link>
                 </li>
                 <li>
                   <Link to="index.html" title="">
                     <span>
-                      <a className="far fa-question-circle"></a>
+                      <i className="far fa-question-circle"></i>
                     </span>
                     Q&A
                   </Link>

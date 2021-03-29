@@ -2,21 +2,19 @@ import React from 'react'
 
 const Forum_header = () => {
     return (
-        <div class="post-topbar">
-            <div class="user-picy">
+        <div className="post-topbar">
+            <div className="user-picy">
                 <img src="assets/images/resources/user-pic.png" alt="" />
             </div>
-            <div class="post-st">
+            <div className="post-st">
                 <ul>
                     <li>
-                        <a class="post_project" href="#" title=""
-                        >Post a Project</a
-                        >
+                        <a className="post_project" href="#" title=""
+                        >Post a Project</a>
                     </li>
                     <li>
-                        <a class="post-jb active" href="#" title=""
-                        >Post a Job</a
-                        >
+                        <a className="post-jb active" href="#" title=""
+                        >Post a Job</a>
                     </li>
                 </ul>
             </div>

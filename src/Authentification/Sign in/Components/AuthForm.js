@@ -69,12 +69,12 @@ const AuthForm = ({ login, isAuthenticated }) => {
                                 <div className="checky-sec">
                                     <div className="fgt-sec">
                                         <input type="checkbox" name="cc" id="c1" />
-                                        <label for="c1">
+                                        <label htmlFor="c1">
                                             <span></span>
                                         </label>
                                         <small>Remember me</small>
                                     </div>
-                                    <a href="#" title="">Forgot Password?</a>
+                                    <a href="!#" title="">Forgot Password?</a>
                                 </div>
                             </div>
                             <div className="col-lg-12 no-pdd">
@@ -86,12 +86,12 @@ const AuthForm = ({ login, isAuthenticated }) => {
                         <h4>Login Via Social Account</h4>
                         <ul>
                             <li>
-                                <a href="#" title="" className="fb"
+                                <a href="!#" title="" className="fb"
                                 ><i className="fa fa-facebook"></i>Login Via Facebook</a
                                 >
                             </li>
                             <li>
-                                <a href="#" title="" className="tw"
+                                <a href="!#" title="" className="tw"
                                 ><i className="fa fa-twitter"></i>Login Via Twitter</a
                                 >
                             </li>

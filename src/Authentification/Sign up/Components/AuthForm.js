@@ -114,7 +114,7 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                         <div className="checky-sec st2">
                                             <div className="fgt-sec">
                                                 <input type="checkbox" name="cc" id="c2" />
-                                                <label for="c2">
+                                                <label htmlFor="c2">
                                                     <span></span>
                                                 </label>
                                                 <small
@@ -178,7 +178,7 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                         <div className="checky-sec st2">
                                             <div className="fgt-sec">
                                                 <input type="checkbox" name="cc" id="c3" />
-                                                <label for="c3">
+                                                <label htmlFor="c3">
                                                     <span></span>
                                                 </label>
                                                 <small

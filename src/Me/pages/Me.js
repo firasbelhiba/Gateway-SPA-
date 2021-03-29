@@ -5,6 +5,7 @@ import { getCurrentProfile } from '../../actions/profile'
 import { Loading_spinner } from '../../Shared/layouts/Loading_spinner'
 import User_Status from '../components/User_Status'
 import No_Profile from '../components/No_Profile'
+import { loadUser } from '../../actions/auth'
 
 const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
 
@@ -15,23 +16,32 @@ const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }
     return (
         loading && profile === null ? (<Loading_spinner />) : (
             <Fragment>
+                <div className="user-data full-width">
+                    <div className="user-profile">
+                        <div className="usr-pic">
+                            <img src={user && user.avatar} alt="" />
+                        </div>
 
-                {profile !== null ?
-                    (
-                        <Fragment>
-                            <User_Status
-                                name={user && user.name}
-                                status={profile.status}
-                                avatar={user.avatar}
-                            />
-                        </Fragment>
-                    ) :
-                    (
-                        <Fragment>
-                            <No_Profile name={user && user.name}
-                                avatar={user.avatar}
-                            />
-                        </Fragment>)}
+                        <div className="user-specs">
+                            <h1>Welcome</h1>
+                            <i className="fa fa-user mt-2" />
+                            <h3>{user && user.name}</h3>
+                            {profile !== null ?
+                                (
+                                    <Fragment>
+                                        <User_Status
+                                            status={profile.status}
+                                        />
+
+                                    </Fragment>
+                                ) :
+                                (
+                                    <Fragment>
+                                        <No_Profile />
+                                    </Fragment>)}
+                        </div>
+                    </div>
+                </div>
             </Fragment>)
     )
 }

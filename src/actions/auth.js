@@ -60,6 +60,9 @@ export const register = ({ name, email, password }) => async dispatch => {
             payload: res.data
         });
 
+        dispatch(loadUser());
+
+
     } catch (error) {
         const errors = error.response.data.errors;
         if (errors) {
@@ -111,8 +114,8 @@ export const login = (email, password) => async dispatch => {
 
 // Logout 
 export const logout = () => dispatch => {
-    dispatch({ type: LOGOUT });
     dispatch({ type: CLEAR_PROFILE });
+    dispatch({ type: LOGOUT });
 
 }
 

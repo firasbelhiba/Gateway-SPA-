@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getCurrentProfile } from '../../actions/profile'
 import { Loading_spinner } from '../../Shared/layouts/Loading_spinner'
 import User_Status from '../components/User_Status'
+import No_Profile from '../components/No_Profile'
 
 const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
 
@@ -21,12 +22,15 @@ const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }
                             <User_Status
                                 name={user && user.name}
                                 status={profile.status}
+                                avatar={user.avatar}
                             />
                         </Fragment>
                     ) :
                     (
                         <Fragment>
-                            has not
+                            <No_Profile name={user && user.name}
+                                avatar={user.avatar}
+                            />
                         </Fragment>)}
             </Fragment>)
     )

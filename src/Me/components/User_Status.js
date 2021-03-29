@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const User_Status = (props) => {
     return (
         <div className="user-data full-width">
             <div className="user-profile">
                 <div className="usr-pic">
-                    <img src="assets/images/resources/user-pic.png" alt="" />
+                    <img src={props.avatar} alt="" />
                 </div>
 
                 <div className="user-specs">
@@ -16,7 +17,7 @@ const User_Status = (props) => {
                 </div>
             </div>
             <div className="user-profy">
-                <a href="#" title="">View Profile</a>
+                <Link to="/myprofile" title="">View Profile</Link>
             </div>
         </div>
     )

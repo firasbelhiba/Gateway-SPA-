@@ -47,7 +47,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
 
         if (!edit) {
-            history.push('/dashboard');
+            history.push('/me');
         }
 
     } catch (err) {
@@ -84,7 +84,7 @@ export const addExperience = (formData, history) => async dispatch => {
 
         dispatch(setAlert('Experience Added'));
 
-        history.push('/dashboard');
+        history.push('/myprofile');
 
 
     } catch (err) {

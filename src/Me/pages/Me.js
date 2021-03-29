@@ -6,6 +6,7 @@ import { Loading_spinner } from '../../Shared/layouts/Loading_spinner'
 import User_Status from '../components/User_Status'
 import No_Profile from '../components/No_Profile'
 import { loadUser } from '../../actions/auth'
+import Alert from '../../Shared/layouts/Alert'
 
 const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
 
@@ -16,6 +17,7 @@ const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }
     return (
         loading && profile === null ? (<Loading_spinner />) : (
             <Fragment>
+                <Alert />
                 <div className="user-data full-width">
                     <div className="user-profile">
                         <div className="usr-pic">

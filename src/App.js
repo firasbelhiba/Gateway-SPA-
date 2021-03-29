@@ -28,6 +28,7 @@ import { loadUser } from './actions/auth';
 import PrivateRoute from "./routing/PrivateRoute";
 import { Profile } from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
+import CreateProfile from "./Me/components/CreateProfile";
 
 
 if (localStorage.token) {
@@ -53,6 +54,7 @@ function App() {
               <Route exact path="/" component={Landing} />
               <PrivateRoute exact path="/myprofile" component={Profile} />
               <PrivateRoute exact path="/me" component={Me} />
+              <PrivateRoute exact path="/create-profile" component={CreateProfile} />
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/messages" component={Messages} />

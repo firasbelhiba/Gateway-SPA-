@@ -1,7 +1,8 @@
 import {
     CLEAR_PROFILE,
     GET_PROFILE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    UPDATE_PROFILE
 } from "../actions/types";
 
 const initialState = {
@@ -20,6 +21,8 @@ export default function (state = initialState, action) {
     // eslint-disable-next-line default-case
     switch (type) {
         case GET_PROFILE:
+        case UPDATE_PROFILE:
+
             return {
                 ...state,
                 profile: payload,

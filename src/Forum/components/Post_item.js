@@ -18,7 +18,7 @@ const Post_item = () => {
             <a href="#" title="" class="ed-opts-open">
               <i class="la la-ellipsis-v"></i>
             </a>
-            <ul class="ed-options">
+            <ul class="ed-options  post_project">
               <li>
                 <a href="#" title="">
                   Edit Post

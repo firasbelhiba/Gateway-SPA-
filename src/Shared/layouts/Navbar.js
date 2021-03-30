@@ -170,7 +170,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                   </ul> */}
                 </li>
                 <li>
-                  <Link to="jobs.html" title="">
+                  <Link to="/jobs" title="">
                     <span>
                       <img src="assets/images/icon5.png" alt="" />
                     </span>

@@ -263,7 +263,7 @@ const Profile_edit_form
 
                             </fieldset>
 
-                            <button className="button" type="submit">Save</button>
+                            <button className="button_form" type="submit">Save</button>
                             <Link to='/myprofile' className="btn btn-light my-1">Go Back</Link>
                         </form>
                     </div>

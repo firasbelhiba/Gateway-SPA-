@@ -26,7 +26,7 @@ class QuestionDetails extends React.Component {
                                     <textarea></textarea>
                                 </div>
                                 <div className="ui blue labeled submit icon button">
-                                    <i className="icon edit"></i> Add Reply
+                                    <i className="icon edit"/> Add Reply
                                 </div>
                             </form>
                         </div>

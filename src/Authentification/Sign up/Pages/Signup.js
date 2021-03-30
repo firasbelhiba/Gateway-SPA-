@@ -5,6 +5,7 @@ import AuthForm from "../Components/AuthForm";
 import Footer from "../Components/Footer";
 
 import "./Signup.css";
+import Alert from "../../../Shared/layouts/Alert";
 
 const Signup = () => {
     return (
@@ -15,6 +16,7 @@ const Signup = () => {
                         <div className="signin-pop">
                             <div className="row">
                                 <Introduction />
+                                <Alert />
                                 <AuthForm />
                             </div>
                         </div>

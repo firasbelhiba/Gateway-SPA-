@@ -28,6 +28,7 @@ const Post_forum2 = () => {
                   placeholder="Description"
                 ></textarea>
               </div>
+              <input type="file" />
               <div class="col-lg-12">
                 <ul>
                   <li>

@@ -9,9 +9,8 @@ import Carousel from "../components/Carousel";
 export const Landing = () => {
   return (
     <Fragment>
-      <Carousel />
-      <Overview />
       <About_us />
+      <Overview />
       <Services />
       <Map />
     </Fragment>

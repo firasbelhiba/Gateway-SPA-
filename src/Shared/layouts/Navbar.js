@@ -1,36 +1,34 @@
 import React, { Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
-
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
 
 const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
-
   const authLinks = (
     <ul>
       <li>
-        <Link onClick={logout} to="#" title="" style={{ color: 'white' }}>
+        <Link onClick={logout} to="#" title="" style={{ color: "white" }}>
           Logout
-      </Link>
+        </Link>
       </li>
     </ul>
   );
-
 
   const visitorLinks = (
     <ul>
       <li>
         <Link to="/signup" title="">
           Register
-      </Link>
+        </Link>
       </li>
       <li>
         <Link to="/signin" title="">
           Login
-      </Link>
+        </Link>
       </li>
-    </ul>);
+    </ul>
+  );
 
   return (
     <Fragment>
@@ -47,7 +45,11 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               </Link>
             </div>
             <div className="login_register">
-              {!loading && (<Fragment>{isAuthenticated ? authLinks : visitorLinks}</Fragment>)}
+              {!loading && (
+                <Fragment>
+                  {isAuthenticated ? authLinks : visitorLinks}
+                </Fragment>
+              )}
             </div>
             <div className="search-bar st2 " style={{ width: "180px" }}>
               <form>
@@ -69,7 +71,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                 </li>
                 <li>
                   <Link to="/forum" title="">
-                    <span><i className="far fa-address-card"></i></span>
+                    <span>
+                      <i className="far fa-address-card"></i>
+                    </span>
                     Forum
                   </Link>
                 </li>
@@ -91,7 +95,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                 </li>
 
                 <li>
-                  <Link to="jobs.html" title="">
+                  <Link to="/profiles" title="">
                     <span>
                       <a className="fa fa-user"></a>
                     </span>
@@ -110,10 +114,10 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 Navbar.propTypes = {
   auth: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
-}
+};
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-})
+});
 
 export default connect(mapStateToProps, { logout })(Navbar);

@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import PropTypes from "prop-types";
 import { loading_spinner } from "../../Shared/layouts/Loading_spinner";
+import Filters from "../components/Filters";
 
 const Forum = ({ getCurrentProfile, auth: { user }, profile }) => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const Forum = ({ getCurrentProfile, auth: { user }, profile }) => {
                     <div class="col-lg-3 pd-right-none no-pd">
                       <div class="right-sidebar">
                         <Widget_sign_up />
+                        <Filters />
                         <Top_jobs />
                         <Most_viewed />
                         <Most_viewed_people />

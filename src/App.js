@@ -21,7 +21,6 @@ import setAuthToken from './utils/setAuthToken';
 
 import { Provider } from 'react-redux';
 import store from './store';
-import Alert from './Shared/layouts/Alert';
 import Chat from './Shared/layouts/Chat';
 import Messages from './Messages/pages/Messages';
 import { loadUser } from './actions/auth';
@@ -50,7 +49,6 @@ function App() {
           <Navbar />
 
           <section className="">
-            <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/signup" component={Signup} />

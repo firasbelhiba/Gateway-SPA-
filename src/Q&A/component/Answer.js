@@ -1,5 +1,6 @@
 import React from "react";
 import faker from "faker";
+import Discussion from './Discussion'
 
 class Answer extends React.Component {
 
@@ -18,27 +19,13 @@ class Answer extends React.Component {
                         <p>This has been very useful for my research. Thanks as well!</p>
                     </div>
                     <div className="actions">
+                        <a className="like">Like</a>
                         <a className="reply">Reply</a>
+                        <a className="reply">Report</a>
                     </div>
                 </div>
                 <div className="comments">
-                    <div className="comment">
-                        <a className="avatar">
-                            <img src={faker.image.avatar()}/>
-                        </a>
-                        <div className="content">
-                            <a className="author">Jenny Hess</a>
-                            <div className="metadata">
-                                <span className="date">Just now</span>
-                            </div>
-                            <div className="text">
-                                Elliot you are always so right :)
-                            </div>
-                            <div className="actions">
-                                <a className="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
+                    <Discussion/>
                 </div>
             </div>
 

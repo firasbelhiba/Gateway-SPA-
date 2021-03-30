@@ -1,3 +1,4 @@
+
 .form_create {
   max-width: 700px;
   margin: 10px auto;
@@ -11,16 +12,16 @@
   text-align: center;
 }
 
-.input[type='text'],
-.input[type='password'],
-.input[type='date'],
-.input[type='datetime'],
-.input[type='email'],
-.input[type='number'],
-.input[type='search'],
-.input[type='tel'],
-.input[type='time'],
-.input[type='url'],
+.input[type="text"],
+.input[type="password"],
+.input[type="date"],
+.input[type="datetime"],
+.input[type="email"],
+.input[type="number"],
+.input[type="search"],
+.input[type="tel"],
+.input[type="time"],
+.input[type="url"],
 .textarea,
 .select {
   background: rgba(255, 255, 255, 0.1);
@@ -37,8 +38,8 @@
   margin-bottom: 30px;
 }
 
-.input[type='radio'],
-.input[type='checkbox'] {
+.input[type="radio"],
+.input[type="checkbox"] {
   margin: 0 4px 8px 0;
 }
 
@@ -46,21 +47,6 @@
   padding: 6px;
   height: 32px;
   border-radius: 2px;
-}
-
-.button {
-  padding: 19px 39px 18px 39px;
-  color: #fff;
-  background-color: #153b44;
-  font-size: 18px;
-  text-align: center;
-  font-style: normal;
-  border-radius: 5px;
-  width: 100%;
-  border: 1px solid #153b44;
-  border-width: 1px 1px 3px;
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
-  margin-bottom: 10px;
 }
 
 fieldset {
@@ -84,7 +70,7 @@ label.light {
 }
 
 .number {
-  background-color: #153b44;
+  background-color: #153B44;
   color: #fff;
   height: 30px;
   width: 30px;
@@ -97,9 +83,10 @@ label.light {
   border-radius: 100%;
 }
 
-small {
+small{
   color: rgb(37, 104, 190);
   font-size: 0.8em;
+  
 }
 
 @media screen and (min-width: 480px) {
@@ -108,6 +95,6 @@ small {
   }
 }
 
-.pointer {
+.pointer{
   cursor: pointer;
 }

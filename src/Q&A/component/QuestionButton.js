@@ -21,7 +21,7 @@ const QuestionButton = () => {
 
     return (
         <>
-            <Button className="ui button" onClick={() => dispatch({type: 'open', size: 'large'})}>
+            <Button className="ui button" onClick={() => dispatch({type: 'open', size: 'small'})}>
                 Ask Question
             </Button>
 

@@ -30,7 +30,8 @@ import Me from "./Me/pages/Me";
 import CreateProfile from "./Me/components/CreateProfile";
 import Profile_edit_form from "./Profile/components/Forms/Profile_edit_form";
 import { Jobs } from './Jobs/pages/Jobs'
-
+import QuestionsSection from "./Q&A/pages/QuestionsSection";
+import QuestionDetails from "./Q&A/pages/QuestionDetails";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -48,7 +49,6 @@ function App() {
       <Router>
         <Fragment>
           <Navbar />
-
           <section className="">
             <Switch>
               <Route exact path="/" component={Landing} />
@@ -57,6 +57,9 @@ function App() {
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/jobs" component={Jobs} />
+              <Route exact path="/q_and_a" component={QuestionsSection} />
+              <Route exact path="/question_details" component={QuestionDetails} />
+
               <PrivateRoute exact path="/myprofile" component={Profile} />
               <PrivateRoute exact path="/me" component={Me} />
               <PrivateRoute exact path="/create-profile" component={CreateProfile} />

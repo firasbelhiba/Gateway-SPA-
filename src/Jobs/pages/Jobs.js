@@ -6,6 +6,7 @@ import  Widget_sign_up  from '../../Forum/components/Widget_sign_up'
 import { TopJobs } from '../components/TopJobs';
 import { MostViewedJobs } from '../components/MostViewedJobs';
 import { Footer } from '../layout/Footer';
+import { JobForm } from '../froms/JobForm'
 
 
 
@@ -38,6 +39,7 @@ export const Jobs = () => {
               </div>
             </div>
           </main>
+          <JobForm/>
         </div>
         <Footer/>
         </Fragment>

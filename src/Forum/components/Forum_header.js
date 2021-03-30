@@ -1,25 +1,28 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Forum_header = () => {
-    return (
-        <div className="post-topbar">
-            <div className="user-picy">
-                <img src="assets/images/resources/user-pic.png" alt="" />
-            </div>
-            <div className="post-st">
-                <ul>
-                    <li>
-                        <a className="post_project" href="#" title=""
-                        >Post a Project</a>
-                    </li>
-                    <li>
-                        <a className="post-jb active" href="#" title=""
-                        >Post a Job</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    )
-}
+  return (
+    <div class="post-topbar">
+      <div class="user-picy">
+        <img src="assets/images/resources/user-pic.png" alt="" />
+      </div>
+      <div class="post-st">
+        <ul>
+          {/* <li>
+            <Link class="post_project" to="#" title="">
+              Post a Project
+            </Link>
+          </li> */}
+          <li>
+            <Link class="post-jb active" to="#" title="">
+              Add post
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-export default Forum_header
+export default Forum_header;

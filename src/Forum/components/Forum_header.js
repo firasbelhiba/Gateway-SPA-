@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 const Forum_header = () => {
   return (
-    <div class="post-topbar">
-      <div class="user-picy">
+    <div className="post-topbar">
+      <div className="user-picy">
         <img src="assets/images/resources/user-pic.png" alt="" />
       </div>
-      <div class="post-st">
+      <div className="post-st">
         <ul>
           {/* <li>
-            <Link class="post_project" to="#" title="">
+            <Link className="post_project" to="#" title="">
               Post a Project
             </Link>
           </li> */}
           <li>
-            <Link class="post-jb active" to="#" title="">
+            <Link className="post-jb active" to="#" title="">
               Add post
             </Link>
           </li>

@@ -2,17 +2,17 @@ import React from "react";
 
 const Post_forum2 = () => {
   return (
-    <div class="post-popup job_post">
-      <div class="post-project">
+    <div className="post-popup job_post">
+      <div className="post-project">
         <h3>Add a post</h3>
-        <div class="post-project-fields">
+        <div className="post-project-fields">
           <form>
-            <div class="row">
-              <div class="col-lg-12">
+            <div className="row">
+              <div className="col-lg-12">
                 <input type="text" name="title" placeholder="Title" />
               </div>
-              <div class="col-lg-12">
-                <div class="inp-field">
+              <div className="col-lg-12">
+                <div className="inp-field">
                   <select>
                     <option>Category</option>
                     <option>Category 1</option>
@@ -22,17 +22,17 @@ const Post_forum2 = () => {
                 </div>
               </div>
 
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 <textarea
                   name="description"
                   placeholder="Description"
                 ></textarea>
               </div>
               <input type="file" />
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 <ul>
                   <li>
-                    <button class="active" type="submit" value="post">
+                    <button className="active" type="submit" value="post">
                       Post
                     </button>
                   </li>
@@ -47,7 +47,7 @@ const Post_forum2 = () => {
           </form>
         </div>
         <a href="#" title="">
-          <i class="la la-times-circle-o"></i>
+          <i className="la la-times-circle-o"></i>
         </a>
       </div>
     </div>

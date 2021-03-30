@@ -78,7 +78,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="index.html" title="">
+                  <Link to="/q_and_a" title="">
                     <span>
                       <i className="far fa-question-circle"></i>
                     </span>

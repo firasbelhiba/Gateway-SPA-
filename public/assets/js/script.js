@@ -82,16 +82,16 @@ $(window).on("load", function () {
 
   //  ============= EXPERIENCE EDIT FUNCTION =========
 
-  $(".exp-bx-open").on("click", function () {
-    $("#experience-box").addClass("open");
-    $(".wrapper").addClass("overlay");
-    return false;
-  });
-  $(".close-box").on("click", function () {
-    $("#experience-box").removeClass("open");
-    $(".wrapper").removeClass("overlay");
-    return false;
-  });
+  // $(".exp-bx-open").on("click", function () {
+  //   $("#experience-box").addClass("open");
+  //   $(".wrapper").addClass("overlay");
+  //   return false;
+  // });
+  // $(".close-box").on("click", function () {
+  //   $("#experience-box").removeClass("open");
+  //   $(".wrapper").removeClass("overlay");
+  //   return false;
+  // });
 
   //  ============= EDUCATION EDIT FUNCTION =========
 

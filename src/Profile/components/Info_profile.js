@@ -5,11 +5,11 @@ import { Location } from './Info_profile_co/Location'
 import { Overview } from './Info_profile_co/Overview'
 import { Skills } from './Info_profile_co/Skills'
 
-export const Info_profile = () => {
+export const Info_profile = (props) => {
     return (
         <Fragment>
             <Overview />
-            <Experience />
+            <Experience experience={props.experience} />
             <Education />
             <Location />
             <Skills />

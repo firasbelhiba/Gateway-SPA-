@@ -29,50 +29,66 @@ const Experience_form = ({ addExperience, history }) => {
 
 
     return (
-        <div className="overview-box" id="experience-box">
-            <div className="overview-edit">
-                <h3>Add Experience</h3>
-                <p className="mb-2">
-                    <h1>Add any developper/programming  positions that you have had in the past</h1>
-                </p>
-                <form onSubmit={e => onSubmit(e)}>
-                    <div className="form-row">
-                        <div className="col">
-                            <input
-                                type="text"
-                                placeholder="* Job Title"
+        <Fragment>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
+                        <h1 className="h1">Add Experience</h1>
+
+                        <fieldset>
+                            <legend><span class="number">1</span>Add any developper/programming  positions that you have had in the past</legend>
+
+                            <label className="mt-5" for="name">Title:</label>
+                            <input type="text"
+                                placeholder="* Experience Title"
+                                className="input"
                                 name="title"
                                 value={title}
                                 onChange={e => onChange(e)}
-                                required
-                            />
-                        </div>
-                        <div className="col">
-                            <input
-                                type="text"
+                                required />
+                            <small className="form-text">
+                                Could be your own company or one you work for
+                            </small>
+
+                            <label className="mt-5" for="email">Company:</label>
+                            <input type="text"
+                                className="input"
                                 placeholder="Company"
                                 name="company"
                                 value={company}
                                 onChange={e => onChange(e)}
-                                required
-                            />
-                        </div>
-                    </div>
+                                required />
+                            <small className="form-text">
+                                Could be your own or a company website
+                            </small>
 
-                    <div className="form-row">
-                        <div className="col">
-                            <input
-                                type="text"
+
+                            <label className="mt-5" for="name">Location:</label>
+                            <input type="text"
+                                className="input"
                                 placeholder="Location"
                                 name="location"
                                 value={location}
+                                onChange={e => onChange(e)} />
+                            <small className="form-text">
+                                City & state suggested
+                        </small>
+
+
+                            <label className="mt-5" for="name">From:</label>
+                            <input type="date"
+                                className="input"
+
+                                name="from"
+                                value={from}
                                 onChange={e => onChange(e)}
                             />
-                        </div>
-                        <div className="col">
-                            <h4 >Current Job : </h4>
 
-                            <input
+
+                            <label className="mt-5" for="name">Current job : </label>
+                            <p><input
+                                className="input"
+
                                 type="checkbox"
                                 name="current"
                                 value={current}
@@ -81,48 +97,41 @@ const Experience_form = ({ addExperience, history }) => {
                                     setFormData({ ...formData, current: !current });
                                     toggleDisabled(!toDateDisabled)
                                 }}
-                            />
-                        </div>
-                    </div>
+                            />Current job</p>
 
-
-                    <div className="form-row">
-                        <div className="col">
-                            <h4 className="mb-2">From : </h4>
-                            <input
-                                type="date"
-                                name="from"
-                                value={from}
-                                onChange={e => onChange(e)}
-                            />
-                        </div>
-                        <div className="col">
-                            <h4 className="mb-2">To date : </h4>
+                            <label className="mt-5" for="name">To:</label>
                             <input type="date"
+                                className="input"
                                 name="to"
                                 value={to}
                                 onChange={e => onChange(e)}
                                 disabled={toDateDisabled ? 'disabled' : ''}
                             />
-                        </div>
-                    </div>
 
-                    <textarea
-                        name="description"
-                        cols="30"
-                        rows="5"
-                        placeholder="Job Description"
-                        value={description}
-                        onChange={e => onChange(e)}
-                    ></textarea>
+                            <label className="mt-5" for="name">Description:</label>
+                            <input
+                                type="text"
+
+                                className="input"
+                                name="description"
+                                cols="30"
+                                rows="5"
+                                placeholder="Experience Description"
+                                value={description}
+                                onChange={e => onChange(e)}
+                            />
 
 
-                    <button type="submit" className="save">Save</button>
-                    <Link to='/myprofile' className="cancel">Cancel</Link>
-                </form>
-                <a href="#" title="" className="close-box"><i className="la la-close"></i></a>
+                        </fieldset>
+
+
+                        <button className="button_form" type="submit">Save</button>
+                        <Link to='/myprofile' className="btn btn-light my-1">Go Back</Link>
+                    </form>
+                </div>
             </div>
-        </div>
+
+        </Fragment>
     )
 }
 

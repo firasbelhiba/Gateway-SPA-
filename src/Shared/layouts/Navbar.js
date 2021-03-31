@@ -229,13 +229,8 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                   </Link>
                   <ul>
                     <li>
-                      <Link to="companies.html" title="">
+                      <Link to="/q_and_a" title="">
                         Question Section
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="company-profile.html" title="">
-                        Question Details
                       </Link>
                     </li>
                   </ul>

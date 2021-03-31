@@ -29,35 +29,65 @@ const Education_form = ({ addEducation, history }) => {
 
 
     return (
-        <div className="overview-box" id="education-box">
-            <div className="overview-edit">
-                <h3>Add Your Education</h3>
-                <form onSubmit={e => onSubmit(e)}>
-                    <div className="form-row">
-                        <div className="col">
-                            <input
-                                type="text"
+        <Fragment>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
+                        <h1 className="h1">Add Your Education</h1>
+
+                        <fieldset>
+                            <legend><span class="number">1</span>Add any school or bootcamp you attended</legend>
+
+                            <label className="mt-5" for="name">Title:</label>
+                            <input type="text"
+                                placeholder="School or bootcamp"
                                 name="school"
+                                className="input"
                                 value={school}
                                 onChange={e => onChange(e)}
-                                required
-                                placeholder="School / University" />
-                        </div>
-                        <div className="col">
-                            <input
-                                type="text"
+                                required />
+                            <small className="form-text">
+                                Could be your own company or one you work for
+                            </small>
+
+                            <label className="mt-5" for="email">Degree:</label>
+                            <input type="text"
                                 placeholder="Degree or certificate"
                                 name="degree"
+                                className="input"
                                 value={degree}
                                 onChange={e => onChange(e)}
                                 required />
-                        </div>
-                    </div>
+                            <small className="form-text">
+                                Could be your own Degree or certificate
+                        </small>
 
-                    <div className="form-row">
-                        <div className="col">
-                            <h4 class="mb-2">Current education : </h4>
-                            <input
+
+                            <label className="mt-5" for="name">Field of study:</label>
+                            <input type="text"
+                                className="input"
+                                placeholder="Field of study"
+                                name="fieldofstudy"
+                                value={fieldofstudy}
+                                onChange={e => onChange(e)} />
+                            <small className="form-text">
+                                Your field of study
+                        </small>
+
+
+                            <label className="mt-5" for="name">From:</label>
+                            <input type="date"
+                                className="input"
+                                name="from"
+                                value={from}
+                                onChange={e => onChange(e)}
+                            />
+
+
+                            <label className="mt-5" for="name">Current  : </label>
+                            <p><input
+                                className="input"
+
                                 type="checkbox"
                                 name="current"
                                 value={current}
@@ -65,64 +95,41 @@ const Education_form = ({ addEducation, history }) => {
                                 onChange={e => {
                                     setFormData({ ...formData, current: !current });
                                     toggleDisabled(!toDateDisabled)
-                                }} />
-                        </div>
+                                }}
+                            />Current </p>
 
-                        <div className="col">
+                            <label className="mt-5" for="name">To:</label>
+                            <input type="date"
+                                className="input"
+                                name="to"
+                                value={to}
+                                onChange={e => onChange(e)}
+                                disabled={toDateDisabled ? 'disabled' : ''}
+                            />
+
+                            <label className="mt-5" for="name">Description:</label>
                             <input
                                 type="text"
-                                placeholder="Field of study"
-                                name="fieldofstudy"
-                                value={fieldofstudy}
-                                onChange={e => onChange(e)} />
-                        </div>
-                    </div>
-                    <div className="datepicky">
-                        <div className="row">
-                            <div className="col-lg-6 no-left-pd">
-                                <div className="datefm">
-                                    <input
-                                        type="date"
-                                        name="from"
-                                        value={from}
-                                        onChange={e => onChange(e)}
-                                        className="datepicker"
-                                    />
-                                    <i className="fa fa-calendar"></i>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 no-righ-pd">
-                                <div className="datefm">
-                                    <input
-                                        type="date"
-                                        name="to"
-                                        value={to}
-                                        onChange={e => onChange(e)}
-                                        disabled={toDateDisabled ? 'disabled' : ''}
-                                        className="datepicker"
-                                    />
-                                    <i className="fa fa-calendar"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <textarea
-                        name="description"
-                        cols="30"
-                        rows="5"
-                        placeholder="Program Description"
-                        value={description}
-                        onChange={e => onChange(e)}
-                    ></textarea>
+                                className="input"
+                                name="description"
+                                cols="30"
+                                rows="5"
+                                placeholder="Experience Description"
+                                value={description}
+                                onChange={e => onChange(e)}
+                            />
+
+                        </fieldset>
 
 
-                    <button type="submit" className="save">Save</button>
-                    <Link to='/myprofile' className="cancel">Cancel</Link>
-                </form>
-                <a href="#" title="" className="close-box"><i className="la la-close"></i></a>
+                        <button className="button_form" type="submit">Save</button>
+                        <Link to='/myprofile' className="btn btn-light my-1">Go Back</Link>
+                    </form>
+                </div>
             </div>
-        </div>
+
+        </Fragment>
     )
 }
 

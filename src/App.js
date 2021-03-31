@@ -33,6 +33,7 @@ import { Jobs } from './Jobs/pages/Jobs'
 import QuestionsSection from "./Q&A/pages/QuestionsSection";
 import QuestionDetails from "./Q&A/pages/QuestionDetails";
 import Experience_form from "./Profile/components/Forms/Experience_form";
+import Education_form from "./Profile/components/Forms/Education_form";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -66,6 +67,7 @@ function App() {
               <PrivateRoute exact path="/create-profile" component={CreateProfile} />
               <PrivateRoute exact path="/edit-profile" component={Profile_edit_form} />
               <PrivateRoute exact path="/edit-experience" component={Experience_form} />
+              <PrivateRoute exact path="/create-education" component={Education_form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>
             <Chat />

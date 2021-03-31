@@ -25,7 +25,7 @@ import Chat from './Shared/layouts/Chat';
 import Messages from './Messages/pages/Messages';
 import { loadUser } from './actions/auth';
 import PrivateRoute from "./routing/PrivateRoute";
-import { Profile } from "./Profile/Pages/Profile";
+import Profile from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
 import CreateProfile from "./Me/components/CreateProfile";
 import Profile_edit_form from "./Profile/components/Forms/Profile_edit_form";

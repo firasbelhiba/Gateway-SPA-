@@ -13,8 +13,7 @@ export const Jobs_profile = () => {
                         role="tab"
                         aria-controls="home"
                         aria-selected="true"
-                    >Manage Jobs</a
-                    >
+                    >Manage Jobs</a>
                 </li>
                 <li className="nav-item">
                     <a
@@ -25,8 +24,7 @@ export const Jobs_profile = () => {
                         role="tab"
                         aria-controls="profile"
                         aria-selected="false"
-                    >Saved Jobs</a
-                    >
+                    >Saved Jobs</a>
                 </li>
                 <li className="nav-item">
                     <a
@@ -37,8 +35,7 @@ export const Jobs_profile = () => {
                         role="tab"
                         aria-controls="applied"
                         aria-selected="false"
-                    >Applied Jobs</a
-                    >
+                    >Applied Jobs</a>
                 </li>
                 <li className="nav-item">
                     <a
@@ -49,8 +46,7 @@ export const Jobs_profile = () => {
                         role="tab"
                         aria-controls="contact"
                         aria-selected="false"
-                    >Applied cadidates</a
-                    >
+                    >Applied cadidates</a>
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
@@ -89,13 +85,13 @@ export const Jobs_profile = () => {
                                     <ul className="bk-links bklink">
                                         <li>
                                             <a href="#" title=""
-                                            ><i className="la la-bookmark"></i
-                                            ></a>
+                                            ><i className="la la-bookmark"></i>
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="#" title=""
-                                            ><i className="la la-envelope"></i
-                                            ></a>
+                                            ><i className="la la-envelope"></i>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -116,9 +112,8 @@ export const Jobs_profile = () => {
                                 <div className="col-md-6 col-sm-12">
                                     <div className="cadidatesbtn">
                                         <button type="button" className="btn btn-primary">
-                                            <span className="badge badge-light">3</span
-                                            >Candidates
-                                                                            </button>
+                                            <span className="badge badge-light">3</span>Candidates
+                                        </button>
                                         <a href="#">
                                             <i className="far fa-edit"></i>
                                         </a>
@@ -131,13 +126,11 @@ export const Jobs_profile = () => {
                                     <ul className="bk-links bklink">
                                         <li>
                                             <a href="#" title=""
-                                            ><i className="la la-bookmark"></i
-                                            ></a>
+                                            ><i className="la la-bookmark"></i></a>
                                         </li>
                                         <li>
                                             <a href="#" title=""
-                                            ><i className="la la-envelope"></i
-                                            ></a>
+                                            ><i className="la la-envelope"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -168,8 +161,7 @@ export const Jobs_profile = () => {
                                 <div className="col-md-6 col-sm-12">
                                     <div className="cadidatesbtn">
                                         <button type="button" className="btn btn-primary">
-                                            <span className="badge badge-light">3</span
-                                            >Candidates
+                                            <span className="badge badge-light">3</span>Candidates
                                                                             </button>
                                         <a href="#">
                                             <i className="far fa-trash-alt"></i>
@@ -180,13 +172,11 @@ export const Jobs_profile = () => {
                                     <ul className="bk-links bklink">
                                         <li>
                                             <a href="#" title=""
-                                            ><i className="la la-bookmark"></i
-                                            ></a>
+                                            ><i className="la la-bookmark"></i></a>
                                         </li>
                                         <li>
                                             <a href="#" title=""
-                                            ><i className="la la-envelope"></i
-                                            ></a>
+                                            ><i className="la la-envelope"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -213,8 +203,7 @@ export const Jobs_profile = () => {
                             </div>
                             <div className="ed-opts">
                                 <a href="#" title="" className="ed-opts-open"
-                                ><i className="la la-ellipsis-v"></i
-                                ></a>
+                                ><i className="la la-ellipsis-v"></i></a>
                                 <ul className="ed-options">
                                     <li><a href="#" title="">Edit Post</a></li>
                                     <li><a href="#" title="">Unsaved</a></li>
@@ -260,8 +249,7 @@ export const Jobs_profile = () => {
                             </div>
                             <div className="ed-opts">
                                 <a href="#" title="" className="ed-opts-open"
-                                ><i className="la la-ellipsis-v"></i
-                                ></a>
+                                ><i className="la la-ellipsis-v"></i></a>
                                 <ul className="ed-options">
                                     <li><a href="#" title="">Edit Post</a></li>
                                     <li><a href="#" title="">Unsaved</a></li>
@@ -361,8 +349,7 @@ export const Jobs_profile = () => {
                             </div>
                             <div className="ed-opts">
                                 <a href="#" title="" className="ed-opts-open"
-                                ><i className="la la-ellipsis-v"></i
-                                ></a>
+                                ><i className="la la-ellipsis-v"></i></a>
                                 <ul className="ed-options">
                                     <li><a href="#" title="">Edit Post</a></li>
                                     <li><a href="#" title="">Unsaved</a></li>
@@ -529,8 +516,7 @@ export const Jobs_profile = () => {
                             </div>
                             <div className="ed-opts">
                                 <a href="#" title="" className="ed-opts-open"
-                                ><i className="la la-ellipsis-v"></i
-                                ></a>
+                                ><i className="la la-ellipsis-v"></i></a>
                                 <ul className="ed-options">
                                     <li><a href="#" title="">Edit Post</a></li>
                                     <li><a href="#" title="">Accept</a></li>
@@ -585,8 +571,7 @@ export const Jobs_profile = () => {
                             </div>
                             <div className="ed-opts">
                                 <a href="#" title="" className="ed-opts-open"
-                                ><i className="la la-ellipsis-v"></i
-                                ></a>
+                                ><i className="la la-ellipsis-v"></i></a>
                                 <ul className="ed-options">
                                     <li><a href="#" title="">Edit Post</a></li>
                                     <li><a href="#" title="">Accept</a></li>
@@ -641,8 +626,7 @@ export const Jobs_profile = () => {
                             </div>
                             <div className="ed-opts">
                                 <a href="#" title="" className="ed-opts-open"
-                                ><i className="la la-ellipsis-v"></i
-                                ></a>
+                                ><i className="la la-ellipsis-v"></i></a>
                                 <ul className="ed-options">
                                     <li><a href="#" title="">Edit Post</a></li>
                                     <li><a href="#" title="">Accept</a></li>

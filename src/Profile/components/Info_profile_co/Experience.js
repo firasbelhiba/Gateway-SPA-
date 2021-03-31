@@ -1,4 +1,7 @@
 import React from 'react'
+import Experience_item from './Items/Experience_item'
+
+
 
 export const Experience = () => {
     return (
@@ -10,37 +13,8 @@ export const Experience = () => {
                 <a href="#" title="" className="exp-bx-open"
                 ><i className="fa fa-plus-square"></i></a>
             </h3>
-            <h4>
-                Web designer
-            <a href="#" title=""><i className="fa fa-pencil"></i></a>
-            </h4>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Quisque tempor aliquam felis, nec condimentum ipsum
-                commodo id. Vivamus sit amet augue nec urna efficitur
-                tincidunt. Vivamus consectetur aliquam lectus commodo
-                viverra.
-            </p>
-            <h4>
-                UI / UX Designer
-            <a href="#" title=""><i className="fa fa-pencil"></i></a>
-            </h4>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Quisque tempor aliquam felis, nec condimentum ipsum
-                commodo id.
-            </p>
-            <h4>
-                PHP developer
-            <a href="#" title=""><i className="fa fa-pencil"></i></a>
-            </h4>
-            <p className="no-margin">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Quisque tempor aliquam felis, nec condimentum ipsum
-                commodo id. Vivamus sit amet augue nec urna efficitur
-                tincidunt. Vivamus consectetur aliquam lectus commodo
-                viverra.
-            </p>
+            <Experience_item />
+
         </div>
     )
 }

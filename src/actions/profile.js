@@ -121,7 +121,7 @@ export const addEducation = (formData, history) => async dispatch => {
 
         dispatch(setAlert('Education Added'));
 
-        history.push('/dashboard');
+        history.push('/myprofile');
 
 
     } catch (err) {

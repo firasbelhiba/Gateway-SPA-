@@ -1,11 +1,11 @@
 import React from 'react'
 
-export const Profile_header = () => {
+export const Profile_header = (props) => {
     return (
         <div>
-            <h3>John Doe</h3>
+            <h3>{props.name}</h3>
             <div className="star-descp">
-                <span>Graphic Designer at Self Employed</span>
+                <span>{props.status}</span>
                 <ul>
                     <li><i className="fa fa-star"></i></li>
                     <li><i className="fa fa-star"></i></li>

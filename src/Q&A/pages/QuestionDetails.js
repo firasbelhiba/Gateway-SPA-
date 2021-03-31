@@ -9,7 +9,7 @@ import "../styles/QuestionDetails.css"
 class QuestionDetails extends React.Component {
     render() {
         return (
-            <div className="row">
+            <div className="row" style={{marginTop: '50px'}}>
                 <div className="col-lg-9">
                     <div className="ui segment">
                         <UserQuestion solved={true}/>
@@ -26,7 +26,7 @@ class QuestionDetails extends React.Component {
                                     <textarea></textarea>
                                 </div>
                                 <div className="ui blue labeled submit icon button">
-                                    <i className="icon edit"></i> Add Reply
+                                    <i className="icon edit"/> Add Reply
                                 </div>
                             </form>
                         </div>

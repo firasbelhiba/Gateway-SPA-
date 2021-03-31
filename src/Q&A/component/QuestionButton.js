@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button, Modal} from 'semantic-ui-react'
+import SelectTags from "./SelectTags";
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -21,7 +22,7 @@ const QuestionButton = () => {
 
     return (
         <>
-            <Button className="ui button" onClick={() => dispatch({type: 'open', size: 'large'})}>
+            <Button className="ui button" onClick={() => dispatch({type: 'open', size: 'small'})}>
                 Ask Question
             </Button>
 
@@ -38,16 +39,13 @@ const QuestionButton = () => {
                             <label>Subject</label>
                             <input type="text" placeholder="Subject"/>
                         </div>
-                        <div className="ui right labeled left icon input">
-                            <i className="tags icon"></i>
-                            <input type="text" placeholder="Enter tags"/>
-                                <a className="ui tag label">
-                                    Add Tag
-                                </a>
-                        </div>
                         <div className="eight wide field">
                             <label>Category</label>
                             <input type="text" placeholder="Category"/>
+                        </div>
+                        <div className="eight wide field">
+                            <label>Tags</label>
+                            <SelectTags/>
                         </div>
                         <div className="ui left action input">
                             <button className="ui teal labeled icon button">

@@ -1,15 +1,26 @@
 import React from "react";
+import { Tab } from 'semantic-ui-react'
 
 const OptionsBar = () => {
+    const panes = [
+        {
+            menuItem: 'Most Relevant For You'},
+        {
+            menuItem: 'My Questions',
+        },
+        {
+            menuItem: 'Followed',
+        },
+        {
+            menuItem: 'Popular This Week',
+        },
+    ]
     return (
         <section className="forum-sec ui segment">
             <div className="container">
                 <div className="forum-links">
                     <ul>
-                        <li className="active"><a href="#" title="">Most Relevent For You</a></li>
-                        <li><a href="#" title="">My Questions</a></li>
-                        <li><a href="#" title="">Followed</a></li>
-                        <li><a href="#" title="">Popular This Week</a></li>
+                        <Tab menu={{ secondary: true, pointing: true }} panes={panes}/>
                     </ul>
                 </div>
             </div>

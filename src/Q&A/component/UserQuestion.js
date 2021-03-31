@@ -29,7 +29,7 @@ class UserQuestion extends React.Component {
                 <div className="usr_quest">
                     <h3>{faker.lorem.sentences()}</h3>
                     <div className="descp">
-                        <p>{faker.lorem.paragraph()}.. <a href="/Details" title="">view more</a></p>
+                        <p>{faker.lorem.paragraph()}.. <a href="/question_details" title="">view more</a></p>
                     </div>
                     <ul className="skill-tags">
                         <li><a href="#" title="">HTML</a></li>
@@ -38,13 +38,20 @@ class UserQuestion extends React.Component {
                         <li><a href="#" title="">Javascript</a></li>
                     </ul>
                 </div>
+
                 <a className="ui teal right ribbon label" hidden={!this.props.solved}>Solved</a>
                 <ul className="react-links">
-                    <li><a href="#" title=""> <i className="check icon"/> Vote 150</a>
+                    <li>
+                        <a href="#" title=""><i className="check icon"/>Vote 150</a>
                     </li>
-                    <li><a href="#" title=""><i className="fas fa-comment-alt"/> Comments
-                        15</a></li>
-                    <li><a href="#" title=""><i className="fas fa-eye"/> Views 50</a>
+                    <li>
+                        <a href="#" title=""><i className="fas fa-comment-alt"/>Comments 15</a>
+                    </li>
+                    <li>
+                        <a href="#" title=""><i className="fas fa-eye"/>Views 50</a>
+                    </li>
+                    <li>
+                        <a href="#" title=""><i className="fas fa-flag"/>Report</a>
                     </li>
                 </ul>
             </div>

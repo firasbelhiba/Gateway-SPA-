@@ -6,6 +6,7 @@ import SideWidgetFrequentlyAsked from "../component/SideWidgetFrequentlyAsked"
 import FilterItem from "../component/FilterItem";
 import OptionsBar from "../component/OptionsBar";
 import QuestionButton from '../component/QuestionButton';
+import SortItem from "../component/SortItem";
 
 class QuestionsSection extends React.Component {
 
@@ -16,22 +17,16 @@ class QuestionsSection extends React.Component {
                     <div className="forum-questions-sec">
                         <div className="row">
                             <div className="col-lg-8">
-                                <div className="container d-flex flex-wrap">
                                 <OptionsBar/>
                                 <QuestionButton/>
                                 <FilterItem/>
-                                <div className="ui floating dropdown labeled icon button">
-                                    <i className="sort icon"/>
-                                    <span className="text">Sort By</span>
-                                </div>
+                                <SortItem/>
                                 <div className="ui action input">
                                     <input type="text" placeholder="Search..."/>
                                     <button className="ui icon button">
                                         <i className="search icon"></i>
                                     </button>
                                 </div>
-                                </div>
-            
                                 <div className="ui segments">
                                     <div className="usr-question ui segment">
                                         <UserQuestion solved={true}/>

@@ -18,14 +18,14 @@ const Services = () => {
             <div class="blog">
               <img src="assets/images/blog.png" alt="image" />
               <h2>Our Q&A</h2>
-              <a href="#">View Q&A</a>
+              <Link to="/q_and_a">View Q&A</Link>
             </div>
           </div>
           <div class="col-md-4 col-sm-12">
             <div class="blog">
               <img src="assets/images/career.png" alt="image" />
               <h2>Career Opportunites</h2>
-              <a href="#">Join Our Team</a>
+              <Link to="/jobs">Join Our Team</Link>
             </div>
           </div>
           <div class="col-md-4 col-sm-12">

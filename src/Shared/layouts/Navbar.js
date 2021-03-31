@@ -10,7 +10,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 
   const notification = (
     <li>
-      <Link to="#" title="" class="not-box-open">
+      <Link to="" title="" class="not-box-open">
         <span>
           <img src="assets/images/icon7.png" alt="" />
         </span>
@@ -19,7 +19,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
       <div class="notification-box noti" id="notification">
         <div class="nt-title">
           <h4>Setting</h4>
-          <Link to="#" title="">
+          <Link to="" title="">
             Clear all
         </Link>
         </div>
@@ -33,7 +33,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             </div>
             <div class="notification-info">
               <h3>
-                <Link to="#" title="">
+                <Link to="" title="">
                   Jassica William
               </Link>{" "}
               Comment on your project.
@@ -50,7 +50,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             </div>
             <div class="notification-info">
               <h3>
-                <Link to="#" title="">
+                <Link to="" title="">
                   Jassica William
               </Link>{" "}
               Comment on your project.
@@ -67,7 +67,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             </div>
             <div class="notification-info">
               <h3>
-                <Link to="#" title="">
+                <Link to="" title="">
                   Jassica William
               </Link>{" "}
               Comment on your project.
@@ -84,7 +84,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             </div>
             <div class="notification-info">
               <h3>
-                <Link to="#" title="">
+                <Link to="" title="">
                   Jassica William
               </Link>{" "}
               Comment on your project.
@@ -93,7 +93,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             </div>
           </div>
           <div class="view-all-nots">
-            <Link to="#" title="">
+            <Link to="" title="">
               View All Notification
           </Link>
           </div>
@@ -165,7 +165,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             </li>
           </ul>
           <h3 class="tc">
-            <Link to="sign-in.html" title="">
+            <Link onClick={logout} title="">
               Logout
           </Link>
           </h3>
@@ -214,7 +214,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" title="">
+                  <Link to="" title="">
                     <span>
                       <i className="far fa-question-circle"></i>
                     </span>
@@ -279,7 +279,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                   <div class="notification-box msg" id="message">
                     <div class="nt-title">
                       <h4>Setting</h4>
-                      <Link to="#" title="">
+                      <Link to="" title="">
                         Clear all
                       </Link>
                     </div>

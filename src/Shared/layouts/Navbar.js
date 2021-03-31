@@ -3,8 +3,16 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
+
+
+  // loading not true 
+
+
+  const toggle = () => toggleDropDown(!displayDropDown);
 
   const [displayDropDown, toggleDropDown] = useState(false);
 
@@ -103,7 +111,6 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   );
 
   const authLinks = (
-
     <Fragment>
       <div class="menu-btn">
         <Link to="" title="">
@@ -113,9 +120,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
       <div class="user-account">
         <div class="user-info">
           <img src="assets/images/resources/user.png" alt="" />
-          <Link to="" title="">
+          <Link title="">
             John
-        </Link>
+          </Link>
           <i class="la la-sort-down"></i>
         </div>
         <div class="user-account-settingss" id="users">
@@ -146,28 +153,28 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             <li>
               <Link to="profile-account-setting.html" title="">
                 Account Setting
-            </Link>
+              </Link>
             </li>
             <li>
               <Link to="" title="">
                 Privacy
-            </Link>
+              </Link>
             </li>
             <li>
               <Link to="" title="">
                 Faqs
-            </Link>
+              </Link>
             </li>
             <li>
               <Link to="" title="">
                 Terms & Conditions
-            </Link>
+              </Link>
             </li>
           </ul>
           <h3 class="tc">
             <Link onClick={logout} title="">
               Logout
-          </Link>
+            </Link>
           </h3>
         </div>
       </div>
@@ -355,6 +362,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               </ul>
             </nav>
             {isAuthenticated ? authLinks : visitorLinks}
+
           </div>
         </div>
       </header>

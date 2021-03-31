@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Education_item from './Items/Education_item'
 
-export const Education = () => {
+export const Education = (props) => {
     return (
         <div className="user-profile-ov">
             <h3>
@@ -10,15 +11,7 @@ export const Education = () => {
                 ><i className="fa fa-pencil"></i></a>
                 <Link to="/create-education" title=""><i className="fa fa-plus-square"></i></Link>
             </h3>
-            <h4>Master of Computer Science</h4>
-            <span>2015 - 2018</span>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Quisque tempor aliquam felis, nec condimentum ipsum
-                commodo id. Vivamus sit amet augue nec urna efficitur
-                tincidunt. Vivamus consectetur aliquam lectus commodo
-                viverra.
-                                                    </p>
+            <Education_item education={props.education} />
         </div>
     )
 }

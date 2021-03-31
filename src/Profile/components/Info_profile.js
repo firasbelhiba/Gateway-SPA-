@@ -14,7 +14,7 @@ export const Info_profile = (props) => {
             <Skills skills={props.skills} />
             <Intrests intrests={props.intrests} />
             <Experience experience={props.experience} />
-            <Education />
+            <Education education={props.education} />
             <Location location={props.location} />
         </Fragment>
     )

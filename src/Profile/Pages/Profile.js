@@ -122,7 +122,8 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                                 bio={profile.bio}
                                                 experience={profile.experience}
                                                 location={profile.location}
-                                                skills={profile.skills} />}
+                                                skills={profile.skills}
+                                                education={profile.education} />}
                                             {id === "jobs" && <Jobs_profile />}
                                             {id === "bids" && <Bids_profile />}
                                             {id === "portfolio" && <Portfolio_form />}
@@ -145,7 +146,6 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                 </main>
 
                 <Overview_form />
-                <Education_form />
                 <Location_form />
                 <Skills_form />
                 <Portfolio_form />

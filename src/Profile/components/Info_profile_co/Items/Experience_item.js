@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 const Experience_item = ({ experience }) => {
     const experiences = experience.map(item => (
         <div key={item._id}>
-            <h4>
+            <h4 style={{ color: '#17a2b8' }}>
                 {item.company}
                 <a href="#" title=""><i className="fa fa-pencil"></i></a>
                 <a href="#" title=""><i className="fa fa-trash"></i></a>

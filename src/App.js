@@ -66,7 +66,7 @@ function App() {
               <PrivateRoute exact path="/me" component={Me} />
               <PrivateRoute exact path="/create-profile" component={CreateProfile} />
               <PrivateRoute exact path="/edit-profile" component={Profile_edit_form} />
-              <PrivateRoute exact path="/edit-experience" component={Experience_form} />
+              <PrivateRoute exact path="/create-experience" component={Experience_form} />
               <PrivateRoute exact path="/create-education" component={Education_form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>

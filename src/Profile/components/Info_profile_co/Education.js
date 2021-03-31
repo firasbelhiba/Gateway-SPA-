@@ -6,9 +6,8 @@ export const Education = () => {
             <h3>
                 <a href="#" title="" className="ed-box-open">Education</a>
                 <a href="#" title="" className="ed-box-open"
-                ><i className="fa fa-pencil"></i
-                ></a>
-                <a href="#" title=""><i className="fa fa-plus-square"></i></a>
+                ><i className="fa fa-pencil"></i></a>
+                <a href="" title="" className="ed-box-open"><i className="fa fa-plus-square"></i></a>
             </h3>
             <h4>Master of Computer Science</h4>
             <span>2015 - 2018</span>

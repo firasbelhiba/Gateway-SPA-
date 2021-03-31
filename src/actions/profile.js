@@ -100,3 +100,40 @@ export const addExperience = (formData, history) => async dispatch => {
     }
 
 };
+
+// Add Education 
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const addEducation = (formData, history) => async dispatch => {
+
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const res = await axios.put('http://localhost:5000/api/profile/education', formData, config);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data,
+        });
+
+        dispatch(setAlert('Education Added'));
+
+        history.push('/dashboard');
+
+
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(e => dispatch(setAlert(e.msg, 'danger')));
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+
+};

@@ -56,7 +56,9 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                             linkedin={profile.social.linkedin}
                                             facebook={profile.social.facebook}
                                             instagram={profile.social.instagram}
-                                            twitter={profile.social.twitter} />
+                                            twitter={profile.social.twitter}
+                                            website={profile.website}
+                                        />
                                         <People_viewed_profile />
                                     </div>
                                     <div className="col-lg-6">
@@ -115,7 +117,12 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                             </div>
 
                                             {id === "feed" && <Feed_profile />}
-                                            {id === "info" && <Info_profile experience={profile.experience} />}
+                                            {id === "info" && <Info_profile
+                                                intrests={profile.intrests}
+                                                bio={profile.bio}
+                                                experience={profile.experience}
+                                                location={profile.location}
+                                                skills={profile.skills} />}
                                             {id === "jobs" && <Jobs_profile />}
                                             {id === "bids" && <Bids_profile />}
                                             {id === "portfolio" && <Portfolio_form />}

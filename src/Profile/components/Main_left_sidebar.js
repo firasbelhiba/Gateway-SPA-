@@ -26,7 +26,7 @@ export const Main_left_sidebar = (props) => {
                 <ul className="social_links">
                     <li>
                         <a href="#" title=""
-                        ><i className="la la-globe"></i> www.example.com</a>
+                        ><i className="la la-globe"></i>{props.website}</a>
                     </li>
                     <li>
                         <a href="#" title=""

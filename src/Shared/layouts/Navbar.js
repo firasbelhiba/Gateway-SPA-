@@ -1,23 +1,121 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
+
+  const [displayDropDown, toggleDropDown] = useState(false);
+
+  const notification = (
+    <li>
+      <Link to="#" title="" class="not-box-open">
+        <span>
+          <img src="assets/images/icon7.png" alt="" />
+        </span>
+      Notification
+    </Link>
+      <div class="notification-box noti" id="notification">
+        <div class="nt-title">
+          <h4>Setting</h4>
+          <Link to="#" title="">
+            Clear all
+        </Link>
+        </div>
+        <div class="nott-list">
+          <div class="notfication-details">
+            <div class="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img1.png"
+                alt=""
+              />
+            </div>
+            <div class="notification-info">
+              <h3>
+                <Link to="#" title="">
+                  Jassica William
+              </Link>{" "}
+              Comment on your project.
+            </h3>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div class="notfication-details">
+            <div class="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img2.png"
+                alt=""
+              />
+            </div>
+            <div class="notification-info">
+              <h3>
+                <Link to="#" title="">
+                  Jassica William
+              </Link>{" "}
+              Comment on your project.
+            </h3>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div class="notfication-details">
+            <div class="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img3.png"
+                alt=""
+              />
+            </div>
+            <div class="notification-info">
+              <h3>
+                <Link to="#" title="">
+                  Jassica William
+              </Link>{" "}
+              Comment on your project.
+            </h3>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div class="notfication-details">
+            <div class="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img2.png"
+                alt=""
+              />
+            </div>
+            <div class="notification-info">
+              <h3>
+                <Link to="#" title="">
+                  Jassica William
+              </Link>{" "}
+              Comment on your project.
+            </h3>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div class="view-all-nots">
+            <Link to="#" title="">
+              View All Notification
+          </Link>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+
   const authLinks = (
+
     <Fragment>
       <div class="menu-btn">
-        <Link to="#" title="">
+        <Link to="" title="">
           <i class="fa fa-bars"></i>
         </Link>
       </div>
       <div class="user-account">
         <div class="user-info">
           <img src="assets/images/resources/user.png" alt="" />
-          <Link to="/myprofile" title="">
+          <Link to="" title="">
             John
-          </Link>
+        </Link>
           <i class="la la-sort-down"></i>
         </div>
         <div class="user-account-settingss" id="users">
@@ -48,28 +146,28 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
             <li>
               <Link to="profile-account-setting.html" title="">
                 Account Setting
-              </Link>
+            </Link>
             </li>
             <li>
-              <Link to="#" title="">
+              <Link to="" title="">
                 Privacy
-              </Link>
+            </Link>
             </li>
             <li>
-              <Link to="#" title="">
+              <Link to="" title="">
                 Faqs
-              </Link>
+            </Link>
             </li>
             <li>
-              <Link to="#" title="">
+              <Link to="" title="">
                 Terms & Conditions
-              </Link>
+            </Link>
             </li>
           </ul>
           <h3 class="tc">
             <Link to="sign-in.html" title="">
               Logout
-            </Link>
+          </Link>
           </h3>
         </div>
       </div>
@@ -77,20 +175,22 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   );
 
   const visitorLinks = (
-    <div className="login_register">
-      <ul>
-        <li>
-          <Link to="/signup" title="">
-            Register
+    <Fragment>
+      <div className="login_register">
+        <ul>
+          <li>
+            <Link to="/signup" title="">
+              Register
           </Link>
-        </li>
-        <li>
-          <Link to="/signin" title="">
-            Login
+          </li>
+          <li>
+            <Link to="/signin" title="">
+              Login
           </Link>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+      </div>
+    </Fragment>
   );
 
   return (
@@ -102,14 +202,6 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               <Link to="index.html" title="">
                 <img src="assets/images/logo.png" alt="" />
               </Link>
-            </div>
-            <div class="search-bar">
-              <form>
-                <input type="text" name="search" placeholder="Search..." />
-                <button type="submit">
-                  <i class="la la-search"></i>
-                </button>
-              </form>
             </div>
             <nav>
               <ul>
@@ -258,102 +350,11 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                     </div>
                   </div>
                 </li>
-                <li>
-                  <Link to="#" title="" class="not-box-open">
-                    <span>
-                      <img src="assets/images/icon7.png" alt="" />
-                    </span>
-                    Notification
-                  </Link>
-                  <div class="notification-box noti" id="notification">
-                    <div class="nt-title">
-                      <h4>Setting</h4>
-                      <Link to="#" title="">
-                        Clear all
-                      </Link>
-                    </div>
-                    <div class="nott-list">
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img1.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="notification-info">
-                          <h3>
-                            <Link to="#" title="">
-                              Jassica William
-                            </Link>{" "}
-                            Comment on your project.
-                          </h3>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img2.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="notification-info">
-                          <h3>
-                            <Link to="#" title="">
-                              Jassica William
-                            </Link>{" "}
-                            Comment on your project.
-                          </h3>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img3.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="notification-info">
-                          <h3>
-                            <Link to="#" title="">
-                              Jassica William
-                            </Link>{" "}
-                            Comment on your project.
-                          </h3>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img2.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="notification-info">
-                          <h3>
-                            <Link to="#" title="">
-                              Jassica William
-                            </Link>{" "}
-                            Comment on your project.
-                          </h3>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div class="view-all-nots">
-                        <Link to="#" title="">
-                          View All Notification
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                {isAuthenticated && notification}
+
               </ul>
             </nav>
-            {!loading && (
-              <Fragment>{isAuthenticated ? authLinks : visitorLinks}</Fragment>
-            )}
+            {isAuthenticated ? authLinks : visitorLinks}
           </div>
         </div>
       </header>

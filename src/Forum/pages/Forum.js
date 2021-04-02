@@ -12,15 +12,15 @@ import Most_viewed_people from "../components/Most_viewed_people";
 import Post_form from "../components/Form/Post_form";
 import Post_forum2 from "../components/Form/Post_forum2";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profile";
+import { getPosts } from "../../actions/post";
 import PropTypes from "prop-types";
 import { loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
 
-const Forum = ({ getCurrentProfile, auth: { user }, profile }) => {
+const Forum = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
-    getCurrentProfile();
-  }, []);
+    getPosts();
+  }, [getPosts]);
   return (
     <Fragment>
       <body oncontextmenu="return false;">
@@ -40,7 +40,7 @@ const Forum = ({ getCurrentProfile, auth: { user }, profile }) => {
                     <div class="col-lg-6 col-md-8 no-pd">
                       <div class="main-ws-sec">
                         <Forum_header />
-                        <Post_item />
+                        <Post_item posts={posts} />
                         <Top_profiles />
                       </div>
                     </div>
@@ -67,13 +67,11 @@ const Forum = ({ getCurrentProfile, auth: { user }, profile }) => {
 };
 
 Forum.prototype = {
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  profile: state.profile.profile,
+  post: state.post,
 });
-export default connect(mapStateToProps, { getCurrentProfile })(Forum);
+export default connect(mapStateToProps, { getPosts })(Forum);

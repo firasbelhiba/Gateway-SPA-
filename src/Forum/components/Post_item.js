@@ -1,16 +1,22 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Moment from "react-moment";
 
-const Post_item = () => {
-  return (
-    <div>
+const Post_item = (props) => {
+  const posts = props.posts.map((item) => (
+    <div key={item._id}>
       <div className="post-bar">
         <div className="post_topbar">
           <div className="usy-dt">
-            <img src="assets/images/resources/us-pic.png" alt="" />
+            <img
+              src={item.avatar}
+              alt=""
+              style={{ height: "50px", width: "50px" }}
+            />
             <div className="usy-name">
-              <h3>John Doe</h3>
+              <h3>{item.name}</h3>
               <span>
-                <img src="assets/images/clock.png" alt="" />3 min ago
+                <img src="assets/images/clock.png" alt="" />
+                <Moment format="YYYY/MM/DD">{item.date}</Moment>
               </span>
             </div>
           </div>
@@ -70,9 +76,7 @@ const Post_item = () => {
           <h3>Senior Wordpress Developer</h3>
           <ul className="job-dt"></ul>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id
-            magna sit amet...
+            {item.text}
             <a href="#" title="">
               view more
             </a>
@@ -83,27 +87,7 @@ const Post_item = () => {
           <ul className="skill-tags">
             <li>
               <a href="#" title="">
-                HTML
-              </a>
-            </li>
-            <li>
-              <a href="#" title="">
-                PHP
-              </a>
-            </li>
-            <li>
-              <a href="#" title="">
-                CSS
-              </a>
-            </li>
-            <li>
-              <a href="#" title="">
-                Javascript
-              </a>
-            </li>
-            <li>
-              <a href="#" title="">
-                Wordpress
+                {item.category}
               </a>
             </li>
           </ul>
@@ -115,11 +99,12 @@ const Post_item = () => {
                 <i className="fas fa-heart"></i> Like
               </a>
               <img src="assets/images/liked-img.png" alt="" />
-              <span>25</span>
+              <span>{item.likes.length}</span>
             </li>
             <li>
               <a href="#" className="com">
-                <i className="fas fa-comment-alt"></i> Comment 15
+                <i className="fas fa-comment-alt"></i> Comment{" "}
+                {item.comments.length}
               </a>
             </li>
           </ul>
@@ -129,7 +114,8 @@ const Post_item = () => {
         </div>
       </div>
     </div>
-  );
+  ));
+  return <Fragment>{posts}</Fragment>;
 };
 
 const divStyle = {

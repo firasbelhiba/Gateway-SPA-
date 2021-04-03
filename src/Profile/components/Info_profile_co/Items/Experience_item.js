@@ -2,14 +2,16 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import { deleteExperience } from '../../../../actions/profile';
 
-const Experience_item = ({ experience }) => {
+
+const Experience_item = ({ experience, deleteExperience }) => {
     const experiences = experience.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.company}
                 <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a href="#" title=""><i className="fa fa-trash"></i></a>
+                <a title="" onClick={() => deleteExperience(item._id)}><i className="fa fa-trash"></i></a>
 
             </h4>
             <h1>
@@ -32,7 +34,9 @@ const Experience_item = ({ experience }) => {
 }
 
 Experience_item.propTypes = {
-    experience: PropTypes.array.isRequired
+    experience: PropTypes.array.isRequired,
+    deleteExperience: PropTypes.func.isRequired
+
 };
 
-export default Experience_item
+export default connect(null, { deleteExperience })(Experience_item);

@@ -104,7 +104,6 @@ export const addExperience = (formData, history) => async dispatch => {
 };
 
 
-
 // Add Education 
 // we add history in parameters because we want to redirect to the dashboard after we finish adding
 export const addEducation = (formData, history) => async dispatch => {
@@ -217,3 +216,45 @@ export const addCertification = (formData, history) => async dispatch => {
     }
 
 };
+
+
+// Delete experience 
+export const deleteExperience = id => async dispatch => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/api/profile/experience/${id}`);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Experience removed'));
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+
+// Delete education 
+export const deleteEducation = id => async dispatch => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/api/profile/education/${id}`);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Education removed'));
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+

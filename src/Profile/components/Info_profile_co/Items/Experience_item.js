@@ -12,7 +12,6 @@ const Experience_item = ({ experience, deleteExperience }) => {
                 {item.company}
                 <a href="#" title=""><i className="fa fa-pencil"></i></a>
                 <a title="" onClick={() => deleteExperience(item._id)}><i className="fa fa-trash"></i></a>
-
             </h4>
             <h1>
                 {item.title}

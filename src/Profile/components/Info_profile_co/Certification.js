@@ -1,23 +1,22 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import Volunteer_item from './Items/Volunteer_item'
+import Certification_item from './Items/Certification_item'
 
 
-
-const Volunteer = (props) => {
+const Certification = (props) => {
     return (
         <div>
             <div className="user-profile-ov st2">
                 <h3>
-                    <a href="#" title="" className="exp-bx-open">Volunteer</a>
+                    <a href="#" title="" className="exp-bx-open">Certification</a>
                     <a title=""
                     ><i className="fa fa-pencil"></i></a>
-                    <Link to='/create-volunteer' title=""
+                    <Link to='/create-certification' title=""
                     ><i className="fa fa-plus-square"></i></Link>
                 </h3>
-                {props.volunteer.length === 0 ? <h1>You have no volunteer experiences added yet</h1> :
+                {props.certification.length === 0 ? <h1>You have no certification added yet</h1> :
                     <Fragment>
-                        <Volunteer_item volunteer={props.volunteer} />
+                        <Certification_item certification={props.certification} />
                     </Fragment>
                 }
 
@@ -26,4 +25,4 @@ const Volunteer = (props) => {
     )
 }
 
-export default Volunteer
+export default Certification

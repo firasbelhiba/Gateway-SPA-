@@ -11,7 +11,7 @@ export const Education = (props) => {
                 ><i className="fa fa-pencil"></i></a>
                 <Link to="/create-education" title=""><i className="fa fa-plus-square"></i></Link>
             </h3>
-            {props.education == null ? <h1>You have no education added yet</h1> :
+            {props.education.length === 0 ? <h1>You have no education added yet</h1> :
                 <Fragment>
                     <Education_item education={props.education} />
                 </Fragment>

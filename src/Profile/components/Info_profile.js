@@ -7,6 +7,7 @@ import { Skills } from './Info_profile_co/Skills'
 import Profile from '../Pages/Profile'
 import Intrests from './Info_profile_co/Intrests'
 import Volunteer from './Info_profile_co/Volunteer'
+import Certification from './Info_profile_co/Certification'
 
 export const Info_profile = (props) => {
     return (
@@ -18,6 +19,7 @@ export const Info_profile = (props) => {
             <Experience experience={props.experience} />
             <Education education={props.education} />
             <Volunteer volunteer={props.volunteer} />
+            <Certification certification={props.certification} />
         </Fragment>
     )
 }

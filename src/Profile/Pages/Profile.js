@@ -124,7 +124,8 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                                 location={profile.location}
                                                 skills={profile.skills}
                                                 education={profile.education}
-                                                volunteer={profile.Volunteer} />}
+                                                volunteer={profile.Volunteer}
+                                                certification={profile.certification} />}
                                             {id === "jobs" && <Jobs_profile />}
                                             {id === "bids" && <Bids_profile />}
                                             {id === "portfolio" && <Portfolio_form />}

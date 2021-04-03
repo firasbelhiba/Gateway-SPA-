@@ -14,7 +14,7 @@ export const Experience = (props) => {
                 <Link to='/create-experience' title=""
                 ><i className="fa fa-plus-square"></i></Link>
             </h3>
-            {props.experience == null ? <h1>You have no experiences added yet</h1> :
+            {props.experience.length === 0 ? <h1>You have no experiences added yet</h1> :
                 <Fragment>
                     <Experience_item experience={props.experience} />
                 </Fragment>

@@ -8,6 +8,7 @@ import {
     UPDATE_PROFILE
 } from './types';
 
+
 // Get profile from the logged in user
 export const getCurrentProfile = () => async dispatch => {
 
@@ -64,6 +65,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 };
 
 
+
 // Add Experience 
 // we add history in parameters because we want to redirect to the dashboard after we finish adding
 export const addExperience = (formData, history) => async dispatch => {
@@ -101,6 +103,8 @@ export const addExperience = (formData, history) => async dispatch => {
 
 };
 
+
+
 // Add Education 
 // we add history in parameters because we want to redirect to the dashboard after we finish adding
 export const addEducation = (formData, history) => async dispatch => {
@@ -120,6 +124,44 @@ export const addEducation = (formData, history) => async dispatch => {
         });
 
         dispatch(setAlert('Education Added'));
+
+        history.push('/myprofile');
+
+
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(e => dispatch(setAlert(e.msg, 'danger')));
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+
+};
+
+
+// Add Volunteer 
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const addVolunteer = (formData, history) => async dispatch => {
+
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const res = await axios.put('http://localhost:5000/api/profile/volunteer', formData, config);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data,
+        });
+
+        dispatch(setAlert('Volunteer Added'));
 
         history.push('/myprofile');
 

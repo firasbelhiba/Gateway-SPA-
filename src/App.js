@@ -34,6 +34,7 @@ import QuestionsSection from "./Q&A/pages/QuestionsSection";
 import QuestionDetails from "./Q&A/pages/QuestionDetails";
 import Experience_form from "./Profile/components/Forms/Experience_form";
 import Education_form from "./Profile/components/Forms/Education_form";
+import Volunteer_form from "./Profile/components/Forms/Volunteer_form";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -68,6 +69,7 @@ function App() {
               <PrivateRoute exact path="/edit-profile" component={Profile_edit_form} />
               <PrivateRoute exact path="/create-experience" component={Experience_form} />
               <PrivateRoute exact path="/create-education" component={Education_form} />
+              <PrivateRoute exact path="/create-volunteer" component={Volunteer_form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>
             <Chat />

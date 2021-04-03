@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import Experience_item from './Items/Experience_item'
 
@@ -14,8 +14,11 @@ export const Experience = (props) => {
                 <Link to='/create-experience' title=""
                 ><i className="fa fa-plus-square"></i></Link>
             </h3>
-            <Experience_item experience={props.experience} />
-
+            {props.experience == null ? <h1>You have no experiences added yet</h1> :
+                <Fragment>
+                    <Experience_item experience={props.experience} />
+                </Fragment>
+            }
         </div>
     )
 }

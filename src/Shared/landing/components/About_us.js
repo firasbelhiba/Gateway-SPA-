@@ -2,12 +2,12 @@ import React from "react";
 
 const About_us = () => {
   return (
-    <section class="banner">
-      <div class="bannerimage">
+    <section className="banner">
+      <div className="bannerimage">
         <img src="assets/images/about.png" alt="image" />
       </div>
-      <div class="bennertext">
-        <div class="innertitle">
+      <div className="bennertext">
+        <div className="innertitle">
           <h2>
             World's largest collaborative social network
             <br />
@@ -20,7 +20,7 @@ const About_us = () => {
           </p>
         </div>
       </div>
-      <span class="banner-title">About us</span>
+      <span className="banner-title">About us</span>
     </section>
   );
 };

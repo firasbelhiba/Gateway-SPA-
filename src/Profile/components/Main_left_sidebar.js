@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
+import { Base64 } from 'js-base64';
 
 export const Main_left_sidebar = (props) => {
     return (
@@ -8,7 +10,7 @@ export const Main_left_sidebar = (props) => {
                     <img src={props.avatar} alt="" />
                     <div className="add-dp" id="OpenImgUpload">
                         <input type="file" id="file" />
-                        <label for="file"><i className="fas fa-camera"></i></label>
+                        <label htmlFor="file"><i className="fas fa-camera"></i></label>
                     </div>
                 </div>
                 <div className="user_pro_status">

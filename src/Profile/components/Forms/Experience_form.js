@@ -30,15 +30,15 @@ const Experience_form = ({ addExperience, history }) => {
 
     return (
         <Fragment>
-            <div class="row">
-                <div class="col-md-12">
+            <div className="row">
+                <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
                         <h1 className="h1">Add Experience</h1>
 
                         <fieldset>
-                            <legend><span class="number">1</span>Add any developper/programming  positions that you have had in the past</legend>
+                            <legend><span className="number">1</span>Add any developper/programming  positions that you have had in the past</legend>
 
-                            <label className="mt-5" for="name">Title:</label>
+                            <label className="mt-5" htmlFor="name">Title:</label>
                             <input type="text"
                                 placeholder="* Experience Title"
                                 className="input"
@@ -50,7 +50,7 @@ const Experience_form = ({ addExperience, history }) => {
                                 Could be your own company or one you work for
                             </small>
 
-                            <label className="mt-5" for="email">Company:</label>
+                            <label className="mt-5" htmlFor="email">Company:</label>
                             <input type="text"
                                 className="input"
                                 placeholder="Company"
@@ -63,7 +63,7 @@ const Experience_form = ({ addExperience, history }) => {
                             </small>
 
 
-                            <label className="mt-5" for="name">Location:</label>
+                            <label className="mt-5" htmlFor="name">Location:</label>
                             <input type="text"
                                 className="input"
                                 placeholder="Location"
@@ -75,7 +75,7 @@ const Experience_form = ({ addExperience, history }) => {
                         </small>
 
 
-                            <label className="mt-5" for="name">From:</label>
+                            <label className="mt-5" htmlFor="name">From:</label>
                             <input type="date"
                                 className="input"
 
@@ -85,7 +85,7 @@ const Experience_form = ({ addExperience, history }) => {
                             />
 
 
-                            <label className="mt-5" for="name">Current job : </label>
+                            <label className="mt-5" htmlFor="name">Current job : </label>
                             <p><input
                                 className="input"
 
@@ -99,7 +99,7 @@ const Experience_form = ({ addExperience, history }) => {
                                 }}
                             />Current job</p>
 
-                            <label className="mt-5" for="name">To:</label>
+                            <label className="mt-5" htmlFor="name">To:</label>
                             <input type="date"
                                 className="input"
                                 name="to"
@@ -108,7 +108,7 @@ const Experience_form = ({ addExperience, history }) => {
                                 disabled={toDateDisabled ? 'disabled' : ''}
                             />
 
-                            <label className="mt-5" for="name">Description:</label>
+                            <label className="mt-5" htmlFor="name">Description:</label>
                             <input
                                 type="text"
 

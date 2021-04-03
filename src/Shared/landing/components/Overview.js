@@ -2,10 +2,10 @@ import React from "react";
 
 const Overview = () => {
   return (
-    <section class="Company-overview">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-sm-12">
+    <section className="Company-overview">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 col-sm-12">
             <h2>Company Overview</h2>
             <p>
               Gateway application is a social network that focuses on
@@ -27,7 +27,7 @@ const Overview = () => {
               in every domain.
             </p>
           </div>
-          <div class="col-md-6 col-sm-12">
+          <div className="col-md-6 col-sm-12">
             <img src="assets/images/about3.png" alt="image" />
           </div>
         </div>

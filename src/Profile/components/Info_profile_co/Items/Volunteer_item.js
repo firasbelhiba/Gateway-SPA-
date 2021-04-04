@@ -2,14 +2,16 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import { deleteVolunteer } from '../../../../actions/profile';
 
-const Volunteer_item = ({ volunteer }) => {
+
+const Volunteer_item = ({ volunteer, deleteVolunteer }) => {
     const Volunteers = volunteer.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.company}
                 <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a href="#" title=""><i className="fa fa-trash"></i></a>
+                <a onClick={() => deleteVolunteer(item._id)} title=""><i className="fa fa-trash"></i></a>
 
             </h4>
             <h1>
@@ -32,7 +34,9 @@ const Volunteer_item = ({ volunteer }) => {
 }
 
 Volunteer_item.propTypes = {
-    volunteer: PropTypes.array.isRequired
+    volunteer: PropTypes.array.isRequired,
+    deleteVolunteer: PropTypes.func.isRequired
+
 };
 
-export default Volunteer_item
+export default connect(null, { deleteVolunteer })(Volunteer_item);

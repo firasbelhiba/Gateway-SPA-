@@ -258,3 +258,43 @@ export const deleteEducation = id => async dispatch => {
     }
 }
 
+// Delete volunteer 
+export const deleteVolunteer = id => async dispatch => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/api/profile/volunteer/${id}`);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Volunteer removed'));
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+
+// Delete certification 
+export const deleteCertification = id => async dispatch => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/api/profile/certification/${id}`);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Certification removed'));
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+

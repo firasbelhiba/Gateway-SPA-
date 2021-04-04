@@ -16,6 +16,7 @@ import { getPosts } from "../../actions/post";
 import PropTypes from "prop-types";
 import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
+import Alert from "../../Shared/layouts/Alert";
 
 const Forum = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                     <div className="col-lg-6 col-md-8 no-pd">
                       <div className="main-ws-sec">
                         <Forum_header />
+                        <Alert />
                         {posts.map((item) => (
                           <Post_item post={item} />
                         ))}

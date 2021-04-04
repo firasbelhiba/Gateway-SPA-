@@ -2,16 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
+import { deleteCertification } from '../../../../actions/profile';
 
 
-const Certification_item = ({ certification }) => {
+
+const Certification_item = ({ certification, deleteCertification }) => {
     const Certifications = certification.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.title}
                 <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a href="#" title=""><i className="fa fa-trash"></i></a>
-
+                <a onClick={() => deleteCertification(item._id)} title=""><i className="fa fa-trash"></i></a>
             </h4>
             <h1>
                 {item.field}
@@ -33,7 +34,9 @@ const Certification_item = ({ certification }) => {
 }
 
 Certification_item.propTypes = {
-    certification: PropTypes.array.isRequired
+    certification: PropTypes.array.isRequired,
+    deleteCertification: PropTypes.func.isRequired
+
 };
 
-export default Certification_item
+export default connect(null, { deleteCertification })(Certification_item);

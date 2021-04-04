@@ -30,15 +30,15 @@ const Education_form = ({ addEducation, history }) => {
 
     return (
         <Fragment>
-            <div class="row">
-                <div class="col-md-12">
+            <div className="row">
+                <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
                         <h1 className="h1">Add Your Education</h1>
 
                         <fieldset>
-                            <legend><span class="number">1</span>Add any school or bootcamp you attended</legend>
+                            <legend><span className="number">1</span>Add any school or bootcamp you attended</legend>
 
-                            <label className="mt-5" for="name">Title:</label>
+                            <label className="mt-5" htmlFor="name">Title:</label>
                             <input type="text"
                                 placeholder="School or bootcamp"
                                 name="school"
@@ -50,7 +50,7 @@ const Education_form = ({ addEducation, history }) => {
                                 Could be your own company or one you work for
                             </small>
 
-                            <label className="mt-5" for="email">Degree:</label>
+                            <label className="mt-5" htmlFor="email">Degree:</label>
                             <input type="text"
                                 placeholder="Degree or certificate"
                                 name="degree"
@@ -63,7 +63,7 @@ const Education_form = ({ addEducation, history }) => {
                         </small>
 
 
-                            <label className="mt-5" for="name">Field of study:</label>
+                            <label className="mt-5" htmlFor="name">Field of study:</label>
                             <input type="text"
                                 className="input"
                                 placeholder="Field of study"
@@ -75,7 +75,7 @@ const Education_form = ({ addEducation, history }) => {
                         </small>
 
 
-                            <label className="mt-5" for="name">From:</label>
+                            <label className="mt-5" htmlFor="name">From:</label>
                             <input type="date"
                                 className="input"
                                 name="from"
@@ -84,7 +84,7 @@ const Education_form = ({ addEducation, history }) => {
                             />
 
 
-                            <label className="mt-5" for="name">Current  : </label>
+                            <label className="mt-5" htmlFor="name">Current  : </label>
                             <p><input
                                 className="input"
 
@@ -98,7 +98,7 @@ const Education_form = ({ addEducation, history }) => {
                                 }}
                             />Current </p>
 
-                            <label className="mt-5" for="name">To:</label>
+                            <label className="mt-5" htmlFor="name">To:</label>
                             <input type="date"
                                 className="input"
                                 name="to"
@@ -107,7 +107,7 @@ const Education_form = ({ addEducation, history }) => {
                                 disabled={toDateDisabled ? 'disabled' : ''}
                             />
 
-                            <label className="mt-5" for="name">Description:</label>
+                            <label className="mt-5" htmlFor="name">Description:</label>
                             <input
                                 type="text"
 

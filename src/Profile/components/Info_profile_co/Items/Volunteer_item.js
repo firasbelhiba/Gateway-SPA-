@@ -1,17 +1,18 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
-import { deleteExperience } from '../../../../actions/profile';
+import { deleteVolunteer } from '../../../../actions/profile';
 
 
-const Experience_item = ({ experience, deleteExperience }) => {
-    const experiences = experience.map(item => (
+const Volunteer_item = ({ volunteer, deleteVolunteer }) => {
+    const Volunteers = volunteer.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.company}
                 <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a title="" onClick={() => deleteExperience(item._id)}><i className="fa fa-trash"></i></a>
+                <a onClick={() => deleteVolunteer(item._id)} title=""><i className="fa fa-trash"></i></a>
+
             </h4>
             <h1>
                 {item.title}
@@ -27,15 +28,15 @@ const Experience_item = ({ experience, deleteExperience }) => {
     ));
     return (
         <Fragment>
-            {experiences}
+            {Volunteers}
         </Fragment>
     )
 }
 
-Experience_item.propTypes = {
-    experience: PropTypes.array.isRequired,
-    deleteExperience: PropTypes.func.isRequired
+Volunteer_item.propTypes = {
+    volunteer: PropTypes.array.isRequired,
+    deleteVolunteer: PropTypes.func.isRequired
 
 };
 
-export default connect(null, { deleteExperience })(Experience_item);
+export default connect(null, { deleteVolunteer })(Volunteer_item);

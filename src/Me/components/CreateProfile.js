@@ -50,15 +50,15 @@ const CreateProfile = ({ createProfile, history }) => {
 
     return (
         <Fragment>
-            <div class="row">
-                <div class="col-md-12">
+            <div className="row">
+                <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
                         <h1 className="h1">Create Your profile</h1>
 
                         <fieldset>
-                            <legend><span class="number">1</span> Let's get some information to make your profile stand out</legend>
+                            <legend><span className="number">1</span> Let's get some information to make your profile stand out</legend>
 
-                            <label className="mt-5" for="name">Company:</label>
+                            <label className="mt-5" htmlFor="name">Company:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -72,7 +72,7 @@ const CreateProfile = ({ createProfile, history }) => {
                                 Could be your own company or one you work for
                             </small>
 
-                            <label className="mt-5" for="email">Website:</label>
+                            <label className="mt-5" htmlFor="email">Website:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -86,7 +86,7 @@ const CreateProfile = ({ createProfile, history }) => {
                             </small>
 
 
-                            <label className="mt-5" for="name">Location:</label>
+                            <label className="mt-5" htmlFor="name">Location:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -100,7 +100,7 @@ const CreateProfile = ({ createProfile, history }) => {
                             </small>
 
 
-                            <label className="mt-5" for="name">Skills:</label>
+                            <label className="mt-5" htmlFor="name">Skills:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -114,7 +114,7 @@ const CreateProfile = ({ createProfile, history }) => {
                             </small>
 
 
-                            <label className="mt-5" for="name">Github username:</label>
+                            <label className="mt-5" htmlFor="name">Github username:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -127,7 +127,7 @@ const CreateProfile = ({ createProfile, history }) => {
                                 If you want your latest repos and a github link , include your username
                             </small>
 
-                            <label className="mt-5" for="name">Bio:</label>
+                            <label className="mt-5" htmlFor="name">Bio:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -142,7 +142,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
 
 
-                            <label className="mt-5" for="job">Status:</label>
+                            <label className="mt-5" htmlFor="job">Status:</label>
                             <select className="select" id="job" name="status" value={status} onChange={e => onChange(e)}>
                                 <option value="0">* Select Professional status</option>
                                 <optgroup label="Web">
@@ -169,7 +169,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
                         </fieldset>
                         <fieldset>
-                            <legend onClick={() => toggleSocialInputs(!displaySocialInputs)}><span class="number">2</span> Social Network<small className="pointer">(Click here to add your links)</small></legend>
+                            <legend onClick={() => toggleSocialInputs(!displaySocialInputs)}><span className="number">2</span> Social Network<small className="pointer">(Click here to add your links)</small></legend>
 
                             {displaySocialInputs && <Fragment>
                                 <div className="form-group social-input">

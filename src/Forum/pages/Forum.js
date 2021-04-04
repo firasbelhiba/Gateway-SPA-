@@ -26,21 +26,21 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
   ) : (
     <Fragment>
       <body oncontextmenu="return false;">
-        <div class="wrapper">
+        <div className="wrapper">
           <main>
-            <div class="main-section">
-              <div class="container">
-                <div class="main-section-data">
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 pd-left-none no-pd">
-                      <div class="main-left-sidebar no-margin">
+            <div className="main-section">
+              <div className="container">
+                <div className="main-section-data">
+                  <div className="row">
+                    <div className="col-lg-3 col-md-4 pd-left-none no-pd">
+                      <div className="main-left-sidebar no-margin">
                         <User_data />
                         <Suggestions />
                         <Tags />
                       </div>
                     </div>
-                    <div class="col-lg-6 col-md-8 no-pd">
-                      <div class="main-ws-sec">
+                    <div className="col-lg-6 col-md-8 no-pd">
+                      <div className="main-ws-sec">
                         <Forum_header />
                         {posts.map((item) => (
                           <Post_item post={item} />
@@ -48,8 +48,8 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                         <Top_profiles />
                       </div>
                     </div>
-                    <div class="col-lg-3 pd-right-none no-pd">
-                      <div class="right-sidebar">
+                    <div className="col-lg-3 pd-right-none no-pd">
+                      <div className="right-sidebar">
                         <Widget_sign_up />
                         <Filters />
                         <Top_jobs />

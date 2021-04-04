@@ -3,13 +3,13 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+import auth from "../../reducers/auth";
 
 
-const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
+const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
 
 
   // loading not true 
-
 
   const toggle = () => toggleDropDown(!displayDropDown);
 
@@ -17,28 +17,28 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 
   const notification = (
     <li>
-      <Link to="" title="" class="not-box-open">
+      <Link to="" title="" className="not-box-open">
         <span>
           <img src="assets/images/icon7.png" alt="" />
         </span>
       Notification
     </Link>
-      <div class="notification-box noti" id="notification">
-        <div class="nt-title">
+      <div className="notification-box noti" id="notification">
+        <div className="nt-title">
           <h4>Setting</h4>
           <Link to="" title="">
             Clear all
         </Link>
         </div>
-        <div class="nott-list">
-          <div class="notfication-details">
-            <div class="noty-user-img">
+        <div className="nott-list">
+          <div className="notfication-details">
+            <div className="noty-user-img">
               <img
                 src="assets/images/resources/ny-img1.png"
                 alt=""
               />
             </div>
-            <div class="notification-info">
+            <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
@@ -48,14 +48,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               <span>2 min ago</span>
             </div>
           </div>
-          <div class="notfication-details">
-            <div class="noty-user-img">
+          <div className="notfication-details">
+            <div className="noty-user-img">
               <img
                 src="assets/images/resources/ny-img2.png"
                 alt=""
               />
             </div>
-            <div class="notification-info">
+            <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
@@ -65,14 +65,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               <span>2 min ago</span>
             </div>
           </div>
-          <div class="notfication-details">
-            <div class="noty-user-img">
+          <div className="notfication-details">
+            <div className="noty-user-img">
               <img
                 src="assets/images/resources/ny-img3.png"
                 alt=""
               />
             </div>
-            <div class="notification-info">
+            <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
@@ -82,14 +82,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               <span>2 min ago</span>
             </div>
           </div>
-          <div class="notfication-details">
-            <div class="noty-user-img">
+          <div className="notfication-details">
+            <div className="noty-user-img">
               <img
                 src="assets/images/resources/ny-img2.png"
                 alt=""
               />
             </div>
-            <div class="notification-info">
+            <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
@@ -99,7 +99,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               <span>2 min ago</span>
             </div>
           </div>
-          <div class="view-all-nots">
+          <div className="view-all-nots">
             <Link to="" title="">
               View All Notification
           </Link>
@@ -111,35 +111,35 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 
   const authLinks = (
     <Fragment>
-      <div class="menu-btn">
+      <div className="menu-btn">
         <Link to="" title="">
-          <i class="fa fa-bars"></i>
+          <i className="fa fa-bars"></i>
         </Link>
       </div>
-      <div class="user-account">
-        <div class="user-info">
+      <div className="user-account">
+        <div className="user-info">
           <img src="assets/images/resources/user.png" alt="" />
           <Link title="">
-            John
+            firas
           </Link>
-          <i class="la la-sort-down"></i>
+          <i className="la la-sort-down"></i>
         </div>
-        <div class="user-account-settingss" id="users">
+        <div className="user-account-settingss" id="users">
           <h3>Online Status</h3>
-          <ul class="on-off-status">
+          <ul className="on-off-status">
             <li>
-              <div class="fgt-sec">
+              <div className="fgt-sec">
                 <input type="radio" name="cc" id="c5" />
-                <label for="c5">
+                <label htmlFor="c5">
                   <span></span>
                 </label>
                 <small>Online</small>
               </div>
             </li>
             <li>
-              <div class="fgt-sec">
+              <div className="fgt-sec">
                 <input type="radio" name="cc" id="c6" />
-                <label for="c6">
+                <label htmlFor="c6">
                   <span></span>
                 </label>
                 <small>Offline</small>
@@ -148,7 +148,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
           </ul>
 
           <h3>Setting</h3>
-          <ul class="us-links">
+          <ul className="us-links">
             <li>
               <Link to="profile-account-setting.html" title="">
                 Account Setting
@@ -170,7 +170,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
               </Link>
             </li>
           </ul>
-          <h3 class="tc">
+          <h3 className="tc">
             <Link onClick={logout} title="">
               Logout
             </Link>
@@ -202,9 +202,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   return (
     <Fragment>
       <header>
-        <div class="container">
-          <div class="header-data">
-            <div class="logo">
+        <div className="container">
+          <div className="header-data">
+            <div className="logo">
               <Link to="index.html" title="">
                 <img src="assets/images/logo.png" alt="" />
               </Link>
@@ -271,28 +271,28 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/messages" title="" class="not-box-openm">
+                  <Link to="/messages" title="" className="not-box-openm">
                     <span>
                       <img src="assets/images/icon6.png" alt="" />
                     </span>
                     Messages
                   </Link>
-                  <div class="notification-box msg" id="message">
-                    <div class="nt-title">
+                  <div className="notification-box msg" id="message">
+                    <div className="nt-title">
                       <h4>Setting</h4>
                       <Link to="" title="">
                         Clear all
                       </Link>
                     </div>
-                    <div class="nott-list">
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
+                    <div className="nott-list">
+                      <div className="notfication-details">
+                        <div className="noty-user-img">
                           <img
                             src="assets/images/resources/ny-img1.png"
                             alt=""
                           />
                         </div>
-                        <div class="notification-info">
+                        <div className="notification-info">
                           <h3>
                             <Link to="messages.html" title="">
                               Jassica William
@@ -305,14 +305,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                           <span>2 min ago</span>
                         </div>
                       </div>
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
+                      <div className="notfication-details">
+                        <div className="noty-user-img">
                           <img
                             src="assets/images/resources/ny-img2.png"
                             alt=""
                           />
                         </div>
-                        <div class="notification-info">
+                        <div className="notification-info">
                           <h3>
                             <Link to="messages.html" title="">
                               Jassica William
@@ -322,14 +322,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                           <span>2 min ago</span>
                         </div>
                       </div>
-                      <div class="notfication-details">
-                        <div class="noty-user-img">
+                      <div className="notfication-details">
+                        <div className="noty-user-img">
                           <img
                             src="assets/images/resources/ny-img3.png"
                             alt=""
                           />
                         </div>
-                        <div class="notification-info">
+                        <div className="notification-info">
                           <h3>
                             <Link to="messages.html" title="">
                               Jassica William
@@ -343,7 +343,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
                           <span>2 min ago</span>
                         </div>
                       </div>
-                      <div class="view-all-nots">
+                      <div className="view-all-nots">
                         <Link to="messages.html" title="">
                           View All Messsages
                         </Link>

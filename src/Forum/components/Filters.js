@@ -35,35 +35,35 @@ const Filters = () => {
           <ul className="avail-checks">
             <li>
               <input type="radio" name="cc" id="c1" />
-              <label for="c1">
+              <label htmlFor="c1">
                 <span></span>
               </label>
               <small>Today</small>
             </li>
             <li>
               <input type="radio" name="cc" id="c2" />
-              <label for="c2">
+              <label htmlFor="c2">
                 <span></span>
               </label>
               <small>This week</small>
             </li>
             <li>
               <input type="radio" name="cc" id="c3" />
-              <label for="c3">
+              <label htmlFor="c3">
                 <span></span>
               </label>
               <small>This month</small>
             </li>
             <li>
               <input type="radio" name="cc" id="c3" />
-              <label for="c3">
+              <label htmlFor="c3">
                 <span></span>
               </label>
               <small>This Year</small>
             </li>
             <li>
               <input type="radio" name="cc" id="c3" />
-              <label for="c3">
+              <label htmlFor="c3">
                 <span></span>
               </label>
               <small>All</small>

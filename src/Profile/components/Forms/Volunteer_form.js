@@ -2,9 +2,11 @@ import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addExperience } from '../../../actions/profile';
+import { addVolunteer } from '../../../actions/profile';
 
-const Experience_form = ({ addExperience, history }) => {
+
+
+const Volunteer_form = ({ addVolunteer, history }) => {
 
     const [formData, setFormData] = useState({
         company: '',
@@ -24,19 +26,18 @@ const Experience_form = ({ addExperience, history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        addExperience(formData, history);
+        addVolunteer(formData, history);
     }
-
 
     return (
         <Fragment>
             <div className="row">
                 <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
-                        <h1 className="h1">Add Experience</h1>
+                        <h1 className="h1">Add Volunteer experiences</h1>
 
                         <fieldset>
-                            <legend><span className="number">1</span>Add any developper/programming  positions that you have had in the past</legend>
+                            <legend><span className="number">1</span>Add any volunteer positions that you have had in the past</legend>
 
                             <label className="mt-5" htmlFor="name">Title:</label>
                             <input type="text"
@@ -47,8 +48,8 @@ const Experience_form = ({ addExperience, history }) => {
                                 onChange={e => onChange(e)}
                                 required />
                             <small className="form-text">
-                                Could be your own company or one you work for
-                            </small>
+                                Could be any title that describe your volunteer experience
+                        </small>
 
                             <label className="mt-5" htmlFor="email">Company:</label>
                             <input type="text"
@@ -59,8 +60,8 @@ const Experience_form = ({ addExperience, history }) => {
                                 onChange={e => onChange(e)}
                                 required />
                             <small className="form-text">
-                                Could be your own or a company website
-                            </small>
+                                Could be your own company , club , organization ...
+                        </small>
 
 
                             <label className="mt-5" htmlFor="name">Location:</label>
@@ -72,7 +73,7 @@ const Experience_form = ({ addExperience, history }) => {
                                 onChange={e => onChange(e)} />
                             <small className="form-text">
                                 City & state suggested
-                        </small>
+                    </small>
 
 
                             <label className="mt-5" htmlFor="name">From:</label>
@@ -85,7 +86,7 @@ const Experience_form = ({ addExperience, history }) => {
                             />
 
 
-                            <label className="mt-5" htmlFor="name">Current job : </label>
+                            <label className="mt-5" htmlFor="name">Current  : </label>
                             <p><input
                                 className="input"
 
@@ -135,11 +136,8 @@ const Experience_form = ({ addExperience, history }) => {
     )
 }
 
-
-Experience_form.propTypes = {
-    addExperience: PropTypes.func.isRequired,
+Volunteer_form.propTypes = {
+    addVolunteer: PropTypes.func.isRequired,
 }
 
-
-export default connect(null, { addExperience })(withRouter(Experience_form))
-
+export default connect(null, { addVolunteer })(withRouter(Volunteer_form))

@@ -9,7 +9,7 @@ export const Portfolio_form = () => {
                     <input type="text" name="pf-name" placeholder="Portfolio Name" />
                     <div className="file-submit">
                         <input type="file" id="file" />
-                        <label for="file">Choose File</label>
+                        <label htmlFor="file">Choose File</label>
                     </div>
                     <div className="pf-img">
                         <img src="assets/images/resources/np.png" alt="" />

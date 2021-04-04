@@ -1,6 +1,6 @@
-import React from 'react'
-import {Button, Modal} from 'semantic-ui-react'
-import SelectTags from "./SelectTags";
+import React from 'react';
+import {Button, Modal} from 'semantic-ui-react';
+import SelectTags from "../SelectTags";
 
 function exampleReducer(state, action) {
     switch (action.type) {

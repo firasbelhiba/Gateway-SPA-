@@ -1,5 +1,5 @@
 import React from "react";
-import Question from "./Question";
+import Question from "../Question";
 
 class SideWidgetFrequentlyAsked extends React.Component {
     render() {

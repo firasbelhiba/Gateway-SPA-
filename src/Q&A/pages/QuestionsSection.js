@@ -1,15 +1,22 @@
 import React from "react";
 import UserQuestion from "../component/UserQuestion";
-import Navigation from "../component/Navigation";
-import SideWidget from "../component/SideWidget";
-import SideWidgetFrequentlyAsked from "../component/SideWidgetFrequentlyAsked"
-import FilterItem from "../component/FilterItem";
-import OptionsBar from "../component/OptionsBar";
-import QuestionButton from '../component/QuestionButton';
-import SortItem from "../component/SortItem";
+import Navigation from "../component/elements/Navigation";
+import SideWidget from "../component/widgets/SideWidget";
+import SideWidgetFrequentlyAsked from "../component/widgets/SideWidgetFrequentlyAsked"
+import FilterItem from "../component/elements/FilterItem";
+import OptionsBar from "../component/elements/OptionsBar";
+import QuestionButton from '../component/elements/QuestionButton';
+import SortItem from "../component/elements/SortItem";
+import RelevantQuestions from "../component/tabs/RelevantQuestions";
+import Search from "../component/elements/Search";
+import Section from "../component/Section";
 
 class QuestionsSection extends React.Component {
-
+    state = {content: <RelevantQuestions/>}
+    handleChange = (content) =>{
+        this.setState({content: content});
+        console.log(content);
+    }
     render() {
         return (
             <section className="forum-page">
@@ -17,37 +24,14 @@ class QuestionsSection extends React.Component {
                     <div className="forum-questions-sec">
                         <div className="row">
                             <div className="col-lg-8">
-                                <OptionsBar/>
-                                <QuestionButton/>
-                                <FilterItem/>
-                                <SortItem/>
-                                <div className="ui action input">
-                                    <input type="text" placeholder="Search..."/>
-                                    <button className="ui icon button">
-                                        <i className="search icon"></i>
-                                    </button>
+                                <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
+                                    <OptionsBar onChange={this.handleChange}/>
+                                    <QuestionButton/>
+                                    <FilterItem/>
+                                    <SortItem/>
+                                    <Search/>
                                 </div>
-                                <div className="ui segments">
-                                    <div className="usr-question ui segment">
-                                        <UserQuestion solved={true}/>
-                                    </div>
-                                    <div className="usr-question ui segment">
-                                        <UserQuestion solved={false}/>
-                                    </div>
-                                    <div className="usr-question ui segment">
-                                        <UserQuestion solved={false}/>
-                                    </div>
-                                    <div className="usr-question ui segment">
-                                        <UserQuestion solved={true}/>
-                                    </div>
-                                    <div className="usr-question ui segment">
-                                        <UserQuestion solved={false}/>
-                                    </div>
-                                    <div className="usr-question ui segment">
-                                        <UserQuestion solved={false}/>
-                                    </div>
-
-                                </div>
+                                <Section content={this.state.content}/>
                                 <Navigation/>
                             </div>
                             <div className="col-lg-4">

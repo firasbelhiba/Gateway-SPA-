@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { addLike, removeLike } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Post_item = ({
   addLike,
@@ -81,9 +82,9 @@ const Post_item = ({
                   </li>
                 )}
                 <li>
-                  <a href="#" title="">
+                  <Link to="/report-post" title="">
                     Report Post
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" title="">

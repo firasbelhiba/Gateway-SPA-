@@ -14,14 +14,16 @@ import Post_forum2 from "../components/Form/Post_forum2";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions/post";
 import PropTypes from "prop-types";
-import { loading_spinner } from "../../Shared/layouts/Loading_spinner";
+import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
 
 const Forum = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-  return (
+  return loading ? (
+    <Loading_spinner />
+  ) : (
     <Fragment>
       <body oncontextmenu="return false;">
         <div class="wrapper">
@@ -40,7 +42,9 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                     <div class="col-lg-6 col-md-8 no-pd">
                       <div class="main-ws-sec">
                         <Forum_header />
-                        <Post_item posts={posts} />
+                        {posts.map((item) => (
+                          <Post_item post={item} />
+                        ))}
                         <Top_profiles />
                       </div>
                     </div>

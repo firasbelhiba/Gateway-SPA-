@@ -197,10 +197,10 @@ $(window).on("load", function () {
 
   //  ================== Edit Options Function =================
 
-  $(".ed-opts-open").on("click", function () {
-    $(this).next(".ed-options").toggleClass("active");
-    return false;
-  });
+  // $(".ed-opts-open").on("click", function () {
+  //   $(this).next(".ed-options").toggleClass("active");
+  //   return false;
+  // });
 
   // ============== Menu Script =============
 

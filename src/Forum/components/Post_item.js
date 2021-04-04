@@ -31,9 +31,8 @@ const Post_item = ({
   //   }
   // });
   const [displayHeart, toggleHeart] = useState(false);
-
-  console.log(false);
-
+  const [displaySettings, toggleSettings] = useState(true);
+  let classActive = "";
   return (
     <Fragment>
       <div key={_id}>
@@ -54,20 +53,33 @@ const Post_item = ({
               </div>
             </div>
             <div className="ed-opts">
-              <a href="#" title="" className="ed-opts-open">
+              <a
+                onClick={() => toggleSettings(!displaySettings)}
+                title=""
+                className="ed-opts-open"
+              >
                 <i className="la la-ellipsis-v"></i>
               </a>
-              <ul className="ed-options ">
-                <li className="post_project">
-                  <a href="#" title="">
-                    Edit Post
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="">
-                    Delete Post
-                  </a>
-                </li>
+              <div style={{ color: "white" }}>
+                {!displaySettings
+                  ? (classActive = "active")
+                  : (classActive = "")}
+              </div>
+              <ul className={`ed-options ${classActive}`}>
+                {!auth.loading && user === auth.user._id && (
+                  <li className="post_project">
+                    <a href="#" title="">
+                      Edit Post
+                    </a>
+                  </li>
+                )}
+                {!auth.loading && user === auth.user._id && (
+                  <li className="post_project">
+                    <a href="#" title="">
+                      Delete Post
+                    </a>
+                  </li>
+                )}
                 <li>
                   <a href="#" title="">
                     Report Post

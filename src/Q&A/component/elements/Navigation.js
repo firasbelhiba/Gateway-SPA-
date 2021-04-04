@@ -3,7 +3,7 @@ import React from "react";
 class Navigation extends React.Component {
     render() {
         return (
-            <nav aria-label="Page navigation example" className="full-pagi">
+            <nav aria-label="Page navigation" className="full-pagi ">
                 <ul className="pagination">
                     <li className="page-item"><a className="page-link pvr" href="#">Previous</a>
                     </li>

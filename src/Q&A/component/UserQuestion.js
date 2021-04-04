@@ -1,30 +1,33 @@
 import React from "react";
 import '../styles/UserQuestion.css';
 import faker from 'faker'
-import {Popup, Card, Image} from 'semantic-ui-react'
+import {Popup, Placeholder, Segment} from 'semantic-ui-react'
+import QuestionVote from "./QuestionVote";
 
 class UserQuestion extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={`${this.props.segment}`} style={{float: 'left'}}>
                 <div className="usr_img wrapper">
                     <Popup
+                        flowing hoverable
                         trigger={<img src={faker.image.avatar()}/>}
                     >
                         <Popup.Content>
-                            <Image src={faker.image.image()}/>
-                            <Card.Header>{faker.name.firstName()} {faker.name.lastName()}</Card.Header>
-                            <Card.Description>
-
-                            </Card.Description>
+                            <Placeholder>
+                                <Placeholder.Header image>
+                                    <Placeholder.Line/>
+                                    <Placeholder.Line/>
+                                </Placeholder.Header>
+                                <Placeholder.Paragraph>
+                                    <Placeholder.Line length='medium'/>
+                                    <Placeholder.Line length='short'/>
+                                </Placeholder.Paragraph>
+                            </Placeholder>
                         </Popup.Content>
                     </Popup>
-                    <div style={{marginTop: '40px', marginLeft: '20px'}}>
-                        <div id="upvote"/>
-                        <br/>
-                        <div id="downvote"/>
-                    </div>
+                    <QuestionVote/>
                 </div>
                 <div className="usr_quest">
                     <h3>{faker.lorem.sentences()}</h3>
@@ -38,20 +41,20 @@ class UserQuestion extends React.Component {
                         <li><a href="#" title="">Javascript</a></li>
                     </ul>
                 </div>
-
                 <a className="ui teal right ribbon label" hidden={!this.props.solved}>Solved</a>
+
                 <ul className="react-links">
                     <li>
-                        <a href="#" title=""><i className="check icon"/>Vote 150</a>
-                    </li>
-                    <li>
-                        <a href="#" title=""><i className="fas fa-comment-alt"/>Comments 15</a>
+                        <a href="#" title=""><i className="fas fa-comment-alt"/>Answers 15</a>
                     </li>
                     <li>
                         <a href="#" title=""><i className="fas fa-eye"/>Views 50</a>
                     </li>
                     <li>
                         <a href="#" title=""><i className="fas fa-flag"/>Report</a>
+                    </li>
+                    <li style={{color: "darkgrey", float: "right"}}>
+                        <h3><i className="fas fa-clock-o"/>{new Date().toLocaleTimeString()}</h3>
                     </li>
                 </ul>
             </div>

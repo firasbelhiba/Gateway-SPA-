@@ -33,3 +33,6 @@
         color: darkred;
     }
 }
+@media screen and (min-width: 401px) and (max-width: 1024px) {
+    #my-content { display: none; }   /* hide it elsewhere */
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import {Tab} from 'semantic-ui-react'
+import {Label, Tab} from 'semantic-ui-react'
 import RelevantQuestions from "../tabs/RelevantQuestions";
 import MyQuestions from "../tabs/MyQuestions";
 import FollowedQuestions from "../tabs/FollowedQuestions";
@@ -7,7 +7,8 @@ import PopularQuestions from "../tabs/PopularQuestions";
 
 const panes = [
     {
-        menuItem: 'Most Relevant For You',
+        //<div>Most Relevant For You</div>
+        menuItem: 'Most Relevant For You '  ,
         content: <RelevantQuestions/>,
     },
     {

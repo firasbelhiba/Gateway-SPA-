@@ -1,57 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addPost } from "../../../actions/post";
 
-const Post_forum2 = () => {
+const Post_forum2 = ({ addPost }) => {
+  const [formData, setFormData] = useState({
+    title: "",
+    text: "",
+    category: "",
+  });
+
+  const { title, text, category } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addPost(formData);
+  };
+
   return (
-    <div className="post-popup job_post">
-      <div className="post-project">
-        <h3>Add a post</h3>
-        <div className="post-project-fields">
-          <form>
-            <div className="row">
-              <div className="col-lg-12">
-                <input type="text" name="title" placeholder="Title" />
-              </div>
-              <div className="col-lg-12">
-                <div className="inp-field">
-                  <select>
-                    <option>Category</option>
-                    <option>Category 1</option>
-                    <option>Category 2</option>
-                    <option>Category 3</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-lg-12">
-                <textarea
-                  name="description"
-                  placeholder="Description"
-                ></textarea>
-              </div>
-              <input type="file" />
-              <div className="col-lg-12">
-                <ul>
-                  <li>
-                    <button className="active" type="submit" value="post">
-                      Post
-                    </button>
-                  </li>
-                  <li>
-                    <a href="#" title="">
-                      Cancel
-                    </a>
-                  </li>
-                </ul>
-              </div>
+    <div className="post-project-fields">
+      <form onSubmit={(e) => onSubmit(e)}>
+        <div className="row">
+          <div className="col-lg-12">
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => onChange(e)}
+            />
+          </div>
+          <div className="col-lg-12">
+            <div className="inp-field">
+              <select
+                value={category}
+                name="category"
+                onChange={(e) => onChange(e)}
+              >
+                <option>python</option>
+                <option>spring</option>
+                <option>angular</option>
+                <option>.net</option>
+              </select>
             </div>
-          </form>
+          </div>
+
+          <div className="col-lg-12">
+            <textarea
+              name="text"
+              placeholder="Description"
+              value={text}
+              onChange={(e) => onChange(e)}
+            ></textarea>
+          </div>
+          <input type="file" />
+          <div className="col-lg-12">
+            <ul>
+              <li>
+                <button className="active" type="submit">
+                  Post
+                </button>
+              </li>
+              <li>
+                <a href="#" title="">
+                  Cancel
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <a href="#" title="">
-          <i className="la la-times-circle-o"></i>
-        </a>
-      </div>
+      </form>
     </div>
   );
 };
 
-export default Post_forum2;
+Post_forum2.propTypes = {
+  addPost: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addPost })(Post_forum2);

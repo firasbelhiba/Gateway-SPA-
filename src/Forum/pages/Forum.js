@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Suggestions from "../components/Suggestions";
 import User_data from "../components/User_data";
 import Tags from "../components/Tags";
@@ -17,17 +17,29 @@ import PropTypes from "prop-types";
 import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
+import { Link } from "react-router-dom";
 
 const Forum = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
+
+  const [formState, toggleState] = useState("");
+  let classActive = "";
+  if (formState === "add") {
+    classActive = "active";
+  }
+
+  if (formState === "") {
+    classActive = "";
+  }
+
   return loading ? (
     <Loading_spinner />
   ) : (
     <Fragment>
       <body oncontextmenu="return false;">
-        <div className="wrapper">
+        <div className={formState === "add" ? "wrapper overlay" : "wrapper"}>
           <main>
             <div className="main-section">
               <div className="container">
@@ -42,7 +54,32 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                     </div>
                     <div className="col-lg-6 col-md-8 no-pd">
                       <div className="main-ws-sec">
-                        <Forum_header />
+                        <div className="post-topbar">
+                          <div className="user-picy">
+                            <img
+                              src="assets/images/resources/user-pic.png"
+                              alt=""
+                            />
+                          </div>
+                          <div className="post-st">
+                            <ul>
+                              {/* <li>
+            <Link className="post_project" to="#" title="">
+              Post a Project
+            </Link>
+          </li> */}
+                              <li>
+                                <a
+                                  onClick={() => toggleState("add")}
+                                  className="post-jb active"
+                                  title=""
+                                >
+                                  Add post
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                         <Alert />
                         {posts.map((item) => (
                           <Post_item post={item} />
@@ -65,7 +102,18 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
             </div>
           </main>
           <Post_form />
-          <Post_forum2 />
+          <div className={`post-popup job_post ${classActive}`}>
+            <div className="post-project">
+              <h3>Add a post</h3>
+              <Post_forum2 />
+              <a onClick={() => toggleState("")} title="">
+                <i
+                  className="la la-times-circle-o"
+                  style={{ color: "white" }}
+                ></i>
+              </a>
+            </div>
+          </div>
         </div>
       </body>
     </Fragment>

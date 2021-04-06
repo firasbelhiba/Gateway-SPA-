@@ -197,10 +197,10 @@ $(window).on("load", function () {
 
   //  ================== Edit Options Function =================
 
-  $(".ed-opts-open").on("click", function () {
-    $(this).next(".ed-options").toggleClass("active");
-    return false;
-  });
+  // $(".ed-opts-open").on("click", function () {
+  //   $(this).next(".ed-options").toggleClass("active");
+  //   return false;
+  // });
 
   // ============== Menu Script =============
 
@@ -233,12 +233,12 @@ $(".user-info").on("click", function(){$("#users").hide();
     });
     
   */
-  $(".user-info").click(function () {
-    $(".user-account-settingss").slideToggle("fast");
-    $("#message").not($(this).next("#message")).slideUp();
-    $("#notification").not($(this).next("#notification")).slideUp();
-    // Animation complete.
-  });
+  // $(".user-info").click(function () {
+  //   $(".user-account-settingss").slideToggle("fast");
+  //   $("#message").not($(this).next("#message")).slideUp();
+  //   $("#notification").not($(this).next("#notification")).slideUp();
+  //   // Animation complete.
+  // });
 
   //  ============= FORUM LINKS MOBILE MENU FUNCTION =========
 

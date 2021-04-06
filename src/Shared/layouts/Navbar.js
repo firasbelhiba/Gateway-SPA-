@@ -11,9 +11,96 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
 
   // loading not true 
 
-  const toggle = () => toggleDropDown(!displayDropDown);
-
   const [displayDropDown, toggleDropDown] = useState(false);
+
+  let classActive = ""
+
+  if (displayDropDown) classActive = "active";
+  if (!displayDropDown) classActive = "";
+
+  const message = (
+    <li>
+      <Link to="/messages" title="" className="not-box-openm">
+        <span>
+          <img src="assets/images/icon6.png" alt="" />
+        </span>
+      Messages
+    </Link>
+      <div className="notification-box msg" id="message">
+        <div className="nt-title">
+          <h4>Setting</h4>
+          <Link to="" title="">
+            Clear all
+        </Link>
+        </div>
+        <div className="nott-list">
+          <div className="notfication-details">
+            <div className="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img1.png"
+                alt=""
+              />
+            </div>
+            <div className="notification-info">
+              <h3>
+                <Link to="messages.html" title="">
+                  Jassica William
+              </Link>
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit, sed do.
+            </p>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div className="notfication-details">
+            <div className="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img2.png"
+                alt=""
+              />
+            </div>
+            <div className="notification-info">
+              <h3>
+                <Link to="messages.html" title="">
+                  Jassica William
+              </Link>
+              </h3>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div className="notfication-details">
+            <div className="noty-user-img">
+              <img
+                src="assets/images/resources/ny-img3.png"
+                alt=""
+              />
+            </div>
+            <div className="notification-info">
+              <h3>
+                <Link to="messages.html" title="">
+                  Jassica William
+              </Link>
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit, sed do eiusmod tempo incididunt ut labore et
+                dolore magna aliqua.
+            </p>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div className="view-all-nots">
+            <Link to="messages.html" title="">
+              View All Messsages
+          </Link>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
 
   const notification = (
     <li>
@@ -116,7 +203,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
           <i className="fa fa-bars"></i>
         </Link>
       </div>
-      <div className="user-account">
+      <div className="user-account" onClick={() => toggleDropDown(!displayDropDown)}>
         <div className="user-info">
           <img src="assets/images/resources/user.png" alt="" />
           <Link title="">
@@ -124,7 +211,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
           </Link>
           <i className="la la-sort-down"></i>
         </div>
-        <div className="user-account-settingss" id="users">
+        <div className={`user-account-settingss ${classActive}`} >
           <h3>Online Status</h3>
           <ul className="on-off-status">
             <li>
@@ -270,87 +357,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                     Jobs
                   </Link>
                 </li>
-                <li>
-                  <Link to="/messages" title="" className="not-box-openm">
-                    <span>
-                      <img src="assets/images/icon6.png" alt="" />
-                    </span>
-                    Messages
-                  </Link>
-                  <div className="notification-box msg" id="message">
-                    <div className="nt-title">
-                      <h4>Setting</h4>
-                      <Link to="" title="">
-                        Clear all
-                      </Link>
-                    </div>
-                    <div className="nott-list">
-                      <div className="notfication-details">
-                        <div className="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img1.png"
-                            alt=""
-                          />
-                        </div>
-                        <div className="notification-info">
-                          <h3>
-                            <Link to="messages.html" title="">
-                              Jassica William
-                            </Link>
-                          </h3>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do.
-                          </p>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div className="notfication-details">
-                        <div className="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img2.png"
-                            alt=""
-                          />
-                        </div>
-                        <div className="notification-info">
-                          <h3>
-                            <Link to="messages.html" title="">
-                              Jassica William
-                            </Link>
-                          </h3>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div className="notfication-details">
-                        <div className="noty-user-img">
-                          <img
-                            src="assets/images/resources/ny-img3.png"
-                            alt=""
-                          />
-                        </div>
-                        <div className="notification-info">
-                          <h3>
-                            <Link to="messages.html" title="">
-                              Jassica William
-                            </Link>
-                          </h3>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempo incididunt ut labore et
-                            dolore magna aliqua.
-                          </p>
-                          <span>2 min ago</span>
-                        </div>
-                      </div>
-                      <div className="view-all-nots">
-                        <Link to="messages.html" title="">
-                          View All Messsages
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                {isAuthenticated && message}
                 {isAuthenticated && notification}
 
               </ul>

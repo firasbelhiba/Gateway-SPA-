@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
 import Moment from "react-moment";
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Post_item = ({
   addLike,
   removeLike,
+  deletePost,
   post: {
     _id,
     title,
@@ -31,9 +33,8 @@ const Post_item = ({
   //   }
   // });
   const [displayHeart, toggleHeart] = useState(false);
-
-  console.log(false);
-
+  const [displaySettings, toggleSettings] = useState(true);
+  let classActive = "";
   return (
     <Fragment>
       <div key={_id}>
@@ -54,24 +55,37 @@ const Post_item = ({
               </div>
             </div>
             <div className="ed-opts">
-              <a href="#" title="" className="ed-opts-open">
+              <a
+                onClick={() => toggleSettings(!displaySettings)}
+                title=""
+                className="ed-opts-open"
+              >
                 <i className="la la-ellipsis-v"></i>
               </a>
-              <ul className="ed-options ">
-                <li className="post_project">
-                  <a href="#" title="">
-                    Edit Post
-                  </a>
-                </li>
+              <div style={{ color: "white" }}>
+                {!displaySettings
+                  ? (classActive = "active")
+                  : (classActive = "")}
+              </div>
+              <ul className={`ed-options ${classActive}`}>
+                {!auth.loading && user === auth.user._id && (
+                  <li className="post_project">
+                    <a href="#" title="">
+                      Edit Post
+                    </a>
+                  </li>
+                )}
+                {!auth.loading && user === auth.user._id && (
+                  <li className="post_project">
+                    <a onClick={(e) => deletePost(_id)} title="">
+                      Delete Post
+                    </a>
+                  </li>
+                )}
                 <li>
-                  <a href="#" title="">
-                    Delete Post
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="">
+                  <Link to="/report-post" title="">
                     Report Post
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" title="">
@@ -163,10 +177,14 @@ const divStyle = {
 Post_item.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike })(Post_item);
+export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
+  Post_item
+);

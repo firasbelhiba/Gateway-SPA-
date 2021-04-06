@@ -618,9 +618,8 @@ nav > ul > li > a:hover {
 .user-account-settingss {
   position: absolute;
   opacity: 1;
-  visibility: visible;
+  visibility: hidden;
   z-index: 999;
-  display: none;
   top: 100%;
   right: 0;
   width: 240px;

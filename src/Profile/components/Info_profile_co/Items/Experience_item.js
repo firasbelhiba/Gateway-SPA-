@@ -1,16 +1,30 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../../../actions/profile';
+import Experience_edit_form from '../../Forms/Experience_edit_form';
 
 
 const Experience_item = ({ experience, deleteExperience }) => {
+    const [formState, toggleState] = useState("");
+    let classActive = "";
+    if (formState === "add") {
+        classActive = "active";
+    }
+
+    if (formState === "") {
+        classActive = "";
+    }
+
     const experiences = experience.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.company}
-                <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                <a onClick={() => toggleState("add")}
+                    className="post-jb active"
+                    title=""
+                    style={{ cursor: 'pointer' }} title=""><i className="fa fa-pencil"></i></a>
                 <a title="" onClick={() => deleteExperience(item._id)}><i className="fa fa-trash"></i></a>
             </h4>
             <h1>
@@ -23,7 +37,22 @@ const Experience_item = ({ experience, deleteExperience }) => {
             <p>
                 {item.description}
             </p>
-        </div>
+            <div className={`post-popup job_post ${classActive}`} >
+                <div className="post-project" >
+                    <h3 style={{ color: 'white', marginBottom: "0px" }}>Add a post
+                    <a onClick={() => toggleState("")} title="">
+                            <i
+                                className="la la-times-circle-o mr-2"
+                                style={{ color: "white", float: "right" }}
+                            ></i>
+                        </a>
+                    </h3>
+                    <Experience_edit_form id={item._id} />
+
+                </div>
+            </div>
+        </div >
+
     ));
     return (
         <Fragment>

@@ -5,15 +5,12 @@ import Alert from '../../../Shared/layouts/Alert'
 
 
 
-
 export const Experience = (props) => {
     return (
         <div className="user-profile-ov st2">
             <Alert />
             <h3>
                 <a href="#" title="" className="exp-bx-open">Experience</a>
-                <a title=""
-                ><i className="fa fa-pencil"></i></a>
                 <Link to='/create-experience' title=""
                 ><i className="fa fa-plus-square"></i></Link>
             </h3>

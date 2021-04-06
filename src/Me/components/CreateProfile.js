@@ -52,7 +52,7 @@ const CreateProfile = ({ createProfile, history }) => {
         <Fragment>
             <div className="row">
                 <div className="col-md-12">
-                    <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
+                    <form className="form_create" onSubmit={e => onSubmit(e)}>
                         <h1 className="h1">Create Your profile</h1>
 
                         <fieldset>

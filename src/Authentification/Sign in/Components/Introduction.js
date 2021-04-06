@@ -8,9 +8,9 @@ const Introduction = props => {
             <div className="cm-logo">
                 <img src="assets/images/Gateway.png" alt="" />
                 <p>
-                    Workwise, is a global freelancing platform and social
-                    networking where businesses and independent professionals
-                    connect and collaborate remotely
+                    Gateway application is a social network that focuses on
+                    professional use and career development, it can be used by a
+                    student, teacher, worker, human resource, manager, etc.
             </p>
             </div>
             <img src="assets/images/cm-main-img.png" alt="" />

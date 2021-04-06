@@ -92,7 +92,7 @@ const AuthForm = ({ login, isAuthenticated }) => {
                             </li>
                             <li>
                                 <a href="!#" title="" className="tw"
-                                ><i className="fa fa-twitter"></i>Login Via Twitter</a
+                                ><i className="fa fa-linkedin"></i>Login Via LinkedIn</a
                                 >
                             </li>
                         </ul>

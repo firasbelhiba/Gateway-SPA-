@@ -8,7 +8,8 @@ import {
     PROFILE_ERROR,
     UPDATE_PROFILE,
     GET_REPOS,
-    AVATAR_UPDATED
+    AVATAR_UPDATED,
+    COVER_UPDATED
 } from './types';
 
 
@@ -384,4 +385,32 @@ export const updateProfilePicture = formData => async dispatch => {
     }
 }
 
+
+// Update profile picture 
+export const updateCoverPicture = formData => async dispatch => {
+    try {
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        const res = await axios.post('http://localhost:5000/api/profile/cover', formData, config);
+
+        dispatch({
+            type: COVER_UPDATED,
+            payload: res.data,
+        });
+
+        dispatch(getCurrentProfile());
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+}
 

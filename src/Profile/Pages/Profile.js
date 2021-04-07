@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { Bids_profile } from '../components/Bids_profile'
-import { Cover_picture } from '../components/Cover_picture'
+import Cover_picture from '../components/Cover_picture'
 import { Feed_profile } from '../components/Feed_profile'
 import { Info_profile } from '../components/Info_profile'
 import { Jobs_profile } from '../components/Jobs_profile'
@@ -42,7 +42,7 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
     return loading && profile === null ? <Loading_spinner />
         : <Fragment>
             <div className="wrapper">
-                <Cover_picture />
+                <Cover_picture cover={profile.cover_image} />
                 <main>
                     <div className="main-section">
                         <div className="container">

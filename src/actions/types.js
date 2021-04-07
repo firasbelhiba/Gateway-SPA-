@@ -19,6 +19,8 @@ export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const GET_REPOS = "GET_REPOS";
 
 export const AVATAR_UPDATED = "AVATAR_UPDATED";
+export const COVER_UPDATED = "COVER_UPDATED";
+
 
 // post types
 export const GET_POSTS = "GET_POSTS";

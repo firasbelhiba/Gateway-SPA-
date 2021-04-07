@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { setAlert } from './alert';
+import { loadUser } from './auth';
 
 import {
     CLEAR_PROFILE,
     GET_PROFILE,
     PROFILE_ERROR,
     UPDATE_PROFILE,
-    GET_REPOS
+    GET_REPOS,
+    AVATAR_UPDATED
 } from './types';
 
 
@@ -351,6 +353,34 @@ export const getGithubRepos = username => async dispatch => {
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         });
+    }
+}
+
+
+// Update profile picture 
+export const updateProfilePicture = formData => async dispatch => {
+    try {
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        const res = await axios.post('http://localhost:5000/api/profile/upload', formData, config);
+
+        dispatch({
+            type: AVATAR_UPDATED,
+            payload: res.data,
+        });
+        dispatch(loadUser());
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
     }
 }
 

@@ -18,7 +18,7 @@ export const Experience = (props) => {
                 <Fragment>
                     <h1 className="mb-4">You have no experiences added yet</h1>
                     <Link to='/create-experience' title=""
-                    ><i className="fa fa-plus-square"></i>Click here to add one</Link>
+                    >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
                 </Fragment>
                 :
                 <Fragment>

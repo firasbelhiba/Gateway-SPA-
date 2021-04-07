@@ -12,8 +12,6 @@ const Certification = (props) => {
                 <h3>
                     <Alert />
                     <a href="#" title="" className="exp-bx-open">Certification</a>
-                    <a title=""
-                    ><i className="fa fa-pencil"></i></a>
                     <Link to='/create-certification' title=""
                     ><i className="fa fa-plus-square"></i></Link>
                 </h3>
@@ -21,7 +19,7 @@ const Certification = (props) => {
                     <Fragment>
                         <h1 className="mb-4">You have no Certification added yet</h1>
                         <Link to='/create-certification' title=""
-                        ><i className="fa fa-plus-square"></i>Click here to add one</Link>
+                        >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
                     </Fragment>
                     :
                     <Fragment>

@@ -9,9 +9,12 @@ const Intrests = (props) => {
             <h3>
                 <a title="" className="skills-open">Intrests</a>
             </h3>
-            <ul>
-                {intrests}
-            </ul>
+            {props.intrests.length === 0 ? <div>You have no intrests for the moment , go update your profile if you have one </div> :
+                <ul>
+                    {intrests}
+                </ul>
+            }
+
         </div>)
 }
 

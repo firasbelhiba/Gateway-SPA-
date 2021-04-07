@@ -20,7 +20,6 @@ const Profile_Github = ({ username, getGithubRepos, repos }) => {
                 {repos === null ? (<Loading_spinner />) : (
                     repos.map(repo => (
                         <div className="suggestion-usd">
-                            <img src="assets/images/resources/s1.png" alt="" />
                             <div className="sgt-text">
                                 <h4>{repo.name}</h4>
                                 <span></span>

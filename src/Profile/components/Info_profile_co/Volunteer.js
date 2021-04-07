@@ -13,8 +13,6 @@ const Volunteer = (props) => {
                 <Alert />
                 <h3>
                     <a href="#" title="" className="exp-bx-open">Volunteer</a>
-                    <a title=""
-                    ><i className="fa fa-pencil"></i></a>
                     <Link to='/create-volunteer' title=""
                     ><i className="fa fa-plus-square"></i></Link>
                 </h3>
@@ -23,7 +21,7 @@ const Volunteer = (props) => {
                     <Fragment>
                         <h1 className="mb-4">You have no volunteer experiences added yet</h1>
                         <Link to='/create-volunteer' title=""
-                        ><i className="fa fa-plus-square"></i>Click here to add one</Link>
+                        >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
                     </Fragment>
                     :
                     <Fragment>

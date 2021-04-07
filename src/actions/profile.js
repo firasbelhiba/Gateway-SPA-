@@ -5,7 +5,8 @@ import {
     CLEAR_PROFILE,
     GET_PROFILE,
     PROFILE_ERROR,
-    UPDATE_PROFILE
+    UPDATE_PROFILE,
+    GET_REPOS
 } from './types';
 
 
@@ -335,5 +336,22 @@ export const updateExperience = (formData, history, id) => async dispatch => {
     }
 
 };
+
+//Get Github repos 
+export const getGithubRepos = username => async dispatch => {
+    try {
+        const res = await axios.get(`http://localhost:5000/api/profile/github/${username}`);
+        dispatch({
+            type: GET_REPOS,
+            payload: res.data,
+        });
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
 
 

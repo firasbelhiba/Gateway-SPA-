@@ -26,6 +26,7 @@ import { getCurrentProfile } from '../../actions/profile';
 import Experience_form from '../components/Forms/Experience_form'
 import Edit_Profile from '../components/Edit_Profile'
 import Education_form from '../components/Forms/Education_form'
+import Profile_Github from '../components/Profile_Github';
 
 
 
@@ -59,6 +60,9 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                             twitter={profile.social.twitter}
                                             website={profile.website}
                                         />
+                                        {profile.githubusername && (
+                                            <Profile_Github username={profile.githubusername} />
+                                        )}
                                         <People_viewed_profile />
                                     </div>
                                     <div className="col-lg-6">
@@ -151,6 +155,7 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                 <Location_form />
                 <Skills_form />
                 <Portfolio_form />
+
             </div>
 
 

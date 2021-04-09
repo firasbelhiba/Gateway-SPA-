@@ -4,26 +4,9 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Comment_section from "./Comment_section";
 
-const Post_item = ({
-  addLike,
-  removeLike,
-  deletePost,
-  post: {
-    _id,
-    title,
-    text,
-    name,
-    avatar,
-    user,
-    likes,
-    comments,
-    date,
-    views,
-    category,
-  },
-  auth,
-}) => {
+const Post_item = ({ addLike, removeLike, deletePost, posts, auth }) => {
   // const currentUserLike = likes.map((like) => {
   //   let likeState = false;
 
@@ -32,138 +15,161 @@ const Post_item = ({
   //     return likeState;
   //   }
   // });
-  const [displayHeart, toggleHeart] = useState(false);
+
+  const [displayThumbsUp, toggleThumbsUp] = useState(false);
+  const [displayThumbsDown, toggleThumbsDown] = useState(false);
   const [displaySettings, toggleSettings] = useState(true);
+
   let classActive = "";
-  return (
-    <Fragment>
-      <div key={_id}>
-        <div className="post-bar">
-          <div className="post_topbar">
-            <div className="usy-dt">
-              <img
-                src={avatar}
-                alt=""
-                style={{ height: "50px", width: "50px" }}
-              />
-              <div className="usy-name">
-                <h3>{name}</h3>
-                <span>
-                  <img src="assets/images/clock.png" alt="" />
-                  <Moment format="YYYY/MM/DD">{date}</Moment>
-                </span>
-              </div>
+
+  const allPosts = posts.map((post) => (
+    <div key={post._id}>
+      <div className="post-bar">
+        <div className="post_topbar">
+          <div className="usy-dt">
+            <img
+              src={post.avatar}
+              alt=""
+              style={{ height: "50px", width: "50px" }}
+            />
+            <div className="usy-name">
+              <h3>{post.name}</h3>
+              <span>
+                <img src="assets/images/clock.png" alt="" />
+                <Moment format="YYYY/MM/DD">{post.date}</Moment>
+              </span>
             </div>
-            <div className="ed-opts">
-              <a
-                onClick={() => toggleSettings(!displaySettings)}
-                title=""
-                className="ed-opts-open"
-              >
-                <i className="la la-ellipsis-v"></i>
-              </a>
-              <div style={{ color: "white" }}>
-                {!displaySettings
-                  ? (classActive = "active")
-                  : (classActive = "")}
-              </div>
-              <ul className={`ed-options ${classActive}`}>
-                {!auth.loading && user === auth.user._id && (
-                  <li className="post_project">
-                    <a href="#" title="">
-                      Edit Post
-                    </a>
-                  </li>
-                )}
-                {!auth.loading && user === auth.user._id && (
-                  <li className="post_project">
-                    <a onClick={(e) => deletePost(_id)} title="">
-                      Delete Post
-                    </a>
-                  </li>
-                )}
-                <li>
-                  <Link to="/report-post" title="">
-                    Report Post
-                  </Link>
-                </li>
-                <li>
+          </div>
+          <div className="ed-opts">
+            <a
+              onClick={() => {
+                toggleSettings(!displaySettings);
+              }}
+              title=""
+              className="ed-opts-open"
+            >
+              <i className="la la-ellipsis-v"></i>
+            </a>
+            <div style={{ color: "white" }}>
+              {!displaySettings ? (classActive = "active") : (classActive = "")}
+            </div>
+            <ul className={`ed-options ${classActive}`}>
+              {!auth.loading && post.user === auth.user._id && (
+                <li className="post_project">
                   <a href="#" title="">
-                    Hide
+                    Edit Post
                   </a>
                 </li>
-              </ul>
-            </div>
-          </div>
-          <div className="epi-sec">
-            <ul className="descp">
+              )}
+              {!auth.loading && post.user === auth.user._id && (
+                <li className="post_project">
+                  <a onClick={(e) => deletePost(post._id)} title="">
+                    Delete Post
+                  </a>
+                </li>
+              )}
               <li>
-                <img src="assets/images/icon8.png" alt="" />
-                <span>Epic Coder</span>
-              </li>
-              <li>
-                <img src="assets/images/icon9.png" alt="" />
-                <span>India</span>
-              </li>
-            </ul>
-            <ul className="bk-links">
-              <li>
-                <a href="#" title="">
-                  <i className="la la-bookmark"></i>
-                </a>
+                <Link to="/report-post" title="">
+                  Report Post
+                </Link>
               </li>
               <li>
                 <a href="#" title="">
-                  <i className="la la-envelope"></i>
+                  Hide
                 </a>
               </li>
             </ul>
-          </div>
-          <div className="job_descp">
-            <h3>{title}</h3>
-            <ul className="job-dt"></ul>
-            <p>
-              {text}
-              <a href="#" title="">
-                view more
-              </a>
-            </p>
-
-            <img src="assets/images/career.png" style={divStyle} />
-            <br />
-            <ul className="skill-tags">
-              <li>
-                <a href="#" title="">
-                  {category}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="job-status-bar">
-            <ul className="like-com">
-              <li>
-                <a onClick={(e) => addLike(_id)}>
-                  <i className="far fa-heart"></i>{" "}
-                  {displayHeart ? "Unlike" : "Like"}
-                </a>
-                <img src="assets/images/liked-img.png" alt="" />
-                <span>{likes.length}</span>
-              </li>
-              <li>
-                <a href="#" className="com">
-                  <i className="fas fa-comment-alt"></i> Comment{" "}
-                  {comments.length}
-                </a>
-              </li>
-            </ul>
-            <a href="#">
-              <i className="fas fa-eye"></i>Views {views.length}
-            </a>
           </div>
         </div>
+        <div className="epi-sec">
+          <ul className="descp">
+            <li>
+              <img src="assets/images/icon8.png" alt="" />
+              <span>Epic Coder</span>
+            </li>
+            <li>
+              <img src="assets/images/icon9.png" alt="" />
+              <span>India</span>
+            </li>
+          </ul>
+          <ul className="bk-links">
+            <li>
+              <a href="#" title="">
+                <i className="la la-bookmark"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <i className="la la-envelope"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="job_descp">
+          <h3>{post.title}</h3>
+          <ul className="job-dt"></ul>
+          <p>
+            {post.text}
+            <a href="#" title="">
+              view more
+            </a>
+          </p>
+
+          <img src={post.image} style={divStyle} />
+          <br />
+          <ul className="skill-tags">
+            <li>
+              <a href="#" title="">
+                {post.category}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="job-status-bar">
+          <ul className="like-com">
+            <li>
+              <a
+                onClick={(e) => {
+                  addLike(post._id);
+                  toggleThumbsUp(!displayThumbsUp);
+                }}
+              >
+                <i
+                  className="far fa-thumbs-up"
+                  style={{ color: "#153b44" }}
+                ></i>{" "}
+              </a>
+              <a
+                onClick={(e) => {
+                  removeLike(post._id);
+                  toggleThumbsDown(!displayThumbsDown);
+                }}
+              >
+                <i
+                  className="far fa-thumbs-down"
+                  style={{ color: "#153b44" }}
+                ></i>{" "}
+              </a>
+
+              <img src="assets/images/liked-img.png" alt="" />
+              <span>{post.likes.length}</span>
+            </li>
+            <li>
+              <Link to={`/this-post/${post._id}`} className="com">
+                <i className="fas fa-comment-alt"></i> Comment{" "}
+                {post.comments.length}
+              </Link>
+            </li>
+          </ul>
+          <a href="#">
+            <i className="fas fa-eye"></i>Views {post.views.length}
+          </a>
+        </div>
       </div>
-    </Fragment>
-  );
+    </div>
+  ));
+
+  return <Fragment>{allPosts}</Fragment>;
 };
 
 const divStyle = {
@@ -175,10 +181,11 @@ const divStyle = {
 };
 
 Post_item.propTypes = {
-  post: PropTypes.object.isRequired,
+  posts: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

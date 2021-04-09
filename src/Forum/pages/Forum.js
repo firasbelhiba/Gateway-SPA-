@@ -34,7 +34,6 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
     classActive = "";
   }
 
-
   return loading ? (
     <Loading_spinner />
   ) : (
@@ -74,7 +73,7 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                                   onClick={() => toggleState("add")}
                                   className="post-jb active"
                                   title=""
-                                  style={{ cursor: 'pointer' }}
+                                  style={{ cursor: "pointer" }}
                                 >
                                   Add post
                                 </a>
@@ -82,9 +81,9 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                             </ul>
                           </div>
                         </div>
-                        {posts.map((item) => (
-                          <Post_item post={item} />
-                        ))}
+
+                        <Post_item posts={posts} />
+
                         <Top_profiles />
                       </div>
                     </div>
@@ -104,8 +103,8 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
             </div>
           </main>
           <Post_form />
-          <div className={`post-popup job_post ${classActive}`} >
-            <div className="post-project" >
+          <div className={`post-popup job_post ${classActive}`}>
+            <div className="post-project">
               <h3>Add a post</h3>
               <Post_forum2 />
               <a onClick={() => toggleState("")} title="">
@@ -125,9 +124,12 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
 Forum.prototype = {
   post: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
+  profile: state.profile,
 });
 export default connect(mapStateToProps, { getPosts })(Forum);

@@ -1,6 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import User_message_details from '../components/User_message_details'
+import Current_user_message from '../components/Current_user_message'
+import Other_user_message from '../components/Other_user_message'
+import openSocket from 'socket.io-client';
+import axios from "axios";
+
+
+//const socket = openSocket('http://localhost:5000');
 
 const Messages = () => {
+
+    // function subscribeToTimer(cb) {
+    //     socket.on('timer', timestamp => cb(null, timestamp));
+    //     socket.emit('subscribeToTimer', 1000);
+    //   }
+
+    //     subscribeToTimer((err, timestamp) => this.setState({ 
+    //       timestamp }));
+
+
+    //      const state = {
+    //         timestamp: 'no timestamp yet'
+    //       };
+
+    const [formData, setFormData] = useState({
+        message: 'alo',
+        id: '5',
+    });
+
+
+
+    const connectionSocket = () => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        axios.post(
+            "http://localhost:5000/api/chat",
+            formData,
+            config
+        );
+    }
+
+
+
+
     return (
         <section className="messages-page">
             <div className="container">
@@ -22,99 +67,7 @@ const Messages = () => {
                                     </ul>
                                 </div>
                                 <div className="messages-list">
-                                    <ul>
-                                        <li className="active">
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img1.png" alt="" />
-                                                    <span className="msg-status"></span>
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>John Doe</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor
-                              <img src="images/smley.png" alt="" />
-                                                    </p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                                <span className="msg-notifc">1</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img2.png" alt="" />
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>David Vane</h3>
-                                                    <p>Vestibulum ac diam..</p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img3.png" alt="" />
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>Nancy Dilan</h3>
-                                                    <p>Quam vehicula.</p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img4.png" alt="" />
-                                                    <span className="msg-status"></span>
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>Norman Kenney</h3>
-                                                    <p>Nulla quis lorem ut..</p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img5.png" alt="" />
-                                                    <span className="msg-status"></span>
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>James Dilan</h3>
-                                                    <p>Vivamus magna just..</p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img6.png" alt="" />
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>Mike Dorn</h3>
-                                                    <p>Praesent sapien massa.</p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="usr-msg-details">
-                                                <div className="usr-ms-img">
-                                                    <img src="images/resources/m-img7.png" alt="" />
-                                                </div>
-                                                <div className="usr-mg-info">
-                                                    <h3>Patrick Morison</h3>
-                                                    <p>Convallis a pellente...</p>
-                                                </div>
-                                                <span className="posted_time">1:55 PM</span>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <User_message_details />
                                 </div>
                             </div>
                         </div>
@@ -146,89 +99,9 @@ const Messages = () => {
                                             <span>Sat, Aug 23, 1:08 PM</span>
                                         </div>
                                     </div>
-                                    <div className="main-message-box ta-right">
-                                        <div className="message-dt">
-                                            <div className="message-inner-dt">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit. Donec rutrum congue leo eget malesuada.
-                                                    Vivamus suscipit tortor eget felis porttitor.
-                          </p>
-                                            </div>
-                                            <span>Sat, Aug 23, 1:08 PM</span>
-                                        </div>
-                                        <div className="messg-usr-img">
-                                            <img src="images/resources/m-img2.png" alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="main-message-box st3">
-                                        <div className="message-dt st3">
-                                            <div className="message-inner-dt">
-                                                <p>
-                                                    Cras ultricies ligula.<img
-                                                        src="images/smley.png"
-                                                        alt=""
-                                                    />
-                                                </p>
-                                            </div>
-                                            <span>5 minutes ago</span>
-                                        </div>
-                                        <div className="messg-usr-img">
-                                            <img src="images/resources/m-img1.png" alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="main-message-box ta-right">
-                                        <div className="message-dt">
-                                            <div className="message-inner-dt">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit. Donec rutrum congue leo eget malesuada.
-                                                    Vivamus suscipit tortor eget felis porttitor.
-                          </p>
-                                            </div>
-                                            <span>Sat, Aug 23, 1:08 PM</span>
-                                        </div>
-                                        <div className="messg-usr-img">
-                                            <img src="images/resources/m-img2.png" alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="main-message-box st3">
-                                        <div className="message-dt st3">
-                                            <div className="message-inner-dt">
-                                                <p>Lorem ipsum dolor sit amet</p>
-                                            </div>
-                                            <span>2 minutes ago</span>
-                                        </div>
-                                        <div className="messg-usr-img">
-                                            <img src="images/resources/m-img1.png" alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="main-message-box ta-right">
-                                        <div className="message-dt">
-                                            <div className="message-inner-dt">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit. Donec rutrum congue leo eget malesuada.
-                                                    Vivamus suscipit tortor eget felis porttitor.
-                          </p>
-                                            </div>
-                                            <span>Sat, Aug 23, 1:08 PM</span>
-                                        </div>
-                                        <div className="messg-usr-img">
-                                            <img src="images/resources/m-img2.png" alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="main-message-box st3">
-                                        <div className="message-dt st3">
-                                            <div className="message-inner-dt">
-                                                <p>....</p>
-                                            </div>
-                                            <span>Typing...</span>
-                                        </div>
-                                        <div className="messg-usr-img">
-                                            <img src="images/resources/m-img1.png" alt="" />
-                                        </div>
-                                    </div>
+                                    <Other_user_message />
+                                    <Current_user_message />
+
                                 </div>
                                 <div className="message-send-area">
                                     <form>
@@ -238,7 +111,7 @@ const Messages = () => {
                                                 name="message"
                                                 placeholder="Type a message here"
                                             />
-                                            <button type="submit">Send</button>
+                                            {/* <button onClick={connectionSocket} type="submit">Send</button> */}
                                         </div>
                                         <ul>
                                             <li>
@@ -249,11 +122,12 @@ const Messages = () => {
                                             </li>
                                             <li>
                                                 <a href="#" title=""
-                                                ><i className="fa fa-paperclip"></i
-                                                ></a>
+                                                ><i className="fa fa-paperclip"></i></a>
                                             </li>
                                         </ul>
                                     </form>
+                                    <button onClick={connectionSocket} >send</button>
+
                                 </div>
                             </div>
                         </div>

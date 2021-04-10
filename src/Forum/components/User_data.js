@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const User_data = (props) => {
+const User_data = () => {
   return (
     <div className="user-data full-width">
       <div className="user-profile">
         <div className="username-dt">
           <div className="usr-pic">
-            <img src="assets/images/resources/user-pic.png" alt="" />
+            <img src="" alt="" />
           </div>
         </div>
         <div className="user-specs">
@@ -22,7 +22,7 @@ const User_data = (props) => {
         </li>
         <li>
           <h4>Followers</h4>
-          <span>155</span>
+          <span></span>
         </li>
         <li>
           <Link to="/myprofile" title="">

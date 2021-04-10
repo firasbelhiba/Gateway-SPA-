@@ -36,6 +36,8 @@ import Education_form from "./Profile/components/Forms/Education_form";
 import Volunteer_form from "./Profile/components/Forms/Volunteer_form";
 import Certification_form from "./Profile/components/Forms/Certification_form";
 import Report_Form from "./Forum/components/Form/Report_Form";
+import { getCurrentProfile } from "./actions/profile";
+import This_post from "./Forum/pages/This_post";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -99,6 +101,7 @@ function App() {
                 path="/create-certification"
                 component={Certification_form}
               />
+              <PrivateRoute exact path="/this-post" component={This_post} />
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>

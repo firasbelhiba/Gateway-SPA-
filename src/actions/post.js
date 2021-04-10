@@ -7,6 +7,8 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
 } from "./types";
 
 //Get posts
@@ -126,6 +128,53 @@ export const addPost = (formData) => async (dispatch) => {
         msg: error.response.statusText,
         status: error.response.status,
       },
+    });
+  }
+};
+//Add comment
+export const addComment = (formData, id) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(
+      `http://localhost:5000/api/posts/comment/${id}`,
+      formData,
+      config
+    );
+    dispatch({
+      type: ADD_COMMENT,
+      payload: res.data,
+    });
+    dispatch(setAlert("Comment added", "success"));
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//Delete comment
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/posts/comment/${postId}/${commentId}`
+    );
+    dispatch({
+      type: REMOVE_COMMENT,
+      payload: commentId,
+    });
+    dispatch(setAlert("Comment removed", "success"));
+  } catch (e) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: e.response.statusText, status: e.response.status },
     });
   }
 };

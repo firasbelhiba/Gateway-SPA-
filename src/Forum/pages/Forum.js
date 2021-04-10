@@ -81,8 +81,10 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                             </ul>
                           </div>
                         </div>
+                        {posts.map((post) => (
+                          <Post_item key={post && post._id} post={post} />
+                        ))}
 
-                        <Post_item posts={posts} />
 
                         <Top_profiles />
                       </div>

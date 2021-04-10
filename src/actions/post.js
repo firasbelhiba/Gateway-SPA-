@@ -35,6 +35,10 @@ export const getPost = (id) => async (dispatch) => {
       type: GET_POST,
       payload: res.data,
     });
+    dispatch({
+      type: GET_POSTS,
+      payload: res.data,
+    });
   } catch (e) {
     dispatch({
       type: POST_ERROR,

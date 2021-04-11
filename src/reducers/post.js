@@ -7,6 +7,7 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  ADD_REPORT,
 } from "../actions/types";
 
 const initialState = {
@@ -72,6 +73,12 @@ export default function (state = initialState, action) {
             (comment) => comment._id !== payload
           ),
         },
+        loading: false,
+      };
+    case ADD_REPORT:
+      return {
+        ...state,
+        post: { ...state.post, reports: payload },
         loading: false,
       };
     default:

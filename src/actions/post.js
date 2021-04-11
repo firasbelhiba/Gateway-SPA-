@@ -9,6 +9,7 @@ import {
   ADD_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  ADD_REPORT,
 } from "./types";
 
 //Get posts
@@ -175,6 +176,36 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
       payload: { msg: e.response.statusText, status: e.response.status },
+    });
+  }
+};
+
+//Add report
+export const addReport = (formData, id, history) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(
+      `http://localhost:5000/api/posts/report/${id}`,
+      formData,
+      config
+    );
+    dispatch({
+      type: ADD_REPORT,
+      payload: res.data,
+    });
+
+    history.push("/forum");
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };

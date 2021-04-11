@@ -92,7 +92,7 @@ const Post_item = ({
                   </li>
                 )}
                 <li>
-                  <Link to="/report-post" title="">
+                  <Link to={`/report-post?id=${_id}`} title="">
                     Report Post
                   </Link>
                 </li>

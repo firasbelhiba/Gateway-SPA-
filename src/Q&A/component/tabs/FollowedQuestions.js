@@ -7,11 +7,11 @@ class FollowedQuestions extends React.Component {
 
         return (
             <div style={{marginTop: '15px'}}>
-                <FollowQuestion/>
-                <FollowQuestion/>
-                <FollowQuestion/>
-                <FollowQuestion/>
-                <FollowQuestion/>
+                <FollowQuestion solved={false}/>
+                <FollowQuestion solved={false}/>
+                <FollowQuestion solved={true}/>
+                <FollowQuestion solved={true}/>
+                <FollowQuestion solved={false}/>
             </div>
         );
     }

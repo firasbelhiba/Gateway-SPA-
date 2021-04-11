@@ -1,5 +1,7 @@
 import React from "react";
 import {Segment, Button, Label, Item, Icon,} from 'semantic-ui-react'
+import '../../styles/FollowQuestion.css'
+import faker from "faker";
 
 class FollowQuestion extends React.Component {
     state = {}
@@ -14,35 +16,44 @@ class FollowQuestion extends React.Component {
 
     render() {
         const {activeBookmark, activeFollow} = this.state
-
         return (
-            <Segment key="big" size="big" clearing>
-                <div style={{display: "flex", justifyContent: "space-between"}}>
-                    <div>
-                        <Item>
-                            <Item.Content>
-                                <Item.Header as='a'>Header</Item.Header>
-
-                                <Item.Extra>
-                                    <Label as='a' color='blue' image>
-                                        <img src='https://react.semantic-ui.com/images/avatar/small/veronika.jpg'/>
-                                        Veronika
-                                        <Label.Detail>Friend</Label.Detail>
-                                    </Label><Label>
-                                    <Icon name='mail'/> 23
-                                </Label>
-                                </Item.Extra>
-                            </Item.Content>
-                        </Item>
+            <div className={this.props.solved ? "ui green inverted raised segment" :"ui raised segment"}>
+                <div className="ui bottom attached label">
+                    <Label color='blue' image size='mini'>
+                        <img src={faker.image.avatar()}/>
+                        {faker.name.firstName()} {faker.name.lastName()}
+                    </Label>
+                    <Label color='teal' image size='mini'>
+                        Programming
+                    </Label>
+                    <Label color='yellow' image size='mini'>
+                        Active
+                    </Label>
+                    <div className="ui label">
+                        <i className="comments icon"/> 23
                     </div>
-                    <div>
-                        <Button toggle active={activeFollow} compact circular icon='fas fa-star' floated='right'
+
+                    <div style={{float: "right"}} hidden={!this.props.solved}>
+                        <Label color='green' image size='mini'>
+                            <img src={faker.image.avatar()}/>
+                            {faker.name.firstName()} {faker.name.lastName()}
+                        </Label>
+                    </div>
+                </div>
+                <div style={{display: "flex", justifyContent: "space-between"}}>
+                    <div style={{width: '670px'}}>
+                        <h1>{faker.lorem.sentence()}</h1>
+                    </div>
+                    <div style={{paddingBottom: '5px'}}>
+                        <Button toggle active={activeFollow} compact color='yellow' circular icon='fas fa-star'
+                                floated='right'
                                 onClick={this.handleClickFollow}/>
-                        <Button toggle active={activeBookmark} compact circular icon='fas fa-bookmark' floated='right'
+                        <Button toggle active={activeBookmark} compact circular icon='fas fa-bookmark'
+                                floated='right'
                                 onClick={this.handleClickBookmark}/>
                     </div>
                 </div>
-            </Segment>
+            </div>
         );
     }
 }

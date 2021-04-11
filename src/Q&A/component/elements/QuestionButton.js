@@ -47,13 +47,6 @@ const QuestionButton = () => {
                             <label>Tags</label>
                             <SelectTags/>
                         </div>
-                        <div className="ui left action input">
-                            <button className="ui teal labeled icon button">
-                                <i className="cart icon"></i>
-                                Bounty
-                            </button>
-                            <input type="text" value="$0.00"/>
-                        </div>
                         <div className="field">
                             <label>Description</label>
                             <textarea></textarea>

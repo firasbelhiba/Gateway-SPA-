@@ -1,7 +1,7 @@
 import React from "react";
 import faker from "faker";
 import Discussion from './Discussion'
-import { Button } from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react'
 
 class Answer extends React.Component {
 
@@ -13,7 +13,8 @@ class Answer extends React.Component {
                 </a>
                 <div className="content">
                     <a className="author">Elliot Fu</a>
-                    <Button basic color='green' compact size='mini' content='Mark As Solution' style={{marginLeft: '5px'}} />
+                    <Button basic color='green' compact size='mini' content='Mark As Solution'
+                            style={{marginLeft: '5px'}}/>
                     <div className="metadata">
                         <span className="date">Yesterday at 12:30AM</span>
                     </div>
@@ -26,7 +27,10 @@ class Answer extends React.Component {
                         <a className="reply">Report</a>
                     </div>
                 </div>
-                <div className="comments">
+                <div className="comments row">
+                    <Discussion/>
+                    <Discussion/>
+                    <Discussion/>
                     <Discussion/>
                 </div>
             </div>

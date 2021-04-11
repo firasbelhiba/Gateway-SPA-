@@ -11,8 +11,10 @@ import RelevantQuestions from "../component/tabs/RelevantQuestions";
 import Search from "../component/elements/Search";
 import Section from "../component/Section";
 import SideMenu from "../component/widgets/SideMenu";
-import {Sticky,} from 'semantic-ui-react'
 import '../styles/UserQuestion.css';
+import '../styles/QuestionSection.css';
+import MenuBar from "../component/elements/MenuBar";
+
 class QuestionsSection extends React.Component {
     state = {content: <RelevantQuestions/>}
     handleChange = (content) => {
@@ -22,16 +24,20 @@ class QuestionsSection extends React.Component {
 
     render() {
         return (
-            <section className="forum-page">
+            <section style={{marginTop: '20px'}}>
                 <div className="row">
                     <div className="col-lg-9">
                         <div className="row">
                             <div className="col-lg-3">
-                                <SideMenu/>
+                                <div className="sidebar">
+                                    <SideMenu/>
+                                </div>
                             </div>
                             <div className="col-lg-9">
+                                {/** <OptionsBar onChange={this.handleChange}/> **/}
+                                <MenuBar onChange={this.handleChange}/>
                                 <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
-                                    <OptionsBar onChange={this.handleChange}/>
+
                                     <QuestionButton/>
                                     <FilterItem/>
                                     <SortItem/>

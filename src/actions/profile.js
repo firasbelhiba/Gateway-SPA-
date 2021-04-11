@@ -11,6 +11,7 @@ import {
   AVATAR_UPDATED,
   COVER_UPDATED,
   SHARE_POST,
+  GET_PROFILES,
 } from "./types";
 
 // Get profile from the logged in user
@@ -432,6 +433,24 @@ export const sharePost = (id) => async (dispatch) => {
         msg: error.response.statusText,
         status: error.response.status,
       },
+    });
+  }
+};
+
+//Get all profiles
+export const getAllProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+  try {
+    const res = await axios.get("http://localhost:5000/api/profile");
+
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

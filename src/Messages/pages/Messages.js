@@ -2,47 +2,20 @@ import React, { useEffect, useState } from 'react'
 import User_message_details from '../components/User_message_details'
 import Current_user_message from '../components/Current_user_message'
 import Other_user_message from '../components/Other_user_message'
-import openSocket from 'socket.io-client';
-import axios from "axios";
+import socketClient from "socket.io-client";
+const SERVER = "http://localhost:5000";
 
-
-//const socket = openSocket('http://localhost:5000');
 
 const Messages = () => {
 
-    // function subscribeToTimer(cb) {
-    //     socket.on('timer', timestamp => cb(null, timestamp));
-    //     socket.emit('subscribeToTimer', 1000);
-    //   }
+    useEffect(() => {
+        var socket = socketClient(SERVER);
+        socket.on('connection', (data) => {
+            console.log(`I'm connected with the back-end`, data);
+            socket.emit('join', "firas")
+        });
 
-    //     subscribeToTimer((err, timestamp) => this.setState({ 
-    //       timestamp }));
-
-
-    //      const state = {
-    //         timestamp: 'no timestamp yet'
-    //       };
-
-    const [formData, setFormData] = useState({
-        message: 'alo',
-        id: '5',
-    });
-
-
-
-    const connectionSocket = () => {
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-        axios.post(
-            "http://localhost:5000/api/chat",
-            formData,
-            config
-        );
-    }
-
+    }, [SERVER]);
 
 
 
@@ -126,7 +99,7 @@ const Messages = () => {
                                             </li>
                                         </ul>
                                     </form>
-                                    <button onClick={connectionSocket} >send</button>
+                                    <button>send</button>
 
                                 </div>
                             </div>

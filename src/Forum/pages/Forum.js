@@ -18,14 +18,19 @@ import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
 import { Link } from "react-router-dom";
+import { getCurrentProfile } from "../../actions/profile";
 
-const Forum = ({ getPosts, post: { posts, loading } }) => {
+const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) => {
+
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+    getCurrentProfile();
+  }, [getPosts, getCurrentProfile]);
 
   const [formState, toggleState] = useState("");
+
   let classActive = "";
+
   if (formState === "add") {
     classActive = "active";
   }
@@ -33,6 +38,7 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
   if (formState === "") {
     classActive = "";
   }
+
 
   return loading ? (
     <Loading_spinner />
@@ -47,7 +53,7 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
                   <div className="row">
                     <div className="col-lg-3 col-md-4 pd-left-none no-pd">
                       <div className="main-left-sidebar no-margin">
-                        <User_data />
+                        <User_data profile={profile} />
                         <Suggestions />
                         <Tags />
                       </div>
@@ -125,13 +131,13 @@ const Forum = ({ getPosts, post: { posts, loading } }) => {
 
 Forum.prototype = {
   post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
   profile: state.profile,
 });
-export default connect(mapStateToProps, { getPosts })(Forum);
+export default connect(mapStateToProps, { getPosts, getCurrentProfile })(Forum);

@@ -9,7 +9,8 @@ import {
     UPDATE_PROFILE,
     GET_REPOS,
     AVATAR_UPDATED,
-    COVER_UPDATED
+    COVER_UPDATED,
+    GET_PROFILES
 } from './types';
 
 
@@ -414,5 +415,21 @@ export const updateCoverPicture = formData => async dispatch => {
     }
 }
 
+//Get all profiles 
+export const getAllProfiles = () => async dispatch => {
+    dispatch({ type: CLEAR_PROFILE })
+    try {
+        const res = await axios.get('http://localhost:5000/api/profile');
 
+        dispatch({
+            type: GET_PROFILES,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
 

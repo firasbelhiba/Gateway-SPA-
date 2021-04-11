@@ -14,7 +14,7 @@ import { Fragment, useEffect } from "react";
 import Navbar from "./Shared/layouts/Navbar";
 import { Landing } from "./Shared/landing/pages/Landing";
 
-import { Profiles } from "./Profiles/pages/Profiles";
+import Profiles from "./Profiles/pages/Profiles";
 import setAuthToken from "./utils/setAuthToken";
 
 import { Provider } from "react-redux";

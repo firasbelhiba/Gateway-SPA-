@@ -5,7 +5,8 @@ import {
   UPDATE_PROFILE,
   GET_REPOS,
   AVATAR_UPDATED,
-  COVER_UPDATED
+  COVER_UPDATED,
+  GET_PROFILES
 } from "../actions/types";
 
 const initialState = {
@@ -30,6 +31,12 @@ export default function (state = initialState, action) {
         profile: payload,
         loading: false,
       };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      }
     case AVATAR_UPDATED:
       return {
         ...state,

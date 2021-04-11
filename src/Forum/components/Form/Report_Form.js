@@ -1,11 +1,28 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-const Report_Form = () => {
+import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
+import { addReport } from "../../../actions/post";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+const Report_Form = ({ addReport, history }) => {
+  let query = useQuery();
+  const [reason, setReason] = useState("");
   return (
     <Fragment>
       <div className="row">
         <div className="col-md-12">
-          <form className="form_create">
+          <form
+            className="form_create"
+            onSubmit={(e) => {
+              e.preventDefault();
+              addReport({ reason }, query.get("id"), history);
+              setReason("");
+            }}
+          >
             <h1 className="h1">Report post</h1>
             <fieldset>
               <legend>Why do you want to report?</legend>
@@ -20,6 +37,7 @@ const Report_Form = () => {
                 id="reason"
                 placeholder="Reason"
                 name="reason"
+                onChange={(e) => setReason(e.target.value)}
               />
               <small className="form-text">Precise the reason</small>
             </fieldset>
@@ -35,5 +53,8 @@ const Report_Form = () => {
     </Fragment>
   );
 };
+Report_Form.propTypes = {
+  addReport: PropTypes.func.isRequired,
+};
 
-export default Report_Form;
+export default connect(null, { addReport })(Report_Form);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
+import { getCurrentProfile } from "./profile";
 import {
   GET_POSTS,
   GET_POST,
@@ -35,10 +36,14 @@ export const getPost = (id) => async (dispatch) => {
       type: GET_POST,
       payload: res.data,
     });
+
     dispatch({
       type: GET_POSTS,
       payload: res.data,
     });
+
+    dispatch(getCurrentProfile());
+
   } catch (e) {
     dispatch({
       type: POST_ERROR,

@@ -37,6 +37,7 @@ import Volunteer_form from "./Profile/components/Forms/Volunteer_form";
 import Certification_form from "./Profile/components/Forms/Certification_form";
 import Report_Form from "./Forum/components/Form/Report_Form";
 import This_post from "./Forum/pages/This_post";
+import Testchat from "./Testchat";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -56,6 +57,7 @@ function App() {
           <section className="">
             <Switch>
               <Route exact path="/" component={Landing} />
+              <Route exact path="/test" component={Testchat} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/profiles" component={Profiles} />

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const User_data = () => {
+
+const User_data = ({ user, profile }) => {
   return (
     <div className="user-data full-width">
       <div className="user-profile">
@@ -22,7 +25,7 @@ const User_data = () => {
         </li>
         <li>
           <h4>Followers</h4>
-          <span></span>
+          <span>{profile.status}</span>
         </li>
         <li>
           <Link to="/myprofile" title="">
@@ -34,4 +37,9 @@ const User_data = () => {
   );
 };
 
-export default User_data;
+User_data.propTypes = {
+  user: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+
+};
+export default connect(null)(User_data);

@@ -20,8 +20,11 @@ import Alert from "../../Shared/layouts/Alert";
 import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../actions/profile";
 
-const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) => {
-
+const Forum = ({
+  getPosts,
+  post: { posts, loading },
+  profile = { profile },
+}) => {
   useEffect(() => {
     getPosts();
     getCurrentProfile();
@@ -38,7 +41,6 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
   if (formState === "") {
     classActive = "";
   }
-
 
   return loading ? (
     <Loading_spinner />
@@ -90,7 +92,6 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
                         {posts.map((post) => (
                           <Post_item key={post && post._id} post={post} />
                         ))}
-
 
                         <Top_profiles />
                       </div>

@@ -11,6 +11,7 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT,
   ADD_REPORT,
+  VIEWED,
 } from "./types";
 
 //Get posts
@@ -46,7 +47,6 @@ export const getPost = (id) => async (dispatch) => {
     });
 
     dispatch(getCurrentProfile());
-
   } catch (e) {
     dispatch({
       type: POST_ERROR,
@@ -204,6 +204,27 @@ export const addReport = (formData, id, history) => async (dispatch) => {
     });
 
     history.push("/forum");
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//Add views
+export const addViews = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`http://localhost:5000/api/posts/view/${id}`);
+    dispatch({
+      type: VIEWED,
+      payload: { id, views: res.data },
+    });
+
+    dispatch(getPost(id));
   } catch (error) {
     dispatch({
       type: POST_ERROR,

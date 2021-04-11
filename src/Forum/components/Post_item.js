@@ -4,12 +4,13 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Comment_section from "./Comment_section";
+import { sharePost } from "../../actions/profile";
 
 const Post_item = ({
   addLike,
   removeLike,
   deletePost,
+  sharePost,
   post: {
     _id,
     user,
@@ -188,7 +189,13 @@ const Post_item = ({
                 </Link>
               </li>
             </ul>
-            <a href="#">
+            <a onClick={() => sharePost(_id)} className="com">
+              <i class="fas fa-share"></i>
+            </a>
+            <a className="mr-2 com">
+              <i class="fas fa-share-alt"></i>
+            </a>
+            <a className="mr-2 ">
               <i className="fas fa-eye"></i>Views {views.length}
             </a>
           </div>
@@ -216,12 +223,16 @@ Post_item.propTypes = {
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
+  sharePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
-  Post_item
-);
+export default connect(mapStateToProps, {
+  addLike,
+  removeLike,
+  deletePost,
+  sharePost,
+})(Post_item);

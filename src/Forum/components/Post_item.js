@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { sharePost } from "../../actions/profile";
 import { addViews } from "../../actions/post";
+import { FacebookButton, FacebookCount } from "react-social";
 
 const Post_item = ({
   addLike,
@@ -44,6 +45,7 @@ const Post_item = ({
   const [displaySettings, toggleSettings] = useState(true);
 
   let classActive = "";
+  let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
 
   return (
     <Fragment>
@@ -163,8 +165,8 @@ const Post_item = ({
                       }}
                     >
                       <i
-                        className="far fa-thumbs-up"
-                        style={{ color: "#153b44" }}
+                        className="fas fa-thumbs-up"
+                        style={{ color: "grey" }}
                       ></i>{" "}
                     </a>
                     <a
@@ -174,8 +176,8 @@ const Post_item = ({
                       }}
                     >
                       <i
-                        className="far fa-thumbs-down"
-                        style={{ color: "#153b44" }}
+                        className="fas fa-thumbs-down"
+                        style={{ color: "grey" }}
                       ></i>{" "}
                     </a>
                   </Fragment>
@@ -206,8 +208,15 @@ const Post_item = ({
               <i class="fas fa-share"></i>
             </a>
             <a className="mr-2 com">
-              <i class="fas fa-share-alt"></i>
+              <FacebookButton
+                style={{ border: "transparent" }}
+                url={url}
+                appId={799023877678326}
+              >
+                <i class="fab fa-facebook-f" style={{ color: "#097EEB" }}></i>
+              </FacebookButton>
             </a>
+
             <a className="mr-2 ">
               <i className="fas fa-eye"></i>Views {views.length}
             </a>

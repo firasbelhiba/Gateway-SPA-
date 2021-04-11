@@ -7,7 +7,6 @@ import PopularQuestions from "../tabs/PopularQuestions";
 
 const panes = [
     {
-        //<div>Most Relevant For You</div>
         menuItem: 'Most Relevant For You '  ,
         content: <RelevantQuestions/>,
     },
@@ -39,7 +38,7 @@ class OptionsBar extends React.Component {
                 <div className="container">
                     <div className="forum-links">
                         <ul>
-                            <Tab menu={{secondary: true, pointing: true}} panes={panes} onTabChange={this.handleChange}/>
+                            <Tab menu={{secondary: true, pointing: true}} panes={panes} onTabChange={this.handleChange}></Tab>
                         </ul>
                     </div>
                 </div>

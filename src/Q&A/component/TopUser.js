@@ -1,6 +1,5 @@
 import React from 'react';
 import faker from "faker";
-import {Accordion, Card, Button} from "react-bootstrap";
 
 class TopUser extends React.Component {
 

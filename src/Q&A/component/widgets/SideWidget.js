@@ -1,8 +1,6 @@
 import React from "react";
 import TopUser from "../TopUser"
-import {Accordion, Card, Button} from "react-bootstrap";
 import {Dropdown, Header, Icon} from 'semantic-ui-react'
-import faker from "faker";
 
 const options = [
     {

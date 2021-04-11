@@ -9,13 +9,14 @@ import "../styles/QuestionDetails.css"
 class QuestionDetails extends React.Component {
     render() {
         return (
-            <div className="row" style={{marginTop: '50px'}}>
-                <div className="col-lg-9">
+            <div className="row" style={{marginTop: '20px'}}>
+                <div className="col-lg-1">
+                </div>
+                <div className="col-lg-8">
                     <div className="ui segment">
                         <UserQuestion solved={true}/>
                         <div className="ui dividing header">
                             <div className="container" style={{display: 'flex', justifyContent: 'space-between'}}>
-
                             </div>
                         </div>
                         <div className="ui small comments row">

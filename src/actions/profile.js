@@ -12,6 +12,7 @@ import {
   COVER_UPDATED,
   SHARE_POST,
   GET_PROFILES,
+  DELETE_SHARE,
 } from "./types";
 
 // Get profile from the logged in user
@@ -437,9 +438,9 @@ export const sharePost = (id) => async (dispatch) => {
   }
 };
 
-//Get profile by ID 
-export const getProfileById = (id) => async dispatch => {
-  dispatch({ type: CLEAR_PROFILE })
+//Get profile by ID
+export const getProfileById = (id) => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
 
   try {
     const res = await axios.get(`http://localhost:5000/api/profile/user/${id}`);
@@ -447,15 +448,14 @@ export const getProfileById = (id) => async dispatch => {
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
-    })
-
+    });
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
-}
+};
 
 //Get all profiles
 export const getAllProfiles = () => async (dispatch) => {
@@ -467,6 +467,28 @@ export const getAllProfiles = () => async (dispatch) => {
       type: GET_PROFILES,
       payload: res.data,
     });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//@author Ghada Khedri
+//Delete Share
+export const deleteShare = (id, idShare) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/posts/shared/${id}/${idShare}`
+    );
+
+    dispatch({
+      type: DELETE_SHARE,
+      payload: res.data,
+    });
+
+    dispatch(getCurrentProfile());
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

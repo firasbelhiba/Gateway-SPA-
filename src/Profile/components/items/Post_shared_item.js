@@ -5,7 +5,7 @@ import Post_item from "../../../Forum/components/Post_item";
 const Post_shared_item = ({ item }) => {
   return (
     <div>
-      <Post_item post={item} showActions={false} />
+      <Post_item post={item} showActions={false} idShare={item._id} />
     </div>
   );
 };

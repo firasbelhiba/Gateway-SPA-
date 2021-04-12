@@ -8,6 +8,7 @@ import {
   COVER_UPDATED,
   SHARE_POST,
   GET_PROFILES,
+  DELETE_SHARE,
 } from "../actions/types";
 
 const initialState = {
@@ -28,7 +29,7 @@ export default function (state = initialState, action) {
   switch (type) {
     case GET_PROFILE:
     case UPDATE_PROFILE:
-      localStorage.setItem('profile', JSON.stringify(payload));
+      localStorage.setItem("profile", JSON.stringify(payload));
       return {
         ...state,
         profile: payload,
@@ -75,6 +76,17 @@ export default function (state = initialState, action) {
       return {
         ...state,
         sharedList: payload,
+        loading: false,
+      };
+    case DELETE_SHARE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          shared: state.profile.shared.filter(
+            (share) => share._id !== payload._id
+          ),
+        },
         loading: false,
       };
     default:

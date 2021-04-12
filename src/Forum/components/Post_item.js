@@ -4,7 +4,7 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { sharePost } from "../../actions/profile";
+import { sharePost, deleteShare } from "../../actions/profile";
 import { addViews } from "../../actions/post";
 import { FacebookButton, LinkedInButton } from "react-social";
 
@@ -14,6 +14,8 @@ const Post_item = ({
   deletePost,
   sharePost,
   addViews,
+  idShare,
+  deleteShare,
   post: {
     _id,
     user,
@@ -83,20 +85,44 @@ const Post_item = ({
                   : (classActive = "")}
               </div>
               <ul className={`ed-options ${classActive}`}>
-                {/* {!auth.loading && user === auth.user._id && (
-                  <li className="post_project">
-                    <a href="#" title="">
-                      Edit Post
-                    </a>
-                  </li>
+                {showActions && (
+                  <Fragment>
+                    {!auth.loading && user === auth.user._id && (
+                      <li className="post_project">
+                        <a href="#" title="">
+                          Edit Post
+                        </a>
+                      </li>
+                    )}
+                    {!auth.loading && user === auth.user._id && (
+                      <li className="post_project">
+                        <a onClick={(e) => deletePost(_id)} title="">
+                          Delete Post
+                        </a>
+                      </li>
+                    )}
+                  </Fragment>
                 )}
-                {!auth.loading && user === auth.user._id && (
-                  <li className="post_project">
-                    <a onClick={(e) => deletePost(_id)} title="">
-                      Delete Post
-                    </a>
-                  </li>
-                )} */}
+
+                {!showActions && (
+                  <Fragment>
+                    <li className="">
+                      <a title="" style={{ cursor: "pointer" }}>
+                        Edit Post
+                      </a>
+                    </li>
+                    <li className="">
+                      <a
+                        style={{ cursor: "pointer" }}
+                        onClick={(e) => deleteShare(_id, idShare)}
+                        title=""
+                      >
+                        Delete Post
+                      </a>
+                    </li>
+                  </Fragment>
+                )}
+
                 <li>
                   <Link to={`/report-post?id=${_id}`} title="">
                     Report Post
@@ -264,6 +290,7 @@ Post_item.propTypes = {
   removeLike: PropTypes.func.isRequired,
   sharePost: PropTypes.func.isRequired,
   addViews: PropTypes.func.isRequired,
+  deleteShare: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -276,4 +303,5 @@ export default connect(mapStateToProps, {
   deletePost,
   sharePost,
   addViews,
+  deleteShare,
 })(Post_item);

@@ -32,6 +32,7 @@ export const UPDATE_LIKES = "UPDATE_LIKES";
 export const VIEWED = "VIEWED";
 
 export const DELETE_POST = "DELETE_POST";
+export const DELETE_SHARE = "DELETE_SHARE";
 
 export const ADD_POST = "ADD_POST";
 

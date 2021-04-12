@@ -200,32 +200,39 @@ const Post_item = ({
                 </Link>
               </li>
             </ul>
-            <a
-              onClick={() => {
-                sharePost(_id);
-              }}
-              className="com"
-            >
-              <i class="fas fa-share"></i>
-            </a>
-            <a className="mr-2 com">
-              <FacebookButton
-                style={{ border: "transparent" }}
-                url={url}
-                appId={799023877678326}
-              >
-                <i class="fab fa-facebook-f" style={{ color: "#097EEB" }}></i>
-              </FacebookButton>
-            </a>
-            <a className="mr-2 com">
-              <LinkedInButton
-                style={{ border: "transparent" }}
-                url={url}
-                appId={clientLinkedin}
-              >
-                <i class="fab fa-linkedin" style={{ color: "#0A66C2" }}></i>
-              </LinkedInButton>
-            </a>
+            {showActions && (
+              <Fragment>
+                <a
+                  onClick={() => {
+                    sharePost(_id);
+                  }}
+                  className="com"
+                >
+                  <i class="fas fa-share"></i>
+                </a>
+                <a className="mr-2 com">
+                  <FacebookButton
+                    style={{ border: "transparent" }}
+                    url={url}
+                    appId={799023877678326}
+                  >
+                    <i
+                      class="fab fa-facebook-f"
+                      style={{ color: "#097EEB" }}
+                    ></i>
+                  </FacebookButton>
+                </a>
+                <a className="mr-2 com">
+                  <LinkedInButton
+                    style={{ border: "transparent" }}
+                    url={url}
+                    appId={clientLinkedin}
+                  >
+                    <i class="fab fa-linkedin" style={{ color: "#0A66C2" }}></i>
+                  </LinkedInButton>
+                </a>
+              </Fragment>
+            )}
 
             <a className="mr-2 ">
               <i className="fas fa-eye"></i>Views {views.length}

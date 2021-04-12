@@ -26,6 +26,8 @@ const This_post = ({
 
   const [text, setText] = useState("");
 
+  let thisUser = JSON.parse(localStorage.getItem("user"));
+
   return loading || post === null ? (
     <Loading_spinner />
   ) : (
@@ -55,7 +57,11 @@ const This_post = ({
                 </div>
                 <div className="post-comment">
                   <div className="cm_img">
-                    <img src="assets/images/resources/bg-img4.png" alt="" />
+                    <img
+                      src={thisUser.avatar}
+                      alt=""
+                      style={{ borderRadius: "50%" }}
+                    />
                   </div>
                   <div className="comment_box">
                     <form
@@ -65,12 +71,14 @@ const This_post = ({
                         setText("");
                       }}
                     >
-                      <input
-                        type="text"
-                        placeholder="Post a comment"
-                        onChange={(e) => setText(e.target.value)}
-                      />
-                      <button type="submit">Send</button>
+                      <div className="d-flex flex-row">
+                        <input
+                          type="text"
+                          placeholder="Post a comment"
+                          onChange={(e) => setText(e.target.value)}
+                        />
+                        <button type="submit">Send</button>
+                      </div>
                     </form>
                   </div>
                 </div>

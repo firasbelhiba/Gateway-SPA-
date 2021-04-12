@@ -5,17 +5,14 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import auth from "../../reducers/auth";
 
-let this_user = JSON.parse(localStorage.getItem('user'));
+let this_user = JSON.parse(localStorage.getItem("user"));
 
 const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
-
-
-  // loading not true 
+  // loading not true
 
   const [displayDropDown, toggleDropDown] = useState(false);
 
-  let classActive = ""
-
+  let classActive = "";
 
   if (displayDropDown) classActive = "active";
   if (!displayDropDown) classActive = "";
@@ -26,48 +23,42 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
         <span>
           <img src="assets/images/icon6.png" alt="" />
         </span>
-      Messages
-    </Link>
+        Messages
+      </Link>
       <div className="notification-box msg" id="message">
         <div className="nt-title">
           <h4>Setting</h4>
           <Link to="" title="">
             Clear all
-        </Link>
+          </Link>
         </div>
         <div className="nott-list">
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img1.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img1.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="messages.html" title="">
                   Jassica William
-              </Link>
+                </Link>
               </h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit, sed do.
-            </p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do.
+              </p>
               <span>2 min ago</span>
             </div>
           </div>
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img2.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img2.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="messages.html" title="">
                   Jassica William
-              </Link>
+                </Link>
               </h3>
               <p>Lorem ipsum dolor sit amet.</p>
               <span>2 min ago</span>
@@ -75,29 +66,25 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
           </div>
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img3.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img3.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="messages.html" title="">
                   Jassica William
-              </Link>
+                </Link>
               </h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit, sed do eiusmod tempo incididunt ut labore et
-                dolore magna aliqua.
-            </p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempo incididunt ut labore et dolore magna aliqua.
+              </p>
               <span>2 min ago</span>
             </div>
           </div>
           <div className="view-all-nots">
             <Link to="messages.html" title="">
               View All Messsages
-          </Link>
+            </Link>
           </div>
         </div>
       </div>
@@ -110,88 +97,76 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
         <span>
           <img src="assets/images/icon7.png" alt="" />
         </span>
-      Notification
-    </Link>
+        Notification
+      </Link>
       <div className="notification-box noti" id="notification">
         <div className="nt-title">
           <h4>Setting</h4>
           <Link to="" title="">
             Clear all
-        </Link>
+          </Link>
         </div>
         <div className="nott-list">
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img1.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img1.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
-              </Link>{" "}
-              Comment on your project.
-            </h3>
+                </Link>{" "}
+                Comment on your project.
+              </h3>
               <span>2 min ago</span>
             </div>
           </div>
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img2.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img2.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
-              </Link>{" "}
-              Comment on your project.
-            </h3>
+                </Link>{" "}
+                Comment on your project.
+              </h3>
               <span>2 min ago</span>
             </div>
           </div>
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img3.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img3.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
-              </Link>{" "}
-              Comment on your project.
-            </h3>
+                </Link>{" "}
+                Comment on your project.
+              </h3>
               <span>2 min ago</span>
             </div>
           </div>
           <div className="notfication-details">
             <div className="noty-user-img">
-              <img
-                src="assets/images/resources/ny-img2.png"
-                alt=""
-              />
+              <img src="assets/images/resources/ny-img2.png" alt="" />
             </div>
             <div className="notification-info">
               <h3>
                 <Link to="" title="">
                   Jassica William
-              </Link>{" "}
-              Comment on your project.
-            </h3>
+                </Link>{" "}
+                Comment on your project.
+              </h3>
               <span>2 min ago</span>
             </div>
           </div>
           <div className="view-all-nots">
             <Link to="" title="">
               View All Notification
-          </Link>
+            </Link>
           </div>
         </div>
       </div>
@@ -205,15 +180,20 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
           <i className="fa fa-bars"></i>
         </Link>
       </div>
-      <div className="user-account" onClick={() => toggleDropDown(!displayDropDown)}>
+      <div
+        className="user-account"
+        onClick={() => toggleDropDown(!displayDropDown)}
+      >
         <div className="user-info">
-          <img src={this_user.avatar} style={{ height: "30px", width: "30px" }} alt="" />
-          <Link title="">
-
-          </Link>
+          <img
+            src={this_user.avatar}
+            style={{ height: "30px", width: "30px" }}
+            alt=""
+          />
+          <Link title=""></Link>
           <i className="la la-sort-down"></i>
         </div>
-        <div className={`user-account-settingss ${classActive}`} >
+        <div className={`user-account-settingss ${classActive}`}>
           <h3>Online Status</h3>
           <ul className="on-off-status">
             <li>
@@ -276,12 +256,12 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
           <li>
             <Link to="/signup" title="">
               Register
-          </Link>
+            </Link>
           </li>
           <li>
             <Link to="/signin" title="">
               Login
-          </Link>
+            </Link>
           </li>
         </ul>
       </div>
@@ -361,11 +341,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                 </li>
                 {isAuthenticated && message}
                 {isAuthenticated && notification}
-
               </ul>
             </nav>
             {isAuthenticated ? authLinks : visitorLinks}
-
           </div>
         </div>
       </header>

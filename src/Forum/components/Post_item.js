@@ -83,7 +83,7 @@ const Post_item = ({
                   : (classActive = "")}
               </div>
               <ul className={`ed-options ${classActive}`}>
-                {!auth.loading && user === auth.user._id && (
+                {/* {!auth.loading && user === auth.user._id && (
                   <li className="post_project">
                     <a href="#" title="">
                       Edit Post
@@ -96,7 +96,7 @@ const Post_item = ({
                       Delete Post
                     </a>
                   </li>
-                )}
+                )} */}
                 <li>
                   <Link to={`/report-post?id=${_id}`} title="">
                     Report Post

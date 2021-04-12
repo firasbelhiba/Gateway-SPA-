@@ -50,7 +50,7 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                 <div className="row">
                                     <div className="col-lg-3">
                                         <Main_left_sidebar
-                                            avatar={user.avatar}
+                                            avatar={profile.user.avatar}
                                             numberOfFollowers={profile.follwers.length}
                                             numberOfFollowing={profile.following.length}
                                             youtube={profile.social.youtube}
@@ -69,7 +69,7 @@ const Profile = ({ getCurrentProfile, auth: { user }, profile: { profile, loadin
                                         <div className="main-ws-sec">
                                             <div className="user-tab-sec rewivew">
                                                 <Profile_header
-                                                    name={user.name}
+                                                    name={profile.user.name}
                                                     status={profile.status}
                                                 />
                                                 <div className="tab-feed st2 settingjb">

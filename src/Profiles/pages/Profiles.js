@@ -24,7 +24,9 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading } }) => {
                                 ))}
                             </div>
                         </div>
-                    </div>) : <h3>No profiles found ... </h3>}
+                    </div>) : <div className="company-title">
+                        <h3>No Profiles found yet</h3>
+                    </div>}
                 </section>
             </Fragment>}
     </Fragment>

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import auth from "../../reducers/auth";
 
+let this_user = JSON.parse(localStorage.getItem('user'));
 
 const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
 
@@ -14,6 +15,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
   const [displayDropDown, toggleDropDown] = useState(false);
 
   let classActive = ""
+
 
   if (displayDropDown) classActive = "active";
   if (!displayDropDown) classActive = "";
@@ -205,9 +207,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
       </div>
       <div className="user-account" onClick={() => toggleDropDown(!displayDropDown)}>
         <div className="user-info">
-          <img src="assets/images/resources/user.png" alt="" />
+          <img src={this_user.avatar} style={{ height: "30px", width: "30px" }} alt="" />
           <Link title="">
-            firas
+
           </Link>
           <i className="la la-sort-down"></i>
         </div>

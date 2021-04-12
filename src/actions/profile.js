@@ -433,3 +433,23 @@ export const getAllProfiles = () => async dispatch => {
     }
 }
 
+//Get profile by ID 
+export const getProfileById = (id) => async dispatch => {
+    dispatch({ type: CLEAR_PROFILE })
+
+    try {
+        const res = await axios.get(`http://localhost:5000/api/profile/user/${id}`);
+
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data,
+        })
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+

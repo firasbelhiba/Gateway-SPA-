@@ -17,7 +17,6 @@ import PropTypes from "prop-types";
 import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
-import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../actions/profile";
 
 const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) => {
@@ -26,6 +25,8 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
     getPosts();
     getCurrentProfile();
   }, [getPosts, getCurrentProfile]);
+
+  let thisProfile = JSON.parse(localStorage.getItem('profile'));
 
   const [formState, toggleState] = useState("");
 
@@ -38,7 +39,6 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
   if (formState === "") {
     classActive = "";
   }
-
 
   return loading ? (
     <Loading_spinner />
@@ -53,7 +53,7 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
                   <div className="row">
                     <div className="col-lg-3 col-md-4 pd-left-none no-pd">
                       <div className="main-left-sidebar no-margin">
-                        <User_data profile={profile} />
+                        <User_data thisProfile={thisProfile} />
                         <Suggestions />
                         <Tags />
                       </div>
@@ -63,17 +63,17 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
                         <div className="post-topbar">
                           <div className="user-picy">
                             <img
-                              src="assets/images/resources/user-pic.png"
+                              src={thisProfile.user.avatar}
                               alt=""
+                              style={{
+                                width: "50px",
+                                height: "50px",
+                                borderRadius: "50%"
+                              }}
                             />
                           </div>
                           <div className="post-st">
                             <ul>
-                              {/* <li>
-                            <Link className="post_project" to="#" title="">
-                            Post a Project
-                            </Link>
-                             </li> */}
                               <li>
                                 <a
                                   onClick={() => toggleState("add")}

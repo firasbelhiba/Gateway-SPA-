@@ -38,6 +38,7 @@ import Certification_form from "./Profile/components/Forms/Certification_form";
 import Report_Form from "./Forum/components/Form/Report_Form";
 import This_post from "./Forum/pages/This_post";
 import Testchat from "./Testchat";
+import Profileby from "./Profileby/pages/Profileby";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -46,8 +47,9 @@ if (localStorage.token) {
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
-    store.dispatch(getCurrentProfile());
+    // store.dispatch(getCurrentProfile());
   }, []);
+
 
   return (
     <Provider store={store}>
@@ -61,7 +63,6 @@ function App() {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/forum" component={Forum} />
               <Route exact path="/jobs" component={Jobs} />
               <Route exact path="/q_and_a" component={QuestionsSection} />
               <Route
@@ -70,6 +71,7 @@ function App() {
                 component={QuestionDetails}
               />
 
+              <PrivateRoute exact path="/forum" component={Forum} />
               <PrivateRoute exact path="/myprofile" component={Profile} />
               <PrivateRoute exact path="/me" component={Me} />
               <PrivateRoute
@@ -102,6 +104,7 @@ function App() {
                 path="/create-certification"
                 component={Certification_form}
               />
+              <PrivateRoute exact path="/profileby" component={Profileby} />
               <PrivateRoute exact path="/this-post" component={This_post} />
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />

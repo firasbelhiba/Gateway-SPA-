@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case USER_LOADED:
+      //    localStorage.setItem('user', JSON.stringify(payload));
       return {
         ...state,
         isAuthenticated: true,
@@ -29,6 +30,7 @@ export default function (state = initialState, action) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
+      localStorage.setItem('user', JSON.stringify(payload.user));
       return {
         ...state,
         ...payload,

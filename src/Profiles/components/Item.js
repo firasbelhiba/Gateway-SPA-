@@ -1,26 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
+import { getProfileById } from '../../actions/profile';
+import profile from '../../reducers/profile';
 
 
-const Item = ({ profile: { user: { _id, name, avatar }, status, company, location } }) => {
+const Item = ({ profile }) => {
     return (
         <div className="col-lg-3 col-md-4 col-sm-6 col-12">
             <div className="company_profile_info">
                 <div className="company-up-info">
-                    <img src={avatar} alt="" />
-                    <h3>{name}</h3>
-                    <h4>{status}</h4>
-                    <ul>
-                        <li><a href="#" title="" className="follow">Follow</a></li>
-                        <li>
-                            <a href="#" title="" className="message-us"
-                            ><i className="fa fa-envelope"></i></a>
-                        </li>
-                        <li><a href="#" title="" className="hire-us">Hire</a></li>
-                    </ul>
+                    <img src={profile.user.avatar} alt="" />
+                    <h3>{profile.user.name}</h3>
+                    <h4>{profile.status}</h4>
+                    <div className="user-profy">
+                        <ul>
+                            <li><a href="#" title="" className="follow">Follow</a></li>
+                            <li>
+                                <a href="#" title="" className="message-us"
+                                ><i className="fa fa-envelope"></i></a>
+                            </li>
+                            <li><a href="#" title="" className="hire-us">Hire</a></li>
+                        </ul>
+                        <Link to={`/profileby?id=${profile.user._id}`} onClick={() => {
+                            getProfileById(profile.user._id);
+                            localStorage.setItem('profile', JSON.stringify(profile));
+
+                        }} title="" className="view-more-pro">View Profile</Link>
+                    </div>
                 </div>
-                <a href="user-profile.html" title="" className="view-more-pro">View Profile</a>
             </div>
         </div>
     )

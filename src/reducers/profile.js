@@ -26,6 +26,7 @@ export default function (state = initialState, action) {
   switch (type) {
     case GET_PROFILE:
     case UPDATE_PROFILE:
+      localStorage.setItem('profile', JSON.stringify(payload));
       return {
         ...state,
         profile: payload,

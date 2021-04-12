@@ -6,7 +6,8 @@ import {
   GET_REPOS,
   AVATAR_UPDATED,
   COVER_UPDATED,
-  GET_PROFILES
+  SHARE_POST,
+  GET_PROFILES,
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
   loading: true,
   error: {},
   avatar: {},
-  cover: {}
+  cover: {},
+  sharedList: {},
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -36,20 +38,20 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profiles: payload,
-        loading: false
-      }
+        loading: false,
+      };
     case AVATAR_UPDATED:
       return {
         ...state,
         avatar: payload,
         loading: false,
-      }
+      };
     case COVER_UPDATED:
       return {
         ...state,
         cover: payload,
         loading: false,
-      }
+      };
     case PROFILE_ERROR:
       return {
         ...state,
@@ -67,8 +69,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         repos: payload,
-        loading: false
-      }
+        loading: false,
+      };
+    case SHARE_POST:
+      return {
+        ...state,
+        sharedList: payload,
+        loading: false,
+      };
     default:
       return state;
   }

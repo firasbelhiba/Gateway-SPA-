@@ -19,8 +19,11 @@ import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
 import { getCurrentProfile } from "../../actions/profile";
 
-const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) => {
-
+const Forum = ({
+  getPosts,
+  post: { posts, loading },
+  profile = { profile },
+}) => {
   useEffect(() => {
     getPosts();
     getCurrentProfile();
@@ -90,7 +93,6 @@ const Forum = ({ getPosts, post: { posts, loading }, profile = { profile } }) =>
                         {posts.map((post) => (
                           <Post_item key={post && post._id} post={post} />
                         ))}
-
 
                         <Top_profiles />
                       </div>

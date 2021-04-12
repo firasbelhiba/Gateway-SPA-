@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { sharePost } from "../../actions/profile";
 import { addViews } from "../../actions/post";
-import { FacebookButton, FacebookCount } from "react-social";
+import { FacebookButton, LinkedInButton } from "react-social";
 
 const Post_item = ({
   addLike,
@@ -46,6 +46,7 @@ const Post_item = ({
 
   let classActive = "";
   let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
+  let clientLinkedin = "77uua4ca6s850x";
 
   return (
     <Fragment>
@@ -215,6 +216,15 @@ const Post_item = ({
               >
                 <i class="fab fa-facebook-f" style={{ color: "#097EEB" }}></i>
               </FacebookButton>
+            </a>
+            <a className="mr-2 com">
+              <LinkedInButton
+                style={{ border: "transparent" }}
+                url={url}
+                appId={clientLinkedin}
+              >
+                <i class="fab fa-linkedin" style={{ color: "#0A66C2" }}></i>
+              </LinkedInButton>
             </a>
 
             <a className="mr-2 ">

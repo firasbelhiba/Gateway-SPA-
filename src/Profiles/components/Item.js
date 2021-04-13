@@ -10,8 +10,8 @@ const Item = ({ profile }) => {
         <div className="col-lg-3 col-md-4 col-sm-6 col-12">
             <div className="company_profile_info">
                 <div className="company-up-info">
-                    <img src={profile.user.avatar} alt="" />
-                    <h3>{profile.user.name}</h3>
+                    <img src={profile.avatar} alt="" />
+                    <h3>{profile.name}</h3>
                     <h4>{profile.status}</h4>
                     <div className="user-profy">
                         <ul>
@@ -22,9 +22,9 @@ const Item = ({ profile }) => {
                             </li>
                             <li><a href="#" title="" className="hire-us">Hire</a></li>
                         </ul>
-                        <Link to={`/profileby?id=${profile.user._id}`} onClick={() => {
-                            getProfileById(profile.user._id);
-                            localStorage.setItem('profile', JSON.stringify(profile));
+                        <Link to={`/profileby?id=${profile.user}`} onClick={() => {
+                            getProfileById(profile.user);
+                            localStorage.setItem('this_profile', JSON.stringify(profile));
 
                         }} title="" className="view-more-pro">View Profile</Link>
                     </div>

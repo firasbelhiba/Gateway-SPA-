@@ -22,7 +22,7 @@ import store from "./store";
 import Chat from "./Shared/layouts/Chat";
 import Messages from "./Messages/pages/Messages";
 import { loadUser } from "./actions/auth";
-import { getCurrentProfile } from "./actions/profile";
+import { getAllProfiles, getCurrentProfile } from "./actions/profile";
 import PrivateRoute from "./routing/PrivateRoute";
 import Profile from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
@@ -47,7 +47,9 @@ if (localStorage.token) {
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
-    // store.dispatch(getCurrentProfile());
+    store.dispatch(getCurrentProfile());
+    store.dispatch(getAllProfiles());
+
   }, []);
 
 

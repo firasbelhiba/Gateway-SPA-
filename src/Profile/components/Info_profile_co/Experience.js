@@ -5,26 +5,37 @@ import Alert from '../../../Shared/layouts/Alert'
 
 
 
-export const Experience = (props) => {
+export const Experience = ({ experience, showActions }) => {
     return (
         <div className="user-profile-ov st2">
             <Alert />
             <h3>
                 <a href="#" title="" className="exp-bx-open">Experience</a>
-                <Link to='/create-experience' title=""
-                ><i className="fa fa-plus-square"></i></Link>
+                {
+                    showActions &&
+                    <Link to='/create-experience' title=""
+                    ><i className="fa fa-plus-square"></i></Link>
+                }
+
             </h3>
-            {props.experience.length === 0 ?
+            {experience.length === 0 ?
                 <Fragment>
                     <h1 className="mb-4">You have no experiences added yet</h1>
-                    <Link to='/create-experience' title=""
-                    >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
+                    {
+                        showActions &&
+                        <Link to='/create-experience' title=""
+                        >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
+                    }
                 </Fragment>
                 :
                 <Fragment>
-                    <Experience_item experience={props.experience} />
+                    <Experience_item experience={experience} showActions={showActions} />
                 </Fragment>
             }
         </div>
     )
 }
+
+Experience.defaultProps = {
+    showActions: true,
+};

@@ -6,13 +6,17 @@ import { deleteEducation } from '../../../../actions/profile';
 
 
 
-const Education_item = ({ education, deleteEducation }) => {
+const Education_item = ({ education, deleteEducation, showActions }) => {
 
     const educations = education.map(item => (
         <div key={item._id}>
             <h4 className="mt-4" style={{ color: '#17a2b8' }}>{item.school}
-                <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a title="" onClick={() => deleteEducation(item._id)}><i className="fa fa-trash"></i></a>
+                {showActions &&
+                    <Fragment>
+                        <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                        <a title="" onClick={() => deleteEducation(item._id)}><i className="fa fa-trash"></i></a>
+                    </Fragment>
+                }
             </h4>
 
 

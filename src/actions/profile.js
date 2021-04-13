@@ -13,6 +13,7 @@ import {
   SHARE_POST,
   GET_PROFILES,
   DELETE_SHARE,
+  GET_THIS_PROFILE,
 } from "./types";
 
 // Get profile from the logged in user
@@ -378,6 +379,8 @@ export const updateProfilePicture = (formData) => async (dispatch) => {
       type: AVATAR_UPDATED,
       payload: res.data,
     });
+
+    dispatch(getCurrentProfile());
     dispatch(loadUser());
   } catch (err) {
     dispatch({
@@ -387,7 +390,7 @@ export const updateProfilePicture = (formData) => async (dispatch) => {
   }
 };
 
-// Update profile picture
+// Update updateCoverPicture 
 export const updateCoverPicture = (formData) => async (dispatch) => {
   try {
     const config = {
@@ -446,9 +449,11 @@ export const getProfileById = (id) => async (dispatch) => {
     const res = await axios.get(`http://localhost:5000/api/profile/user/${id}`);
 
     dispatch({
-      type: GET_PROFILE,
+      type: GET_THIS_PROFILE,
       payload: res.data,
     });
+
+    dispatch(getCurrentProfile());
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -470,7 +475,7 @@ export const getAllProfiles = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: { msg: err.response, status: err.response },
     });
   }
 };

@@ -55,6 +55,9 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+
+    localStorage.setItem('user', JSON.stringify(res.data));
+
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
@@ -6,13 +6,18 @@ import { deleteCertification } from '../../../../actions/profile';
 
 
 
-const Certification_item = ({ certification, deleteCertification }) => {
+const Certification_item = ({ certification, deleteCertification, showActions }) => {
     const Certifications = certification.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.title}
-                <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a onClick={() => deleteCertification(item._id)} title=""><i className="fa fa-trash"></i></a>
+                {
+                    showActions &&
+                    <Fragment>
+                        <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                        <a onClick={() => deleteCertification(item._id)} title=""><i className="fa fa-trash"></i></a>
+                    </Fragment>
+                }
             </h4>
             <h1>
                 {item.field}

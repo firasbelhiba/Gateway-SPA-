@@ -9,6 +9,7 @@ import {
   SHARE_POST,
   GET_PROFILES,
   DELETE_SHARE,
+  GET_THIS_PROFILE,
 } from "../actions/types";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   avatar: {},
   cover: {},
   sharedList: {},
+  this_profile: null
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -35,7 +37,15 @@ export default function (state = initialState, action) {
         profile: payload,
         loading: false,
       };
+    case GET_THIS_PROFILE:
+      localStorage.setItem("this_profile", JSON.stringify(payload));
+      return {
+        ...state,
+        this_profile: payload,
+        loading: false,
+      };
     case GET_PROFILES:
+      localStorage.setItem("profiles", JSON.stringify(payload));
       return {
         ...state,
         profiles: payload,

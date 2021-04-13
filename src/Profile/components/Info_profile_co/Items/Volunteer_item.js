@@ -5,13 +5,17 @@ import Moment from 'react-moment';
 import { deleteVolunteer } from '../../../../actions/profile';
 
 
-const Volunteer_item = ({ volunteer, deleteVolunteer }) => {
+const Volunteer_item = ({ volunteer, deleteVolunteer, showActions }) => {
     const Volunteers = volunteer.map(item => (
         <div key={item._id}>
             <h4 style={{ color: '#17a2b8' }}>
                 {item.company}
-                <a href="#" title=""><i className="fa fa-pencil"></i></a>
-                <a onClick={() => deleteVolunteer(item._id)} title=""><i className="fa fa-trash"></i></a>
+                {
+                    showActions && <Fragment>
+                        <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                        <a onClick={() => deleteVolunteer(item._id)} title=""><i className="fa fa-trash"></i></a>
+                    </Fragment>
+                }
 
             </h4>
             <h1>

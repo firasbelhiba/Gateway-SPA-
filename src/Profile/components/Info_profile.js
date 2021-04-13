@@ -16,10 +16,10 @@ export const Info_profile = (props) => {
             <Skills skills={props.skills} />
             <Location location={props.location} />
             <Intrests intrests={props.intrests} />
-            <Experience experience={props.experience} />
-            <Education education={props.education} />
-            <Volunteer volunteer={props.volunteer} />
-            <Certification certification={props.certification} />
+            <Experience experience={props.experience} showActions={props.showActions} />
+            <Education education={props.education} showActions={props.showActions} />
+            <Volunteer volunteer={props.volunteer} showActions={props.showActions} />
+            <Certification certification={props.certification} showActions={props.showActions} />
         </Fragment>
     )
 }

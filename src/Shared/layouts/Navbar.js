@@ -229,8 +229,8 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
               </Link>
             </li>
             <li>
-              <Link to="" title="">
-                Faqs
+              <Link to="/myprofile" title="">
+                My profile
               </Link>
             </li>
             <li>

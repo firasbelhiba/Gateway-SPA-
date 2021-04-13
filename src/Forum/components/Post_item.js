@@ -60,6 +60,7 @@ const Post_item = ({
                 src={avatar}
                 alt=""
                 style={{ height: "50px", width: "50px" }}
+
               />
               <div className="usy-name">
                 <h3>{name}</h3>

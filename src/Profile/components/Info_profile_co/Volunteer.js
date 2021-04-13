@@ -6,26 +6,32 @@ import Alert from '../../../Shared/layouts/Alert'
 
 
 
-const Volunteer = (props) => {
+const Volunteer = ({ volunteer, showActions }) => {
     return (
         <div>
             <div className="user-profile-ov st2">
                 <Alert />
                 <h3>
                     <a href="#" title="" className="exp-bx-open">Volunteer</a>
-                    <Link to='/create-volunteer' title=""
-                    ><i className="fa fa-plus-square"></i></Link>
+                    {
+                        showActions &&
+                        <Link to='/create-volunteer' title=""
+                        ><i className="fa fa-plus-square"></i></Link>
+                    }
                 </h3>
-                {props.volunteer.length === 0 ?
+                {volunteer.length === 0 ?
 
                     <Fragment>
                         <h1 className="mb-4">You have no volunteer experiences added yet</h1>
-                        <Link to='/create-volunteer' title=""
-                        >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
+                        {
+                            showActions &&
+                            <Link to='/create-volunteer' title=""
+                            >Click here to add one{' '}<i className="fa fa-plus-square"></i></Link>
+                        }
                     </Fragment>
                     :
                     <Fragment>
-                        <Volunteer_item volunteer={props.volunteer} />
+                        <Volunteer_item volunteer={volunteer} showActions={showActions} />
                     </Fragment>
                 }
 
@@ -33,5 +39,10 @@ const Volunteer = (props) => {
         </div>
     )
 }
+
+Volunteer.defaultProps = {
+    showActions: true,
+};
+
 
 export default Volunteer

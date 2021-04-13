@@ -30,21 +30,24 @@ import Profile_Github from "../components/Profile_Github";
 
 const Profile = ({
   getCurrentProfile,
-  auth: { user },
   profile: { profile, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
 
+
   const [id, setId] = useState("feed");
+
+  let thisUser = JSON.parse(localStorage.getItem("user"));
+  let myProfile = JSON.parse(localStorage.getItem("profile"));
 
   return loading && profile === null ? (
     <Loading_spinner />
   ) : (
     <Fragment>
       <div className="wrapper">
-        <Cover_picture cover={profile.cover_image} />
+        <Cover_picture cover={myProfile.cover_image} />
         <main>
           <div className="main-section">
             <div className="container">
@@ -52,18 +55,18 @@ const Profile = ({
                 <div className="row">
                   <div className="col-lg-3">
                     <Main_left_sidebar
-                      avatar={profile.user.avatar}
-                      numberOfFollowers={profile.follwers.length}
-                      numberOfFollowing={profile.following.length}
-                      youtube={profile.social.youtube}
-                      linkedin={profile.social.linkedin}
-                      facebook={profile.social.facebook}
-                      instagram={profile.social.instagram}
-                      twitter={profile.social.twitter}
-                      website={profile.website}
+                      avatar={myProfile.avatar}
+                      numberOfFollowers={myProfile.follwers.length}
+                      numberOfFollowing={myProfile.following.length}
+                      youtube={myProfile.social.youtube}
+                      linkedin={myProfile.social.linkedin}
+                      facebook={myProfile.social.facebook}
+                      instagram={myProfile.social.instagram}
+                      twitter={myProfile.social.twitter}
+                      website={myProfile.website}
                     />
-                    {profile.githubusername && (
-                      <Profile_Github username={profile.githubusername} />
+                    {myProfile.githubusername && (
+                      <Profile_Github username={myProfile.githubusername} />
                     )}
                     <People_viewed_profile />
                   </div>
@@ -71,8 +74,8 @@ const Profile = ({
                     <div className="main-ws-sec">
                       <div className="user-tab-sec rewivew">
                         <Profile_header
-                          name={profile.user.name}
-                          status={profile.status}
+                          name={myProfile.name}
+                          status={myProfile.status}
                         />
                         <div className="tab-feed st2 settingjb">
                           <ul>
@@ -123,18 +126,18 @@ const Profile = ({
                       </div>
 
                       {id === "feed" && (
-                        <Feed_profile sharedList={profile.shared} />
+                        <Feed_profile sharedList={myProfile.shared} />
                       )}
                       {id === "info" && (
                         <Info_profile
-                          intrests={profile.intrests}
-                          bio={profile.bio}
-                          experience={profile.experience}
-                          location={profile.location}
-                          skills={profile.skills}
-                          education={profile.education}
-                          volunteer={profile.Volunteer}
-                          certification={profile.certification}
+                          intrests={myProfile.intrests}
+                          bio={myProfile.bio}
+                          experience={myProfile.experience}
+                          location={myProfile.location}
+                          skills={myProfile.skills}
+                          education={myProfile.education}
+                          volunteer={myProfile.Volunteer}
+                          certification={myProfile.certification}
                         />
                       )}
                       {id === "jobs" && <Jobs_profile />}
@@ -168,12 +171,10 @@ const Profile = ({
 
 Profile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   profile: state.profile,
 });
 

@@ -33,21 +33,139 @@ function useQuery() {
 }
 console.log("firas")
 
-const Profileby = ({ getProfileById }) => {
-    console.log("firas2")
+const Profileby = ({ getProfileById, profile: { this_profile, loading }, showActions }) => {
 
     let query = useQuery();
 
-    let thisProfile = JSON.parse(localStorage.getItem('profile'));
+    let thisProfile = JSON.parse(localStorage.getItem('this_profile'));
 
     useEffect(() => {
         getProfileById(query.get("id"));
     }, [getProfileById]);
 
+    const [id, setId] = useState("feed");
 
 
-    return (
-        <div>{thisProfile.user.name}</div>
+    return loading && this_profile === null ? (<Loading_spinner />) : (
+        <Fragment>
+            <div className="wrapper">
+                <Cover_picture cover={thisProfile.cover_image} />
+                <main>
+                    <div className="main-section">
+                        <div className="container">
+                            <div className="main-section-data">
+                                <div className="row">
+                                    <div className="col-lg-3">
+                                        <Main_left_sidebar
+                                            avatar={thisProfile.user.avatar}
+                                            numberOfFollowers={thisProfile.follwers.length}
+                                            numberOfFollowing={thisProfile.following.length}
+                                            youtube={thisProfile.social.youtube}
+                                            linkedin={thisProfile.social.linkedin}
+                                            facebook={thisProfile.social.facebook}
+                                            instagram={thisProfile.social.instagram}
+                                            twitter={thisProfile.social.twitter}
+                                            website={thisProfile.website}
+                                        />
+                                        {/* {profile.githubusername && (
+                                            <Profile_Github username={profile.githubusername} />
+                                        )} */}
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="main-ws-sec">
+                                            <div className="user-tab-sec rewivew">
+                                                <Profile_header
+                                                    name={thisProfile.user.name}
+                                                    status={thisProfile.status}
+                                                />
+                                                <div className="tab-feed st2 settingjb">
+                                                    <ul>
+                                                        <li onClick={() => setId("feed")} className="">
+                                                            <a title="">
+                                                                <img src="assets/images/ic1.png" alt="" />
+                                                                <span>Feed</span>
+                                                            </a>
+                                                        </li>
+                                                        <li onClick={() => setId("info")}>
+                                                            <a title="">
+                                                                <img src="assets/images/ic2.png" alt="" />
+                                                                <span>Info</span>
+                                                            </a>
+                                                        </li>
+                                                        <li onClick={() => setId("jobs")}>
+                                                            <a title="">
+                                                                <img src="assets/images/ic4.png" alt="" />
+                                                                <span>Jobs</span>
+                                                            </a>
+                                                        </li>
+                                                        <li onClick={() => setId("bids")}>
+                                                            <a title="">
+                                                                <img src="assets/images/ic5.png" alt="" />
+                                                                <span>Bids</span>
+                                                            </a>
+                                                        </li>
+                                                        <li onClick={() => setId("portfolio")}>
+                                                            <a title="">
+                                                                <img src="assets/images/ic3.png" alt="" />
+                                                                <span>Portfolio</span>
+                                                            </a>
+                                                        </li>
+                                                        <li onClick={() => setId("reviews")}>
+                                                            <a title="">
+                                                                <img src="assets/images/review.png" alt="" />
+                                                                <span>Reviews</span>
+                                                            </a>
+                                                        </li>
+                                                        <li onClick={() => setId("payment")}>
+                                                            <a title="">
+                                                                <img src="assets/images/ic6.png" alt="" />
+                                                                <span>Payment</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            {id === "feed" && (
+                                                <Feed_profile sharedList={thisProfile.shared} />
+                                            )}
+                                            {id === "info" && (
+                                                <Info_profile
+                                                    intrests={thisProfile.intrests}
+                                                    bio={thisProfile.bio}
+                                                    experience={thisProfile.experience}
+                                                    showActions={false}
+                                                    location={thisProfile.location}
+                                                    skills={thisProfile.skills}
+                                                    education={thisProfile.education}
+                                                    volunteer={thisProfile.Volunteer}
+                                                    certification={thisProfile.certification}
+                                                />
+                                            )}
+                                            {id === "jobs" && <Jobs_profile />}
+                                            {id === "bids" && <Bids_profile />}
+                                            {id === "portfolio" && <Portfolio_form />}
+                                            {id === "reviews" && <Review_profile />}
+                                            {id === "payment" && <Payment_profile />}
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div className="right-sidebar">
+                                            <Widget_portfolio />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <Overview_form />
+                <Location_form />
+                <Skills_form />
+                <Portfolio_form />
+            </div>
+        </Fragment>
     );
 }
 
@@ -56,5 +174,9 @@ Profileby.propTypes = {
     getProfileById: PropTypes.func.isRequired,
 }
 
+const mapStateToProps = (state) => ({
+    profile: state.profile,
+});
 
-export default connect(null, { getProfileById })(Profileby)
+
+export default connect(mapStateToProps, { getProfileById })(Profileby)

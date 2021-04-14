@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { sharePost, deleteShare } from "../../actions/profile";
 import { addViews } from "../../actions/post";
 import { FacebookButton, LinkedInButton } from "react-social";
+import ShowMoreText from "react-show-more-text";
 
 const Post_item = ({
   addLike,
@@ -50,6 +51,9 @@ const Post_item = ({
   let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
   let clientLinkedin = "77uua4ca6s850x";
 
+  const executeOnClick = (isExpanded) => {
+    console.log(isExpanded);
+  };
   return (
     <Fragment>
       <div>
@@ -60,7 +64,6 @@ const Post_item = ({
                 src={avatar}
                 alt=""
                 style={{ height: "50px", width: "50px" }}
-
               />
               <div className="usy-name">
                 <h3>{name}</h3>
@@ -165,10 +168,19 @@ const Post_item = ({
             <h3>{title}</h3>
             <ul className="job-dt"></ul>
             <p>
-              {text}
-              <a href="#" title="">
-                view more
-              </a>
+              <ShowMoreText
+                /* Default options */
+                lines={3}
+                more="Show more"
+                less="Show less"
+                className="content-css"
+                anchorClass="my-anchor-css-class"
+                onClick={() => executeOnClick()}
+                expanded={false}
+                width={450}
+              >
+                {text}
+              </ShowMoreText>
             </p>
 
             <img src={image} style={divStyle} />

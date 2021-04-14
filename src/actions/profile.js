@@ -14,6 +14,7 @@ import {
   GET_PROFILES,
   DELETE_SHARE,
   GET_THIS_PROFILE,
+  FOLLOW,
 } from "./types";
 
 // Get profile from the logged in user
@@ -501,3 +502,26 @@ export const deleteShare = (id, idShare) => async (dispatch) => {
     });
   }
 };
+
+
+//Follow a profile 
+export const follow = (id, user_id) => async (dispatch) => {
+  try {
+
+    const res = await axios.put(`http://localhost:5000/api/profile/follow/${id}`);
+
+    dispatch({
+      type: FOLLOW,
+      payload: res.data
+    })
+
+    dispatch(getProfileById(user_id));
+
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+

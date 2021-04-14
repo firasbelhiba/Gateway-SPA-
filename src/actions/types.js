@@ -23,6 +23,9 @@ export const GET_REPOS = "GET_REPOS";
 export const AVATAR_UPDATED = "AVATAR_UPDATED";
 export const COVER_UPDATED = "COVER_UPDATED";
 
+export const FOLLOW = "FOLLOW";
+export const UNFOLLOW = "UNFOLLOW";
+
 // post types
 export const GET_POSTS = "GET_POSTS";
 export const GET_POST = "GET_POST";

@@ -10,6 +10,7 @@ import {
   GET_PROFILES,
   DELETE_SHARE,
   GET_THIS_PROFILE,
+  FOLLOW,
 } from "../actions/types";
 
 const initialState = {
@@ -21,7 +22,8 @@ const initialState = {
   avatar: {},
   cover: {},
   sharedList: {},
-  this_profile: null
+  this_profile: null,
+  following: {}
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -99,6 +101,12 @@ export default function (state = initialState, action) {
         },
         loading: false,
       };
+    case FOLLOW:
+      return {
+        ...state,
+        following: payload,
+        loading: false
+      }
     default:
       return state;
   }

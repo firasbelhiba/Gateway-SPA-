@@ -18,6 +18,7 @@ import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
 import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
 import { getCurrentProfile } from "../../actions/profile";
+import SimpleReactLightbox from "simple-react-lightbox";
 
 const Forum = ({
   getPosts,
@@ -29,7 +30,7 @@ const Forum = ({
     getCurrentProfile();
   }, [getPosts, getCurrentProfile]);
 
-  let thisProfile = JSON.parse(localStorage.getItem('profile'));
+  let thisProfile = JSON.parse(localStorage.getItem("profile"));
 
   const [formState, toggleState] = useState("");
 
@@ -71,7 +72,7 @@ const Forum = ({
                               style={{
                                 width: "50px",
                                 height: "50px",
-                                borderRadius: "50%"
+                                borderRadius: "50%",
                               }}
                             />
                           </div>
@@ -90,8 +91,11 @@ const Forum = ({
                             </ul>
                           </div>
                         </div>
+
                         {posts.map((post) => (
-                          <Post_item key={post && post._id} post={post} />
+                          <SimpleReactLightbox>
+                            <Post_item key={post && post._id} post={post} />
+                          </SimpleReactLightbox>
                         ))}
 
                         <Top_profiles />

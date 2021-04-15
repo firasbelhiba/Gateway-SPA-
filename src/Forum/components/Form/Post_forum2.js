@@ -21,7 +21,7 @@ const Post_forum2 = ({ addPost }) => {
 
   return (
     <div className="post-project-fields">
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form className="dropzone" onSubmit={(e) => onSubmit(e)}>
         <div className="row">
           <div className="col-lg-12">
             <input
@@ -52,7 +52,13 @@ const Post_forum2 = ({ addPost }) => {
               onChange={(e) => setText(e.target.value)}
             ></textarea>
           </div>
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          <div className="fallback">
+            <input
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+              multiple
+            />
+          </div>
           <div className="col-lg-12">
             <ul>
               <li>

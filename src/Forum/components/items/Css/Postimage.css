@@ -1,0 +1,21 @@
+#preview-post-image {
+  width: 400px;
+  border: 1px solid lightgray;
+  margin: 0 auto;
+  background-color: beige;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-bottom: 50px;
+}
+.thumbnail-post-image {
+  width: 25%;
+  border: 1px solid lightgray;
+  margin-top: 10px;
+}
+#thumbnail-container-post-image {
+  display: flex;
+  flex-direction: row;
+  width: 395px; /* Remember there's space between the thumbnails so it can't be as wide as the preview box! */
+  margin: 0 auto;
+  justify-content: center;
+}

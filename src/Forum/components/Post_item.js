@@ -8,6 +8,9 @@ import { sharePost, deleteShare } from "../../actions/profile";
 import { addViews } from "../../actions/post";
 import { FacebookButton, LinkedInButton } from "react-social";
 import ShowMoreText from "react-show-more-text";
+import { SRLWrapper } from "simple-react-lightbox";
+import Gallereact from "gallereact";
+import Postimage from "./items/Postimage";
 
 const Post_item = ({
   addLike,
@@ -53,6 +56,47 @@ const Post_item = ({
 
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
+  };
+
+  const elements = [
+    {
+      src: "https://my/image.jpg",
+      caption: "Lorem ipsum dolor sit amet",
+      width: 1920,
+      height: "auto",
+    },
+    {
+      src: "https://my/second-image.jpg",
+      thumbnail: "https://my/second-image-thumbnails.jpg",
+      caption: "Commodo commodo dolore",
+      width: 1024,
+      height: "auto",
+    },
+    {
+      src: "https://vimeo.com/458698330",
+      thumbnail:
+        "https://www.simple-react-lightbox.dev/docs/gallery/thumbnails/unsplash05.jpg",
+      caption: "Vimeo video",
+      autoplay: false,
+      showControls: true,
+    },
+  ];
+  const options = {
+    settings: {
+      overlayColor: "rgb(25, 136, 124)",
+      autoplaySpeed: 1500,
+      transitionSpeed: 900,
+    },
+    buttons: {
+      backgroundColor: "#1b5245",
+      iconColor: "rgba(126, 172, 139, 0.8)",
+    },
+    caption: {
+      captionColor: "#a6cfa5",
+      captionFontFamily: "Raleway, sans-serif",
+      captionFontWeight: "300",
+      captionTextTransform: "uppercase",
+    },
   };
   return (
     <Fragment>
@@ -182,8 +226,36 @@ const Post_item = ({
                 {text}
               </ShowMoreText>
             </p>
+            {showActions && (
+              <SRLWrapper>
+                <Postimage image={image} />
+              </SRLWrapper>
+            )}
 
-            <img src={image} style={divStyle} />
+            {!showActions && (
+              <Gallereact
+                images={image}
+                swipe={true}
+                loop={false}
+                titles={true}
+                displayArrows={false}
+                slideStyle={{
+                  width: "80%",
+                  height: "90%",
+                  margin: "5% 10%",
+                  boxShadow: "0 2px 20px -1px #2222",
+                }}
+                taglineStyle={{ background: "#FFF" }}
+                titleStyle={{ fontWeight: 800, fontSize: "1.2rem" }}
+                dotStyle={{
+                  width: "25px",
+                  height: "3px",
+                  borderRadius: 0,
+                  margin: "0px",
+                }}
+              />
+            )}
+
             <br />
             <ul className="skill-tags">
               <li>
@@ -281,14 +353,6 @@ const Post_item = ({
       </div>
     </Fragment>
   );
-};
-
-const divStyle = {
-  display: "block",
-  marginleft: "auto",
-  marginright: "auto",
-  padding: "10px",
-  width: "100%",
 };
 
 Post_item.defaultProps = {

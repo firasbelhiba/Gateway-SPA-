@@ -4,20 +4,19 @@ import PropTypes from "prop-types";
 import { addPost } from "../../../actions/post";
 
 const Post_forum2 = ({ addPost }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    text: "",
-    category: "",
-  });
-
-  const { title, text, category } = formData;
-
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const [title, setTite] = useState("");
+  const [text, setText] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addPost(formData);
+    const data = new FormData();
+    data.append("title", title);
+    data.append("text", text);
+    data.append("category", category);
+    data.append("image", image);
+    addPost(data);
   };
 
   return (
@@ -29,16 +28,14 @@ const Post_forum2 = ({ addPost }) => {
               type="text"
               name="title"
               placeholder="Title"
-              value={title}
-              onChange={(e) => onChange(e)}
+              onChange={(e) => setTite(e.target.value)}
             />
           </div>
           <div className="col-lg-12">
             <div className="inp-field">
               <select
-                value={category}
                 name="category"
-                onChange={(e) => onChange(e)}
+                onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="python">python</option>
                 <option value="spring">spring</option>
@@ -52,11 +49,10 @@ const Post_forum2 = ({ addPost }) => {
             <textarea
               name="text"
               placeholder="Description"
-              value={text}
-              onChange={(e) => onChange(e)}
+              onChange={(e) => setText(e.target.value)}
             ></textarea>
           </div>
-          <input type="file" />
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
           <div className="col-lg-12">
             <ul>
               <li>

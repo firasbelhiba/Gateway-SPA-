@@ -11,6 +11,7 @@ import {
   DELETE_SHARE,
   GET_THIS_PROFILE,
   FOLLOW,
+  UNFOLLOW,
 } from "../actions/types";
 
 const initialState = {
@@ -23,7 +24,7 @@ const initialState = {
   cover: {},
   sharedList: {},
   this_profile: null,
-  following: {}
+  following: {},
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -102,6 +103,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case FOLLOW:
+      localStorage.setItem("following", JSON.stringify(payload));
+      return {
+        ...state,
+        following: payload,
+        loading: false
+      };
+    case UNFOLLOW:
       localStorage.setItem("following", JSON.stringify(payload));
       return {
         ...state,

@@ -2,9 +2,9 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-import { follow, getProfileById } from '../../actions/profile';
+import { follow, unfollow } from '../../actions/profile';
 
-const Follow = ({ followers, follow, id, id_user, id_current_profile }) => {
+const Follow = ({ followers, follow, id, id_user, unfollow }) => {
     let profile = JSON.parse(localStorage.getItem("profile"));
 
     let found = false;
@@ -42,6 +42,7 @@ const Follow = ({ followers, follow, id, id_user, id_current_profile }) => {
                             cursor: "pointer"
                         }}
                         onClick={() => {
+                            unfollow(id, id_user);
                             setShowFollow(!showFollow);
                         }}
 
@@ -55,9 +56,10 @@ const Follow = ({ followers, follow, id, id_user, id_current_profile }) => {
 Follow.propTypes = {
     getProfileById: PropTypes.func.isRequired,
     follow: PropTypes.func.isRequired,
+    unfollow: PropTypes.func.isRequired,
 }
 
 
 
 
-export default connect(null, { follow })(Follow)
+export default connect(null, { follow, unfollow })(Follow)

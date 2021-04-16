@@ -15,6 +15,7 @@ import {
   DELETE_SHARE,
   GET_THIS_PROFILE,
   FOLLOW,
+  UNFOLLOW,
 } from "./types";
 
 // Get profile from the logged in user
@@ -512,6 +513,28 @@ export const follow = (id, user_id) => async (dispatch) => {
 
     dispatch({
       type: FOLLOW,
+      payload: res.data
+    })
+
+    dispatch(getProfileById(user_id));
+
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+
+//Unfollow a profile 
+export const unfollow = (id, user_id) => async (dispatch) => {
+  try {
+
+    const res = await axios.put(`http://localhost:5000/api/profile/unfollow/${id}`);
+
+    dispatch({
+      type: UNFOLLOW,
       payload: res.data
     })
 

@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { follow, getProfileById } from '../../actions/profile';
 
-const Follow = ({ getProfileById, follow, id, id_user }) => {
+const Follow = ({ this_profile, follow, id, id_user }) => {
+    let followingList = JSON.parse(localStorage.getItem("following"));
+
     return (
         <div className="message-btn mr-1">
             <a title=""
@@ -24,6 +26,12 @@ const Follow = ({ getProfileById, follow, id, id_user }) => {
 Follow.propTypes = {
     getProfileById: PropTypes.func.isRequired,
     follow: PropTypes.func.isRequired,
+    this_profile: PropTypes.object.isRequired,
 }
 
-export default connect(null, { follow, getProfileById })(Follow)
+const mapStateToProps = (state) => ({
+    this_profile: state.this_profile,
+});
+
+
+export default connect(mapStateToProps, { follow })(Follow)

@@ -102,6 +102,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case FOLLOW:
+      localStorage.setItem("following", JSON.stringify(payload));
       return {
         ...state,
         following: payload,

@@ -12,6 +12,7 @@ import {
   REMOVE_COMMENT,
   ADD_REPORT,
   VIEWED,
+  SEND_POST_MAIL,
 } from "./types";
 
 //Get posts
@@ -225,6 +226,34 @@ export const addViews = (id) => async (dispatch) => {
     });
 
     dispatch(getPost(id));
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//Send Post Mail
+export const sendPostMail = (formData, id) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      `http://localhost:5000/api/posts/mail/${id}`,
+      formData,
+      config
+    );
+    dispatch({
+      type: SEND_POST_MAIL,
+    });
   } catch (error) {
     dispatch({
       type: POST_ERROR,

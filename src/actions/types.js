@@ -45,3 +45,5 @@ export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const ADD_REPORT = "ADD_REPORT";
 
 export const SHARE_POST = "SHARE_POST";
+
+export const SEND_POST_MAIL = "SEND_POST_MAIL";

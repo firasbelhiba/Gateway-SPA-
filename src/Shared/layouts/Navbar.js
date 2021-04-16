@@ -187,7 +187,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
         <div className="user-info">
           <img
             // src={this_user.avatar}
-            style={{ height: "30px", width: "30px" }}
+              style={{ height: "30px", width: "30px" }}
             alt=""
           />
           <Link title=""></Link>

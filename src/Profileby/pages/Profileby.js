@@ -148,7 +148,9 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                     </div>
                                     <div className="col-lg-3">
                                         <div className="right-sidebar">
-                                            <Follow id={thisProfile._id} id_user={thisProfile.user._id} />
+                                            <Follow id={thisProfile._id}
+                                                id_user={thisProfile.user._id}
+                                                followers={thisProfile.follwers} />
                                             <Widget_portfolio />
                                         </div>
                                     </div>

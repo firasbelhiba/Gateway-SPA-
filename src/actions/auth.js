@@ -11,8 +11,10 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  MAIL_FAILED,
+  RESET_PASSWORD_MAIL,
+  NEW_PASSWORD_MAIL,
 } from "./types";
-import React from "react";
 
 //Load user
 export const loadUser = () => async (dispatch) => {
@@ -101,6 +103,82 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_FAIL,
     });
   }
+};
+
+
+
+//Send reset password mail
+export const resetPassword = (email) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ email });
+
+  try {
+
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/reset-password",
+      body,
+      config
+    );
+
+
+    dispatch({
+      type: RESET_PASSWORD_MAIL,
+    });
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+    dispatch({
+      type: MAIL_FAILED,
+    });
+  }
+
+
+};
+
+//Send new password mail
+export const setNewPassword = (password, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ password, token });
+
+  try {
+
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/new-password",
+      body,
+      config
+    );
+
+
+    dispatch({
+      type: NEW_PASSWORD_MAIL,
+    });
+
+    dispatch(setAlert("Password changed succefully", "success"));
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+    dispatch({
+      type: MAIL_FAILED,
+    });
+  }
+
+
 };
 
 // Logout

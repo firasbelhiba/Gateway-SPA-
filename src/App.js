@@ -40,6 +40,8 @@ import This_post from "./Forum/pages/This_post";
 import Send_post_mail from "./Forum/components/Form/Send_post_mail";
 import Testchat from "./Testchat";
 import Profileby from "./Profileby/pages/Profileby";
+import Forget_you_password from "./Authentification/Forget your Password/Pages/Forget_your_password";
+import New_password from "./Authentification/New Password/Pages/New_password";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -65,6 +67,8 @@ function App() {
               <Route exact path="/test" component={Testchat} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/signin" component={Signin} />
+              <Route exact path="/reset-password" component={Forget_you_password} />
+              <Route exact path="/new-password" component={New_password} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/jobs" component={Jobs} />
               <Route exact path="/q_and_a" component={QuestionsSection} />

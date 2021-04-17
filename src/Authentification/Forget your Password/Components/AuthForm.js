@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../../actions/auth';
+import { resetPassword } from '../../../actions/auth';
 import { Redirect } from 'react-router';
 
 
-const AuthForm = ({ isAuthenticated }) => {
+const AuthForm = ({ resetPassword, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         email: ''
@@ -17,7 +17,7 @@ const AuthForm = ({ isAuthenticated }) => {
 
     const onSubmit = async e => {
         e.preventDefault();
-
+        resetPassword(email);
     }
 
 
@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
 
 AuthForm.propTypes = {
     isAuthenticated: PropTypes.bool,
+    resetPassword: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps)(AuthForm)
+export default connect(mapStateToProps, { resetPassword })(AuthForm)

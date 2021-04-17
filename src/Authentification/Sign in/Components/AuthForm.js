@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
 
 import './AuthForm.css';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const AuthForm = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -73,7 +73,7 @@ const AuthForm = ({ login, isAuthenticated }) => {
                                         </label>
                                         <small>Remember me</small>
                                     </div>
-                                    <a href="!#" title="">Forgot Password?</a>
+                                    <Link to="/reset-password" title="">Forgot Password?</Link>
                                 </div>
                             </div>
                             <div className="col-lg-12 no-pdd">

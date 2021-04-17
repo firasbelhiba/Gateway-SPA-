@@ -11,6 +11,8 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  MAIL_FAILED,
+  RESET_PASSWORD_MAIL,
 } from "./types";
 
 //Load user
@@ -100,6 +102,44 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_FAIL,
     });
   }
+};
+
+
+
+//Send reset password mail
+export const resetPassword = (email) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ email });
+
+  try {
+
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/reset-password",
+      body,
+      config
+    );
+
+
+    dispatch({
+      type: RESET_PASSWORD_MAIL,
+    });
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+    dispatch({
+      type: MAIL_FAILED,
+    });
+  }
+
+
 };
 
 // Logout

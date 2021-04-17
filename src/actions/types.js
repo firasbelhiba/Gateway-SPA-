@@ -20,6 +20,9 @@ export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const GET_REPOS = "GET_REPOS";
 
+export const RESET_PASSWORD_MAIL = "RESET_PASSWORD_MAIL";
+export const MAIL_FAILED = "MAIL_FAILED";
+
 export const AVATAR_UPDATED = "AVATAR_UPDATED";
 export const COVER_UPDATED = "COVER_UPDATED";
 

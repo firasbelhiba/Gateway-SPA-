@@ -13,6 +13,7 @@ import {
   CLEAR_PROFILE,
   MAIL_FAILED,
   RESET_PASSWORD_MAIL,
+  NEW_PASSWORD_MAIL,
 } from "./types";
 
 //Load user
@@ -128,6 +129,44 @@ export const resetPassword = (email) => async (dispatch) => {
     dispatch({
       type: RESET_PASSWORD_MAIL,
     });
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+    dispatch({
+      type: MAIL_FAILED,
+    });
+  }
+
+
+};
+
+//Send new password mail
+export const setNewPassword = (password, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ password, token });
+
+  try {
+
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/new-password",
+      body,
+      config
+    );
+
+
+    dispatch({
+      type: NEW_PASSWORD_MAIL,
+    });
+
+    dispatch(setAlert("Password changed succefully", "success"));
 
   } catch (err) {
     const errors = err.response.data.errors;

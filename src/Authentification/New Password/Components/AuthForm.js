@@ -4,18 +4,27 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import { useLocation } from "react-router-dom";
+import { setNewPassword } from "../../../actions/auth";
+import Alert from "../../../Shared/layouts/Alert";
 
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
-const AuthForm = ({ isAuthenticated }) => {
+
+const AuthForm = ({ setNewPassword, isAuthenticated }) => {
+
+    let query = useQuery();
 
     const [formData, setFormData] = useState({
         password: '',
         password2: '',
-        token: ''
+        token: query.get("id")
     });
 
-    const { password, password2 } = formData;
+    const { password, password2, token } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +38,7 @@ const AuthForm = ({ isAuthenticated }) => {
 
 
         } else {
-
+            setNewPassword(password, token);
         }
     }
 
@@ -86,6 +95,7 @@ const AuthForm = ({ isAuthenticated }) => {
                                             Reset password
                                         </button>
                                     </div>
+                                    <Alert />
                                 </div>
                             </form>
                         </div>
@@ -97,4 +107,13 @@ const AuthForm = ({ isAuthenticated }) => {
     )
 }
 
-export default AuthForm
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+})
+
+AuthForm.propTypes = {
+    isAuthenticated: PropTypes.bool,
+    setNewPassword: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps, { setNewPassword })(AuthForm)

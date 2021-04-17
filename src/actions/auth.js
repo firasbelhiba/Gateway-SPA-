@@ -12,7 +12,6 @@ import {
   LOGOUT,
   CLEAR_PROFILE,
 } from "./types";
-import React from "react";
 
 //Load user
 export const loadUser = () => async (dispatch) => {

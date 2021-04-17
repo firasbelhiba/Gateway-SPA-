@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { login } from '../../../actions/auth';
 import PropTypes from 'prop-types';
+import { login } from '../../../actions/auth';
 
 import './AuthForm.css';
 import { Redirect } from 'react-router-dom';

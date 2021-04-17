@@ -37,6 +37,7 @@ import Volunteer_form from "./Profile/components/Forms/Volunteer_form";
 import Certification_form from "./Profile/components/Forms/Certification_form";
 import Report_Form from "./Forum/components/Form/Report_Form";
 import This_post from "./Forum/pages/This_post";
+import Send_post_mail from "./Forum/components/Form/Send_post_mail";
 import Testchat from "./Testchat";
 import Profileby from "./Profileby/pages/Profileby";
 import Forget_you_password from "./Authentification/Forget your Password/Pages/Forget_your_password";
@@ -110,6 +111,7 @@ function App() {
               />
               <PrivateRoute exact path="/profileby" component={Profileby} />
               <PrivateRoute exact path="/this-post" component={This_post} />
+              <PrivateRoute exact path="/send-post-email" component={Send_post_mail} />
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>

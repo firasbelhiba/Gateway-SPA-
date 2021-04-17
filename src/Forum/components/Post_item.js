@@ -202,9 +202,9 @@ const Post_item = ({
                 </a>
               </li>
               <li>
-                <a href="#" title="">
+                <Link to={`/send-post-email?id=${_id}`} title="">
                   <i className="la la-envelope"></i>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

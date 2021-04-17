@@ -22,6 +22,7 @@
     "react-scripts": "4.0.2",
     "react-show-more-text": "^1.4.6",
     "react-social": "^1.10.0",
+    "react-sweet-progress": "^1.1.2",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",

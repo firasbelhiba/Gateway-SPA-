@@ -15,7 +15,11 @@ const Post_forum2 = ({ addPost }) => {
     data.append("title", title);
     data.append("text", text);
     data.append("category", category);
-    data.append("image", image);
+
+    for (let i = 0; i < image.length; i++) {
+      data.append("image", image[i]);
+    }
+
     addPost(data);
   };
 
@@ -55,7 +59,7 @@ const Post_forum2 = ({ addPost }) => {
           <div className="fallback">
             <input
               type="file"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={(e) => setImage(e.target.files)}
               multiple
             />
           </div>

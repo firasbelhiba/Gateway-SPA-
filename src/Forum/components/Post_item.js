@@ -11,6 +11,7 @@ import ShowMoreText from "react-show-more-text";
 import { SRLWrapper } from "simple-react-lightbox";
 import Gallereact from "gallereact";
 import Postimage from "./items/Postimage";
+import "./items/Css/post_item.css";
 
 const Post_item = ({
   addLike,
@@ -37,66 +38,24 @@ const Post_item = ({
   auth,
   showActions,
 }) => {
-  // const currentUserLike = likes.map((like) => {
-  //   let likeState = false;
-
-  //   if (like.user === auth.user._id) {
-  //     likeState=true;
-  //     return likeState;
-  //   }
-  // });
-
-  const [displayThumbsUp, toggleThumbsUp] = useState(false);
-  const [displayThumbsDown, toggleThumbsDown] = useState(false);
-  const [displaySettings, toggleSettings] = useState(true);
-
+  let this_user = JSON.parse(localStorage.getItem("user"));
   let classActive = "";
   let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
   let clientLinkedin = "77uua4ca6s850x";
+  let found = false;
+
+  for (var i = 0; i < likes.length; i++) {
+    if (likes[i].user === this_user._id) {
+      found = true;
+      break;
+    }
+  }
+
+  const [displayThumbsUp, toggleThumbsUp] = useState(found);
+  const [displaySettings, toggleSettings] = useState(true);
 
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
-  };
-
-  const elements = [
-    {
-      src: "https://my/image.jpg",
-      caption: "Lorem ipsum dolor sit amet",
-      width: 1920,
-      height: "auto",
-    },
-    {
-      src: "https://my/second-image.jpg",
-      thumbnail: "https://my/second-image-thumbnails.jpg",
-      caption: "Commodo commodo dolore",
-      width: 1024,
-      height: "auto",
-    },
-    {
-      src: "https://vimeo.com/458698330",
-      thumbnail:
-        "https://www.simple-react-lightbox.dev/docs/gallery/thumbnails/unsplash05.jpg",
-      caption: "Vimeo video",
-      autoplay: false,
-      showControls: true,
-    },
-  ];
-  const options = {
-    settings: {
-      overlayColor: "rgb(25, 136, 124)",
-      autoplaySpeed: 1500,
-      transitionSpeed: 900,
-    },
-    buttons: {
-      backgroundColor: "#1b5245",
-      iconColor: "rgba(126, 172, 139, 0.8)",
-    },
-    caption: {
-      captionColor: "#a6cfa5",
-      captionFontFamily: "Raleway, sans-serif",
-      captionFontWeight: "300",
-      captionTextTransform: "uppercase",
-    },
   };
   return (
     <Fragment>
@@ -270,31 +229,34 @@ const Post_item = ({
               <li>
                 {showActions && (
                   <Fragment>
-                    <a
-                      onClick={(e) => {
-                        addLike(_id);
-                        toggleThumbsUp(!displayThumbsUp);
-                      }}
-                    >
-                      <i
-                        className="fas fa-thumbs-up"
-                        style={{ color: "grey" }}
-                      ></i>{" "}
-                    </a>
-                    <a
-                      onClick={(e) => {
-                        removeLike(_id);
-                        toggleThumbsDown(!displayThumbsDown);
-                      }}
-                    >
-                      <i
-                        className="fas fa-thumbs-down"
-                        style={{ color: "grey" }}
-                      ></i>{" "}
-                    </a>
+                    {!displayThumbsUp ? (
+                      <a
+                        onClick={(e) => {
+                          addLike(_id);
+                          toggleThumbsUp(!displayThumbsUp);
+                        }}
+                      >
+                        <i
+                          className="far fa-heart "
+                          style={{ color: "#E15256" }}
+                        ></i>{" "}
+                      </a>
+                    ) : (
+                      <a
+                        className="bounce-in-top"
+                        onClick={(e) => {
+                          removeLike(_id);
+                          toggleThumbsUp(!displayThumbsUp);
+                        }}
+                      >
+                        <i
+                          className="fas fa-heart"
+                          style={{ color: "#E15256" }}
+                        ></i>{" "}
+                      </a>
+                    )}
                   </Fragment>
                 )}
-
                 <img src="assets/images/liked-img.png" alt="" />
                 <span>{likes.length}</span>
               </li>

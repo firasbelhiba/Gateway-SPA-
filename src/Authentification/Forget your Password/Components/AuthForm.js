@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { resetPassword } from '../../../actions/auth';
 import { Redirect } from 'react-router';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AuthForm = ({ resetPassword, isAuthenticated }) => {
@@ -29,8 +31,8 @@ const AuthForm = ({ resetPassword, isAuthenticated }) => {
         <div className="col-lg-6">
             <div className="login-sec">
                 <ul className="sign-control">
-
                 </ul>
+                <ToastContainer />
 
                 <div className="sign_in_sec current" id="tab-1">
                     <h3>Reset your password</h3>

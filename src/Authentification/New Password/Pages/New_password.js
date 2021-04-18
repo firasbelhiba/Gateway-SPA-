@@ -13,7 +13,6 @@ const New_password = () => {
                         <div className="signin-pop">
                             <div className="row">
                                 <Introduction />
-                                <Alert />
                                 <AuthForm />
                             </div>
                         </div>

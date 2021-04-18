@@ -7,6 +7,8 @@ import PropTypes from 'prop-types'
 import { useLocation } from "react-router-dom";
 import { setNewPassword } from "../../../actions/auth";
 import Alert from "../../../Shared/layouts/Alert";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function useQuery() {
@@ -53,8 +55,8 @@ const AuthForm = ({ setNewPassword, isAuthenticated }) => {
             <div className="col-lg-6">
                 <div className="login-sec">
                     <ul className="sign-control">
-
                     </ul>
+                    <ToastContainer />
 
                     <div className="sign_in_sec current" id="tab-2">
 
@@ -95,7 +97,6 @@ const AuthForm = ({ setNewPassword, isAuthenticated }) => {
                                             Reset password
                                         </button>
                                     </div>
-                                    <Alert />
                                 </div>
                             </form>
                         </div>

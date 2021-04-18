@@ -27,6 +27,8 @@ import Experience_form from "../components/Forms/Experience_form";
 import Edit_Profile from "../components/Edit_Profile";
 import Education_form from "../components/Forms/Education_form";
 import Profile_Github from "../components/Profile_Github";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = ({
   getCurrentProfile,
@@ -46,6 +48,7 @@ const Profile = ({
     <Loading_spinner />
   ) : (
     <Fragment>
+      <ToastContainer />
       <div className="wrapper">
         <Cover_picture cover={myProfile.cover_image} />
         <main>

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
+import { toast } from 'react-toastify';
 
 import {
   REGISTER_SUCCESS,
@@ -63,7 +63,11 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
     dispatch({
       type: REGISTER_FAIL,
@@ -96,9 +100,15 @@ export const login = (email, password) => async (dispatch) => {
     dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
+
     dispatch({
       type: LOGIN_FAIL,
     });
@@ -132,8 +142,13 @@ export const resetPassword = (email) => async (dispatch) => {
 
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
     dispatch({
       type: MAIL_FAILED,
@@ -166,12 +181,18 @@ export const setNewPassword = (password, token) => async (dispatch) => {
       type: NEW_PASSWORD_MAIL,
     });
 
-    dispatch(setAlert("Password changed succefully", "success"));
+    toast.success("Password changed succefully", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
 
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
     dispatch({
       type: MAIL_FAILED,

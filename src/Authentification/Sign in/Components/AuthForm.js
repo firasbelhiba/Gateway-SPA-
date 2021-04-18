@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './AuthForm.css';
 import { Link, Redirect } from 'react-router-dom';
@@ -34,6 +36,7 @@ const AuthForm = ({ login, isAuthenticated }) => {
                 <ul className="sign-control">
 
                 </ul>
+                <ToastContainer />
 
                 <div className="sign_in_sec current" id="tab-1">
                     <h3>Sign in</h3>

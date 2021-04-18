@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../../actions/profile';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Experience_form = ({ addExperience, history }) => {
 
@@ -30,6 +32,7 @@ const Experience_form = ({ addExperience, history }) => {
 
     return (
         <Fragment>
+            <ToastContainer />
             <div className="row">
                 <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>

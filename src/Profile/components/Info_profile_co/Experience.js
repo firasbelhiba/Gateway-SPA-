@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import Experience_item from './Items/Experience_item'
-import Alert from '../../../Shared/layouts/Alert'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 export const Experience = ({ experience, showActions }) => {
     return (
         <div className="user-profile-ov st2">
-            <Alert />
+            <ToastContainer />
             <h3>
                 <a href="#" title="" className="exp-bx-open">Experience</a>
                 {

@@ -4,6 +4,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createProfile } from '../../actions/profile';
 import './Css/CreateProfile.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProfile = ({ createProfile, history }) => {
 
@@ -50,6 +52,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
     return (
         <Fragment>
+            <ToastContainer />
             <div className="row">
                 <div className="col-md-12">
                     <form className="form_create" onSubmit={e => onSubmit(e)}>

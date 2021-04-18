@@ -16,7 +16,6 @@ const Signin = () => {
                         <div className="signin-pop">
                             <div className="row">
                                 <Introduction />
-                                <Alert />
                                 <AuthForm />
                             </div>
                         </div>

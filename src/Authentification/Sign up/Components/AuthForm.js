@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import { register } from '../../../actions/auth';
 import { Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import PropTypes from 'prop-types'
@@ -48,9 +50,8 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
             <div className="col-lg-6">
                 <div className="login-sec">
                     <ul className="sign-control">
-
                     </ul>
-
+                    <ToastContainer />
                     <div className="sign_in_sec current" id="tab-2">
 
                         <div className="dff-tab current" id="tab-3">

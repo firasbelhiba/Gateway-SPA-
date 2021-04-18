@@ -1,6 +1,8 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { loadUser } from "./auth";
+import { toast } from 'react-toastify';
+
 
 import {
   CLEAR_PROFILE,
@@ -64,8 +66,13 @@ export const createProfile = (formData, history, edit = false) => async (
     }
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
 
     dispatch({
@@ -96,13 +103,21 @@ export const addExperience = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Experience Added"));
+    toast.success("Experience added with success ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
 
     history.push("/myprofile");
+
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
 
     dispatch({
@@ -133,13 +148,20 @@ export const addEducation = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Education Added"));
+    toast.success("Education added with success ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
 
     history.push("/myprofile");
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
 
     dispatch({
@@ -170,13 +192,20 @@ export const addVolunteer = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Volunteer Added"));
+    toast.success("Volunteer experience added with success ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
 
     history.push("/myprofile");
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
 
     dispatch({
@@ -207,13 +236,20 @@ export const addCertification = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Certification Added"));
+    toast.success("Certification added with success ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
 
     history.push("/myprofile");
   } catch (err) {
     const errors = err.response.data.errors;
+
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
     }
 
     dispatch({

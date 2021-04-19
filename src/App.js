@@ -42,6 +42,7 @@ import Testchat from "./Testchat";
 import Profileby from "./Profileby/pages/Profileby";
 import Forget_you_password from "./Authentification/Forget your Password/Pages/Forget_your_password";
 import New_password from "./Authentification/New Password/Pages/New_password";
+import Post_form from "./Forum/components/Form/Post_form";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -52,9 +53,7 @@ function App() {
     store.dispatch(loadUser());
     store.dispatch(getCurrentProfile());
     store.dispatch(getAllProfiles());
-
   }, []);
-
 
   return (
     <Provider store={store}>
@@ -67,7 +66,11 @@ function App() {
               <Route exact path="/test" component={Testchat} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/signin" component={Signin} />
-              <Route exact path="/reset-password" component={Forget_you_password} />
+              <Route
+                exact
+                path="/reset-password"
+                component={Forget_you_password}
+              />
               <Route exact path="/new-password" component={New_password} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/jobs" component={Jobs} />
@@ -113,7 +116,12 @@ function App() {
               />
               <PrivateRoute exact path="/profileby" component={Profileby} />
               <PrivateRoute exact path="/this-post" component={This_post} />
-              <PrivateRoute exact path="/send-post-email" component={Send_post_mail} />
+              <PrivateRoute exact path="/edit-post" component={Post_form} />
+              <PrivateRoute
+                exact
+                path="/send-post-email"
+                component={Send_post_mail}
+              />
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>

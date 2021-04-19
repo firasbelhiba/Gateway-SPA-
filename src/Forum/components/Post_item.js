@@ -96,14 +96,28 @@ const Post_item = ({
                   <Fragment>
                     {!auth.loading && user === auth.user._id && (
                       <li className="post_project">
-                        <a href="#" title="">
+                        <Link
+                          to={`/edit-post?id=${_id}`}
+                          title=""
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            localStorage.setItem(
+                              "this_post",
+                              JSON.stringify({ title, text, category, image })
+                            );
+                          }}
+                        >
                           Edit Post
-                        </a>
+                        </Link>
                       </li>
                     )}
                     {!auth.loading && user === auth.user._id && (
                       <li className="post_project">
-                        <a onClick={(e) => deletePost(_id)} title="">
+                        <a
+                          onClick={(e) => deletePost(_id)}
+                          title=""
+                          style={{ cursor: "pointer" }}
+                        >
                           Delete Post
                         </a>
                       </li>

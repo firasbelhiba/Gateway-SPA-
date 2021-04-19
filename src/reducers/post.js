@@ -8,6 +8,7 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT,
   ADD_REPORT,
+  UPDATE_POST,
 } from "../actions/types";
 
 const initialState = {

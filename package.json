@@ -29,6 +29,7 @@
     "semantic-ui-react": "^2.0.3",
     "simple-react-lightbox": "^3.6.6",
     "socket.io-client": "^4.0.1",
+    "timeago-react": "^3.0.2",
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },

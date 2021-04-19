@@ -11,6 +11,7 @@ import ShowMoreText from "react-show-more-text";
 import { SRLWrapper } from "simple-react-lightbox";
 import Gallereact from "gallereact";
 import Postimage from "./items/Postimage";
+import TimeAgo from 'timeago-react';
 
 const Post_item = ({
   addLike,
@@ -113,7 +114,10 @@ const Post_item = ({
                 <h3>{name}</h3>
                 <span>
                   <img src="assets/images/clock.png" alt="" />
-                  <Moment format="YYYY/MM/DD">{date}</Moment>
+                  <Moment format="YYYY/MM/DD"><TimeAgo
+                    datetime={'2016-08-08 08:08:08'}
+                    locale='vi'
+                  /></Moment>
                 </span>
               </div>
             </div>

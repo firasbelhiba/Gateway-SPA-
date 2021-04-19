@@ -1,26 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const User_message_details = () => {
+const User_message_details = ({ profile }) => {
     return (
-        <ul>
-            <li className="active">
-                <div className="usr-msg-details">
-                    <div className="usr-ms-img">
-                        <img src="images/resources/m-img1.png" alt="" />
-                        <span className="msg-status"></span>
-                    </div>
-                    <div className="usr-mg-info">
-                        <h3>John Doe</h3>
-                        <p>
-                            Lorem ipsum dolor
+        <Link to={`/messages?id=${profile.user}`}>
+            <ul>
+                <li className="active">
+                    <div className="usr-msg-details">
+                        <div className="usr-ms-img">
+                            <img src="images/resources/m-img1.png" alt="" />
+                            <span className="msg-status"></span>
+                        </div>
+                        <div className="usr-mg-info">
+                            <h3>{profile.name}</h3>
+                            <p>
+                                Lorem ipsum dolor
                         <img src="images/smley.png" alt="" />
-                        </p>
+                            </p>
+                        </div>
+                        <span className="posted_time">1:55 PM</span>
+                        <span className="msg-notifc">1</span>
                     </div>
-                    <span className="posted_time">1:55 PM</span>
-                    <span className="msg-notifc">1</span>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </Link>
     )
 }
 

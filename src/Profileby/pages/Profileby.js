@@ -45,7 +45,10 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
     return loading && this_profile === null ? (<Loading_spinner />) : (
         <Fragment>
             <div className="wrapper">
-                <Cover_picture cover={thisProfile.cover_image} />
+                <Cover_picture
+                    cover={thisProfile.cover_image}
+                    showActions={false}
+                />
                 <main>
                     <div className="main-section">
                         <div className="container">
@@ -62,6 +65,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             instagram={thisProfile.social.instagram}
                                             twitter={thisProfile.social.twitter}
                                             website={thisProfile.website}
+                                            showActions={false}
                                         />
                                         {/* {profile.githubusername && (
                                             <Profile_Github username={profile.githubusername} />

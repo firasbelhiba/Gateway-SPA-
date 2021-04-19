@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { updateCoverPicture } from '../../actions/profile';
 
 
-const Cover_picture = ({ cover, updateCoverPicture }) => {
+const Cover_picture = ({ cover, updateCoverPicture, showActions }) => {
 
     const uploadImage = (files) => {
         let file = files[0];
@@ -27,19 +27,27 @@ const Cover_picture = ({ cover, updateCoverPicture }) => {
                     </div>
                 )
             }
-            <div className="add-pic-box">
-                <div className="container">
-                    <div className="row no-gutters">
-                        <div className="col-lg-12 col-sm-12">
-                            <input type="file" id="file" onChange={(e) => uploadImage(e.target.files)} />
-                            <label htmlFor="file">Change Image</label>
+            {
+
+                showActions && (<div className="add-pic-box">
+                    <div className="container">
+                        <div className="row no-gutters">
+                            <div className="col-lg-12 col-sm-12">
+                                <input type="file" id="file" onChange={(e) => uploadImage(e.target.files)} />
+                                <label htmlFor="file">Change Image</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>)
+            }
         </section>
     )
 }
+
+Cover_picture.defaultProps = {
+    showActions: true,
+};
+
 
 Cover_picture.propTypes = {
     updateCoverPicture: PropTypes.func.isRequired,

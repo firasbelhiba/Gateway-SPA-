@@ -16,6 +16,7 @@ const Main_left_sidebar = ({ avatar
     , twitter
     , youtube
     , updateProfilePicture
+    , showActions
 }) => {
 
 
@@ -33,10 +34,12 @@ const Main_left_sidebar = ({ avatar
                     <div className="box small">
                         <img className="profile_pic" src={avatar} alt="" />
                     </div>
-                    <div className="add-dp" >
-                        <input type="file" onChange={(e) => uploadImage(e.target.files)} id="OpenImgUpload" />
-                        <label htmlFor="OpenImgUpload"><i className="fas fa-camera"></i></label>
-                    </div>
+                    {showActions &&
+                        (<div className="add-dp" >
+                            <input type="file" onChange={(e) => uploadImage(e.target.files)} id="OpenImgUpload" />
+                            <label htmlFor="OpenImgUpload"><i className="fas fa-camera"></i></label>
+                        </div>)
+                    }
                 </div>
                 <div className="user_pro_status">
                     <ul className="flw-status">
@@ -83,6 +86,11 @@ const Main_left_sidebar = ({ avatar
 Main_left_sidebar.propTypes = {
     updateProfilePicture: PropTypes.func.isRequired,
 };
+
+Main_left_sidebar.defaultProps = {
+    showActions: true,
+};
+
 
 export default connect(null, { updateProfilePicture })(Main_left_sidebar)
 

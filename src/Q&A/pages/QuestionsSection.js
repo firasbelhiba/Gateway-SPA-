@@ -22,7 +22,9 @@ class QuestionsSection extends React.Component {
         console.log(content);
     }
 
+
     render() {
+
         return (
             <section style={{marginTop: '20px'}}>
                 <div className="row">

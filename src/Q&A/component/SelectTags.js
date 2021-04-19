@@ -29,7 +29,10 @@ class SelectTags extends Component {
         options: getOptions(),
     }
 
-    handleChange = (e, {value}) => this.setState({value})
+    handleChange = (e, {value}) => {
+        this.setState({value})
+        this.props.onChange(value)
+    }
 
     render() {
         const {multiple, options, isFetching, search, value} = this.state

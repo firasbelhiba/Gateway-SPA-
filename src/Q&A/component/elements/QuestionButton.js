@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, Modal} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
+import {useDispatch, useSelector} from "react-redux";
+import {createQuestion} from '../../../actions/questions';
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -20,6 +22,26 @@ const QuestionButton = () => {
     })
     const {open, size} = state
 
+    const [subject, setSubject] = useState();
+    const [description, setDescription] = useState();
+    const [category, setCategory] = useState();
+    const [tags, setTags] = useState();
+
+    const Question = {
+        subject,
+        description,
+        category,
+        tags
+    }
+
+    const submitDispatch = useDispatch();
+
+    const handleSubmit = () => {
+        console.log(Question);
+        submitDispatch(createQuestion(Question))
+        dispatch({type: 'close'});
+    }
+
     return (
         <>
             <Button className="ui button" onClick={() => dispatch({type: 'open', size: 'small'})}>
@@ -37,27 +59,39 @@ const QuestionButton = () => {
                     <div className="ui form">
                         <div className="eight wide field">
                             <label>Subject</label>
-                            <input type="text" placeholder="Subject"/>
+                            <input type="text" placeholder="Subject" onChange={event => {
+                                setSubject(event.target.value);
+                                console.log(event.target.value);
+                            }}/>
                         </div>
                         <div className="eight wide field">
                             <label>Category</label>
-                            <input type="text" placeholder="Category"/>
+                            <input type="text" placeholder="Category" onChange={event => {
+                                setCategory(event.target.value);
+                                console.log(event.target.value);
+                            }}/>
                         </div>
                         <div className="eight wide field">
                             <label>Tags</label>
-                            <SelectTags/>
+                            <SelectTags onChange={(value) => {
+                                setTags(value);
+                                console.log(value);
+                            }}/>
                         </div>
                         <div className="field">
                             <label>Description</label>
-                            <textarea></textarea>
+                            <textarea onChange={event => {
+                                setDescription(event.target.value);
+                                console.log(event.target.value);
+                            }}/>
                         </div>
                     </div>
                 </Modal.Content>
                 <Modal.Actions>
                     <button className="ui icon button">
-                        <i className="cloud upload icon"></i>
+                        <i className="cloud upload icon"/>
                     </button>
-                    <Button positive onClick={() => dispatch({type: 'close'})}>
+                    <Button positive onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Modal.Actions>

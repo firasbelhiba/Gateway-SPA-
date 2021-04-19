@@ -1,11 +1,22 @@
 import React from "react";
 import faker from "faker";
 import Discussion from './Discussion'
-import {Button} from 'semantic-ui-react'
+import {Button, Accordion, Icon} from 'semantic-ui-react'
 
 class Answer extends React.Component {
+    state = {activeIndex: null}
+
+    handleClick = (e, titleProps) => {
+        const {index} = titleProps
+        const {activeIndex} = this.state
+        const newIndex = activeIndex === index ? -1 : index
+
+        this.setState({activeIndex: newIndex})
+    }
 
     render() {
+        const {activeIndex} = this.state
+
         return (
             <div className="comment" style={{marginLeft: '30px'}}>
                 <a className="avatar">
@@ -27,12 +38,24 @@ class Answer extends React.Component {
                         <a className="reply">Report</a>
                     </div>
                 </div>
-                <div className="comments row">
-                    <Discussion/>
-                    <Discussion/>
-                    <Discussion/>
-                    <Discussion/>
-                </div>
+                <Accordion>
+                    <Accordion.Title
+                        active={activeIndex === 0}
+                        index={0}
+                        onClick={this.handleClick}
+                    >
+                        <Icon name='dropdown'/>
+                        Show Replies
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 0}>
+                        <div className="comments row">
+                            <Discussion/>
+                            <Discussion/>
+                            <Discussion/>
+                            <Discussion/>
+                        </div>
+                    </Accordion.Content>
+                </Accordion>
             </div>
 
         );

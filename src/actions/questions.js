@@ -1,7 +1,7 @@
 import axios from "axios";
 import {setAlert} from "./alert";
 import {getCurrentProfile} from "./profile";
-import {GET_QUESTIONS, CREATE_QUESTIONS} from "./types";
+import {GET_QUESTIONS, CREATE_QUESTIONS, GET_QUESTION_BY_ID} from "./types";
 
 export const getQuestion = () => async (dispatch) => {
     try {
@@ -46,3 +46,20 @@ export const createQuestion = (Data) => async (dispatch) => {
         });
     }
 };
+
+export const getQuestionById = (id) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/${id}`);
+
+        dispatch({
+            type: GET_QUESTION_BY_ID,
+            payload: data,
+        });
+        console.log(data)
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}

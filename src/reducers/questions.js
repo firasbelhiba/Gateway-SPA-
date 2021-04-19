@@ -1,13 +1,32 @@
 import {
     GET_QUESTIONS,
     CREATE_QUESTIONS,
+    GET_QUESTION_BY_ID,
 } from "../actions/types";
 
-export default function (state = [], action) {
+const initialState = {
+    questions: [],
+    question: null,
+    loading: true,
+    error: {},
+};
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function (state = initialState, action) {
     const {type, payload} = action;
     switch (type) {
         case GET_QUESTIONS:
-            return payload;
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case GET_QUESTION_BY_ID:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
         case CREATE_QUESTIONS:
             return [...state, payload];
         default:

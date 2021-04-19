@@ -55,3 +55,4 @@ export const SEND_POST_MAIL = "SEND_POST_MAIL";
 // Question types
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const CREATE_QUESTIONS = "CREATE_QUESTIONS";
+export const GET_QUESTION_BY_ID = "GET_QUESTION_BY_ID";

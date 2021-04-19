@@ -8,12 +8,10 @@ import Cover_picture from '../../Profile/components/Cover_picture';
 import { Feed_profile } from '../../Profile/components/Feed_profile';
 import { Location_form } from '../../Profile/components/Forms/Location_form';
 import { Overview_form } from '../../Profile/components/Forms/Overview_form';
-import { Portfolio_form } from '../../Profile/components/Forms/Portfolio_form';
 import { Skills_form } from '../../Profile/components/Forms/Skills_form';
 import { Info_profile } from '../../Profile/components/Info_profile';
 import { Jobs_profile } from '../../Profile/components/Jobs_profile';
 import Main_left_sidebar from '../../Profile/components/Main_left_sidebar';
-import { Payment_profile } from '../../Profile/components/Payment_profile';
 import Profile_Github from '../../Profile/components/Profile_Github';
 import { Profile_header } from '../../Profile/components/Profile_header';
 import { Review_profile } from '../../Profile/components/Review_profile';
@@ -23,6 +21,7 @@ import { Link, useLocation } from "react-router-dom";
 import { getProfileById } from "../../actions/profile";
 import { useEffect } from 'react';
 import Follow from '../components/Follow';
+import { Portfolio_profile } from '../../Profile/components/Portfolio_profile';
 
 
 function useQuery() {
@@ -116,12 +115,6 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                                                 <span>Reviews</span>
                                                             </a>
                                                         </li>
-                                                        <li onClick={() => setId("payment")}>
-                                                            <a title="">
-                                                                <img src="assets/images/ic6.png" alt="" />
-                                                                <span>Payment</span>
-                                                            </a>
-                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -144,9 +137,8 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             )}
                                             {id === "jobs" && <Jobs_profile />}
                                             {id === "bids" && <Bids_profile />}
-                                            {id === "portfolio" && <Portfolio_form />}
+                                            {id === "portfolio" && <Portfolio_profile portfolio={thisProfile.portfolio} />}
                                             {id === "reviews" && <Review_profile />}
-                                            {id === "payment" && <Payment_profile />}
                                         </div>
                                     </div>
                                     <div className="col-lg-3">
@@ -166,7 +158,6 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                 <Overview_form />
                 <Location_form />
                 <Skills_form />
-                <Portfolio_form />
             </div>
         </Fragment>
     );

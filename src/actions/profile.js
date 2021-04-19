@@ -659,3 +659,49 @@ export const deleteHide = (id) => async (dispatch) => {
     });
   }
 };
+
+
+// Add Portfolio
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const addPortfolio = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(
+      "http://localhost:5000/api/profile/portfolio",
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    toast.success("Portfolio item added with success ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+
+    history.push("/myprofile");
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

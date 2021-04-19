@@ -9,7 +9,6 @@ import { Feed_profile } from "../components/Feed_profile";
 import { Info_profile } from "../components/Info_profile";
 import { Jobs_profile } from "../components/Jobs_profile";
 import Main_left_sidebar from "../components/Main_left_sidebar";
-import { Payment_profile } from "../components/Payment_profile";
 import { People_viewed_profile } from "../components/People_viewed_profile";
 import { Portfolio_profile } from "../components/Portfolio_profile";
 import { Profile_header } from "../components/Profile_header";
@@ -21,7 +20,6 @@ import { Widget_portfolio } from "../components/Widget_portfolio";
 import { Overview_form } from "../components/Forms/Overview_form";
 import { Location_form } from "../components/Forms/Location_form";
 import { Skills_form } from "../components/Forms/Skills_form";
-import { Portfolio_form } from "../components/Forms/Portfolio_form";
 import { getCurrentProfile } from "../../actions/profile";
 import Experience_form from "../components/Forms/Experience_form";
 import Edit_Profile from "../components/Edit_Profile";
@@ -118,12 +116,6 @@ const Profile = ({
                                 <span>Reviews</span>
                               </a>
                             </li>
-                            <li onClick={() => setId("payment")}>
-                              <a title="">
-                                <img src="assets/images/ic6.png" alt="" />
-                                <span>Payment</span>
-                              </a>
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -145,9 +137,8 @@ const Profile = ({
                       )}
                       {id === "jobs" && <Jobs_profile />}
                       {id === "bids" && <Bids_profile />}
-                      {id === "portfolio" && <Portfolio_form />}
+                      {id === "portfolio" && <Portfolio_profile portfolio={myProfile.portfolio} />}
                       {id === "reviews" && <Review_profile />}
-                      {id === "payment" && <Payment_profile />}
                     </div>
                   </div>
                   <div className="col-lg-3">
@@ -166,7 +157,6 @@ const Profile = ({
         <Overview_form />
         <Location_form />
         <Skills_form />
-        <Portfolio_form />
       </div>
     </Fragment>
   );

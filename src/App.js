@@ -27,6 +27,7 @@ import PrivateRoute from "./routing/PrivateRoute";
 import Profile from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
 import CreateProfile from "./Me/components/CreateProfile";
+import Portfolio_form from "./Profile/components/Forms/Portfolio_form";
 import Profile_edit_form from "./Profile/components/Forms/Profile_edit_form";
 import { Jobs } from "./Jobs/pages/Jobs";
 import QuestionsSection from "./Q&A/pages/QuestionsSection";
@@ -113,6 +114,11 @@ function App() {
                 exact
                 path="/create-certification"
                 component={Certification_form}
+              />
+              <PrivateRoute
+                exact
+                path="/create-portfolio"
+                component={Portfolio_form}
               />
               <PrivateRoute exact path="/profileby" component={Profileby} />
               <PrivateRoute exact path="/this-post" component={This_post} />

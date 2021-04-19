@@ -1,6 +1,7 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { loadUser } from "./auth";
+import { getPosts } from "./post";
 
 import {
   CLEAR_PROFILE,
@@ -17,6 +18,8 @@ import {
   FOLLOW,
   UNFOLLOW,
   SAVED_POST,
+  POST_HIDDEN,
+  UNHIDE_POST,
 } from "./types";
 
 // Get profile from the logged in user
@@ -566,6 +569,57 @@ export const savePost = (id) => async (dispatch) => {
         msg: error.response.statusText,
         status: error.response.status,
       },
+    });
+  }
+};
+
+//@author Ghada Khedri
+//Hide post
+export const hidePost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`http://localhost:5000/api/posts/hide/${id}`);
+
+    dispatch(getCurrentProfile());
+
+    dispatch({
+      type: POST_HIDDEN,
+      payload: res.data,
+    });
+
+    dispatch(getPosts());
+    dispatch(getPosts());
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//@author Ghada Khedri
+//unhide post
+export const deleteHide = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/posts/unhide/${id}`
+    );
+
+    dispatch(getCurrentProfile());
+
+    dispatch({
+      type: UNHIDE_POST,
+      payload: res.data,
+    });
+
+    dispatch(getPosts());
+    dispatch(getPosts());
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

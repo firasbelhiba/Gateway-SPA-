@@ -44,6 +44,8 @@ export const DELETE_SHARE = "DELETE_SHARE";
 export const ADD_POST = "ADD_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const SAVED_POST = "SAVED_POST";
+export const POST_HIDDEN = "POST_HIDDEN";
+export const UNHIDE_POST = "UNHIDE_POST";
 
 export const ADD_COMMENT = "ADD_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";

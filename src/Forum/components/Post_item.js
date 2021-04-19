@@ -4,7 +4,13 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { sharePost, deleteShare, savePost } from "../../actions/profile";
+import {
+  sharePost,
+  deleteShare,
+  savePost,
+  hidePost,
+  deleteHide,
+} from "../../actions/profile";
 import { addViews } from "../../actions/post";
 import { FacebookButton, LinkedInButton } from "react-social";
 import ShowMoreText from "react-show-more-text";
@@ -22,6 +28,8 @@ const Post_item = ({
   idShare,
   deleteShare,
   savePost,
+  hidePost,
+  deleteHide,
   post: {
     _id,
     user,
@@ -40,14 +48,23 @@ const Post_item = ({
   showActions,
 }) => {
   let this_user = JSON.parse(localStorage.getItem("user"));
+  let profile = JSON.parse(localStorage.getItem("profile"));
   let classActive = "";
   let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
   let clientLinkedin = "77uua4ca6s850x";
   let found = false;
+  let hidden = false;
 
   for (var i = 0; i < likes.length; i++) {
     if (likes[i].user === this_user._id) {
       found = true;
+      break;
+    }
+  }
+
+  for (var i = 0; i < profile.hidden_post.length; i++) {
+    if (profile.hidden_post[i].post === _id) {
+      hidden = true;
       break;
     }
   }
@@ -58,7 +75,34 @@ const Post_item = ({
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
   };
-  return (
+  return hidden ? (
+    <div>
+      {/* <button
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          deleteHide(_id);
+        }}
+      >
+        Unhide
+      </button> */}
+      <div className="post-bar">
+        <div className="post_topbar">
+          <div className="usy-dt ">
+            <h1>This post from {name} is hidden</h1>
+          </div>
+          <br />
+          <a
+            style={{ color: "#64a1c7", cursor: "pointer" }}
+            onClick={() => {
+              deleteHide(_id);
+            }}
+          >
+            Click here to unhide
+          </a>
+        </div>
+      </div>
+    </div>
+  ) : (
     <Fragment>
       <div>
         <div className="post-bar">
@@ -123,6 +167,18 @@ const Post_item = ({
                         </a>
                       </li>
                     )}
+                    <li>
+                      <a
+                        onClick={() => {
+                          hidePost(_id);
+                          toggleSettings(!displaySettings);
+                        }}
+                        title=""
+                        style={{ cursor: "pointer" }}
+                      >
+                        Hide
+                      </a>
+                    </li>
                   </Fragment>
                 )}
 
@@ -149,11 +205,6 @@ const Post_item = ({
                   <Link to={`/report-post?id=${_id}`} title="">
                     Report Post
                   </Link>
-                </li>
-                <li>
-                  <a href="#" title="">
-                    Hide
-                  </a>
                 </li>
               </ul>
             </div>
@@ -350,6 +401,8 @@ Post_item.propTypes = {
   addViews: PropTypes.func.isRequired,
   deleteShare: PropTypes.func.isRequired,
   savePost: PropTypes.func.isRequired,
+  hidePost: PropTypes.func.isRequired,
+  deleteHide: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -364,4 +417,6 @@ export default connect(mapStateToProps, {
   addViews,
   deleteShare,
   savePost,
+  hidePost,
+  deleteHide,
 })(Post_item);

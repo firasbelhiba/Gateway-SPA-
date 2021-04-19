@@ -16,6 +16,7 @@ import {
   GET_THIS_PROFILE,
   FOLLOW,
   UNFOLLOW,
+  SAVED_POST,
 } from "./types";
 
 // Get profile from the logged in user
@@ -392,7 +393,7 @@ export const updateProfilePicture = (formData) => async (dispatch) => {
   }
 };
 
-// Update updateCoverPicture 
+// Update updateCoverPicture
 export const updateCoverPicture = (formData) => async (dispatch) => {
   try {
     const config = {
@@ -504,20 +505,19 @@ export const deleteShare = (id, idShare) => async (dispatch) => {
   }
 };
 
-
-//Follow a profile 
+//Follow a profile
 export const follow = (id, user_id) => async (dispatch) => {
   try {
-
-    const res = await axios.put(`http://localhost:5000/api/profile/follow/${id}`);
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/follow/${id}`
+    );
 
     dispatch({
       type: FOLLOW,
-      payload: res.data
-    })
+      payload: res.data,
+    });
 
     dispatch(getProfileById(user_id));
-
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -526,20 +526,19 @@ export const follow = (id, user_id) => async (dispatch) => {
   }
 };
 
-
-//Unfollow a profile 
+//Unfollow a profile
 export const unfollow = (id, user_id) => async (dispatch) => {
   try {
-
-    const res = await axios.put(`http://localhost:5000/api/profile/unfollow/${id}`);
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/unfollow/${id}`
+    );
 
     dispatch({
       type: UNFOLLOW,
-      payload: res.data
-    })
+      payload: res.data,
+    });
 
     dispatch(getProfileById(user_id));
-
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -548,3 +547,25 @@ export const unfollow = (id, user_id) => async (dispatch) => {
   }
 };
 
+//@author Ghada Khedri
+//Save post
+export const savePost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`http://localhost:5000/api/posts/save/${id}`);
+
+    dispatch({
+      type: SAVED_POST,
+      payload: res.data,
+    });
+
+    dispatch(getCurrentProfile());
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};

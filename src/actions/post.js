@@ -43,11 +43,6 @@ export const getPost = (id) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch({
-      type: GET_POSTS,
-      payload: res.data,
-    });
-
     dispatch(getCurrentProfile());
   } catch (e) {
     dispatch({

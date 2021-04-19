@@ -4,7 +4,7 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { sharePost, deleteShare } from "../../actions/profile";
+import { sharePost, deleteShare, savePost } from "../../actions/profile";
 import { addViews } from "../../actions/post";
 import { FacebookButton, LinkedInButton } from "react-social";
 import ShowMoreText from "react-show-more-text";
@@ -21,6 +21,7 @@ const Post_item = ({
   addViews,
   idShare,
   deleteShare,
+  savePost,
   post: {
     _id,
     user,
@@ -170,7 +171,11 @@ const Post_item = ({
             </ul>
             <ul className="bk-links">
               <li>
-                <a href="#" title="">
+                <a
+                  onClick={() => savePost(_id)}
+                  title=""
+                  style={{ cursor: "pointer" }}
+                >
                   <i className="la la-bookmark"></i>
                 </a>
               </li>
@@ -344,6 +349,7 @@ Post_item.propTypes = {
   sharePost: PropTypes.func.isRequired,
   addViews: PropTypes.func.isRequired,
   deleteShare: PropTypes.func.isRequired,
+  savePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -357,4 +363,5 @@ export default connect(mapStateToProps, {
   sharePost,
   addViews,
   deleteShare,
+  savePost,
 })(Post_item);

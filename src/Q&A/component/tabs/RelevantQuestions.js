@@ -1,21 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import UserQuestion from "../UserQuestion";
 import Navigation from "../elements/Navigation";
+import {useDispatch, useSelector} from "react-redux";
+import {getQuestion} from "../../../actions/questions";
 
-class RelevantQuestions extends React.Component {
+const RelevantQuestions = () => {
+    const dispatchQuestion = useDispatch();
 
-    render() {
-        return (
-            <div className="ui segments" style={{border: '0px'}}>
-                <UserQuestion solved={true} segment="ui segment"/>
-                <UserQuestion solved={false} segment="ui segment"/>
-                <UserQuestion solved={false} segment="ui segment"/>
-                <UserQuestion solved={true} segment="ui segment"/>
-                <UserQuestion solved={false} segment="ui segment"/>
-                <UserQuestion solved={false} segment="ui segment"/>
+    useEffect(() => {
+        dispatchQuestion(getQuestion());
+    }, [dispatchQuestion]);
+
+    const Questions = useSelector((state) => state.question.questions);
+
+    console.log(Questions);
+    return (
+        <div className="ui segments" style={{border: '0px'}}>
+            <div>
+                {Questions.map(question => (
+                    <UserQuestion details={question} solved={true} segment="ui segment"/>
+                ))}
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default RelevantQuestions;

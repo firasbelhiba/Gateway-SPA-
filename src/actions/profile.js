@@ -3,6 +3,7 @@ import { setAlert } from "./alert";
 import { loadUser } from "./auth";
 import { toast } from 'react-toastify';
 
+import { getPosts } from "./post";
 
 import {
   CLEAR_PROFILE,
@@ -18,6 +19,9 @@ import {
   GET_THIS_PROFILE,
   FOLLOW,
   UNFOLLOW,
+  SAVED_POST,
+  POST_HIDDEN,
+  UNHIDE_POST,
 } from "./types";
 
 // Get profile from the logged in user
@@ -428,7 +432,7 @@ export const updateProfilePicture = (formData) => async (dispatch) => {
   }
 };
 
-// Update updateCoverPicture 
+// Update updateCoverPicture
 export const updateCoverPicture = (formData) => async (dispatch) => {
   try {
     const config = {
@@ -540,20 +544,19 @@ export const deleteShare = (id, idShare) => async (dispatch) => {
   }
 };
 
-
-//Follow a profile 
+//Follow a profile
 export const follow = (id, user_id) => async (dispatch) => {
   try {
-
-    const res = await axios.put(`http://localhost:5000/api/profile/follow/${id}`);
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/follow/${id}`
+    );
 
     dispatch({
       type: FOLLOW,
-      payload: res.data
-    })
+      payload: res.data,
+    });
 
     dispatch(getProfileById(user_id));
-
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -562,20 +565,19 @@ export const follow = (id, user_id) => async (dispatch) => {
   }
 };
 
-
-//Unfollow a profile 
+//Unfollow a profile
 export const unfollow = (id, user_id) => async (dispatch) => {
   try {
-
-    const res = await axios.put(`http://localhost:5000/api/profile/unfollow/${id}`);
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/unfollow/${id}`
+    );
 
     dispatch({
       type: UNFOLLOW,
-      payload: res.data
-    })
+      payload: res.data,
+    });
 
     dispatch(getProfileById(user_id));
-
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -584,3 +586,76 @@ export const unfollow = (id, user_id) => async (dispatch) => {
   }
 };
 
+//@author Ghada Khedri
+//Save post
+export const savePost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`http://localhost:5000/api/posts/save/${id}`);
+
+    dispatch({
+      type: SAVED_POST,
+      payload: res.data,
+    });
+
+    dispatch(getCurrentProfile());
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//@author Ghada Khedri
+//Hide post
+export const hidePost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`http://localhost:5000/api/posts/hide/${id}`);
+
+    dispatch(getCurrentProfile());
+
+    dispatch({
+      type: POST_HIDDEN,
+      payload: res.data,
+    });
+
+    dispatch(getPosts());
+    dispatch(getPosts());
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//@author Ghada Khedri
+//unhide post
+export const deleteHide = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/posts/unhide/${id}`
+    );
+
+    dispatch(getCurrentProfile());
+
+    dispatch({
+      type: UNHIDE_POST,
+      payload: res.data,
+    });
+
+    dispatch(getPosts());
+    dispatch(getPosts());
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

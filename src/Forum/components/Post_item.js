@@ -1,17 +1,24 @@
 import React, { Fragment, useState } from "react";
-import Moment from "react-moment";
-import { addLike, removeLike, deletePost } from "../../actions/post";
-import { connect } from "react-redux";
+import TimeAgo from 'timeago-react';
+import Gallereact from "gallereact";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { sharePost, deleteShare } from "../../actions/profile";
-import { addViews } from "../../actions/post";
-import { FacebookButton, LinkedInButton } from "react-social";
+import Postimage from "./items/Postimage";
 import ShowMoreText from "react-show-more-text";
 import { SRLWrapper } from "simple-react-lightbox";
-import Gallereact from "gallereact";
-import Postimage from "./items/Postimage";
-import TimeAgo from 'timeago-react';
+import { FacebookButton, LinkedInButton } from "react-social";
+import { addLike, removeLike, deletePost } from "../../actions/post";
+import { connect } from "react-redux";
+import { addViews } from "../../actions/post";
+import { Link } from "react-router-dom";
+import {
+  sharePost,
+  deleteShare,
+  savePost,
+  hidePost,
+  deleteHide,
+} from "../../actions/profile";
+
+import "./items/Css/post_item.css";
 
 const Post_item = ({
   addLike,
@@ -21,6 +28,9 @@ const Post_item = ({
   addViews,
   idShare,
   deleteShare,
+  savePost,
+  hidePost,
+  deleteHide,
   post: {
     _id,
     user,
@@ -38,68 +48,56 @@ const Post_item = ({
   auth,
   showActions,
 }) => {
-  // const currentUserLike = likes.map((like) => {
-  //   let likeState = false;
 
-  //   if (like.user === auth.user._id) {
-  //     likeState=true;
-  //     return likeState;
-  //   }
-  // });
-
-  const [displayThumbsUp, toggleThumbsUp] = useState(false);
-  const [displayThumbsDown, toggleThumbsDown] = useState(false);
-  const [displaySettings, toggleSettings] = useState(true);
+  let this_user = JSON.parse(localStorage.getItem("user"));
+  let profile = JSON.parse(localStorage.getItem("profile"));
 
   let classActive = "";
   let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
   let clientLinkedin = "77uua4ca6s850x";
+  let found = false;
+  let hidden = false;
+
+  for (var i = 0; i < likes.length; i++) {
+    if (likes[i].user === this_user._id) {
+      found = true;
+      break;
+    }
+  }
+
+  for (var i = 0; i < profile.hidden_post.length; i++) {
+    if (profile.hidden_post[i].post === _id) {
+      hidden = true;
+      break;
+    }
+  }
+
+  const [displayThumbsUp, toggleThumbsUp] = useState(found);
+  const [displaySettings, toggleSettings] = useState(true);
 
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
   };
-
-  const elements = [
-    {
-      src: "https://my/image.jpg",
-      caption: "Lorem ipsum dolor sit amet",
-      width: 1920,
-      height: "auto",
-    },
-    {
-      src: "https://my/second-image.jpg",
-      thumbnail: "https://my/second-image-thumbnails.jpg",
-      caption: "Commodo commodo dolore",
-      width: 1024,
-      height: "auto",
-    },
-    {
-      src: "https://vimeo.com/458698330",
-      thumbnail:
-        "https://www.simple-react-lightbox.dev/docs/gallery/thumbnails/unsplash05.jpg",
-      caption: "Vimeo video",
-      autoplay: false,
-      showControls: true,
-    },
-  ];
-  const options = {
-    settings: {
-      overlayColor: "rgb(25, 136, 124)",
-      autoplaySpeed: 1500,
-      transitionSpeed: 900,
-    },
-    buttons: {
-      backgroundColor: "#1b5245",
-      iconColor: "rgba(126, 172, 139, 0.8)",
-    },
-    caption: {
-      captionColor: "#a6cfa5",
-      captionFontFamily: "Raleway, sans-serif",
-      captionFontWeight: "300",
-      captionTextTransform: "uppercase",
-    },
-  };
-  return (
+  return hidden ? (
+    <div>
+      <div className="post-bar">
+        <div className="post_topbar">
+          <div className="usy-dt ">
+            <h1>This post from {name} is hidden</h1>
+          </div>
+          <br />
+          <a
+            style={{ color: "#64a1c7", cursor: "pointer" }}
+            onClick={() => {
+              deleteHide(_id);
+            }}
+          >
+            Click here to unhide
+          </a>
+        </div>
+      </div>
+    </div>
+  ) : (
     <Fragment>
       <div>
         <div className="post-bar">
@@ -114,10 +112,10 @@ const Post_item = ({
                 <h3>{name}</h3>
                 <span>
                   <img src="assets/images/clock.png" alt="" />
-                  <Moment format="YYYY/MM/DD"><TimeAgo
-                    datetime={'2016-08-08 08:08:08'}
+                  <TimeAgo
+                    datetime={date}
                     locale='vi'
-                  /></Moment>
+                  />
                 </span>
               </div>
             </div>
@@ -141,18 +139,44 @@ const Post_item = ({
                   <Fragment>
                     {!auth.loading && user === auth.user._id && (
                       <li className="post_project">
-                        <a href="#" title="">
+                        <Link
+                          to={`/edit-post?id=${_id}`}
+                          title=""
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            localStorage.setItem(
+                              "this_post",
+                              JSON.stringify({ title, text, category, image })
+                            );
+                          }}
+                        >
                           Edit Post
-                        </a>
+                        </Link>
                       </li>
                     )}
                     {!auth.loading && user === auth.user._id && (
                       <li className="post_project">
-                        <a onClick={(e) => deletePost(_id)} title="">
+                        <a
+                          onClick={(e) => deletePost(_id)}
+                          title=""
+                          style={{ cursor: "pointer" }}
+                        >
                           Delete Post
                         </a>
                       </li>
                     )}
+                    <li>
+                      <a
+                        onClick={() => {
+                          hidePost(_id);
+                          toggleSettings(!displaySettings);
+                        }}
+                        title=""
+                        style={{ cursor: "pointer" }}
+                      >
+                        Hide
+                      </a>
+                    </li>
                   </Fragment>
                 )}
 
@@ -180,11 +204,6 @@ const Post_item = ({
                     Report Post
                   </Link>
                 </li>
-                <li>
-                  <a href="#" title="">
-                    Hide
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
@@ -201,7 +220,11 @@ const Post_item = ({
             </ul>
             <ul className="bk-links">
               <li>
-                <a href="#" title="">
+                <a
+                  onClick={() => savePost(_id)}
+                  title=""
+                  style={{ cursor: "pointer" }}
+                >
                   <i className="la la-bookmark"></i>
                 </a>
               </li>
@@ -274,31 +297,34 @@ const Post_item = ({
               <li>
                 {showActions && (
                   <Fragment>
-                    <a
-                      onClick={(e) => {
-                        addLike(_id);
-                        toggleThumbsUp(!displayThumbsUp);
-                      }}
-                    >
-                      <i
-                        className="fas fa-thumbs-up"
-                        style={{ color: "grey" }}
-                      ></i>{" "}
-                    </a>
-                    <a
-                      onClick={(e) => {
-                        removeLike(_id);
-                        toggleThumbsDown(!displayThumbsDown);
-                      }}
-                    >
-                      <i
-                        className="fas fa-thumbs-down"
-                        style={{ color: "grey" }}
-                      ></i>{" "}
-                    </a>
+                    {!displayThumbsUp ? (
+                      <a
+                        onClick={(e) => {
+                          addLike(_id);
+                          toggleThumbsUp(!displayThumbsUp);
+                        }}
+                      >
+                        <i
+                          className="far fa-heart "
+                          style={{ color: "#E15256" }}
+                        ></i>{" "}
+                      </a>
+                    ) : (
+                      <a
+                        className="bounce-in-top"
+                        onClick={(e) => {
+                          removeLike(_id);
+                          toggleThumbsUp(!displayThumbsUp);
+                        }}
+                      >
+                        <i
+                          className="fas fa-heart"
+                          style={{ color: "#E15256" }}
+                        ></i>{" "}
+                      </a>
+                    )}
                   </Fragment>
                 )}
-
                 <img src="assets/images/liked-img.png" alt="" />
                 <span>{likes.length}</span>
               </li>
@@ -372,6 +398,9 @@ Post_item.propTypes = {
   sharePost: PropTypes.func.isRequired,
   addViews: PropTypes.func.isRequired,
   deleteShare: PropTypes.func.isRequired,
+  savePost: PropTypes.func.isRequired,
+  hidePost: PropTypes.func.isRequired,
+  deleteHide: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -385,4 +414,7 @@ export default connect(mapStateToProps, {
   sharePost,
   addViews,
   deleteShare,
+  savePost,
+  hidePost,
+  deleteHide,
 })(Post_item);

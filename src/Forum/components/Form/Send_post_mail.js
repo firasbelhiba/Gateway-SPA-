@@ -8,7 +8,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const Send_post_mail = ({ sendPostMail }) => {
+const Send_post_mail = ({ sendPostMail, history }) => {
   let query = useQuery();
   const [formData, setformData] = useState({ email: "", message: "" });
   const { email, message } = formData;
@@ -18,7 +18,7 @@ const Send_post_mail = ({ sendPostMail }) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    sendPostMail(formData, query.get("id"));
+    sendPostMail(formData, query.get("id"), history);
   };
   return (
     <Fragment>

@@ -107,7 +107,7 @@ const Forum = ({
                         <Alert />
                         <Filters />
                         <Top_jobs />
-                        <Most_viewed />
+                        <Most_viewed posts={posts} />
                         <Most_viewed_people />
                       </div>
                     </div>
@@ -116,7 +116,7 @@ const Forum = ({
               </div>
             </div>
           </main>
-          <Post_form />
+
           <div className={`post-popup job_post ${classActive}`}>
             <div className="post-project">
               <h3>Add a post</h3>

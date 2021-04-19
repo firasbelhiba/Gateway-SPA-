@@ -3,14 +3,28 @@ import '../styles/UserQuestion.css';
 import faker from 'faker'
 import {Popup, Placeholder, Dropdown, Divider, Image} from 'semantic-ui-react'
 import QuestionVote from "./QuestionVote";
+import {Link} from "react-router-dom";
 
 class UserQuestion extends React.Component {
+    formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
 
     render() {
         return (
-            <div className={`${this.props.segment}`} style={{float: 'left', marginBottom: '10px'}}>
+            <div className={`${this.props.segment} row`} style={{float: 'left', marginBottom: '10px'}}>
 
-                <div className="ui top left attached label">Programming</div>
+                <div className="ui top left attached label">{this.props.details.category}</div>
 
                 <div className="usr_img wrapper">
                     <Popup
@@ -34,27 +48,20 @@ class UserQuestion extends React.Component {
                 </div>
                 <div className="usr_quest"
                      style={{marginTop: '20px', marginBottom: '5px', marginLeft: '5px', marginRight: '0px'}}>
-                    <h3 style={{marginBottom: '1px'}}>{faker.lorem.sentences()}</h3>
+                    <h3 style={{marginBottom: '1px'}}>{this.props.details.subject}</h3>
                     <Divider style={{marginBottom: '0px'}}/>
-                    <div className="descp container-fluid">
-                        <Image src={faker.image.image()} size='small' centered/>
-                        <br/>
+                    <div className="descp" style={{display: 'block'}}>
                         <p>
-                            {faker.lorem.paragraphs()}
+                            {this.props.details.description}
                         </p>
-                        <p>
+                        <code>
                             {faker.lorem.paragraphs()}
-                        </p>
-                        <Image src={faker.image.image()} size='small' centered/>
-                        <p>
-                            {faker.lorem.paragraphs()}
-                        </p>
+                        </code>
                     </div>
                     <ul className="skill-tags">
-                        <li><a href="#" title="">HTML</a></li>
-                        <li><a href="#" title="">PHP</a></li>
-                        <li><a href="#" title="">CSS</a></li>
-                        <li><a href="#" title="">Javascript</a></li>
+                        {this.props.details.tags.map(tag => (
+                            <li><a href="#" title="">{tag}</a></li>
+                        ))}
                     </ul>
                 </div>
 
@@ -62,7 +69,7 @@ class UserQuestion extends React.Component {
 
                 <ul className="react-links">
                     <li>
-                        <a href="/question_details" title=""><i className="fas fa-comment-alt"/>Answers 15</a>
+                        <Link to={`/question_details?id=${this.props.details._id}`} title=""><i className="fas fa-comment-alt"/>Answers 15</Link>
                     </li>
                     <li>
                         <a href="#" title=""><i className="fas fa-eye"/>Views 50</a>
@@ -85,7 +92,7 @@ class UserQuestion extends React.Component {
                         </Dropdown>
                     </li>
                     <li style={{color: "darkgrey", float: "right"}}>
-                        <h3><i className="fas fa-clock-o"/>{new Date().toLocaleTimeString()}</h3>
+                        <h3><i className="fas fa-clock-o"/>{this.formatDate(this.props.details.date.toString())}</h3>
                     </li>
                 </ul>
             </div>

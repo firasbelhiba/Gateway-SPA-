@@ -3,6 +3,7 @@ import '../styles/UserQuestion.css';
 import faker from 'faker'
 import {Popup, Placeholder, Dropdown, Divider, Image} from 'semantic-ui-react'
 import QuestionVote from "./QuestionVote";
+import {Link} from "react-router-dom";
 
 class UserQuestion extends React.Component {
     formatDate(date) {
@@ -21,7 +22,7 @@ class UserQuestion extends React.Component {
 
     render() {
         return (
-            <div className={`${this.props.segment} container`} style={{float: 'left', marginBottom: '10px'}}>
+            <div className={`${this.props.segment} row`} style={{float: 'left', marginBottom: '10px'}}>
 
                 <div className="ui top left attached label">{this.props.details.category}</div>
 
@@ -68,7 +69,7 @@ class UserQuestion extends React.Component {
 
                 <ul className="react-links">
                     <li>
-                        <a href="/question_details" title=""><i className="fas fa-comment-alt"/>Answers 15</a>
+                        <Link to={`/question_details?id=${this.props.details._id}`} title=""><i className="fas fa-comment-alt"/>Answers 15</Link>
                     </li>
                     <li>
                         <a href="#" title=""><i className="fas fa-eye"/>Views 50</a>

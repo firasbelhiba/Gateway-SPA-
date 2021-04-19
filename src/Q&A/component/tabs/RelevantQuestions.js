@@ -11,7 +11,7 @@ const RelevantQuestions = () => {
         dispatchQuestion(getQuestion());
     }, [dispatchQuestion]);
 
-    const Questions = useSelector((state) => state.question);
+    const Questions = useSelector((state) => state.question.questions);
 
     console.log(Questions);
     return (

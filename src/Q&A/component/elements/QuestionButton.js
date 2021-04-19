@@ -41,6 +41,8 @@ const QuestionButton = () => {
         submitDispatch(createQuestion(Question))
         dispatch({type: 'close'});
     }
+    const user = JSON.parse(localStorage.getItem("user")) ;
+    console.log(user);
 
     return (
         <>

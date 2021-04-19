@@ -1,10 +1,11 @@
 import React from "react";
-import faker from "faker"
 import UserQuestion from "../component/UserQuestion";
 import SideWidget from "../component/widgets/SideWidget";
 import SideWidgetFrequentlyAsked from "../component/widgets/SideWidgetFrequentlyAsked";
 import Answer from "../component/Answer";
-import "../styles/QuestionDetails.css"
+import "../styles/QuestionDetails.css";
+import {Message} from 'semantic-ui-react'
+
 
 class QuestionDetails extends React.Component {
     render() {
@@ -19,8 +20,10 @@ class QuestionDetails extends React.Component {
                             <div className="container" style={{display: 'flex', justifyContent: 'space-between'}}>
                             </div>
                         </div>
-                        <div className="ui small comments row">
-                            <Answer/>
+                        <div className="ui small comments row" style={{margin: '0px', padding: '0px'}}>
+                            <div className="ui green message">
+                                <Answer/>
+                            </div>
                             <Answer/>
                             <Answer/>
                             <Answer/>

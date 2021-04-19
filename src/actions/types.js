@@ -52,3 +52,7 @@ export const ADD_REPORT = "ADD_REPORT";
 export const SHARE_POST = "SHARE_POST";
 
 export const SEND_POST_MAIL = "SEND_POST_MAIL";
+
+// Question types
+export const GET_QUESTIONS = "GET_QUESTIONS";
+export const CREATE_QUESTIONS = "CREATE_QUESTIONS";

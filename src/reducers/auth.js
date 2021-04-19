@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case USER_LOADED:
+      //hedhi matensehech ya firas 
       //    localStorage.setItem('user', JSON.stringify(payload));
       return {
         ...state,

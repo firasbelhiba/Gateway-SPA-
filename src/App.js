@@ -72,7 +72,6 @@ function App() {
                 component={Forget_you_password}
               />
               <Route exact path="/new-password" component={New_password} />
-              <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/jobs" component={Jobs} />
               <Route exact path="/q_and_a" component={QuestionsSection} />
               <Route
@@ -81,6 +80,7 @@ function App() {
                 component={QuestionDetails}
               />
 
+              <PrivateRoute exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/forum" component={Forum} />
               <PrivateRoute exact path="/myprofile" component={Profile} />
               <PrivateRoute exact path="/me" component={Me} />
@@ -125,7 +125,7 @@ function App() {
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
             </Switch>
-            <Chat />
+            {/* <Chat /> */}
           </section>
         </Fragment>
       </Router>

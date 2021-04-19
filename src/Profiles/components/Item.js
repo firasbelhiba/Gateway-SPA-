@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { getProfileById } from '../../actions/profile';
-import profile from '../../reducers/profile';
 
 
 const Item = ({ profile }) => {
@@ -13,15 +12,8 @@ const Item = ({ profile }) => {
                     <img src={profile.avatar} alt="" />
                     <h3>{profile.name}</h3>
                     <h4>{profile.status}</h4>
+                    <h4>score</h4>
                     <div className="user-profy">
-                        <ul>
-                            <li><a href="#" title="" className="follow">Follow</a></li>
-                            <li>
-                                <a href="#" title="" className="message-us"
-                                ><i className="fa fa-envelope"></i></a>
-                            </li>
-                            <li><a href="#" title="" className="hire-us">Hire</a></li>
-                        </ul>
                         <Link to={`/profileby?id=${profile.user}`} onClick={() => {
                             getProfileById(profile.user);
                             localStorage.setItem('this_profile', JSON.stringify(profile));

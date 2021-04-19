@@ -28,7 +28,6 @@ import Follow from '../components/Follow';
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
-console.log("firas")
 
 const Profileby = ({ getProfileById, profile: { this_profile, loading }, showActions }) => {
 

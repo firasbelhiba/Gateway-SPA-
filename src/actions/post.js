@@ -268,7 +268,7 @@ export const updatePost = (title, text, category, id, history) => async (
 };
 
 //Send Post Mail
-export const sendPostMail = (formData, id) => async (dispatch) => {
+export const sendPostMail = (formData, id, history) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -284,6 +284,7 @@ export const sendPostMail = (formData, id) => async (dispatch) => {
     dispatch({
       type: SEND_POST_MAIL,
     });
+    history.push("/forum");
   } catch (error) {
     dispatch({
       type: POST_ERROR,

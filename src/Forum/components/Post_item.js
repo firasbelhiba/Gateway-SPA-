@@ -77,14 +77,6 @@ const Post_item = ({
   };
   return hidden ? (
     <div>
-      {/* <button
-        style={{ cursor: "pointer" }}
-        onClick={() => {
-          deleteHide(_id);
-        }}
-      >
-        Unhide
-      </button> */}
       <div className="post-bar">
         <div className="post_topbar">
           <div className="usy-dt ">

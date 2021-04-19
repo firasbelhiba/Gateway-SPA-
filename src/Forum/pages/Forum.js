@@ -107,7 +107,7 @@ const Forum = ({
                         <Alert />
                         <Filters />
                         <Top_jobs />
-                        <Most_viewed />
+                        <Most_viewed posts={posts} />
                         <Most_viewed_people />
                       </div>
                     </div>

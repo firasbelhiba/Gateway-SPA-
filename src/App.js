@@ -45,6 +45,7 @@ import Forget_you_password from "./Authentification/Forget your Password/Pages/F
 import New_password from "./Authentification/New Password/Pages/New_password";
 import Post_form from "./Forum/components/Form/Post_form";
 import Education_edit_form from "./Profile/components/Forms/Education_edit_form";
+import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -125,6 +126,11 @@ function App() {
                 exact
                 path="/edit-education"
                 component={Education_edit_form}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-volunteer"
+                component={Volunteer_edit_form}
               />
               <PrivateRoute exact path="/profileby" component={Profileby} />
               <PrivateRoute exact path="/this-post" component={This_post} />

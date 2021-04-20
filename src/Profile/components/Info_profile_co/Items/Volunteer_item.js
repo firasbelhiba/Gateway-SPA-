@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { deleteVolunteer } from '../../../../actions/profile';
+import { Link } from 'react-router-dom';
 
 
 const Volunteer_item = ({ volunteer, deleteVolunteer, showActions }) => {
@@ -12,7 +13,7 @@ const Volunteer_item = ({ volunteer, deleteVolunteer, showActions }) => {
                 {item.company}
                 {
                     showActions && <Fragment>
-                        <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                        <Link to={`/edit-volunteer?id=${item._id}`} title=""><i className="fa fa-pencil"></i></Link>
                         <a onClick={() => deleteVolunteer(item._id)} title=""><i className="fa fa-trash"></i></a>
                     </Fragment>
                 }

@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Settings = () => {
     return (
         <div className="message-btn">
-            <a href="profile-account-setting.html" title=""
-            ><i className="fas fa-cog"></i> Setting</a>
+            <Link to="/settings" title=""
+            ><i className="fas fa-cog"></i> Setting</Link>
         </div>
     )
 }

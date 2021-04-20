@@ -47,6 +47,7 @@ import Post_form from "./Forum/components/Form/Post_form";
 import Education_edit_form from "./Profile/components/Forms/Education_edit_form";
 import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form";
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
+import Settings from "./settings/pages/Settings";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -148,6 +149,7 @@ function App() {
               />
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
+              <PrivateRoute exact path="/settings" component={Settings} />
             </Switch>
             {/* <Chat /> */}
           </section>

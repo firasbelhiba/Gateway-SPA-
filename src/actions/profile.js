@@ -458,6 +458,43 @@ export const updateVolunteer = (formData, history, id) => async (dispatch) => {
   }
 };
 
+// Update Certification
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const updateCertification = (formData, history, id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/certification/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Certification updated"));
+
+    history.push("/myprofile");
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 //Get Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {

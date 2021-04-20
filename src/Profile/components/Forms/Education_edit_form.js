@@ -17,7 +17,7 @@ const Education_edit_form = ({
     , profile: { profile, loading } }) => {
 
     let query = useQuery();
-    let thisProfile = JSON.parse(localStorage.getItem("profile"))
+    let thisProfile = JSON.parse(localStorage.getItem("profile"));
 
 
     const [formData, setFormData] = useState({

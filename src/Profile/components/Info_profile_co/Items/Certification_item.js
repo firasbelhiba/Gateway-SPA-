@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { deleteCertification } from '../../../../actions/profile';
+import { Link } from 'react-router-dom';
 
 
 
@@ -14,7 +15,7 @@ const Certification_item = ({ certification, deleteCertification, showActions })
                 {
                     showActions &&
                     <Fragment>
-                        <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                        <Link to={`/edit-certification?id=${item._id}`} title=""><i className="fa fa-pencil"></i></Link>
                         <a onClick={() => deleteCertification(item._id)} title=""><i className="fa fa-trash"></i></a>
                     </Fragment>
                 }

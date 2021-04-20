@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import UserQuestion from "../component/UserQuestion";
 import SideWidget from "../component/widgets/SideWidget";
 import SideWidgetFrequentlyAsked from "../component/widgets/SideWidgetFrequentlyAsked";
@@ -8,8 +8,7 @@ import {useLocation} from 'react-router-dom';
 import {getQuestionById} from "../../actions/questions";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {Loading_spinner} from "../../Shared/layouts/Loading_spinner";
-import {addComment, getPost} from "../../actions/post";
-
+import {createAnswer} from '../../actions/questions';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -18,16 +17,28 @@ function useQuery() {
 const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
 
     let query = useQuery();
-    console.log(query.get('id'));
+    const id = query.get('id');
+    console.log(id);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getQuestionById(query.get('id'))
+        getQuestionById(id)
     }, [dispatch]);
     const Question = useSelector((state) => state.question.question);
 
     console.log(Question);
 
+    const [description, setDescription] = useState();
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+    const Reply = {
+        user,
+        description,
+    }
+
+    const handleSubmit = () => {
+        console.log(Reply);
+        dispatch(createAnswer(Reply, id))
+    }
     return loading || question === null ? (
         <Loading_spinner/>
     ) : (
@@ -45,16 +56,20 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
                         <div className="ui green message">
                             <Answer/>
                         </div>
-                        <Answer/>
-                        <Answer/>
-                        <Answer/>
+                        {Question.answers.map(answer => (
+                            <Answer description={answer.description} replies={answer.replies} idQ={id} idA={answer._id}/>
+                        ))}
+
                     </div>
                     <div className="ui threaded comments">
                         <form className="ui reply form">
                             <div className="field">
-                                <textarea/>
+                                <textarea onChange={event => {
+                                    setDescription(event.target.value);
+                                    console.log(event.target.value);
+                                }}/>
                             </div>
-                            <div className="ui blue labeled submit icon button">
+                            <div className="ui blue labeled submit icon button" onClick={handleSubmit}>
                                 <i className="icon edit"/> Add Reply
                             </div>
                         </form>

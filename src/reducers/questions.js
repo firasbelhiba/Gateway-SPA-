@@ -2,6 +2,8 @@ import {
     GET_QUESTIONS,
     CREATE_QUESTIONS,
     GET_QUESTION_BY_ID,
+    CREATE_ANSWER,
+    CREATE_REPLY,
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +30,10 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case CREATE_QUESTIONS:
+            return [...state, payload];
+        case CREATE_ANSWER:
+            return [...state, payload];
+        case CREATE_REPLY:
             return [...state, payload];
         default:
             return state;

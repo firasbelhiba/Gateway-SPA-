@@ -384,6 +384,80 @@ export const updateExperience = (formData, history, id) => async (dispatch) => {
   }
 };
 
+// Update Education
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const updateEducation = (formData, history, id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/education/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Education updated"));
+
+    history.push("/myprofile");
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Update Volunteer
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const updateVolunteer = (formData, history, id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5000/api/profile/volunteer/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Volunteer experience updated"));
+
+    history.push("/myprofile");
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 //Get Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {

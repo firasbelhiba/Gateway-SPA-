@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteEducation } from '../../../../actions/profile';
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,7 +14,7 @@ const Education_item = ({ education, deleteEducation, showActions }) => {
             <h4 className="mt-4" style={{ color: '#17a2b8' }}>{item.school}
                 {showActions &&
                     <Fragment>
-                        <a href="#" title=""><i className="fa fa-pencil"></i></a>
+                        <Link to={`/edit-education?id=${item._id}`} title=""><i className="fa fa-pencil"></i></Link>
                         <a title="" onClick={() => deleteEducation(item._id)}><i className="fa fa-trash"></i></a>
                     </Fragment>
                 }

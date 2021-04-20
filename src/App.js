@@ -44,6 +44,7 @@ import Profileby from "./Profileby/pages/Profileby";
 import Forget_you_password from "./Authentification/Forget your Password/Pages/Forget_your_password";
 import New_password from "./Authentification/New Password/Pages/New_password";
 import Post_form from "./Forum/components/Form/Post_form";
+import Education_edit_form from "./Profile/components/Forms/Education_edit_form";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -119,6 +120,11 @@ function App() {
                 exact
                 path="/create-portfolio"
                 component={Portfolio_form}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-education"
+                component={Education_edit_form}
               />
               <PrivateRoute exact path="/profileby" component={Profileby} />
               <PrivateRoute exact path="/this-post" component={This_post} />

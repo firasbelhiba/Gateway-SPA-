@@ -10,6 +10,8 @@ import { createProfile, getCurrentProfile } from '../../../actions/profile';
 const Profile_edit_form
     = ({ createProfile, history, getCurrentProfile, profile: { profile, loading } }) => {
 
+        let thisProfile = JSON.parse(localStorage.getItem("profile"))
+
         const [formData, setFormData] = useState({
             company: '',
             website: '',
@@ -31,18 +33,18 @@ const Profile_edit_form
             getCurrentProfile();
 
             setFormData({
-                company: loading || !profile.company ? '' : profile.company,
-                website: loading || !profile.website ? '' : profile.website,
-                location: loading || !profile.location ? '' : profile.location,
-                status: loading || !profile.status ? '' : profile.status,
-                skills: loading || !profile.skills ? '' : profile.skills.join(','),
-                githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
-                bio: loading || !profile.bio ? '' : profile.bio,
-                twitter: loading || !profile.social ? '' : profile.social.twitter,
-                facebook: loading || !profile.social ? '' : profile.social.facebook,
-                linkedin: loading || !profile.social ? '' : profile.social.linkedin,
-                youtube: loading || !profile.social ? '' : profile.social.youtube,
-                instagram: loading || !profile.social ? '' : profile.social.instagram,
+                company: loading || !thisProfile.company ? '' : thisProfile.company,
+                website: loading || !thisProfile.website ? '' : thisProfile.website,
+                location: loading || !thisProfile.location ? '' : thisProfile.location,
+                status: loading || !thisProfile.status ? '' : thisProfile.status,
+                skills: loading || !thisProfile.skills ? '' : thisProfile.skills.join(','),
+                githubusername: loading || !thisProfile.githubusername ? '' : thisProfile.githubusername,
+                bio: loading || !thisProfile.bio ? '' : thisProfile.bio,
+                twitter: loading || !thisProfile.social ? '' : thisProfile.social.twitter,
+                facebook: loading || !thisProfile.social ? '' : thisProfile.social.facebook,
+                linkedin: loading || !thisProfile.social ? '' : thisProfile.social.linkedin,
+                youtube: loading || !thisProfile.social ? '' : thisProfile.social.youtube,
+                instagram: loading || !thisProfile.social ? '' : thisProfile.social.instagram,
             });
 
         }, [loading]);

@@ -27,6 +27,8 @@ import Education_form from "../components/Forms/Education_form";
 import Profile_Github from "../components/Profile_Github";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SimpleReactLightbox from "simple-react-lightbox";
+
 
 const Profile = ({
   getCurrentProfile,
@@ -137,7 +139,11 @@ const Profile = ({
                       )}
                       {id === "jobs" && <Jobs_profile />}
                       {id === "bids" && <Bids_profile />}
-                      {id === "portfolio" && <Portfolio_profile portfolio={myProfile.portfolio} />}
+                      {id === "portfolio" && (
+                        <SimpleReactLightbox>
+                          <Portfolio_profile portfolio={myProfile.portfolio} />
+                        </SimpleReactLightbox>
+                      )}
                       {id === "reviews" && <Review_profile />}
                     </div>
                   </div>
@@ -145,7 +151,7 @@ const Profile = ({
                     <div className="right-sidebar">
                       <Settings />
                       <Edit_Profile />
-                      <Widget_portfolio />
+                      <Widget_portfolio portfolio={myProfile.portfolio} />
                     </div>
                   </div>
                 </div>

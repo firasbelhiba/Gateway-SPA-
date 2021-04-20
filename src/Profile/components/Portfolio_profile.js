@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Portfolio_item from './items/Portfolio_item'
 
+
 export const Portfolio_profile = ({ portfolio }) => {
     return (
         <div className="portfolio-gallery-sec">

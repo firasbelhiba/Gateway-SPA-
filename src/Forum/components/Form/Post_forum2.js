@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addPost } from "../../../actions/post";
 
-const Post_forum2 = ({ addPost }) => {
+const Post_forum2 = ({ addPost, disable }) => {
   const [title, setTite] = useState("");
   const [text, setText] = useState("");
   const [category, setCategory] = useState("");

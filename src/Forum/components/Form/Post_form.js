@@ -11,10 +11,10 @@ function useQuery() {
 
 const Post_form = ({ post: { post, loading }, updatePost, history }) => {
   let thisPost = JSON.parse(localStorage.getItem("this_post"));
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [category, setCategory] = useState("");
-
+  const [title, setTitle] = useState(thisPost.title);
+  const [text, setText] = useState(thisPost.text);
+  const [category, setCategory] = useState(thisPost.category);
+  console.log(thisPost.title);
   let query = useQuery();
 
   const onSubmit = (e) => {
@@ -37,6 +37,7 @@ const Post_form = ({ post: { post, loading }, updatePost, history }) => {
               name="title"
               placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
+              value={title}
             />
           </div>
           <div className="col-lg-12">
@@ -44,6 +45,7 @@ const Post_form = ({ post: { post, loading }, updatePost, history }) => {
               <select
                 name="category"
                 onChange={(e) => setCategory(e.target.value)}
+                value={category}
               >
                 <option value="python">python</option>
                 <option value="spring">spring</option>
@@ -58,6 +60,7 @@ const Post_form = ({ post: { post, loading }, updatePost, history }) => {
               name="text"
               placeholder="Description"
               onChange={(e) => setText(e.target.value)}
+              value={text}
             ></textarea>
           </div>
           <div className="fallback">

@@ -6,7 +6,7 @@ import {
     CREATE_QUESTIONS,
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
-    QUESTION_ERROR,
+    UPVOTE,
     CREATE_REPLY, SOLUTION,
 } from "./types";
 
@@ -42,9 +42,12 @@ export const createQuestion = (Data) => async (dispatch) => {
             type: CREATE_QUESTIONS,
             payload: data,
         });
-        console.log('fesfes')
+        console.log(data);
     } catch (error) {
-        console.log(error);
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
     }
 };
 
@@ -83,7 +86,10 @@ export const createAnswer = (Data, id) => async (dispatch) => {
         });
         console.log('fesfes');
     } catch (error) {
-        console.log(error);
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
     }
 };
 
@@ -106,7 +112,10 @@ export const createReply = (Data, idQ, idA) => async (dispatch) => {
         });
         console.log('fesfes');
     } catch (error) {
-        console.log(error);
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
     }
 };
 
@@ -115,14 +124,27 @@ export const markSolution = (idQ, idA) => async (dispatch) => {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/solve/${idA}`);
         dispatch({
             type: SOLUTION,
-            payload: { idQ, idA ,solution: data },
+            payload: data,
         });
     } catch (error) {
         dispatch({
             type: 'ERROR',
-            payload: {
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
 
-            },
+export const vote = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/vote/${idU}`);
+        dispatch({
+            type: UPVOTE,
+            payload: {idQ, idU, solution: data},
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
         });
     }
 };

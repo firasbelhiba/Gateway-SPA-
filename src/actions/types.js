@@ -64,6 +64,8 @@ export const CREATE_ANSWER = "CREATE_ANSWER";
 export const QUESTION_ERROR = "QUESTION_ERROR";
 export const CREATE_REPLY = "CREATE_REPLY";
 export const SOLUTION = "SOLUTION";
+export const UPVOTE = "UPVOTE";
+
 
 
 

@@ -4,6 +4,7 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     CREATE_REPLY,
+    UPVOTE,
     SOLUTION,
 } from "../actions/types";
 
@@ -32,7 +33,7 @@ export default function (state = initialState, action) {
         case CREATE_QUESTIONS:
             return {
                 ...state,
-                question: payload,
+                questions: payload,
                 loading: false,
             };
         case CREATE_ANSWER:
@@ -48,6 +49,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case SOLUTION:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case UPVOTE:
             return {
                 ...state,
                 question: payload,

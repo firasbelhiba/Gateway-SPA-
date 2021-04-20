@@ -65,7 +65,7 @@ class UserQuestion extends React.Component {
                     </ul>
                 </div>
 
-                <a className="ui teal right ribbon label" hidden={!this.props.solved}>Solved</a>
+                <a className="ui teal right ribbon label" hidden={!this.props.details.solved}>Solved</a>
 
                 <ul className="react-links">
                     <li>

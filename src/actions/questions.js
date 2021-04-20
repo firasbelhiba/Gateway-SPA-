@@ -7,7 +7,7 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     QUESTION_ERROR,
-    CREATE_REPLY
+    CREATE_REPLY, SOLUTION,
 } from "./types";
 
 export const getQuestion = () => async (dispatch) => {
@@ -20,7 +20,7 @@ export const getQuestion = () => async (dispatch) => {
         });
     } catch (e) {
         dispatch({
-            type: QUESTION_ERROR,
+            type: 'ERROR',
             payload: {msg: e.response.statusText, status: e.response.status},
         });
     }
@@ -44,13 +44,7 @@ export const createQuestion = (Data) => async (dispatch) => {
         });
         console.log('fesfes')
     } catch (error) {
-        dispatch({
-            type: QUESTION_ERROR,
-            payload: {
-                msg: error.response.statusText,
-                status: error.response.status,
-            },
-        });
+        console.log(error);
     }
 };
 
@@ -65,7 +59,7 @@ export const getQuestionById = (id) => async (dispatch) => {
         console.log(data)
     } catch (e) {
         dispatch({
-            type: QUESTION_ERROR,
+            type: 'ERROR',
             payload: {msg: e.response.statusText, status: e.response.status},
         });
     }
@@ -113,5 +107,22 @@ export const createReply = (Data, idQ, idA) => async (dispatch) => {
         console.log('fesfes');
     } catch (error) {
         console.log(error);
+    }
+};
+
+export const markSolution = (idQ, idA) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/solve/${idA}`);
+        dispatch({
+            type: SOLUTION,
+            payload: { idQ, idA ,solution: data },
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {
+
+            },
+        });
     }
 };

@@ -1,11 +1,12 @@
 import React from "react";
 import '../styles/UserQuestion.css';
 import faker from 'faker'
-import {Popup, Placeholder, Dropdown, Divider, Image} from 'semantic-ui-react'
+import {Popup, Placeholder, Dropdown, Divider} from 'semantic-ui-react'
 import QuestionVote from "./QuestionVote";
 import {Link} from "react-router-dom";
 
 class UserQuestion extends React.Component {
+
     formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -44,7 +45,8 @@ class UserQuestion extends React.Component {
                             </Placeholder>
                         </Popup.Content>
                     </Popup>
-                    <QuestionVote/>
+                    <QuestionVote upVotes={this.props.details.upVotes} downVotes={this.props.details.downVotes}
+                                  id={this.props.details._id}/>
                 </div>
                 <div className="usr_quest"
                      style={{marginTop: '20px', marginBottom: '5px', marginLeft: '5px', marginRight: '0px'}}>
@@ -65,11 +67,12 @@ class UserQuestion extends React.Component {
                     </ul>
                 </div>
 
-                <a className="ui teal right ribbon label" hidden={!this.props.solved}>Solved</a>
+                <a className="ui teal right ribbon label" hidden={!this.props.details.solved}>Solved</a>
 
                 <ul className="react-links">
                     <li>
-                        <Link to={`/question_details?id=${this.props.details._id}`} title=""><i className="fas fa-comment-alt"/>Answers 15</Link>
+                        <Link to={`/question_details?id=${this.props.details._id}`} title=""><i
+                            className="fas fa-comment-alt"/>Answers 15</Link>
                     </li>
                     <li>
                         <a href="#" title=""><i className="fas fa-eye"/>Views 50</a>

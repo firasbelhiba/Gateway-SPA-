@@ -29,13 +29,13 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
     console.log(Question);
 
     const [description, setDescription] = useState();
-    const user = JSON.parse(localStorage.getItem('user'))._id;
-    const Reply = {
-        user,
-        description,
-    }
 
     const handleSubmit = () => {
+        const user = JSON.parse(localStorage.getItem('user'))._id;
+        const Reply = {
+            user,
+            description,
+        }
         console.log(Reply);
         dispatch(createAnswer(Reply, id))
     }
@@ -53,11 +53,9 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
                         </div>
                     </div>
                     <div className="ui small comments row" style={{margin: '0px', padding: '0px'}}>
-                        <div className="ui green message">
-                            <Answer/>
-                        </div>
                         {Question.answers.map(answer => (
-                            <Answer description={answer.description} replies={answer.replies} idQ={id} idA={answer._id}/>
+                            <Answer description={answer.description} replies={answer.replies} userid={Question.user} date={answer.date}
+                                    solved={Question.solved} solution={answer.solution} idQ={id} idA={answer._id}/>
                         ))}
 
                     </div>

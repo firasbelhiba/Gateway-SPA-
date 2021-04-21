@@ -13,12 +13,11 @@ const RelevantQuestions = () => {
 
     const Questions = useSelector((state) => state.question.questions);
 
-    console.log(Questions);
     return (
         <div className="ui segments" style={{border: '0px'}}>
             <div>
                 {Questions.map(question => (
-                    <UserQuestion details={question} solved={true} segment="ui segment"/>
+                    <UserQuestion details={question} segment="ui segment"/>
                 ))}
             </div>
         </div>

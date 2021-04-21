@@ -64,5 +64,17 @@ export const GET_QUESTION_BY_ID = "GET_QUESTION_BY_ID";
 export const CREATE_ANSWER = "CREATE_ANSWER";
 export const QUESTION_ERROR = "QUESTION_ERROR";
 export const CREATE_REPLY = "CREATE_REPLY";
+export const SOLUTION = "SOLUTION";
+export const UPVOTE = "UPVOTE";
+export const CANCEL_UPVOTE = "CANCEL_UPVOTE";
+export const DOWNVOTE = "DOWNVOTE";
+export const CANCEL_DOWNVOTE = "CANCEL_DOWNVOTE";
+export const CREATE_ANSWER_REPORT = "CREATE_ANSWER_REPORT";
+
+
+
+
+
+
 
 

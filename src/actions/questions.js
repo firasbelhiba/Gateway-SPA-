@@ -13,6 +13,8 @@ import {
     DOWNVOTE,
     CANCEL_DOWNVOTE,
     CREATE_ANSWER_REPORT,
+    DELETE_QUESTION,
+    DELETE_ANSWER,
 } from "./types";
 
 export const getQuestion = () => async (dispatch) => {
@@ -208,6 +210,37 @@ export const createAnswerReport = (Data, idQ, idA) => async (dispatch) => {
         );
         dispatch({
             type: CREATE_ANSWER_REPORT,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const deleteQuestion = (id) => async (dispatch) => {
+    try {
+        const {data} = await axios.delete(`http://localhost:5000/api/q_and_a/delete/${id}`);
+        dispatch({
+            type: DELETE_QUESTION,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const deleteAnswer = (idQ, idA) => async (dispatch) => {
+
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/delete/${idA}`);
+        dispatch({
+            type: CANCEL_DOWNVOTE,
             payload: data,
         });
     } catch (error) {

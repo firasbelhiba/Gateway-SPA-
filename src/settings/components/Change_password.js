@@ -84,9 +84,7 @@ const Change_password = ({ changePassword }) => {
                                 <i className="fa fa-lock"></i>
                             </div>
                         </div> */}
-                        <div className="cp-field">
-                            <h5><a href="#" title="">Forgot Password?</a></h5>
-                        </div>
+
                         <div className="save-stngs pd2">
                             <ul>
                                 <li><button type="submit">Save Setting</button></li>

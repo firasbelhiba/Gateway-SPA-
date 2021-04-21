@@ -6,6 +6,9 @@ import {
     CREATE_REPLY,
     UPVOTE,
     SOLUTION,
+    CANCEL_UPVOTE,
+    DOWNVOTE,
+    CANCEL_DOWNVOTE,
 } from "../actions/types";
 
 const initialState = {
@@ -55,6 +58,25 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case UPVOTE:
+            return {
+                ...state,
+                questions: state.questions.map((q) => q._id === payload.idQ ? {...q, upVotes: payload.upVotes} : q)
+                ,
+                loading: false,
+            };
+        case CANCEL_UPVOTE:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case DOWNVOTE:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case CANCEL_DOWNVOTE:
             return {
                 ...state,
                 question: payload,

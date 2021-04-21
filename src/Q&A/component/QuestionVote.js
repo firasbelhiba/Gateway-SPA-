@@ -1,62 +1,100 @@
-import React from "react";
+import React, {useState} from "react";
 import '../styles/UserQuestion.css';
+import {createVote, CancelVote, createDownVote, CancelDownVote} from "../../actions/questions";
+import {useDispatch} from "react-redux";
 
-class QuestionVote extends React.Component {
-    constructor() {
-        super();
-        this.state = {vote: 0, colorUp: "darkgrey", colorDown: "darkgrey", upVote: false, downVote: false}
-    }
+const QuestionVote = (props) => {
 
-    handleUpvote = () => {
-        if (this.state.upVote) {
-            this.setState({vote: this.state.vote - 1, upVote: false, colorUp: "darkgrey"});
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+
+    var upVotes = [];
+    for (var i in props.upVotes)
+        upVotes.push(props.upVotes[i].user);
+    console.log(upVotes)
+
+    var downVotes = [];
+    for (var j in props.downVotes)
+        downVotes.push(props.downVotes[j].user);
+    console.log(downVotes)
+
+    const dispatch = useDispatch();
+
+    const [vote, setVote] = useState(upVotes.length - downVotes.length);
+    const [colorUp, setColorUp] = useState(() => {
+        if (upVotes.includes(user)) {
+            return "darkblue";
         } else {
-            if (this.state.downVote) {
-                this.setState({
-                    vote: this.state.vote + 2,
-                    upVote: true,
-                    colorUp: "darkblue",
-                    colorDown: "darkgrey",
-                    downVote: false
-                });
+            return "darkgrey";
+        }
+    });
+    const [colorDown, setColorDown] = useState(() => {
+        if (downVotes.includes(user)) {
+            return "darkred";
+        } else {
+            return "darkgrey";
+        }
+    });
+    const [upVote, setUpVote] = useState(upVotes.includes({user: user}));
+    const [downVote, setDownVote] = useState(downVotes.includes({user: user}));
+
+    const handleUpvote = () => {
+        if (upVote) {
+            dispatch(CancelVote(props.id, user));
+            setVote(vote - 1);
+            setUpVote(false);
+            setColorUp("darkgrey");
+        } else {
+            if (downVote) {
+                dispatch(CancelDownVote(props.id, user));
+                dispatch(createVote(props.id, user));
+                setVote(vote + 2);
+                setUpVote(true);
+                setColorUp("darkblue");
+                setColorDown("darkgrey");
+                setDownVote(false);
             } else {
-                this.setState({vote: this.state.vote + 1, upVote: true, colorUp: "darkblue"});
+                dispatch(createVote(props.id, user));
+                setVote(vote + 1);
+                setUpVote(true);
+                setColorUp("darkblue");
             }
         }
-
     }
-    handleDownvote = () => {
-        if (this.state.downVote) {
-            this.setState({vote: this.state.vote + 1, downVote: false, colorDown: "darkgrey"});
+    const handleDownvote = () => {
+        if (downVote) {
+            dispatch(CancelDownVote(props.id, user));
+            setVote(vote + 1);
+            setDownVote(false);
+            setColorDown("darkgrey");
         } else {
-            if (this.state.upVote) {
-                this.setState({
-                    vote: this.state.vote - 2,
-                    upVote: false,
-                    colorUp: "darkgrey",
-                    colorDown: "darkred",
-                    downVote: true
-                });
+            if (upVote) {
+                dispatch(CancelVote(props.id, user));
+                dispatch(createDownVote(props.id, user));
+                setVote(vote - 2);
+                setUpVote(false);
+                setColorUp("darkgrey");
+                setColorDown("darkred");
+                setDownVote(true);
             } else {
-                this.setState({vote: this.state.vote - 1, downVote: true, colorDown: "darkred"});
+                dispatch(createDownVote(props.id, user));
+                setVote(vote - 1);
+                setDownVote(true);
+                setColorDown("darkred");
             }
         }
     }
-
-    render() {
-        return (
-            <div className="container-fluid"
-                 style={{marginTop: '80px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <i id="upVote" className="large fa-chevron-up icon"
-                   style={{cursor: 'pointer', color: `${this.state.colorUp}`}}
-                   onClick={this.handleUpvote}/>
-                <div style={{paddingRight: '3px', paddingBottom: '6px', paddingTop: '6px'}}>{this.state.vote}</div>
-                <i id="downVote" className="large fa-chevron-down icon"
-                   style={{cursor: 'pointer', color: `${this.state.colorDown}`}}
-                   onClick={this.handleDownvote}/>
-            </div>
-        );
-    }
+    return (
+        <div className="container-fluid"
+             style={{marginTop: '80px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <i id="upVote" className="large fa-chevron-up icon"
+               style={{cursor: 'pointer', color: `${colorUp}`}}
+               onClick={handleUpvote}/>
+            <div style={{paddingRight: '3px', paddingBottom: '6px', paddingTop: '6px'}}>{vote}</div>
+            <i id="downVote" className="large fa-chevron-down icon"
+               style={{cursor: 'pointer', color: `${colorDown}`}}
+               onClick={handleDownvote}/>
+        </div>
+    );
 }
 
 export default QuestionVote

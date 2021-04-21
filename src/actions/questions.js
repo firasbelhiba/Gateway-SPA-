@@ -7,7 +7,7 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     UPVOTE,
-    CREATE_REPLY, SOLUTION,
+    CREATE_REPLY, SOLUTION, CANCEL_UPVOTE, DOWNVOTE, CANCEL_DOWNVOTE,
 } from "./types";
 
 export const getQuestion = () => async (dispatch) => {
@@ -134,12 +134,54 @@ export const markSolution = (idQ, idA) => async (dispatch) => {
     }
 };
 
-export const vote = (idQ, idU) => async (dispatch) => {
+export const createVote = (idQ, idU) => async (dispatch) => {
     try {
-        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/vote/${idU}`);
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/upVote/${idU}`);
         dispatch({
             type: UPVOTE,
-            payload: {idQ, idU, solution: data},
+            payload: { idQ, upVotes: data },
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+export const CancelVote = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/cancelUpVote/${idU}`);
+        dispatch({
+            type: CANCEL_UPVOTE,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+export const createDownVote = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/downVote/${idU}`);
+        dispatch({
+            type: DOWNVOTE,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+export const CancelDownVote = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/cancelDownVote/${idU}`);
+        dispatch({
+            type: CANCEL_DOWNVOTE,
+            payload: data,
         });
     } catch (error) {
         dispatch({

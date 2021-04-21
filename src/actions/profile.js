@@ -22,6 +22,7 @@ import {
   SAVED_POST,
   POST_HIDDEN,
   UNHIDE_POST,
+  PASSWORD_CHANGED
 } from "./types";
 
 // Get profile from the logged in user
@@ -799,6 +800,53 @@ export const addPortfolio = (formData, history) => async (dispatch) => {
 
     history.push("/myprofile");
 
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+
+// Change password
+export const changePassword = (oldPassword, password) => async (
+  dispatch
+) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ oldPassword, password });
+
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/change-password",
+      body,
+      config
+    );
+
+    dispatch({
+      type: PASSWORD_CHANGED,
+      payload: res.data,
+    });
+
+    toast.success(res.data.message, {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
 

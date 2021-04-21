@@ -8,6 +8,8 @@ import Security_and_login from '../components/Security_and_login'
 import Blocking from '../components/Blocking'
 import Privacy from '../components/Privacy'
 import Desactivate_account from '../components/Desactivate_account'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Settings = () => {
@@ -124,6 +126,7 @@ const Settings = () => {
                                     <Blocking />
                                     <Privacy />
                                     <Desactivate_account />
+                                    <ToastContainer />
                                 </div>
                             </div>
                         </div>

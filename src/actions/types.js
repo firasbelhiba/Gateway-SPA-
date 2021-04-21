@@ -68,6 +68,8 @@ export const UPVOTE = "UPVOTE";
 export const CANCEL_UPVOTE = "CANCEL_UPVOTE";
 export const DOWNVOTE = "DOWNVOTE";
 export const CANCEL_DOWNVOTE = "CANCEL_DOWNVOTE";
+export const CREATE_ANSWER_REPORT = "CREATE_ANSWER_REPORT";
+
 
 
 

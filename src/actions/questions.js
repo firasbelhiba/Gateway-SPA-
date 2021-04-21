@@ -7,7 +7,12 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     UPVOTE,
-    CREATE_REPLY, SOLUTION, CANCEL_UPVOTE, DOWNVOTE, CANCEL_DOWNVOTE,
+    CREATE_REPLY,
+    SOLUTION,
+    CANCEL_UPVOTE,
+    DOWNVOTE,
+    CANCEL_DOWNVOTE,
+    CREATE_ANSWER_REPORT,
 } from "./types";
 
 export const getQuestion = () => async (dispatch) => {
@@ -100,7 +105,6 @@ export const createReply = (Data, idQ, idA) => async (dispatch) => {
         },
     };
     try {
-        console.log(idQ)
         const {data} = await axios.post(
             `http://localhost:5000/api/q_and_a/${idQ}/reply/${idA}`,
             Data,
@@ -139,7 +143,7 @@ export const createVote = (idQ, idU) => async (dispatch) => {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/upVote/${idU}`);
         dispatch({
             type: UPVOTE,
-            payload: { idQ, upVotes: data },
+            payload: {idQ, upVotes: data},
         });
     } catch (error) {
         dispatch({
@@ -181,6 +185,29 @@ export const CancelDownVote = (idQ, idU) => async (dispatch) => {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/cancelDownVote/${idU}`);
         dispatch({
             type: CANCEL_DOWNVOTE,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const createAnswerReport = (Data, idQ, idA) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/answerReport/${idA}`,
+            Data,
+            config
+        );
+        dispatch({
+            type: CREATE_ANSWER_REPORT,
             payload: data,
         });
     } catch (error) {

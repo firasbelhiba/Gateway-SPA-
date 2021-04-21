@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import faker from "faker";
 import Discussion from './Discussion'
 import {Button, Accordion, Icon, Popup} from 'semantic-ui-react'
-import {useDispatch, useSelector} from "react-redux";
-import {createReply, markSolution} from "../../actions/questions";
+import {useDispatch} from "react-redux";
+import {createReply, markSolution, createAnswerReport} from "../../actions/questions";
 
 const Answer = (props) => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -17,6 +17,7 @@ const Answer = (props) => {
     const dispatch = useDispatch();
 
     const [description, setDescription] = useState();
+    const [reason, setReason] = useState();
 
     var result = [];
     for (var i in props.replies)
@@ -28,9 +29,18 @@ const Answer = (props) => {
             user,
             description,
         }
-        console.log(Reply);
         dispatch(createReply(Reply, props.idQ, props.idA))
     }
+
+    const handleReport = () => {
+        const user = JSON.parse(localStorage.getItem('user'))._id;
+        const report = {
+            user,
+            reason,
+        }
+        dispatch(createAnswerReport(report, props.idQ, props.idA))
+    }
+
     const solutionSubmit = () => {
         dispatch(markSolution(props.idQ, props.idA))
     }
@@ -87,9 +97,12 @@ const Answer = (props) => {
                     <Popup
                         content={<form className="ui reply form">
                             <div className="field">
-                                <input/>
+                                <input onChange={event => {
+                                    console.log(event.target.value)
+                                    setReason(event.target.value)
+                                }}/>
                             </div>
-                            <div className="ui blue labeled submit icon button">
+                            <div className="ui blue labeled submit icon button" onClick={handleReport}>
                                 <i className="icon flag"/> Report
                             </div>
                         </form>}

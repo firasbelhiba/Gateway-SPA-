@@ -9,6 +9,7 @@ import {
     CANCEL_UPVOTE,
     DOWNVOTE,
     CANCEL_DOWNVOTE,
+    CREATE_ANSWER_REPORT,
 } from "../actions/types";
 
 const initialState = {
@@ -77,6 +78,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case CANCEL_DOWNVOTE:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case CREATE_ANSWER_REPORT:
             return {
                 ...state,
                 question: payload,

@@ -354,10 +354,9 @@ const Forum = ({
               </div>
             </div>
           </main>
-
           <div className={`post-popup job_post ${classActive}`}>
             <div className="post-project">
-              <h3>Add a post</h3>
+              <h3>Add post</h3>
               <Post_forum2 />
               <a onClick={() => toggleState("")} title="">
                 <i

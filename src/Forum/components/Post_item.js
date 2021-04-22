@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import TimeAgo from 'timeago-react';
+import TimeAgo from "timeago-react";
 import Gallereact from "gallereact";
 import PropTypes from "prop-types";
 import Postimage from "./items/Postimage";
@@ -19,6 +19,7 @@ import {
 } from "../../actions/profile";
 
 import "./items/Css/post_item.css";
+import Views_pop_up from "./Pop-up/Views_pop_up";
 
 const Post_item = ({
   addLike,
@@ -48,15 +49,24 @@ const Post_item = ({
   auth,
   showActions,
 }) => {
-
   let this_user = JSON.parse(localStorage.getItem("user"));
   let profile = JSON.parse(localStorage.getItem("profile"));
-
   let classActive = "";
+  let classActiveClose = "";
   let url = `https://gateway.com/api/posts/this-post?id=${_id}`;
   let clientLinkedin = "77uua4ca6s850x";
   let found = false;
   let hidden = false;
+
+  const [formState, toggleState] = useState("");
+
+  if (formState === "views") {
+    classActiveClose = "active";
+  }
+
+  if (formState === "") {
+    classActiveClose = "";
+  }
 
   for (var i = 0; i < likes.length; i++) {
     if (likes[i].user === this_user._id) {
@@ -112,10 +122,7 @@ const Post_item = ({
                 <h3>{name}</h3>
                 <span>
                   <img src="assets/images/clock.png" alt="" />
-                  <TimeAgo
-                    datetime={date}
-                    locale='vi'
-                  />
+                  <TimeAgo datetime={date} locale="vi" />
                 </span>
               </div>
             </div>
@@ -375,10 +382,19 @@ const Post_item = ({
               </Fragment>
             )}
 
-            <a className="mr-2 ">
+            <a onClick={() => toggleState("views")} className="mr-2 ">
               <i className="fas fa-eye"></i>Views {views.length}
             </a>
           </div>
+        </div>
+      </div>
+      <div className={`post-popup job_post ${classActiveClose}`}>
+        <div className="post-project">
+          <h3>Views</h3>
+          <Views_pop_up views={views} />
+          <a onClick={() => toggleState("")} title="">
+            <i className="la la-times-circle-o" style={{ color: "blue" }}></i>
+          </a>
         </div>
       </div>
     </Fragment>

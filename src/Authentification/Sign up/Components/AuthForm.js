@@ -129,72 +129,30 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                             Get Started
                                     </button>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="dff-tab" id="tab-4">
-                            <form>
-                                <div className="row">
-                                    <div className="col-lg-12 no-pdd">
-                                        <div className="sn-field">
-                                            <input
-                                                type="text"
-                                                name="company-name"
-                                                placeholder="Company Name"
-                                            />
-                                            <i className="la la-building"></i>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-12 no-pdd">
-                                        <div className="sn-field">
-                                            <input
-                                                type="text"
-                                                name="country"
-                                                placeholder="Country"
-                                            />
-                                            <i className="la la-globe"></i>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-12 no-pdd">
-                                        <div className="sn-field">
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                placeholder="Password"
-                                            />
-                                            <i className="la la-lock"></i>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-12 no-pdd">
-                                        <div className="sn-field">
-                                            <input
-                                                type="password"
-                                                name="repeat-password"
-                                                placeholder="Repeat Password"
-                                            />
-                                            <i className="la la-lock"></i>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-12 no-pdd">
-                                        <div className="checky-sec st2">
-                                            <div className="fgt-sec">
-                                                <input type="checkbox" name="cc" id="c3" />
-                                                <label htmlFor="c3">
-                                                    <span></span>
-                                                </label>
-                                                <small
-                                                >Yes, I understand and agree to the workwise Terms & Conditions.</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-12 no-pdd">
-                                        <button type="submit" value="submit">
-                                            Get Started
-                                    </button>
+                                    <div className="login-resources">
+                                        <h4>Login Via Social Account</h4>
+                                        <ul>
+                                            <li>
+                                                <a href="!#" title="" className="fb"
+                                                ><i className="fa fa-facebook"></i>Login Via Facebook</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a href="!#" title="" className="tw"
+                                                ><i className="fa fa-linkedin"></i>Login Via LinkedIn</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a style={{ backgroundColor: '#DE5246' }} href="http://localhost:5000/api/users/google" title="" className="tw"
+                                                ><i className="fab fa-google"></i>Login Via LinkedIn</a
+                                                >
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -75,6 +75,45 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   }
 };
 
+//Register user with google
+export const registerWithGoogle = ({ password }) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ password });
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/users/register-with-google",
+      body,
+      config
+    );
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(loadUser());
+
+    localStorage.setItem('user', JSON.stringify(res.data));
+
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
+    }
+    dispatch({
+      type: REGISTER_FAIL,
+    });
+  }
+};
+
 //Login user
 export const login = (email, password) => async (dispatch) => {
   const config = {

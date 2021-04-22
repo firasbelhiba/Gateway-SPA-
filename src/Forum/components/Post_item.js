@@ -20,6 +20,7 @@ import {
 
 import "./items/Css/post_item.css";
 import Views_pop_up from "./Pop-up/Views_pop_up";
+import Likes_pop_up from "./Pop-up/Likes_pop_up";
 
 const Post_item = ({
   addLike,
@@ -60,7 +61,7 @@ const Post_item = ({
 
   const [formState, toggleState] = useState("");
 
-  if (formState === "views") {
+  if (formState === "likes") {
     classActiveClose = "active";
   }
 
@@ -332,8 +333,8 @@ const Post_item = ({
                     )}
                   </Fragment>
                 )}
-                <img src="assets/images/liked-img.png" alt="" />
-                <span>{likes.length}</span>
+                <img onClick={() => toggleState("likes")} style={{ cursor: 'pointer' }} src="assets/images/liked-img.png" alt="" />
+                <span onClick={() => toggleState("likes")} style={{ cursor: 'pointer' }}>{likes.length}</span>
               </li>
               <li>
                 <Link
@@ -382,18 +383,18 @@ const Post_item = ({
               </Fragment>
             )}
 
-            <a onClick={() => toggleState("views")} className="mr-2 ">
+            <a className="mr-2 ">
               <i className="fas fa-eye"></i>Views {views.length}
             </a>
           </div>
         </div>
       </div>
       <div className={`post-popup job_post ${classActiveClose}`}>
-        <div className="post-project">
-          <h3>Views</h3>
-          <Views_pop_up views={views} />
+        <div className="post-project" >
+          <h3>People who liked this post</h3>
+          <Likes_pop_up likes={likes} />
           <a onClick={() => toggleState("")} title="">
-            <i className="la la-times-circle-o" style={{ color: "blue" }}></i>
+            <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
           </a>
         </div>
       </div>

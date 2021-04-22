@@ -5,6 +5,8 @@ import { updateProfilePicture } from '../../actions/profile'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Css/Main_left_sidebar.css';
+import Following_pop_up from '../../Forum/components/Pop-up/Following_pop_up';
+import Followers_pop_up from '../../Forum/components/Pop-up/Followers_pop_up';
 
 
 const Main_left_sidebar = ({ avatar
@@ -17,7 +19,32 @@ const Main_left_sidebar = ({ avatar
     , youtube
     , updateProfilePicture
     , showActions
+    , following
+    , followers
 }) => {
+
+    let classActiveCloseFollowing = "";
+    let classActiveCloseFollowers = "";
+
+    const [formStateFollowing, toggleStateFollowing] = useState("");
+    const [formStateFollowers, toggleStateFollowers] = useState("");
+
+
+    if (formStateFollowing === "following") {
+        classActiveCloseFollowing = "active";
+    }
+
+    if (formStateFollowing === "") {
+        classActiveCloseFollowing = "";
+    }
+
+    if (formStateFollowers === "followers") {
+        classActiveCloseFollowers = "active";
+    }
+
+    if (formStateFollowers === "") {
+        classActiveCloseFollowers = "";
+    }
 
 
     const uploadImage = (files) => {
@@ -44,38 +71,57 @@ const Main_left_sidebar = ({ avatar
                 <div className="user_pro_status">
                     <ul className="flw-status">
                         <li>
-                            <span>Following</span>
-                            <b>{numberOfFollowing}</b>
+                            <span onClick={() => toggleStateFollowing("following")} style={{ cursor: 'pointer' }}>Following</span>
+                            <b onClick={() => toggleStateFollowing("following")} style={{ cursor: 'pointer' }}>{numberOfFollowing}</b>
                         </li>
                         <li>
-                            <span>Followers</span>
-                            <b>{numberOfFollowers}</b>
+                            <span onClick={() => toggleStateFollowers("followers")} style={{ cursor: 'pointer' }}>Followers</span>
+                            <b onClick={() => toggleStateFollowers("followers")} style={{ cursor: 'pointer' }}>{numberOfFollowers}</b>
                         </li>
                     </ul>
                 </div>
                 <ul className="social_links">
                     <li>
-                        <a href="#" title=""
+                        <a href={website} title=""
                         ><i className="la la-globe"></i>{website}</a>
                     </li>
                     <li>
-                        <a href="#" title=""
+                        <a href={facebook} title=""
                         ><i className="fa fa-facebook-square"></i>{facebook}</a>
                     </li>
                     <li>
-                        <a href="#" title=""
+                        <a href={twitter} title=""
                         ><i className="fa fa-twitter"></i>{twitter}</a>
                     </li>
 
                     <li>
-                        <a href="#" title=""
+                        <a href={instagram} title=""
                         ><i className="fa fa-instagram"></i>{instagram}</a>
                     </li>
                     <li>
-                        <a href="#" title=""
+                        <a href={youtube} title=""
                         ><i className="fa fa-youtube"></i>{youtube}</a>
                     </li>
                 </ul>
+            </div>
+
+            <div className={`post-popup job_post ${classActiveCloseFollowing}`}>
+                <div className="post-project" >
+                    <h3>People who you are following </h3>
+                    <Following_pop_up following={following} />
+                    <a onClick={() => toggleStateFollowing("")} title="">
+                        <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
+                    </a>
+                </div>
+            </div>
+            <div className={`post-popup job_post ${classActiveCloseFollowers}`}>
+                <div className="post-project" >
+                    <h3>People who follows you </h3>
+                    <Followers_pop_up followers={followers} />
+                    <a onClick={() => toggleStateFollowers("")} title="">
+                        <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
+                    </a>
+                </div>
             </div>
 
         </div>

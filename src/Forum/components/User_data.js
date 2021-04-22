@@ -11,23 +11,23 @@ const User_data = ({ thisProfile }) => {
   let classActiveCloseFollowing = "";
   let classActiveCloseFollowers = "";
 
-  const [formStateFollowing, toggleStateFollowing] = useState("");
-  const [formStateFollowers, toggleStateFollowers] = useState("");
+  const [formStateFollowing, toggleStateFollowing] = useState(false);
+  const [formStateFollowers, toggleStateFollowers] = useState(false);
 
 
-  if (formStateFollowing === "following") {
+  if (formStateFollowing === true) {
     classActiveCloseFollowing = "active";
   }
 
-  if (formStateFollowing === "") {
+  if (formStateFollowing === false) {
     classActiveCloseFollowing = "";
   }
 
-  if (formStateFollowers === "followers") {
+  if (formStateFollowers === true) {
     classActiveCloseFollowers = "active";
   }
 
-  if (formStateFollowers === "") {
+  if (formStateFollowers === false) {
     classActiveCloseFollowers = "";
   }
 
@@ -48,12 +48,12 @@ const User_data = ({ thisProfile }) => {
         </div>
         <ul className="user-fw-status">
           <li>
-            <h4 onClick={() => toggleStateFollowing("following")} style={{ cursor: 'pointer' }}  >Following</h4>
-            <span onClick={() => toggleStateFollowing("following")} style={{ cursor: 'pointer' }}  >{thisProfile.following.length}</span>
+            <h4 onClick={() => toggleStateFollowing(!formStateFollowing)} style={{ cursor: 'pointer' }}  >Following</h4>
+            <span onClick={() => toggleStateFollowing(!formStateFollowing)} style={{ cursor: 'pointer' }}  >{thisProfile.following.length}</span>
           </li>
           <li>
-            <h4 onClick={() => toggleStateFollowers("followers")} style={{ cursor: 'pointer' }}>Followers</h4>
-            <span onClick={() => toggleStateFollowers("followers")} style={{ cursor: 'pointer' }}>{thisProfile.follwers.length}</span>
+            <h4 onClick={() => toggleStateFollowers(!formStateFollowers)} style={{ cursor: 'pointer' }}>Followers</h4>
+            <span onClick={() => toggleStateFollowers(!formStateFollowers)} style={{ cursor: 'pointer' }}>{thisProfile.follwers.length}</span>
           </li>
           <li>
             <Link to="/myprofile" title="">
@@ -66,7 +66,7 @@ const User_data = ({ thisProfile }) => {
         <div className="post-project" >
           <h3>People who you are following </h3>
           <Following_pop_up following={thisProfile.following} />
-          <a onClick={() => toggleStateFollowing("")} title="">
+          <a onClick={() => toggleStateFollowing(!formStateFollowing)} title="">
             <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
           </a>
         </div>
@@ -75,7 +75,7 @@ const User_data = ({ thisProfile }) => {
         <div className="post-project" >
           <h3>People who follows you </h3>
           <Followers_pop_up followers={thisProfile.follwers} />
-          <a onClick={() => toggleStateFollowers("")} title="">
+          <a onClick={() => toggleStateFollowers(!formStateFollowers)} title="">
             <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
           </a>
         </div>

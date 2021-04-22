@@ -26,23 +26,23 @@ const Main_left_sidebar = ({ avatar
     let classActiveCloseFollowing = "";
     let classActiveCloseFollowers = "";
 
-    const [formStateFollowing, toggleStateFollowing] = useState("");
-    const [formStateFollowers, toggleStateFollowers] = useState("");
+    const [formStateFollowing, toggleStateFollowing] = useState(false);
+    const [formStateFollowers, toggleStateFollowers] = useState(false);
 
 
-    if (formStateFollowing === "following") {
+    if (formStateFollowing === true) {
         classActiveCloseFollowing = "active";
     }
 
-    if (formStateFollowing === "") {
+    if (formStateFollowing === false) {
         classActiveCloseFollowing = "";
     }
 
-    if (formStateFollowers === "followers") {
+    if (formStateFollowers === true) {
         classActiveCloseFollowers = "active";
     }
 
-    if (formStateFollowers === "") {
+    if (formStateFollowers === false) {
         classActiveCloseFollowers = "";
     }
 
@@ -71,12 +71,12 @@ const Main_left_sidebar = ({ avatar
                 <div className="user_pro_status">
                     <ul className="flw-status">
                         <li>
-                            <span onClick={() => toggleStateFollowing("following")} style={{ cursor: 'pointer' }}>Following</span>
-                            <b onClick={() => toggleStateFollowing("following")} style={{ cursor: 'pointer' }}>{numberOfFollowing}</b>
+                            <span onClick={() => toggleStateFollowing(!formStateFollowing)} style={{ cursor: 'pointer' }}>Following</span>
+                            <b onClick={() => toggleStateFollowing(!formStateFollowing)} style={{ cursor: 'pointer' }}>{numberOfFollowing}</b>
                         </li>
                         <li>
-                            <span onClick={() => toggleStateFollowers("followers")} style={{ cursor: 'pointer' }}>Followers</span>
-                            <b onClick={() => toggleStateFollowers("followers")} style={{ cursor: 'pointer' }}>{numberOfFollowers}</b>
+                            <span onClick={() => toggleStateFollowers(!formStateFollowers)} style={{ cursor: 'pointer' }}>Followers</span>
+                            <b onClick={() => toggleStateFollowers(!formStateFollowers)} style={{ cursor: 'pointer' }}>{numberOfFollowers}</b>
                         </li>
                     </ul>
                 </div>
@@ -109,7 +109,7 @@ const Main_left_sidebar = ({ avatar
                 <div className="post-project" >
                     <h3>People who you are following </h3>
                     <Following_pop_up following={following} />
-                    <a onClick={() => toggleStateFollowing("")} title="">
+                    <a onClick={() => toggleStateFollowing(!formStateFollowing)} title="">
                         <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
                     </a>
                 </div>
@@ -118,7 +118,7 @@ const Main_left_sidebar = ({ avatar
                 <div className="post-project" >
                     <h3>People who follows you </h3>
                     <Followers_pop_up followers={followers} />
-                    <a onClick={() => toggleStateFollowers("")} title="">
+                    <a onClick={() => toggleStateFollowers(!formStateFollowers)} title="">
                         <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
                     </a>
                 </div>

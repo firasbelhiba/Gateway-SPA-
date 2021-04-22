@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { getCurrentProfile } from "./profile";
+import { getCurrentProfile, Notify } from "./profile";
 import {
   GET_POSTS,
   GET_POST,

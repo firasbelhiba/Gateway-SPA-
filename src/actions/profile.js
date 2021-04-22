@@ -22,7 +22,8 @@ import {
   SAVED_POST,
   POST_HIDDEN,
   UNHIDE_POST,
-  PASSWORD_CHANGED
+  PASSWORD_CHANGED,
+  NOTIFY
 } from "./types";
 
 // Get profile from the logged in user
@@ -861,6 +862,49 @@ export const changePassword = (oldPassword, password) => async (
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Add Portfolio
+// we add history in parameters because we want to redirect to the dashboard after we finish adding
+export const notifyMe = (message) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ message });
+
+
+    const res = await axios.post(
+      "http://localhost:5000/api/profile/notify-me",
+      body,
+      config
+    );
+
+    dispatch({
+      type: NOTIFY,
+      payload: res.data,
+
+
+    });
+
+    dispatch(getCurrentProfile())
+
+    toast.success("Check notifications ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+
+
+
+  } catch (err) {
+
+
+    dispatch({
+      type: PROFILE_ERROR,
     });
   }
 };

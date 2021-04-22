@@ -16,6 +16,7 @@ import {
   savePost,
   hidePost,
   deleteHide,
+  notifyMe
 } from "../../actions/profile";
 
 import "./items/Css/post_item.css";
@@ -33,6 +34,7 @@ const Post_item = ({
   savePost,
   hidePost,
   deleteHide,
+  notifyMe,
   post: {
     _id,
     user,
@@ -59,13 +61,13 @@ const Post_item = ({
   let found = false;
   let hidden = false;
 
-  const [formState, toggleState] = useState("");
+  const [formState, toggleState] = useState(false);
 
-  if (formState === "likes") {
+  if (formState === true) {
     classActiveClose = "active";
   }
 
-  if (formState === "") {
+  if (formState === false) {
     classActiveClose = "";
   }
 
@@ -310,6 +312,7 @@ const Post_item = ({
                         onClick={(e) => {
                           addLike(_id);
                           toggleThumbsUp(!displayThumbsUp);
+                          notifyMe(`You liked the post of ${name}`)
                         }}
                       >
                         <i
@@ -333,8 +336,9 @@ const Post_item = ({
                     )}
                   </Fragment>
                 )}
-                <img onClick={() => toggleState("likes")} style={{ cursor: 'pointer' }} src="assets/images/liked-img.png" alt="" />
-                <span onClick={() => toggleState("likes")} style={{ cursor: 'pointer' }}>{likes.length}</span>
+
+                <img onClick={() => toggleState(!formState)} style={{ cursor: 'pointer' }} src="assets/images/liked-img.png" alt="" />
+                <span onClick={() => toggleState(!formState)} style={{ cursor: 'pointer' }}>{likes.length}</span>
               </li>
               <li>
                 <Link
@@ -393,12 +397,12 @@ const Post_item = ({
         <div className="post-project" >
           <h3>People who liked this post</h3>
           <Likes_pop_up likes={likes} />
-          <a onClick={() => toggleState("")} title="">
+          <a onClick={() => toggleState(!formState)} title="">
             <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
           </a>
         </div>
       </div>
-    </Fragment>
+    </Fragment >
   );
 };
 
@@ -418,6 +422,7 @@ Post_item.propTypes = {
   savePost: PropTypes.func.isRequired,
   hidePost: PropTypes.func.isRequired,
   deleteHide: PropTypes.func.isRequired,
+  notifyMe: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -434,4 +439,5 @@ export default connect(mapStateToProps, {
   savePost,
   hidePost,
   deleteHide,
+  notifyMe
 })(Post_item);

@@ -27,21 +27,22 @@ const QuestionButton = () => {
     const [category, setCategory] = useState();
     const [tags, setTags] = useState();
 
-    const Question = {
-        subject,
-        description,
-        category,
-        tags
-    }
-
     const submitDispatch = useDispatch();
 
     const handleSubmit = () => {
+        const user = JSON.parse(localStorage.getItem('user'))._id;
+        const Question = {
+            user,
+            subject,
+            description,
+            category,
+            tags
+        }
         console.log(Question);
         submitDispatch(createQuestion(Question))
         dispatch({type: 'close'});
     }
-    const user = JSON.parse(localStorage.getItem("user")) ;
+    const user = JSON.parse(localStorage.getItem("user"));
     console.log(user);
 
     return (

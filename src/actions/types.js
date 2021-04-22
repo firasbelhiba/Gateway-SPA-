@@ -19,6 +19,7 @@ export const PROFILE_ERROR = "PROFILE_ERROR";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const GET_REPOS = "GET_REPOS";
+export const PASSWORD_CHANGED = "PASSWORD_CHANGED";
 
 export const RESET_PASSWORD_MAIL = "RESET_PASSWORD_MAIL";
 export const NEW_PASSWORD_MAIL = "NEW_PASSWORD_MAIL";
@@ -63,5 +64,20 @@ export const GET_QUESTION_BY_ID = "GET_QUESTION_BY_ID";
 export const CREATE_ANSWER = "CREATE_ANSWER";
 export const QUESTION_ERROR = "QUESTION_ERROR";
 export const CREATE_REPLY = "CREATE_REPLY";
+export const SOLUTION = "SOLUTION";
+export const UPVOTE = "UPVOTE";
+export const CANCEL_UPVOTE = "CANCEL_UPVOTE";
+export const DOWNVOTE = "DOWNVOTE";
+export const CANCEL_DOWNVOTE = "CANCEL_DOWNVOTE";
+export const CREATE_ANSWER_REPORT = "CREATE_ANSWER_REPORT";
+export const DELETE_QUESTION = "DELETE_QUESTION";
+export const DELETE_ANSWER = "DELETE_ANSWER";
+
+
+
+
+
+
+
 
 

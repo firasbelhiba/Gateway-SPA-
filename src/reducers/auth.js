@@ -31,6 +31,7 @@ export default function (state = initialState, action) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
+      //tensech ya firas trod el res ta3 el http req yraja3 token + user-password ;)
       localStorage.setItem('user', JSON.stringify(payload.user));
       return {
         ...state,

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { getCurrentProfile, Notify } from "./profile";
+import { toast } from 'react-toastify';
+
 import {
   GET_POSTS,
   GET_POST,
@@ -60,6 +62,11 @@ export const addLike = (id) => async (dispatch) => {
       type: UPDATE_LIKES,
       payload: { id, likes: res.data },
     });
+
+    toast.success("You liked this post ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+
   } catch (error) {
     dispatch({
       type: POST_ERROR,

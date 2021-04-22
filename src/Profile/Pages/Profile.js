@@ -30,6 +30,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import SimpleReactLightbox from "simple-react-lightbox";
 
 
+
+
 const Profile = ({
   getCurrentProfile,
   profile: { profile, loading },

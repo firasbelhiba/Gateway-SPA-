@@ -93,83 +93,12 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
 
   const notification = (
     <li>
-      <Link to="" title="" className="not-box-open">
+      <Link to="/settings" title="" className="not-box-open">
         <span>
           <img src="assets/images/icon7.png" alt="" />
         </span>
         Notification
       </Link>
-      <div className="notification-box noti" id="notification">
-        <div className="nt-title">
-          <h4>Setting</h4>
-          <Link to="" title="">
-            Clear all
-          </Link>
-        </div>
-        <div className="nott-list">
-          <div className="notfication-details">
-            <div className="noty-user-img">
-              <img src="assets/images/resources/ny-img1.png" alt="" />
-            </div>
-            <div className="notification-info">
-              <h3>
-                <Link to="" title="">
-                  Jassica William
-                </Link>{" "}
-                Comment on your project.
-              </h3>
-              <span>2 min ago</span>
-            </div>
-          </div>
-          <div className="notfication-details">
-            <div className="noty-user-img">
-              <img src="assets/images/resources/ny-img2.png" alt="" />
-            </div>
-            <div className="notification-info">
-              <h3>
-                <Link to="" title="">
-                  Jassica William
-                </Link>{" "}
-                Comment on your project.
-              </h3>
-              <span>2 min ago</span>
-            </div>
-          </div>
-          <div className="notfication-details">
-            <div className="noty-user-img">
-              <img src="assets/images/resources/ny-img3.png" alt="" />
-            </div>
-            <div className="notification-info">
-              <h3>
-                <Link to="" title="">
-                  Jassica William
-                </Link>{" "}
-                Comment on your project.
-              </h3>
-              <span>2 min ago</span>
-            </div>
-          </div>
-          <div className="notfication-details">
-            <div className="noty-user-img">
-              <img src="assets/images/resources/ny-img2.png" alt="" />
-            </div>
-            <div className="notification-info">
-              <h3>
-                <Link to="" title="">
-                  Jassica William
-                </Link>{" "}
-                Comment on your project.
-              </h3>
-              <span>2 min ago</span>
-            </div>
-          </div>
-          <div className="view-all-nots">
-            <Link to="" title="">
-              View All Notification
-            </Link>
-          </div>
-        </div>
-      </div>
     </li>
   );
 
@@ -187,7 +116,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
         <div className="user-info">
           <img
             // src={this_user.avatar}
-              style={{ height: "30px", width: "30px" }}
+            style={{ height: "30px", width: "30px" }}
             alt=""
           />
           <Link title=""></Link>

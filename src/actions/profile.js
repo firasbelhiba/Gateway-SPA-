@@ -23,8 +23,11 @@ import {
   POST_HIDDEN,
   UNHIDE_POST,
   PASSWORD_CHANGED,
-  NOTIFY
+  NOTIFY,
+  NEW_NOTIFICATION,
+  REMOVE_NOTIFICATION
 } from "./types";
+
 
 // Get profile from the logged in user
 export const getCurrentProfile = () => async (dispatch) => {
@@ -877,7 +880,6 @@ export const notifyMe = (message) => async (dispatch) => {
 
     const body = JSON.stringify({ message });
 
-
     const res = await axios.post(
       "http://localhost:5000/api/profile/notify-me",
       body,
@@ -887,17 +889,13 @@ export const notifyMe = (message) => async (dispatch) => {
     dispatch({
       type: NOTIFY,
       payload: res.data,
-
-
     });
 
-    dispatch(getCurrentProfile())
+    dispatch(getCurrentProfile());
 
-    toast.success("Check notifications ! ", {
+    toast.info("New notification added ! ", {
       position: toast.POSITION.BOTTOM_LEFT
     });
-
-
 
   } catch (err) {
 
@@ -907,6 +905,8 @@ export const notifyMe = (message) => async (dispatch) => {
     });
   }
 };
+
+
 
 // Notify other user
 export const notifyOtherUser = (message, id) => async (dispatch) => {
@@ -919,7 +919,6 @@ export const notifyOtherUser = (message, id) => async (dispatch) => {
 
     const body = JSON.stringify({ message });
 
-
     const res = await axios.post(
       `http://localhost:5000/api/profile/notify-other-user/${id}`,
       body,
@@ -929,21 +928,11 @@ export const notifyOtherUser = (message, id) => async (dispatch) => {
     dispatch({
       type: NOTIFY,
       payload: res.data,
-
-
     });
 
-    dispatch(getCurrentProfile())
-
-    toast.success("Check notifications ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
-    });
-
-
+    dispatch(getCurrentProfile());
 
   } catch (err) {
-
-
     dispatch({
       type: PROFILE_ERROR,
     });

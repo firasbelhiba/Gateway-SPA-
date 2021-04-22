@@ -12,6 +12,8 @@ import {
   GET_THIS_PROFILE,
   FOLLOW,
   UNFOLLOW,
+  NEW_NOTIFICATION,
+  REMOVE_NOTIFICATION,
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +27,7 @@ const initialState = {
   sharedList: {},
   this_profile: null,
   following: {},
+  new_notification: false,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export

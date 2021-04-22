@@ -21,7 +21,6 @@ import {
 } from "../../actions/profile";
 
 import "./items/Css/post_item.css";
-import Views_pop_up from "./Pop-up/Views_pop_up";
 import Likes_pop_up from "./Pop-up/Likes_pop_up";
 
 const Post_item = ({

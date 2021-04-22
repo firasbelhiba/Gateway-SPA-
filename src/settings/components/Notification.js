@@ -1,114 +1,37 @@
 import React, { Fragment } from 'react'
+import TimeAgo from "timeago-react";
+
 
 const Notification = () => {
+    let this_profile = JSON.parse(localStorage.getItem("profile"));
+
     return (
         <Fragment>
             <div
-                className="tab-pane fade"
+                className="tab-pane fade show active"
                 id="nav-notification"
                 role="tabpanel"
                 aria-labelledby="nav-notification-tab"
             >
                 <div className="acc-setting">
                     <h3>Notifications</h3>
-                    <div className="notifications-list">
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img1.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Jassica William</a> Comment
-                                                             on your project.
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img2.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Poonam Verma</a> Bid on your
-                                                            Latest project.
-                                                        </h3>
-                                <span>2 min ago</span>
+                    {this_profile.notification.map(p => (
+                        <div className="notifications-list">
+
+                            <div className="notfication-details">
+                                <div className="noty-user-img">
+                                    <img src="images/resources/ny-img1.png" alt="" />
+                                </div>
+                                <div className="notification-info">
+                                    <h3>
+                                        {p.message}
+                                    </h3>
+                                    <span><TimeAgo datetime={p.date} locale="vi" /></span>
+                                </div>
                             </div>
                         </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img3.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Tonney Dhman</a> Comment on
-                                                            your project.
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img1.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Jassica William</a> Comment
-                                                            on your project.
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img1.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Jassica William</a> Comment
-                                                            on your project.
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img2.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Poonam Verma </a> Bid on your
-                                                            Latest project.
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img3.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Tonney Dhman</a> Comment on
-                                                            your project
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                        <div className="notfication-details">
-                            <div className="noty-user-img">
-                                <img src="images/resources/ny-img1.png" alt="" />
-                            </div>
-                            <div className="notification-info">
-                                <h3>
-                                    <a href="#" title="">Jassica William</a> Comment
-                                                            on your project.
-                                                        </h3>
-                                <span>2 min ago</span>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
+
                 </div>
             </div>
         </Fragment>

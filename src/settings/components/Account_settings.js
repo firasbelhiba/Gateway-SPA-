@@ -3,7 +3,7 @@ import React from 'react'
 const Account_settings = () => {
     return (
         <div
-            className="tab-pane fade show active"
+            className="tab-pane fade "
             id="nav-acc"
             role="tabpanel"
             aria-labelledby="nav-acc-tab"

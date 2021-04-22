@@ -19,6 +19,8 @@ import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
 import { getCurrentProfile } from "../../actions/profile";
 import SimpleReactLightbox from "simple-react-lightbox";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 let classActive = "";
 export const disable = () => {
@@ -160,13 +162,13 @@ const Forum = ({
                             else if (
                               searchDate === "today" &&
                               val.date.substr(8, 2) ===
-                                currentDate.toString().substr(8, 2)
+                              currentDate.toString().substr(8, 2)
                             )
                               return val;
                             else if (
                               searchDate === "month" &&
                               parseInt(val.date.substr(5, 2).toString(), 10) ===
-                                currentDate.getMonth() + 1
+                              currentDate.getMonth() + 1
                             )
                               return val;
                             else if (
@@ -177,7 +179,7 @@ const Forum = ({
                             } else if (
                               searchDate === "year" &&
                               val.date.substr(0, 4).toString() ===
-                                currentDate.getFullYear().toString()
+                              currentDate.getFullYear().toString()
                             )
                               return val;
                           })
@@ -368,6 +370,7 @@ const Forum = ({
           </div>
         </div>
       </body>
+      <ToastContainer />
     </Fragment>
   );
 };

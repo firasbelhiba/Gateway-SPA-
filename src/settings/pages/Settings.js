@@ -24,6 +24,16 @@ const Settings = () => {
                                     <div className="nav nav-tabs" id="nav-tab" role="tablist">
                                         <a
                                             className="nav-item nav-link active"
+                                            id="nav-notification-tab"
+                                            data-toggle="tab"
+                                            href="#nav-notification"
+                                            role="tab"
+                                            aria-controls="nav-notification"
+                                            aria-selected="false"
+                                        ><i className="fa fa-flash"></i>Notifications</a
+                                        >
+                                        <a
+                                            className="nav-item nav-link "
                                             id="nav-acc-tab"
                                             data-toggle="tab"
                                             href="#nav-acc"
@@ -52,16 +62,7 @@ const Settings = () => {
                                             aria-selected="false"
                                         ><i className="fa fa-lock"></i>Change Password</a
                                         >
-                                        <a
-                                            className="nav-item nav-link"
-                                            id="nav-notification-tab"
-                                            data-toggle="tab"
-                                            href="#nav-notification"
-                                            role="tab"
-                                            aria-controls="nav-notification"
-                                            aria-selected="false"
-                                        ><i className="fa fa-flash"></i>Notifications</a
-                                        >
+
                                         <a
                                             className="nav-item nav-link"
                                             id="nav-privcy-tab"
@@ -117,10 +118,10 @@ const Settings = () => {
                             </div>
                             <div className="col-lg-9">
                                 <div className="tab-content" id="nav-tabContent">
+                                    <Notification />
                                     <Account_settings />
                                     <Status />
                                     <Change_password />
-                                    <Notification />
                                     <Requests />
                                     <Security_and_login />
                                     <Blocking />

@@ -523,9 +523,8 @@ nav ul ul li a {
   width: 300px;
   background-color: #fff;
   opacity: 1;
-  visibility: visible;
+  visibility: hidden;
   z-index: 999;
-  display: none;
 }
 .notification-box.active {
   opacity: 1;

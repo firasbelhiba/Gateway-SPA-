@@ -16,7 +16,8 @@ import {
   savePost,
   hidePost,
   deleteHide,
-  notifyMe
+  notifyMe,
+  notifyOtherUser
 } from "../../actions/profile";
 
 import "./items/Css/post_item.css";
@@ -35,6 +36,7 @@ const Post_item = ({
   hidePost,
   deleteHide,
   notifyMe,
+  notifyOtherUser,
   post: {
     _id,
     user,
@@ -87,6 +89,7 @@ const Post_item = ({
 
   const [displayThumbsUp, toggleThumbsUp] = useState(found);
   const [displaySettings, toggleSettings] = useState(true);
+
 
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
@@ -312,7 +315,8 @@ const Post_item = ({
                         onClick={(e) => {
                           addLike(_id);
                           toggleThumbsUp(!displayThumbsUp);
-                          notifyMe(`You liked the post of ${name}`)
+                          notifyMe(`You liked the post of ${name}`);
+                          notifyOtherUser(`${profile.name} liked your "${title}" post `, user);
                         }}
                       >
                         <i
@@ -423,6 +427,7 @@ Post_item.propTypes = {
   hidePost: PropTypes.func.isRequired,
   deleteHide: PropTypes.func.isRequired,
   notifyMe: PropTypes.func.isRequired,
+  notifyOtherUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -439,5 +444,6 @@ export default connect(mapStateToProps, {
   savePost,
   hidePost,
   deleteHide,
-  notifyMe
+  notifyMe,
+  notifyOtherUser
 })(Post_item);

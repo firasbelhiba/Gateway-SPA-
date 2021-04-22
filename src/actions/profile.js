@@ -866,8 +866,7 @@ export const changePassword = (oldPassword, password) => async (
   }
 };
 
-// Add Portfolio
-// we add history in parameters because we want to redirect to the dashboard after we finish adding
+// Notify me
 export const notifyMe = (message) => async (dispatch) => {
   try {
     const config = {
@@ -908,3 +907,46 @@ export const notifyMe = (message) => async (dispatch) => {
     });
   }
 };
+
+// Notify other user
+export const notifyOtherUser = (message, id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ message });
+
+
+    const res = await axios.post(
+      `http://localhost:5000/api/profile/notify-other-user/${id}`,
+      body,
+      config
+    );
+
+    dispatch({
+      type: NOTIFY,
+      payload: res.data,
+
+
+    });
+
+    dispatch(getCurrentProfile())
+
+    toast.success("Check notifications ! ", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+
+
+
+  } catch (err) {
+
+
+    dispatch({
+      type: PROFILE_ERROR,
+    });
+  }
+};
+

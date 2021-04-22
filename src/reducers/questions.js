@@ -10,6 +10,8 @@ import {
     DOWNVOTE,
     CANCEL_DOWNVOTE,
     CREATE_ANSWER_REPORT,
+    DELETE_QUESTION,
+    DELETE_ANSWER,
 } from "../actions/types";
 
 const initialState = {
@@ -84,6 +86,18 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case CREATE_ANSWER_REPORT:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case DELETE_QUESTION:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case DELETE_ANSWER:
             return {
                 ...state,
                 question: payload,

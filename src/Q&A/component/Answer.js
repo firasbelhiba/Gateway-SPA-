@@ -3,7 +3,7 @@ import faker from "faker";
 import Discussion from './Discussion'
 import {Button, Accordion, Icon, Popup} from 'semantic-ui-react'
 import {useDispatch} from "react-redux";
-import {createReply, markSolution, createAnswerReport} from "../../actions/questions";
+import {createReply, markSolution, createAnswerReport, deleteAnswer} from "../../actions/questions";
 
 const Answer = (props) => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -43,6 +43,10 @@ const Answer = (props) => {
 
     const solutionSubmit = () => {
         dispatch(markSolution(props.idQ, props.idA))
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteAnswer(props.idQ, props.idA))
     }
     let sol = '';
     let color = 'green';
@@ -110,6 +114,9 @@ const Answer = (props) => {
                         pinned
                         trigger={<a className="reply">Report</a>}
                     />
+                    {JSON.parse(localStorage.getItem('user'))._id === props.answerUser ? (
+                        <a className="like" onClick={handleDelete}>Delete</a>
+                    ) : (<></>)}
                 </div>
             </div>
             {result.length ? (

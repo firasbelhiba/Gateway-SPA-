@@ -76,7 +76,7 @@ const Profile = ({
                     {myProfile.githubusername && (
                       <Profile_Github username={myProfile.githubusername} />
                     )}
-                    <People_viewed_profile />
+                    <People_viewed_profile views_profile={myProfile.views_profile} />
                   </div>
                   <div className="col-lg-6">
                     <div className="main-ws-sec">

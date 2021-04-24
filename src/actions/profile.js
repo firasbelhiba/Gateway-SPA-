@@ -25,7 +25,8 @@ import {
   PASSWORD_CHANGED,
   NOTIFY,
   NEW_NOTIFICATION,
-  REMOVE_NOTIFICATION
+  REMOVE_NOTIFICATION,
+  PROFILE_VIEWED
 } from "./types";
 
 
@@ -939,3 +940,24 @@ export const notifyOtherUser = (message, id) => async (dispatch) => {
   }
 };
 
+
+//view porfile 
+export const viewProfile = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`http://localhost:5000/api/profile/view/${id}`);
+
+    dispatch({
+      type: PROFILE_VIEWED,
+      payload: res.data,
+    });
+    dispatch(getCurrentProfile());
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};

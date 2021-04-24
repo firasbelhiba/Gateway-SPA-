@@ -28,6 +28,7 @@ import Profile_Github from "../components/Profile_Github";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SimpleReactLightbox from "simple-react-lightbox";
+import Saved_post_profile from "../components/Saved_post_profile";
 
 
 
@@ -122,6 +123,12 @@ const Profile = ({
                                 <span>Reviews</span>
                               </a>
                             </li>
+                            <li onClick={() => setId("saved_post")}>
+                              <a title="">
+                                <i class="far fa-save mb-1 fa-2x" style={{ color: "rgba(0,0,0,.25)" }}></i>
+                                <span>Saved Post</span>
+                              </a>
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -149,6 +156,7 @@ const Profile = ({
                         </SimpleReactLightbox>
                       )}
                       {id === "reviews" && <Review_profile />}
+                      {id === "saved_post" && <Saved_post_profile savedPost={myProfile.saved_post} />}
                     </div>
                   </div>
                   <div className="col-lg-3">

@@ -2,26 +2,62 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FacebookLogin from 'react-facebook-login';
+import Recaptcha from 'react-recaptcha';
+
+
 
 import './AuthForm.css';
 import { Link, Redirect } from 'react-router-dom';
 
 const AuthForm = ({ login, isAuthenticated }) => {
+
+    const [facebookForm, setFacebookForm] = useState({
+        userID: '',
+        name: '',
+        email: '',
+        picture: ''
+    })
+
+    const [isVerified, setIsVerified] = useState(false);
+
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
 
+    //console.log(isVerified)
+
 
     const { email, password } = formData;
+
+    const recaptchaLoaded = () => {
+        console.log('recaptcha loaded succefully ! ')
+    }
+
+    const verifyCallback = (response) => {
+        if (response) setIsVerified(true);
+    }
+
+    console.log(isVerified)
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = async e => {
-        e.preventDefault();
-        login(email, password);
+        if (!isVerified) {
+            toast.error("Are you a robot ? Verify first ! ", {
+                position: toast.POSITION.BOTTOM_LEFT
+            });
+        }
+
+        if (isVerified) {
+            e.preventDefault();
+            login(email, password);
+        }
+
     }
 
     // If you are logged in you get redirected to /forum
@@ -79,18 +115,23 @@ const AuthForm = ({ login, isAuthenticated }) => {
                                     <Link to="/reset-password" title="">Forgot Password?</Link>
                                 </div>
                             </div>
-                            <div className="col-lg-12 no-pdd">
+                            {isVerified && <div className="col-lg-12 no-pdd mb-2">
                                 <button type="submit" value="submit">Sign in</button>
-                            </div>
+                            </div>}
                         </div>
                     </form>
+                    <Recaptcha
+                        sitekey="6Lc4-7gaAAAAAHy5aTmR529Jtx8FjbIyGXgsZhX-"
+                        render="explicit"
+                        onloadCallback={() => recaptchaLoaded()}
+                        verifyCallback={(response) => verifyCallback(response)}
+                    />,
                     <div className="login-resources">
                         <h4>Login Via Social Account</h4>
                         <ul>
                             <li>
-                                <a href="!#" title="" className="fb"
-                                ><i className="fa fa-facebook"></i>Login Via Facebook</a
-                                >
+                                <Link to="/login-with-facebook" title="" className="fb"
+                                ><i className="fa fa-facebook"></i>Login Via Facebook</Link>
                             </li>
                             <li>
                                 <a href="!#" title="" className="tw"

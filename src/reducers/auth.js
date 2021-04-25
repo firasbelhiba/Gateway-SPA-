@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case USER_LOADED:
-      //hedhi matensehech ya firas 
+      //hedhi matensehech ya firas
       //    localStorage.setItem('user', JSON.stringify(payload));
       return {
         ...state,
@@ -32,7 +32,9 @@ export default function (state = initialState, action) {
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       //tensech ya firas trod el res ta3 el http req yraja3 token + user-password ;)
-      localStorage.setItem('user', JSON.stringify(payload.user));
+      localStorage.setItem("user", JSON.stringify(payload.user));
+      localStorage.setItem("stackoverflow", null);
+
       return {
         ...state,
         ...payload,

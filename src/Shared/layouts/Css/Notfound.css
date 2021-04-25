@@ -1,0 +1,221 @@
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+@-webkit-keyframes rotate {
+  25% {
+    -webkit-transform: rotate(-28deg);
+    -ms-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+  75% {
+    -webkit-transform: rotate(28deg);
+    -ms-transform: rotate(28deg);
+    transform: rotate(28deg);
+  }
+}
+@-moz-keyframes rotate {
+  25% {
+    -webkit-transform: rotate(-28deg);
+    -ms-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+  75% {
+    -webkit-transform: rotate(28deg);
+    -ms-transform: rotate(28deg);
+    transform: rotate(28deg);
+  }
+}
+@-o-keyframes rotate {
+  25% {
+    -webkit-transform: rotate(-28deg);
+    -ms-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+  75% {
+    -webkit-transform: rotate(28deg);
+    -ms-transform: rotate(28deg);
+    transform: rotate(28deg);
+  }
+}
+@keyframes rotate {
+  25% {
+    -webkit-transform: rotate(-28deg);
+    -ms-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+  75% {
+    -webkit-transform: rotate(28deg);
+    -ms-transform: rotate(28deg);
+    transform: rotate(28deg);
+  }
+}
+@-webkit-keyframes msg_first {
+  0%, 25%, 75.001%, 100% {
+    opacity: 1;
+  }
+  25.001%, 75% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes msg_first {
+  0%, 25%, 75.001%, 100% {
+    opacity: 1;
+  }
+  25.001%, 75% {
+    opacity: 0;
+  }
+}
+@-o-keyframes msg_first {
+  0%, 25%, 75.001%, 100% {
+    opacity: 1;
+  }
+  25.001%, 75% {
+    opacity: 0;
+  }
+}
+@keyframes msg_first {
+  0%, 25%, 75.001%, 100% {
+    opacity: 1;
+  }
+  25.001%, 75% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes msg_second {
+  0%, 25%, 75.001%, 100% {
+    opacity: 0;
+  }
+  25.001%, 75% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes msg_second {
+  0%, 25%, 75.001%, 100% {
+    opacity: 0;
+  }
+  25.001%, 75% {
+    opacity: 1;
+  }
+}
+@-o-keyframes msg_second {
+  0%, 25%, 75.001%, 100% {
+    opacity: 0;
+  }
+  25.001%, 75% {
+    opacity: 1;
+  }
+}
+@keyframes msg_second {
+  0%, 25%, 75.001%, 100% {
+    opacity: 0;
+  }
+  25.001%, 75% {
+    opacity: 1;
+  }
+}
+.whole {
+  margin: 0;
+  overflow: hidden;
+  background: #153b44;
+}
+.whole .container-404 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36vmin;
+  height: 77.94vmin;
+  margin-left: -18vmin;
+  margin-top: 0.03vmin;
+}
+.whole .container-404:first-child {
+  transform-origin: 50% 100%;
+  -webkit-animation: rotate 9s infinite linear;
+  -moz-animation: rotate 9s infinite linear;
+  -o-animation: rotate 9s infinite linear;
+  animation: rotate 9s infinite linear;
+}
+.whole .container-404:last-of-type {
+  pointer-events: none;
+}
+.whole .container-404 #switch {
+  display: none;
+}
+.whole .container-404 #switch:checked ~ .ellipse, .whole .container-404 #switch:checked ~ .ray {
+  opacity: 0;
+}
+.whole .container-404 .ellipse {
+  position: relative;
+  width: 36vmin;
+  height: 27vmin;
+  background: #fffee2;
+  border-radius: 50%;
+  z-index: 1;
+}
+.whole .container-404 .ray {
+  position: relative;
+  border-top: 36vmin solid #8d8e7e;
+  border-left: 11.7vmin solid transparent;
+  border-right: 11.7vmin solid transparent;
+  margin-top: -12.6vmin;
+}
+.whole .container-404 .head {
+  position: relative;
+  width: 14.4vmin;
+  height: 1.8vmin;
+  margin-left: 10.8vmin;
+  background: #17a2b8;
+}
+.whole .container-404 .neck {
+  position: relative;
+  width: 7.38vmin;
+  margin-left: 10.8vmin;
+  border-top: 4.32vmin solid #333333;
+  border-left: 3.6vmin solid transparent;
+  border-right: 3.6vmin solid transparent;
+}
+.whole .container-404 .whole {
+  position: relative;
+  width: 7.308vmin;
+  margin-left: 14.4vmin;
+  height: 21.6vmin;
+  background: #153b44;
+}
+.whole .container-404 label {
+  position: absolute;
+  top: 3.6vmin;
+  left: 2.628vmin;
+  width: 1.44vmin;
+  height: 3.6vmin;
+  border: 0.432vmin solid #333333;
+  background: #17a2b8;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.whole .msg {
+  position: absolute;
+  width: 36vmin;
+  margin-left: -18vmin;
+  left: 50%;
+  text-align: center;
+  font-family: "Fjalla One", sans-serif;
+  color: #153b44;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 2;
+}
+.whole .msg.msg_1 {
+  top: 6.3vmin;
+  font-size: 12vmin;
+  -webkit-animation: msg_first 9s infinite linear;
+  -moz-animation: msg_first 9s infinite linear;
+  -o-animation: msg_first 9s infinite linear;
+  animation: msg_first 9s infinite linear;
+}
+.whole .msg.msg_2 {
+  top: 10.8vmin;
+  font-size: 4.2vmin;
+  -webkit-animation: msg_second 9s infinite linear;
+  -moz-animation: msg_second 9s infinite linear;
+  -o-animation: msg_second 9s infinite linear;
+  animation: msg_second 9s infinite linear;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import TimeAgo from "timeago-react";
 
 
@@ -39,12 +40,6 @@ export const People_viewed_profile = ({ views_profile }) => {
         }
     }
 
-
-
-
-
-    console.log(Top5)
-
     return (
         <div className="suggestions full-width">
             <div className="sd-title">
@@ -70,7 +65,7 @@ export const People_viewed_profile = ({ views_profile }) => {
                 ))}
 
                 <div className="view-more">
-                    <a href="#" title="">View More</a>
+                    <Link to="/settings" title="">View More</Link>
                 </div>
             </div>
         </div>

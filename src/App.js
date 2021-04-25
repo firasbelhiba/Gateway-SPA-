@@ -49,6 +49,8 @@ import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form"
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
 import Settings from "./settings/pages/Settings";
 import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
+import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
+import Notfound from "./Shared/layouts/Notfound";
 import { getScrapedData } from "./actions/scraping";
 
 if (localStorage.token) {
@@ -80,11 +82,10 @@ function App() {
                 component={Forget_you_password}
               />
               <Route exact path="/new-password" component={New_password} />
-              <Route
-                exact
-                path="/login-with-google"
-                component={Register_with_google}
-              />
+              <Route exact path="/login-with-google" component={Register_with_google} />
+              <Route exact path="/login-with-facebook" component={Register_with_facebook} />
+
+
               <Route exact path="/jobs" component={Jobs} />
               <Route exact path="/q_and_a" component={QuestionsSection} />
               <Route
@@ -158,6 +159,7 @@ function App() {
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
               <PrivateRoute exact path="/settings" component={Settings} />
+              <Route component={Notfound} />
             </Switch>
             {/* <Chat /> */}
           </section>

@@ -4,7 +4,7 @@ import auth from "./auth";
 import profile from "./profile";
 import post from "./post";
 import question from "./questions";
-
+import scraping from "./scraping";
 
 export default combineReducers({
   alert,
@@ -12,4 +12,5 @@ export default combineReducers({
   profile,
   post,
   question,
+  scraping,
 });

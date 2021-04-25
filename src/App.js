@@ -49,6 +49,7 @@ import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form"
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
 import Settings from "./settings/pages/Settings";
 import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
+import { getScrapedData } from "./actions/scraping";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -59,6 +60,7 @@ function App() {
     store.dispatch(loadUser());
     store.dispatch(getCurrentProfile());
     store.dispatch(getAllProfiles());
+    store.dispatch(getScrapedData());
   }, []);
 
   return (
@@ -78,7 +80,11 @@ function App() {
                 component={Forget_you_password}
               />
               <Route exact path="/new-password" component={New_password} />
-              <Route exact path="/login-with-google" component={Register_with_google} />
+              <Route
+                exact
+                path="/login-with-google"
+                component={Register_with_google}
+              />
               <Route exact path="/jobs" component={Jobs} />
               <Route exact path="/q_and_a" component={QuestionsSection} />
               <Route

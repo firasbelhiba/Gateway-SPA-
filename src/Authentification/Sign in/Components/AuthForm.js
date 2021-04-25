@@ -21,7 +21,7 @@ const AuthForm = ({ login, isAuthenticated }) => {
         picture: ''
     })
 
-    const [isVerified, setIsVerified] = useState(false);
+    const [isVerified, setIsVerified] = useState(true);
 
 
     const [formData, setFormData] = useState({
@@ -115,17 +115,19 @@ const AuthForm = ({ login, isAuthenticated }) => {
                                     <Link to="/reset-password" title="">Forgot Password?</Link>
                                 </div>
                             </div>
+                            <Recaptcha
+                                sitekey="6Lc4-7gaAAAAAHy5aTmR529Jtx8FjbIyGXgsZhX-"
+                                render="explicit"
+                                onloadCallback={() => recaptchaLoaded()}
+                                verifyCallback={(response) => verifyCallback(response)}
+
+                            />
                             {isVerified && <div className="col-lg-12 no-pdd mb-2">
                                 <button type="submit" value="submit">Sign in</button>
                             </div>}
                         </div>
                     </form>
-                    <Recaptcha
-                        sitekey="6Lc4-7gaAAAAAHy5aTmR529Jtx8FjbIyGXgsZhX-"
-                        render="explicit"
-                        onloadCallback={() => recaptchaLoaded()}
-                        verifyCallback={(response) => verifyCallback(response)}
-                    />,
+
                     <div className="login-resources">
                         <h4>Login Via Social Account</h4>
                         <ul>

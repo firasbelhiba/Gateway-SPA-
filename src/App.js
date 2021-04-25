@@ -50,7 +50,7 @@ import Certification_edit_form from "./Profile/components/Forms/Certification_ed
 import Settings from "./settings/pages/Settings";
 import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
 import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
-
+import Notfound from "./Shared/layouts/Notfound";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -157,6 +157,7 @@ function App() {
               <PrivateRoute exact path="/report-post" component={Report_Form} />
               <PrivateRoute exact path="/messages" component={Messages} />
               <PrivateRoute exact path="/settings" component={Settings} />
+              <Route component={Notfound} />
             </Switch>
             {/* <Chat /> */}
           </section>

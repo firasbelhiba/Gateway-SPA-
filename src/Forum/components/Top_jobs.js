@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 const Top_jobs = ({ getScrapedData }) => {
   let scrapedDataSO = JSON.parse(localStorage.getItem("stackoverflow"));
-  console.log("this is the this is ", scrapedDataSO);
 
   return (
     <div>

@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
       //tensech ya firas trod el res ta3 el http req yraja3 token + user-password ;)
       localStorage.setItem("user", JSON.stringify(payload.user));
       localStorage.setItem("stackoverflow", null);
-
+      localStorage.setItem("tanitjob", null);
       return {
         ...state,
         ...payload,

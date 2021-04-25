@@ -48,6 +48,7 @@ export const DELETE_SHARE = "DELETE_SHARE";
 export const ADD_POST = "ADD_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const SAVED_POST = "SAVED_POST";
+export const UNSAVED_POST = "UNSAVED_POST";
 export const POST_HIDDEN = "POST_HIDDEN";
 export const UNHIDE_POST = "UNHIDE_POST";
 
@@ -76,11 +77,7 @@ export const CREATE_ANSWER_REPORT = "CREATE_ANSWER_REPORT";
 export const DELETE_QUESTION = "DELETE_QUESTION";
 export const DELETE_ANSWER = "DELETE_ANSWER";
 
-
-
-
-
-
-
-
-
+// Scrapng types
+export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";
+export const GET_STACKOVERFLOW_SCRAPED_DATA = "GET_STACKOVERFLOW_SCRAPED_DATA";
+export const SCRAPING_ERROR = "SCRAPING_ERROR";

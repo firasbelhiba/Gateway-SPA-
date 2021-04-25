@@ -51,6 +51,7 @@ import Settings from "./settings/pages/Settings";
 import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
 import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
 import Notfound from "./Shared/layouts/Notfound";
+import { getScrapedData } from "./actions/scraping";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -61,6 +62,7 @@ function App() {
     store.dispatch(loadUser());
     store.dispatch(getCurrentProfile());
     store.dispatch(getAllProfiles());
+    store.dispatch(getScrapedData());
   }, []);
 
   return (

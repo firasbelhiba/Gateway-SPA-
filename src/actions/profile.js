@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { loadUser } from "./auth";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import { getPosts } from "./post";
 
@@ -26,9 +26,9 @@ import {
   NOTIFY,
   NEW_NOTIFICATION,
   REMOVE_NOTIFICATION,
-  PROFILE_VIEWED
+  PROFILE_VIEWED,
+  UNSAVED_POST,
 } from "./types";
-
 
 // Get profile from the logged in user
 export const getCurrentProfile = () => async (dispatch) => {
@@ -80,7 +80,7 @@ export const createProfile = (formData, history, edit = false) => async (
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -114,18 +114,17 @@ export const addExperience = (formData, history) => async (dispatch) => {
     });
 
     toast.success("Experience added with success ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     history.push("/myprofile");
-
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -159,7 +158,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
     });
 
     toast.success("Education added with success ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     history.push("/myprofile");
@@ -169,7 +168,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -203,7 +202,7 @@ export const addVolunteer = (formData, history) => async (dispatch) => {
     });
 
     toast.success("Volunteer experience added with success ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     history.push("/myprofile");
@@ -213,7 +212,7 @@ export const addVolunteer = (formData, history) => async (dispatch) => {
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -247,7 +246,7 @@ export const addCertification = (formData, history) => async (dispatch) => {
     });
 
     toast.success("Certification added with success ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     history.push("/myprofile");
@@ -257,7 +256,7 @@ export const addCertification = (formData, history) => async (dispatch) => {
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -466,7 +465,9 @@ export const updateVolunteer = (formData, history, id) => async (dispatch) => {
 
 // Update Certification
 // we add history in parameters because we want to redirect to the dashboard after we finish adding
-export const updateCertification = (formData, history, id) => async (dispatch) => {
+export const updateCertification = (formData, history, id) => async (
+  dispatch
+) => {
   try {
     const config = {
       headers: {
@@ -727,6 +728,31 @@ export const savePost = (id) => async (dispatch) => {
 };
 
 //@author Ghada Khedri
+//Unsave post
+export const unsavePost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/posts/unsaved/${id}`
+    );
+
+    dispatch({
+      type: UNSAVED_POST,
+      payload: res.data,
+    });
+
+    dispatch(getCurrentProfile());
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//@author Ghada Khedri
 //Hide post
 export const hidePost = (id) => async (dispatch) => {
   try {
@@ -777,7 +803,6 @@ export const deleteHide = (id) => async (dispatch) => {
   }
 };
 
-
 // Add Portfolio
 // we add history in parameters because we want to redirect to the dashboard after we finish adding
 export const addPortfolio = (formData, history) => async (dispatch) => {
@@ -800,18 +825,17 @@ export const addPortfolio = (formData, history) => async (dispatch) => {
     });
 
     toast.success("Portfolio item added with success ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     history.push("/myprofile");
-
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -823,11 +847,8 @@ export const addPortfolio = (formData, history) => async (dispatch) => {
   }
 };
 
-
 // Change password
-export const changePassword = (oldPassword, password) => async (
-  dispatch
-) => {
+export const changePassword = (oldPassword, password) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -848,7 +869,7 @@ export const changePassword = (oldPassword, password) => async (
     });
 
     toast.success(res.data.message, {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     dispatch(loadUser());
@@ -858,7 +879,7 @@ export const changePassword = (oldPassword, password) => async (
     if (errors) {
       errors.forEach((e) => {
         toast.error(e.message, {
-          position: toast.POSITION.BOTTOM_LEFT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       });
     }
@@ -895,19 +916,14 @@ export const notifyMe = (message) => async (dispatch) => {
     dispatch(getCurrentProfile());
 
     toast.info("New notification added ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
-
   } catch (err) {
-
-
     dispatch({
       type: PROFILE_ERROR,
     });
   }
 };
-
-
 
 // Notify other user
 export const notifyOtherUser = (message, id) => async (dispatch) => {
@@ -932,7 +948,6 @@ export const notifyOtherUser = (message, id) => async (dispatch) => {
     });
 
     dispatch(getCurrentProfile());
-
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -940,8 +955,7 @@ export const notifyOtherUser = (message, id) => async (dispatch) => {
   }
 };
 
-
-//view porfile 
+//view porfile
 export const viewProfile = (id) => async (dispatch) => {
   try {
     const res = await axios.put(`http://localhost:5000/api/profile/view/${id}`);

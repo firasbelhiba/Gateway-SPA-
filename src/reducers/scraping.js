@@ -1,11 +1,12 @@
 import {
   GET_STACKOVERFLOW_SCRAPED_DATA,
   SCRAPING_ERROR,
+  GET_TANITJOB_SCRAPED_DATA,
 } from "../actions/types";
 
 const initialState = {
   stackoverflow_data: [],
-  tanitjobs_data: [],
+  tanitjob_data: [],
   loading: true,
   error: {},
 };
@@ -18,6 +19,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         stackoverflow_data: payload,
+        loading: false,
+      };
+
+    case GET_TANITJOB_SCRAPED_DATA:
+      localStorage.setItem("tanitjob", JSON.stringify(payload));
+      return {
+        ...state,
+        tanitjob_data: payload,
         loading: false,
       };
 

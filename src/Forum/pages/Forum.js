@@ -21,6 +21,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import SimpleReactLightbox from "simple-react-lightbox";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Top_tanitjobs from "../components/Top_tanitjobs";
 
 let classActive = "";
 export const disable = () => {
@@ -54,32 +55,6 @@ const Forum = ({
 
   let currentDate = new Date();
 
-  function isThisWeek(date) {
-    const now = new Date();
-
-    const weekDay = (now.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
-    const monthDay = now.getDate();
-    const mondayThisWeek = monthDay - weekDay;
-
-    const startOfThisWeek = new Date(+now);
-    startOfThisWeek.setDate(mondayThisWeek);
-    startOfThisWeek.setHours(0, 0, 0, 0);
-
-    const startOfNextWeek = new Date(+startOfThisWeek);
-    startOfNextWeek.setDate(mondayThisWeek + 7);
-
-    return date >= startOfThisWeek && date < startOfNextWeek;
-  }
-
-  function compareViews(a, b) {
-    if (a.views.length < b.views.length) {
-      return 1;
-    }
-    if (a.views.length > b.views.length) {
-      return -1;
-    }
-    return 0;
-  }
   function compareLikes(a, b) {
     if (a.likes.length < b.likes.length) {
       return 1;
@@ -114,6 +89,7 @@ const Forum = ({
                       <div className="main-left-sidebar no-margin">
                         <User_data thisProfile={thisProfile} />
                         <Suggestions />
+                        <Top_tanitjobs />
                         <Tags />
                       </div>
                     </div>
@@ -172,16 +148,56 @@ const Forum = ({
                             )
                               return val;
                             else if (
-                              searchDate === "week" &&
-                              isThisWeek(Date(val.date))
-                            ) {
-                              return val;
-                            } else if (
                               searchDate === "year" &&
                               val.date.substr(0, 4).toString() ===
                                 currentDate.getFullYear().toString()
                             )
                               return val;
+                          })
+                          .sort((a, b) => {
+                            if (
+                              searchSort === "Sort by views" &&
+                              a.views.length < b.views.length
+                            ) {
+                              return 1;
+                            }
+                            if (
+                              searchSort === "Sort by views" &&
+                              a.views.length > b.views.length
+                            ) {
+                              return -1;
+                            }
+                            return 0;
+                          })
+                          .sort((a, b) => {
+                            if (
+                              searchSort === "Sort by likes" &&
+                              a.likes.length < b.likes.length
+                            ) {
+                              return 1;
+                            }
+                            if (
+                              searchSort === "Sort by likes" &&
+                              a.likes.length > b.likes.length
+                            ) {
+                              return -1;
+                            }
+                            return 0;
+                          })
+                          .sort((a, b) => {
+                            if (
+                              searchSort === "Sort by comments" &&
+                              a.comments.length < b.comments.length
+                            ) {
+                              return 1;
+                            }
+                            if (
+                              searchSort === "Sort by comments" &&
+                              a.comments.length > b.comments.length
+                            ) {
+                              return -1;
+                            }
+                            return 0;
                           })
                           .map((post) => (
                             <SimpleReactLightbox>

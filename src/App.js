@@ -52,7 +52,7 @@ import Register_with_google from "./Authentification/Register with google/pages/
 import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
 import Register_with_github from "./Authentification/Register with github/pages/Register_with_github";
 import Notfound from "./Shared/layouts/Notfound";
-import { getScrapedData } from "./actions/scraping";
+import { getScrapedData, getScrapedDataTJ } from "./actions/scraping";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -65,6 +65,7 @@ function App() {
     store.dispatch(getAllProfiles());
     store.dispatch(getScrapedData());
     store.dispatch(getSuggestions());
+    store.dispatch(getScrapedDataTJ());
   }, []);
 
   return (

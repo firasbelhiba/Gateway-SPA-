@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import { register } from '../../../actions/auth';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -133,9 +133,8 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                         <h4>Login Via Social Account</h4>
                                         <ul>
                                             <li>
-                                                <a href="!#" title="" className="fb"
-                                                ><i className="fa fa-facebook"></i>Login Via Facebook</a
-                                                >
+                                                <Link to="/login-with-facebook" title="" className="fb"
+                                                ><i className="fa fa-facebook"></i>Login Via Facebook</Link>
                                             </li>
                                             <li>
                                                 <a href="!#" title="" className="tw"
@@ -146,6 +145,10 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                                 <a style={{ backgroundColor: '#DE5246' }} href="http://localhost:5000/api/users/google" title="" className="tw"
                                                 ><i className="fab fa-google"></i>Login Via LinkedIn</a
                                                 >
+                                            </li>
+                                            <li>
+                                                <Link to='/login-with-github' style={{ backgroundColor: '#24292e' }} href="!#" title="" className="tw"
+                                                ><i className="fab fa-github"></i>Login Via Github</Link>
                                             </li>
                                         </ul>
                                     </div>

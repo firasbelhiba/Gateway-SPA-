@@ -28,6 +28,7 @@ import {
   REMOVE_NOTIFICATION,
   PROFILE_VIEWED,
   UNSAVED_POST,
+  GET_SUGGESTIONS,
 } from "./types";
 
 // Get profile from the logged in user
@@ -972,6 +973,23 @@ export const viewProfile = (id) => async (dispatch) => {
         msg: error.response.statusText,
         status: error.response.status,
       },
+    });
+  }
+};
+
+// Get profile suggestions for new friends 
+export const getSuggestions = () => async (dispatch) => {
+  try {
+    const res = await axios.get("http://localhost:5000/api/profile/suggestion");
+
+    dispatch({
+      type: GET_SUGGESTIONS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

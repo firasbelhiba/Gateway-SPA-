@@ -14,6 +14,7 @@ import {
   UNFOLLOW,
   NEW_NOTIFICATION,
   REMOVE_NOTIFICATION,
+  GET_SUGGESTIONS
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
   this_profile: null,
   following: {},
   new_notification: false,
+  suggestion_list: []
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -80,6 +82,13 @@ export default function (state = initialState, action) {
         ...state,
         profile: null,
         repos: [],
+        loading: false,
+      };
+    case GET_SUGGESTIONS:
+      localStorage.setItem("suggestions_friends", JSON.stringify(payload));
+      return {
+        ...state,
+        suggestion_list: payload,
         loading: false,
       };
     case GET_REPOS:

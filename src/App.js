@@ -22,7 +22,7 @@ import store from "./store";
 import Chat from "./Shared/layouts/Chat";
 import Messages from "./Messages/pages/Messages";
 import { loadUser } from "./actions/auth";
-import { getAllProfiles, getCurrentProfile } from "./actions/profile";
+import { getAllProfiles, getCurrentProfile, getSuggestions } from "./actions/profile";
 import PrivateRoute from "./routing/PrivateRoute";
 import Profile from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
@@ -50,6 +50,7 @@ import Certification_edit_form from "./Profile/components/Forms/Certification_ed
 import Settings from "./settings/pages/Settings";
 import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
 import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
+import Register_with_github from "./Authentification/Register with github/pages/Register_with_github";
 import Notfound from "./Shared/layouts/Notfound";
 import { getScrapedData } from "./actions/scraping";
 
@@ -63,6 +64,7 @@ function App() {
     store.dispatch(getCurrentProfile());
     store.dispatch(getAllProfiles());
     store.dispatch(getScrapedData());
+    store.dispatch(getSuggestions());
   }, []);
 
   return (
@@ -84,6 +86,8 @@ function App() {
               <Route exact path="/new-password" component={New_password} />
               <Route exact path="/login-with-google" component={Register_with_google} />
               <Route exact path="/login-with-facebook" component={Register_with_facebook} />
+              <Route exact path="/login-with-github" component={Register_with_github} />
+
 
 
               <Route exact path="/jobs" component={Jobs} />

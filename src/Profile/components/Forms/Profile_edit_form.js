@@ -4,9 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../../actions/profile';
 
-
-
-
 const Profile_edit_form
     = ({ createProfile, history, getCurrentProfile, profile: { profile, loading } }) => {
 
@@ -64,6 +61,7 @@ const Profile_edit_form
             instagram,
         } = formData;
 
+        const [inputValue, setValue] = useState("");
 
 
         const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -82,7 +80,6 @@ const Profile_edit_form
 
                             <fieldset>
                                 <legend><span className="number">1</span> Let's get some information to make your profile stand out</legend>
-
                                 <label className="mt-5" htmlFor="name">Company:</label>
                                 <input
                                     className="input"

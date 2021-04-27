@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const About_us = () => {
   return (
@@ -17,6 +18,13 @@ const About_us = () => {
             over 237
             <br />
             countries, regions, and territories
+
+            <div className="col-lg-12 no-pdd mt-3">
+              <div className="blog">
+                <Link to="/q_and_a">Join our community | Sign up</Link>
+              </div>
+            </div>
+
           </p>
         </div>
       </div>

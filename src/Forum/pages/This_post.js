@@ -6,6 +6,9 @@ import { getPost, addComment } from "../../actions/post";
 import { Link, useLocation } from "react-router-dom";
 import Post_item from "../components/Post_item";
 import Comment_item from "../components/items/Comment_item";
+import "../components/Css/emoji.css";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -24,9 +27,20 @@ const This_post = ({
     getPost(query.get("id"));
   }, [getPost]);
 
-  const [text, setText] = useState("");
-
   let thisUser = JSON.parse(localStorage.getItem("user"));
+
+  const [chosenEmoji, setChosenEmoji] = useState("");
+  const changeHandler = (e) => {
+    setChosenEmoji(e.native);
+  };
+
+  const emojiPicker = (
+    <div>
+      <Picker set="apple" onSelect={(e) => changeHandler(e)} />
+    </div>
+  );
+  const [emoji, toggleEmoji] = useState(false);
+  const [text, setText] = useState("" + chosenEmoji);
 
   return loading || post === null ? (
     <Loading_spinner />
@@ -76,10 +90,18 @@ const This_post = ({
                           type="text"
                           placeholder="Post a comment"
                           onChange={(e) => setText(e.target.value)}
+                          value={chosenEmoji}
                         />
+                        <i
+                          class="fas fa-smile-beam fa-2x ml-2"
+                          style={{ color: " #FB8C00" }}
+                          onClick={() => toggleEmoji(!emoji)}
+                        ></i>
+
                         <button type="submit">Send</button>
                       </div>
                     </form>
+                    {emoji && emojiPicker}
                   </div>
                 </div>
               </div>

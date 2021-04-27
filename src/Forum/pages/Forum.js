@@ -22,6 +22,7 @@ import SimpleReactLightbox from "simple-react-lightbox";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Top_tanitjobs from "../components/Top_tanitjobs";
+import Suggestions_friends from "../../Profile/components/Suggestions_friends";
 
 let classActive = "";
 export const disable = () => {
@@ -88,7 +89,7 @@ const Forum = ({
                     <div className="col-lg-3 col-md-4 pd-left-none no-pd">
                       <div className="main-left-sidebar no-margin">
                         <User_data thisProfile={thisProfile} />
-                        <Suggestions />
+                        <Suggestions_friends />
                         <Top_tanitjobs />
                         <Tags />
                       </div>

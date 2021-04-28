@@ -1,16 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {searchQuestion} from "../../../actions/questions";
 
-class Search extends React.Component{
-    render() {
-        return(
-            <div className="ui action input" style={{width: '390px'}}>
-                <input type="text" placeholder="Search..."/>
-                <button className="ui icon button">
-                    <i className="search icon"></i>
-                </button>
-            </div>
-        );
+const Search = () => {
+    const [text, setText] = useState();
+    const dispatch = useDispatch();
+
+    const handleSearch = () => {
+        dispatch(searchQuestion(text))
     }
+    return (
+        <div className="ui action input" style={{width: '390px'}}>
+            <input type="text" placeholder="Search..." onChange={(e) => setText(e.target.value)}/>
+            <button className="ui icon button" onClick={handleSearch}>
+                <i className="search icon"/>
+            </button>
+        </div>
+    );
 }
 
 export default Search;

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import '../styles/UserQuestion.css';
-import {createVote, CancelVote, createDownVote, CancelDownVote} from "../../actions/questions";
+import '../../styles/UserQuestion.css';
+import {createVote, CancelVote, createDownVote, CancelDownVote} from "../../../actions/questions";
 import {useDispatch} from "react-redux";
 
 const QuestionVote = (props) => {

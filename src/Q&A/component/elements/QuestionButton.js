@@ -3,6 +3,8 @@ import {Button, Modal} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
 import {useDispatch, useSelector} from "react-redux";
 import {createQuestion} from '../../../actions/questions';
+import RichEditor from "../TextEditor/RichEditor";
+import AnswerEditor from "../TextEditor/AnswerEditor";
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -15,15 +17,18 @@ function exampleReducer(state, action) {
     }
 }
 
+const initialValue = [{"type": "paragraph", "children": [{"text": ""}]}];
+
 const QuestionButton = () => {
     const [state, dispatch] = React.useReducer(exampleReducer, {
         open: false,
         size: undefined,
     })
+    const [input, setInput] = useState(initialValue);
+    console.log(JSON.stringify(input));
     const {open, size} = state
 
     const [subject, setSubject] = useState();
-    const [description, setDescription] = useState();
     const [category, setCategory] = useState();
     const [tags, setTags] = useState();
 
@@ -31,6 +36,7 @@ const QuestionButton = () => {
 
     const handleSubmit = () => {
         const user = JSON.parse(localStorage.getItem('user'))._id;
+        const description = localStorage.getItem('content');
         const Question = {
             user,
             subject,
@@ -83,10 +89,7 @@ const QuestionButton = () => {
                         </div>
                         <div className="field">
                             <label>Description</label>
-                            <textarea onChange={event => {
-                                setDescription(event.target.value);
-                                console.log(event.target.value);
-                            }}/>
+                            <RichEditor value={input} setValue={setInput}/>
                         </div>
                     </div>
                 </Modal.Content>

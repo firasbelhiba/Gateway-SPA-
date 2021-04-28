@@ -85,8 +85,9 @@ export const DOWNVOTE_REPLY = "DOWNVOTE_REPLY";
 export const UPVOTE_REPLY = "UPVOTE_REPLY";
 export const ADD_VIEW = "ADD_VIEW";
 export const SORT_ANSWERS_VOTES = "SORT_ANSWERS_VOTES";
-
-
+export const SORT_QUESTIONS = "SORT_QUESTIONS";
+export const FILTER_QUESTIONS = "FILTER_QUESTIONS";
+export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 
 
 // Scrapng types

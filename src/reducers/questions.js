@@ -16,6 +16,9 @@ import {
     SORT_ANSWERS,
     UPVOTE_ANSWER,
     ADD_VIEW,
+    SEARCH_QUESTIONS,
+    SORT_QUESTIONS,
+    FILTER_QUESTIONS,
     SORT_ANSWERS_VOTES,
     DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY,
 } from "../actions/types";
@@ -31,6 +34,24 @@ export default function (state = initialState, action) {
     const {type, payload} = action;
     switch (type) {
         case GET_QUESTIONS:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case SORT_QUESTIONS:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case FILTER_QUESTIONS:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case SEARCH_QUESTIONS:
             return {
                 ...state,
                 questions: payload,

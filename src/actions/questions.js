@@ -1,6 +1,5 @@
 import axios from "axios";
-import {setAlert} from "./alert";
-import {getCurrentProfile} from "./profile";
+
 import {
     GET_QUESTIONS,
     CREATE_QUESTIONS,
@@ -22,6 +21,9 @@ import {
     DOWNVOTE_REPLY,
     UPVOTE_REPLY,
     ADD_VIEW,
+    SEARCH_QUESTIONS,
+    FILTER_QUESTIONS,
+    SORT_QUESTIONS,
     SORT_ANSWERS_VOTES,
 } from "./types";
 
@@ -367,6 +369,51 @@ export const addView = (idQ) => async (dispatch) => {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/addView`);
         dispatch({
             type: ADD_VIEW,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const sortQuestion = (sort) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/sortQuestions/${sort}`);
+        dispatch({
+            type: SORT_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const filterQuestion = (tag) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/filterQuestions/${tag}`);
+        dispatch({
+            type: FILTER_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const searchQuestion = (text) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/searchQuestions/${text}`);
+        dispatch({
+            type: SEARCH_QUESTIONS,
             payload: data,
         });
     } catch (error) {

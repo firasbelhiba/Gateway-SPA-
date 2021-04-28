@@ -15,6 +15,7 @@ import AnswerEditor from "../component/TextEditor/AnswerEditor";
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import {sort, sortByVotes} from "../../actions/questions";
+import SideWidgetYoutube from "../component/widgets/SideWidgetYoutube";
 
 const initialValue = [{"type": "paragraph", "children": [{"text": ""}]}];
 
@@ -104,7 +105,7 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
             </div>
             <div className="col-lg-3">
                 <SideWidget/>
-                <SideWidgetFrequentlyAsked/>
+                <SideWidgetYoutube/>
             </div>
         </div>
     );

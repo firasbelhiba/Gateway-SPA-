@@ -36,6 +36,21 @@ export const NewAnswer = (props) => {
     const handleDelete = () => {
         dispatch(deleteAnswer(props.idQ, props.idA))
     }
+
+    const formatDate = (date) => {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
     var Replies = [];
     for (var i in props.replies)
         Replies.push(props.replies[i]);
@@ -70,7 +85,7 @@ export const NewAnswer = (props) => {
                 </div>
 
                 <p style={{textAlign: "left", color: "gray", marginTop: "5px", marginBottom: "2px"}}>
-                    {props.date}
+                    {formatDate(props.date.toString())}
                 </p>
                 <ReadOnly initialValue={JSON.parse(props.description)}/>
                 <div style={{display: "flex"}}>

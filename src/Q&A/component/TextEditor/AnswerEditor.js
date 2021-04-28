@@ -95,9 +95,8 @@ const AnswerEditor = ({value, setValue, Qid}) => {
                 alignItems: 'center'
             }}>
                 <div className="comment_as">
-                    Answer as{" "}
+                    Answer
                     <a href="" className="username">
-                        Kevin
                     </a>
                 </div>
                 <Button id={Qid} style={{fontSize: '14px', marginLeft: 'auto'}}>ADD ANSWER</Button>

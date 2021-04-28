@@ -2,10 +2,11 @@ import React from "react";
 import '../styles/UserQuestion.css';
 import faker from 'faker'
 import {Popup, Placeholder, Dropdown, Divider} from 'semantic-ui-react'
-import QuestionVote from "./QuestionVote";
+import QuestionVote from "./Votes/QuestionVote";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {deleteQuestion} from "../../actions/questions";
+import {addView, deleteQuestion, unFollowQuestion, followQuestion} from "../../actions/questions";
+import ReadOnly from "./TextEditor/ReadOnly";
 
 const UserQuestion = (props) => {
 
@@ -24,10 +25,24 @@ const UserQuestion = (props) => {
     }
 
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+
+    var Answers = [];
+    for (var i in props.details.answers)
+        Answers.push(props.details.answers[i]);
 
     const handleDelete = () => {
         dispatch(deleteQuestion(props.details._id))
     }
+    const handleFollow = () => {
+        dispatch(followQuestion(props.details._id, user))
+    }
+    const handleUnFollow = () => {
+        dispatch(unFollowQuestion(props.details._id, user))
+    }
+    var Following = [];
+    for (var i in props.details.following)
+        Following.push(props.details.following[i].user);
 
     return (
         <div className={`${props.segment} row`} style={{float: 'left', marginBottom: '10px'}}>
@@ -60,12 +75,7 @@ const UserQuestion = (props) => {
                 <h3 style={{marginBottom: '1px'}}>{props.details.subject}</h3>
                 <Divider style={{marginBottom: '0px'}}/>
                 <div className="descp" style={{display: 'block'}}>
-                    <p>
-                        {props.details.description}
-                    </p>
-                    <code>
-                        {faker.lorem.paragraphs()}
-                    </code>
+                    <ReadOnly initialValue={JSON.parse(props.details.description)}/>
                 </div>
                 <ul className="skill-tags">
                     {props.details.tags.map(tag => (
@@ -78,24 +88,31 @@ const UserQuestion = (props) => {
 
             <ul className="react-links">
                 <li>
-                    <Link to={`/question_details?id=${props.details._id}`} title=""><i
-                        className="fas fa-comment-alt"/>Answers 15</Link>
+                    <Link to={`/question_details?id=${props.details._id}`}
+                          onClick={() => {
+                              dispatch(addView(props.details._id));
+                          }}
+                          title=""><i
+                        className="fas fa-comment-alt"/>Answers {Answers.length}</Link>
                 </li>
                 <li>
-                    <a href="#" title=""><i className="fas fa-eye"/>Views 50</a>
-                </li>
-                <li>
-                    <a href="#" title=""><i className="fas fa-flag"/>Report</a>
+                    <a href="#" title=""><i className="fas fa-eye"/>Views {props.details.views}</a>
                 </li>
                 <li>
                     <Dropdown circular icon='fas fa-ellipsis-h'>
                         {JSON.parse(localStorage.getItem('user'))._id !== props.details.user ||
                         JSON.parse(localStorage.getItem('user'))._id === null ? (
                             <Dropdown.Menu>
-                                <Dropdown.Item
+                                {Following.includes(user) ? (<Dropdown.Item
+                                    icon='star'
+                                    text='Unfollow'
+                                    onClick={handleUnFollow}
+                                />) : (<Dropdown.Item
                                     icon='star'
                                     text='Follow'
-                                />
+                                    onClick={handleFollow}
+                                />)}
+
                                 <Dropdown.Item
                                     icon='bookmark'
                                     text='Bookmark'

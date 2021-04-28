@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "emoji-mart": "^3.0.1",
+    "emoji-picker-react": "^3.4.4",
     "faker": "^5.5.1",
     "gallereact": "^1.2.2",
+    "is-hotkey": "^0.2.0",
     "js-base64": "^3.6.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -19,20 +24,28 @@
     "react-facebook-login": "^4.1.1",
     "react-login-github": "^1.0.7",
     "react-moment": "^1.1.1",
+    "react-rate-thing": "^1.0.0",
     "react-recaptcha": "^2.3.10",
     "react-redux": "^7.2.2",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-show-more-text": "^1.4.6",
     "react-social": "^1.10.0",
     "react-sweet-progress": "^1.1.2",
+    "react-textarea-autosize": "^8.3.2",
     "react-toastify": "^7.0.3",
+    "react-toggle-display": "^2.2.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^2.0.3",
     "simple-react-lightbox": "^3.6.6",
+    "slate": "^0.62.0",
+    "slate-history": "^0.62.0",
+    "slate-react": "^0.62.0",
     "socket.io-client": "^4.0.1",
+    "styled-components": "^5.2.3",
     "timeago-react": "^3.0.2",
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
@@ -60,5 +73,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
   }
 }

@@ -1,7 +1,7 @@
 import faker from "faker";
 import React from "react";
 
-class Answer extends React.Component {
+class Discussion extends React.Component {
 
     render() {
         return (
@@ -25,7 +25,6 @@ class Answer extends React.Component {
             </div>
         );
     }
-
 }
 
-export default Answer;
+export default Discussion;

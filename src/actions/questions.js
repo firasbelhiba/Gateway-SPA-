@@ -1,12 +1,12 @@
 import axios from "axios";
-import {setAlert} from "./alert";
-import {getCurrentProfile} from "./profile";
+
 import {
     GET_QUESTIONS,
     CREATE_QUESTIONS,
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     UPVOTE,
+    GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
     CANCEL_UPVOTE,
@@ -15,6 +15,19 @@ import {
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
+    DELETE_REPLY,
+    SORT_ANSWERS,
+    UPVOTE_ANSWER,
+    DOWNVOTE_ANSWER,
+    DOWNVOTE_REPLY,
+    UPVOTE_REPLY,
+    UNFOLLOW_QUESTION,
+    FOLLOW_QUESTION,
+    ADD_VIEW,
+    SEARCH_QUESTIONS,
+    FILTER_QUESTIONS,
+    SORT_QUESTIONS,
+    SORT_ANSWERS_VOTES,
 } from "./types";
 
 export const getQuestion = () => async (dispatch) => {
@@ -23,6 +36,22 @@ export const getQuestion = () => async (dispatch) => {
 
         dispatch({
             type: GET_QUESTIONS,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+};
+
+export const getFollowedQuestion = (idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/followed/${idU}`);
+
+        dispatch({
+            type: GET_FOLLOWED_QUESTIONS,
             payload: data,
         });
     } catch (e) {
@@ -236,11 +265,204 @@ export const deleteQuestion = (id) => async (dispatch) => {
 };
 
 export const deleteAnswer = (idQ, idA) => async (dispatch) => {
-
     try {
-        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/delete/${idA}`);
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/deleteAnswer/${idA}`);
         dispatch({
-            type: CANCEL_DOWNVOTE,
+            type: DELETE_ANSWER,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const deleteReply = (idQ, idA, idR) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/deleteReply/${idA}/${idR}`);
+        dispatch({
+            type: DELETE_REPLY,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const sort = (idQ, sort) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/${idQ}/${sort}/sortAnswers`);
+        dispatch({
+            type: SORT_ANSWERS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const sortByVotes = (idQ) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/${idQ}/sortByVotesAnswers`);
+        dispatch({
+            type: SORT_ANSWERS_VOTES,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const upvoteAnswer = (idQ, idA, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/${idA}/upVoteAnswer/${idU}`);
+        dispatch({
+            type: UPVOTE_ANSWER,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+export const downvoteAnswer = (idQ, idA, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/${idA}/downVoteAnswer/${idU}`);
+        dispatch({
+            type: DOWNVOTE_ANSWER,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const upvoteReply = (idQ, idA, idR, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/${idA}/${idR}/upVoteReply/${idU}`);
+        dispatch({
+            type: UPVOTE_REPLY,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const downvoteReply = (idQ, idA, idR, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/${idA}/${idR}/downVoteReply/${idU}`);
+        dispatch({
+            type: DOWNVOTE_REPLY,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const addView = (idQ) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/addView`);
+        dispatch({
+            type: ADD_VIEW,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const sortQuestion = (sort) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/sortQuestions/${sort}`);
+        dispatch({
+            type: SORT_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const filterQuestion = (tag) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/filterQuestions/${tag}`);
+        dispatch({
+            type: FILTER_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const searchQuestion = (text) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/searchQuestions/${text}`);
+        dispatch({
+            type: SEARCH_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const followQuestion = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/followQuestion/${idU}`);
+        dispatch({
+            type: FOLLOW_QUESTION,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const unFollowQuestion = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/unFollowQuestion/${idU}`);
+        dispatch({
+            type: UNFOLLOW_QUESTION,
             payload: data,
         });
     } catch (error) {

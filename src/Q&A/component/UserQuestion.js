@@ -5,7 +5,7 @@ import {Popup, Placeholder, Dropdown, Divider} from 'semantic-ui-react'
 import QuestionVote from "./Votes/QuestionVote";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {addView, deleteQuestion} from "../../actions/questions";
+import {addView, deleteQuestion, unFollowQuestion, followQuestion} from "../../actions/questions";
 import ReadOnly from "./TextEditor/ReadOnly";
 
 const UserQuestion = (props) => {
@@ -25,6 +25,7 @@ const UserQuestion = (props) => {
     }
 
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('user'))._id;
 
     var Answers = [];
     for (var i in props.details.answers)
@@ -33,6 +34,15 @@ const UserQuestion = (props) => {
     const handleDelete = () => {
         dispatch(deleteQuestion(props.details._id))
     }
+    const handleFollow = () => {
+        dispatch(followQuestion(props.details._id, user))
+    }
+    const handleUnFollow = () => {
+        dispatch(unFollowQuestion(props.details._id, user))
+    }
+    var Following = [];
+    for (var i in props.details.following)
+        Following.push(props.details.following[i].user);
 
     return (
         <div className={`${props.segment} row`} style={{float: 'left', marginBottom: '10px'}}>
@@ -79,7 +89,7 @@ const UserQuestion = (props) => {
             <ul className="react-links">
                 <li>
                     <Link to={`/question_details?id=${props.details._id}`}
-                          onClick={()=>{
+                          onClick={() => {
                               dispatch(addView(props.details._id));
                           }}
                           title=""><i
@@ -93,10 +103,16 @@ const UserQuestion = (props) => {
                         {JSON.parse(localStorage.getItem('user'))._id !== props.details.user ||
                         JSON.parse(localStorage.getItem('user'))._id === null ? (
                             <Dropdown.Menu>
-                                <Dropdown.Item
+                                {Following.includes(user) ? (<Dropdown.Item
+                                    icon='star'
+                                    text='Unfollow'
+                                    onClick={handleUnFollow}
+                                />) : (<Dropdown.Item
                                     icon='star'
                                     text='Follow'
-                                />
+                                    onClick={handleFollow}
+                                />)}
+
                                 <Dropdown.Item
                                     icon='bookmark'
                                     text='Bookmark'

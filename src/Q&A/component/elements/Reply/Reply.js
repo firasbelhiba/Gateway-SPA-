@@ -17,9 +17,8 @@ function Reply(props) {
             />
             <div className="panel">
                 <div className="comment_as">
-                    Comment as{" "}
+                    Comment
                     <a href="" className="username">
-                        Kevin
                     </a>
                 </div>
                 <Button reply={text} idQ={props.Qid} idA={props.Aid}>Reply</Button>

@@ -16,7 +16,10 @@ import {
     SORT_ANSWERS,
     UPVOTE_ANSWER,
     ADD_VIEW,
+    GET_FOLLOWED_QUESTIONS,
     SEARCH_QUESTIONS,
+    FOLLOW_QUESTION,
+    UNFOLLOW_QUESTION,
     SORT_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_ANSWERS_VOTES,
@@ -34,6 +37,12 @@ export default function (state = initialState, action) {
     const {type, payload} = action;
     switch (type) {
         case GET_QUESTIONS:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case GET_FOLLOWED_QUESTIONS:
             return {
                 ...state,
                 questions: payload,
@@ -61,6 +70,18 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 question: payload,
+                loading: false,
+            };
+        case FOLLOW_QUESTION:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case UNFOLLOW_QUESTION:
+            return {
+                ...state,
+                questions: payload,
                 loading: false,
             };
         case CREATE_QUESTIONS:

@@ -1,26 +1,49 @@
 import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const No_Profile = (props) => {
+import { createProfileViaLinkedin } from '../../actions/profile'
+
+const No_Profile = ({ createProfileViaLinkedin, history }) => {
 
     const [loginForm, toggleLoginForm] = useState(false)
 
-    const createProfileViaLinkedin = (
+    const [formData, setFormData] = useState({
+        link: '',
+        cookie: ''
+    });
+
+    const {
+        link,
+        cookie,
+    } = formData;
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const onSubmit = e => {
+        e.preventDefault();
+        createProfileViaLinkedin(formData, history);
+    }
+
+    const createProfile = (
         <Fragment>
 
             <legend><span className="number mt-4" style={{ color: 'white' }}>1</span>First Step : </legend>
 
             <label className="mt-5" htmlFor="name">Linkedin's account link</label>
 
-            <form style={{ maxWidth: '10000px' }}>
+            <form onSubmit={e => onSubmit(e)} style={{ maxWidth: '10000px' }}>
                 <ul>
                     <li>
                         <input
                             className="input"
                             type="text"
-                            id="name"
+                            id="link"
                             placeholder="Linkedin's account link"
                             name="link"
+                            value={link}
+                            onChange={e => onChange(e)}
                         />
                         <small className="form-text">
                             Put the link of your profile it should be like this : https://www.linkedin.com/in/xxxxxxxxxxxx/
@@ -37,9 +60,11 @@ const No_Profile = (props) => {
                         <input
                             className="input"
                             type="text"
-                            id="name"
+                            id="cookie"
                             placeholder="li_at cookie"
-                            name="link"
+                            name="cookie"
+                            value={cookie}
+                            onChange={e => onChange(e)}
                         />
                         <small className="form-text">
                             Put your linkedin cookie here , its name should be : li_at
@@ -73,11 +98,15 @@ const No_Profile = (props) => {
             </div>
 
             <div className="login-resources">
-                {!loginForm ? linkedinShowFormButton : createProfileViaLinkedin}
+                {!loginForm ? linkedinShowFormButton : createProfile}
             </div>
 
         </Fragment>
     )
 }
 
-export default No_Profile
+No_Profile.propTypes = {
+    createProfileViaLinkedin: PropTypes.func.isRequired,
+};
+
+export default connect(null, { createProfileViaLinkedin })(No_Profile)

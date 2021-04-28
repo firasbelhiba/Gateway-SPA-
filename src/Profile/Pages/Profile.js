@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { Bids_profile } from "../components/Bids_profile";
 import Cover_picture from "../components/Cover_picture";
@@ -15,7 +15,7 @@ import { Profile_header } from "../components/Profile_header";
 import { Settings } from "../components/Settings";
 import { Profile_navigation_bar } from "../components/Profile_navigation_bar";
 import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
-import { Review_profile } from "../components/Review_profile";
+import Review_profile from "../components/Review_profile";
 import { Widget_portfolio } from "../components/Widget_portfolio";
 import { Overview_form } from "../components/Forms/Overview_form";
 import { Location_form } from "../components/Forms/Location_form";
@@ -156,7 +156,7 @@ const Profile = ({
                           <Portfolio_profile portfolio={myProfile.portfolio} />
                         </SimpleReactLightbox>
                       )}
-                      {id === "reviews" && <Review_profile />}
+                      {id === "reviews" && <Review_profile avatar={myProfile.avatar} reviews={myProfile.reviews} />}
                       {id === "saved_post" && <Saved_post_profile savedPost={myProfile.saved_post} />}
                     </div>
                   </div>

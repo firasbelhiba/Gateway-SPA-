@@ -30,6 +30,8 @@ export const MAIL_FAILED = "MAIL_FAILED";
 export const AVATAR_UPDATED = "AVATAR_UPDATED";
 export const COVER_UPDATED = "COVER_UPDATED";
 
+export const ADD_REVIEW = "ADD_REVIEW";
+
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
 

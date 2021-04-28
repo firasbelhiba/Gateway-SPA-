@@ -14,7 +14,7 @@ import { Jobs_profile } from '../../Profile/components/Jobs_profile';
 import Main_left_sidebar from '../../Profile/components/Main_left_sidebar';
 import Profile_Github from '../../Profile/components/Profile_Github';
 import { Profile_header } from '../../Profile/components/Profile_header';
-import { Review_profile } from '../../Profile/components/Review_profile';
+import Review_profile from '../../Profile/components/Review_profile';
 import { Widget_portfolio } from '../../Profile/components/Widget_portfolio';
 import { Loading_spinner } from '../../Shared/layouts/Loading_spinner';
 import { Link, useLocation } from "react-router-dom";
@@ -33,6 +33,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
     let query = useQuery();
 
     let thisProfile = JSON.parse(localStorage.getItem('this_profile'));
+    let myProfile = JSON.parse(localStorage.getItem('profile'))
 
     useEffect(() => {
         getProfileById(query.get("id"));
@@ -140,7 +141,13 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             {id === "jobs" && <Jobs_profile />}
                                             {id === "bids" && <Bids_profile />}
                                             {id === "portfolio" && <Portfolio_profile portfolio={thisProfile.portfolio} />}
-                                            {id === "reviews" && <Review_profile />}
+                                            {id === "reviews" && <Review_profile
+                                                avatar={myProfile.avatar}
+                                                reviews={thisProfile.reviews}
+                                                showActions={true}
+                                                id={thisProfile._id}
+                                                hisName={thisProfile.name}
+                                                myName={myProfile.name} />}
                                         </div>
                                     </div>
                                     <div className="col-lg-3">

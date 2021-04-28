@@ -29,6 +29,7 @@ import {
   PROFILE_VIEWED,
   UNSAVED_POST,
   GET_SUGGESTIONS,
+  ADD_REVIEW,
 } from "./types";
 
 // Get profile from the logged in user
@@ -993,3 +994,78 @@ export const getSuggestions = () => async (dispatch) => {
     });
   }
 };
+
+
+
+// Create profile via linkedin
+export const createProfileViaLinkedin = (formData, history) => async (
+  dispatch
+) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(
+      "http://localhost:5000/api/profile/linkedin",
+      formData,
+      config
+    );
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+      });
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+
+//view porfile
+export const addReview = (text, rate, id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ text, rate });
+
+    const res = await axios.post(`http://localhost:5000/api/profile/review/${id}`, body, config);
+
+    dispatch({
+      type: ADD_REVIEW,
+      payload: res.data,
+    });
+
+
+
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+

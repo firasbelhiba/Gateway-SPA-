@@ -6,6 +6,7 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     UPVOTE,
+    GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
     CANCEL_UPVOTE,
@@ -20,6 +21,8 @@ import {
     DOWNVOTE_ANSWER,
     DOWNVOTE_REPLY,
     UPVOTE_REPLY,
+    UNFOLLOW_QUESTION,
+    FOLLOW_QUESTION,
     ADD_VIEW,
     SEARCH_QUESTIONS,
     FILTER_QUESTIONS,
@@ -33,6 +36,22 @@ export const getQuestion = () => async (dispatch) => {
 
         dispatch({
             type: GET_QUESTIONS,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+};
+
+export const getFollowedQuestion = (idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/followed/${idU}`);
+
+        dispatch({
+            type: GET_FOLLOWED_QUESTIONS,
             payload: data,
         });
     } catch (e) {
@@ -414,6 +433,36 @@ export const searchQuestion = (text) => async (dispatch) => {
         const {data} = await axios.get(`http://localhost:5000/api/q_and_a/searchQuestions/${text}`);
         dispatch({
             type: SEARCH_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const followQuestion = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/followQuestion/${idU}`);
+        dispatch({
+            type: FOLLOW_QUESTION,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const unFollowQuestion = (idQ, idU) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/unFollowQuestion/${idU}`);
+        dispatch({
+            type: UNFOLLOW_QUESTION,
             payload: data,
         });
     } catch (error) {

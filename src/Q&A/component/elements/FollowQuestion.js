@@ -1,61 +1,55 @@
-import React from "react";
+import React, {useState} from "react";
 import {Segment, Button, Label, Item, Icon,} from 'semantic-ui-react'
 import '../../styles/FollowQuestion.css'
 import faker from "faker";
 
-class FollowQuestion extends React.Component {
-    state = {}
-    handleClickFollow = () =>
-        this.setState((prevState) => ({
-            activeFollow: !prevState.activeFollow
-        }))
-    handleClickBookmark = () =>
-        this.setState((prevState) => ({
-            activeBookmark: !prevState.activeBookmark,
-        }))
+const FollowQuestion = (props) => {
+    const [activeFollow, setActiveFollow] = useState(true);
 
-    render() {
-        const {activeBookmark, activeFollow} = this.state
-        return (
-            <div className={this.props.solved ? "ui green inverted raised segment" :"ui raised segment"}>
-                <div className="ui bottom attached label">
-                    <Label color='blue' image size='mini'>
+    const handleClickFollow = () => {
+        setActiveFollow(!activeFollow);
+    }
+
+    var Answers = [];
+    for (var i in props.details.answers)
+        Answers.push(props.details.answers[i]);
+
+    return (
+        <div className={props.details.solved ? "ui green inverted raised segment" : "ui raised segment"}>
+            <div className="ui bottom attached label">
+                <Label color='blue' image size='mini'>
+                    <img src={faker.image.avatar()}/>
+                    {faker.name.firstName()} {faker.name.lastName()}
+                </Label>
+                <Label color='teal' image size='mini'>
+                    {props.details.category}
+                </Label>
+                <Label color='yellow' image size='mini'>
+                    Active
+                </Label>
+                <div className="ui label">
+                    <i className="comments icon"/> {Answers.length}
+                </div>
+
+                <div style={{float: "right"}} hidden={!props.details.solved}>
+                    <Label color='green' image size='mini'>
                         <img src={faker.image.avatar()}/>
                         {faker.name.firstName()} {faker.name.lastName()}
                     </Label>
-                    <Label color='teal' image size='mini'>
-                        Programming
-                    </Label>
-                    <Label color='yellow' image size='mini'>
-                        Active
-                    </Label>
-                    <div className="ui label">
-                        <i className="comments icon"/> 23
-                    </div>
-
-                    <div style={{float: "right"}} hidden={!this.props.solved}>
-                        <Label color='green' image size='mini'>
-                            <img src={faker.image.avatar()}/>
-                            {faker.name.firstName()} {faker.name.lastName()}
-                        </Label>
-                    </div>
-                </div>
-                <div style={{display: "flex", justifyContent: "space-between"}}>
-                    <div style={{width: '670px'}}>
-                        <h1>{faker.lorem.sentence()}</h1>
-                    </div>
-                    <div style={{paddingBottom: '5px'}}>
-                        <Button toggle active={activeFollow} compact color='yellow' circular icon='fas fa-star'
-                                floated='right'
-                                onClick={this.handleClickFollow}/>
-                        <Button toggle active={activeBookmark} compact circular icon='fas fa-bookmark'
-                                floated='right'
-                                onClick={this.handleClickBookmark}/>
-                    </div>
                 </div>
             </div>
-        );
-    }
+            <div style={{display: "flex", justifyContent: "space-between"}}>
+                <div style={{width: '670px'}}>
+                    <h3>{props.details.subject}</h3>
+                </div>
+                <div style={{paddingBottom: '5px'}}>
+                    <Button toggle active={activeFollow} compact color='yellow' circular icon='fas fa-star'
+                            floated='right'
+                            onClick={handleClickFollow}/>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default FollowQuestion;

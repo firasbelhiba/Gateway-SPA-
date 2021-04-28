@@ -12,6 +12,12 @@ import {
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
+    DELETE_REPLY,
+    SORT_ANSWERS,
+    UPVOTE_ANSWER,
+    ADD_VIEW,
+    SORT_ANSWERS_VOTES,
+    DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY,
 } from "../actions/types";
 
 const initialState = {
@@ -98,6 +104,54 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case DELETE_ANSWER:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case DELETE_REPLY:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case SORT_ANSWERS:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case SORT_ANSWERS_VOTES:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case UPVOTE_ANSWER:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case DOWNVOTE_ANSWER:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case DOWNVOTE_REPLY:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case UPVOTE_REPLY:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case ADD_VIEW:
             return {
                 ...state,
                 question: payload,

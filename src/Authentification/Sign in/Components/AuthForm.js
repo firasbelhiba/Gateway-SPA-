@@ -142,8 +142,7 @@ const AuthForm = ({ login, isAuthenticated }) => {
                             </li>
                             <li>
                                 <a style={{ backgroundColor: '#DE5246' }} href="http://localhost:5000/api/users/google" title="" className="tw"
-                                ><i className="fab fa-google"></i>Login Via LinkedIn</a
-                                >
+                                ><i className="fab fa-google"></i>Login Via Google</a>
                             </li>
                             <li>
                                 <Link to='/login-with-github' style={{ backgroundColor: '#24292e' }} href="!#" title="" className="tw"

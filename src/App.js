@@ -1,29 +1,37 @@
 import logo from "./logo.svg";
-import "./App.css";
+import { Fragment, useEffect } from "react";
+import PrivateRoute from "./routing/PrivateRoute";
+
+//Redux
+import { Provider } from "react-redux";
+import store from "./store";
+
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
 } from "react-router-dom";
+
+// Authentification
 import Signup from "./Authentification/Sign up/Pages/Signup";
 import Signin from "./Authentification/Sign in/Pages/Signin";
-import Forum from "./Forum/pages/Forum";
+import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
+import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
+import Register_with_github from "./Authentification/Register with github/pages/Register_with_github";
+import Register_with_linkedin from "./Authentification/Register with linkedin/pages/Register_with_linkedin";
+import Forget_you_password from "./Authentification/Forget your Password/Pages/Forget_your_password";
+import New_password from "./Authentification/New Password/Pages/New_password";
 
-import { Fragment, useEffect } from "react";
+//Layouts
 import Navbar from "./Shared/layouts/Navbar";
+import Notfound from "./Shared/layouts/Notfound";
 import { Landing } from "./Shared/landing/pages/Landing";
 
 import Profiles from "./Profiles/pages/Profiles";
-import setAuthToken from "./utils/setAuthToken";
-
-import { Provider } from "react-redux";
-import store from "./store";
 import Chat from "./Shared/layouts/Chat";
 import Messages from "./Messages/pages/Messages";
-import { loadUser } from "./actions/auth";
-import { getAllProfiles, getCurrentProfile, getSuggestions } from "./actions/profile";
-import PrivateRoute from "./routing/PrivateRoute";
+import Forum from "./Forum/pages/Forum";
 import Profile from "./Profile/Pages/Profile";
 import Me from "./Me/pages/Me";
 import CreateProfile from "./Me/components/CreateProfile";
@@ -41,18 +49,23 @@ import This_post from "./Forum/pages/This_post";
 import Send_post_mail from "./Forum/components/Form/Send_post_mail";
 import Testchat from "./Testchat";
 import Profileby from "./Profileby/pages/Profileby";
-import Forget_you_password from "./Authentification/Forget your Password/Pages/Forget_your_password";
-import New_password from "./Authentification/New Password/Pages/New_password";
 import Post_form from "./Forum/components/Form/Post_form";
 import Education_edit_form from "./Profile/components/Forms/Education_edit_form";
 import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form";
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
 import Settings from "./settings/pages/Settings";
-import Register_with_google from "./Authentification/Register with google/pages/Register_with_google";
-import Register_with_facebook from "./Authentification/Register with facebook/pages/Register_with_facebook";
-import Register_with_github from "./Authentification/Register with github/pages/Register_with_github";
-import Notfound from "./Shared/layouts/Notfound";
+
+//Utilities & functions
+import { loadUser } from "./actions/auth";
+import { getAllProfiles, getCurrentProfile, getSuggestions } from "./actions/profile";
+import setAuthToken from "./utils/setAuthToken";
+
+//Scraping
 import { getScrapedData, getScrapedDataTJ } from "./actions/scraping";
+
+//Css
+import "./App.css";
+
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -88,6 +101,8 @@ function App() {
               <Route exact path="/login-with-google" component={Register_with_google} />
               <Route exact path="/login-with-facebook" component={Register_with_facebook} />
               <Route exact path="/login-with-github" component={Register_with_github} />
+              <Route exact path="/login-with-linkedin" component={Register_with_linkedin} />
+
 
 
 

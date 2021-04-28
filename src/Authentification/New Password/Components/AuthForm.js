@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react';
 
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+
 import { setAlert } from '../../../actions/alert';
 import { Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types'
 import { useLocation } from "react-router-dom";
 import { setNewPassword } from "../../../actions/auth";
-import Alert from "../../../Shared/layouts/Alert";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

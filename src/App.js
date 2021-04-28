@@ -57,7 +57,12 @@ import Settings from "./settings/pages/Settings";
 
 //Utilities & functions
 import { loadUser } from "./actions/auth";
-import { getAllProfiles, getCurrentProfile, getSuggestions } from "./actions/profile";
+import {
+  getAllProfiles,
+  getCurrentProfile,
+  getSuggestions,
+  getMostViewedProfiles,
+} from "./actions/profile";
 import setAuthToken from "./utils/setAuthToken";
 
 //Scraping
@@ -65,7 +70,6 @@ import { getScrapedData, getScrapedDataTJ } from "./actions/scraping";
 
 //Css
 import "./App.css";
-
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -78,6 +82,7 @@ function App() {
     store.dispatch(getAllProfiles());
     store.dispatch(getScrapedData());
     store.dispatch(getSuggestions());
+    store.dispatch(getMostViewedProfiles());
     store.dispatch(getScrapedDataTJ());
   }, []);
 
@@ -98,13 +103,26 @@ function App() {
                 component={Forget_you_password}
               />
               <Route exact path="/new-password" component={New_password} />
-              <Route exact path="/login-with-google" component={Register_with_google} />
-              <Route exact path="/login-with-facebook" component={Register_with_facebook} />
-              <Route exact path="/login-with-github" component={Register_with_github} />
-              <Route exact path="/login-with-linkedin" component={Register_with_linkedin} />
-
-
-
+              <Route
+                exact
+                path="/login-with-google"
+                component={Register_with_google}
+              />
+              <Route
+                exact
+                path="/login-with-facebook"
+                component={Register_with_facebook}
+              />
+              <Route
+                exact
+                path="/login-with-github"
+                component={Register_with_github}
+              />
+              <Route
+                exact
+                path="/login-with-linkedin"
+                component={Register_with_linkedin}
+              />
 
               <Route exact path="/jobs" component={Jobs} />
               <Route exact path="/q_and_a" component={QuestionsSection} />

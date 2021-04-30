@@ -30,6 +30,7 @@ import {
   UNSAVED_POST,
   GET_SUGGESTIONS,
   ADD_REVIEW,
+  GET_MOST_VIEWED_PEOPLE,
 } from "./types";
 
 // Get profile from the logged in user
@@ -978,7 +979,7 @@ export const viewProfile = (id) => async (dispatch) => {
   }
 };
 
-// Get profile suggestions for new friends 
+// Get profile suggestions for new friends
 export const getSuggestions = () => async (dispatch) => {
   try {
     const res = await axios.get("http://localhost:5000/api/profile/suggestion");
@@ -994,8 +995,6 @@ export const getSuggestions = () => async (dispatch) => {
     });
   }
 };
-
-
 
 // Create profile via linkedin
 export const createProfileViaLinkedin = (formData, history) => async (
@@ -1018,7 +1017,6 @@ export const createProfileViaLinkedin = (formData, history) => async (
       type: GET_PROFILE,
       payload: res.data,
     });
-
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -1037,7 +1035,6 @@ export const createProfileViaLinkedin = (formData, history) => async (
   }
 };
 
-
 //view porfile
 export const addReview = (text, rate, id) => async (dispatch) => {
   try {
@@ -1049,15 +1046,16 @@ export const addReview = (text, rate, id) => async (dispatch) => {
 
     const body = JSON.stringify({ text, rate });
 
-    const res = await axios.post(`http://localhost:5000/api/profile/review/${id}`, body, config);
+    const res = await axios.post(
+      `http://localhost:5000/api/profile/review/${id}`,
+      body,
+      config
+    );
 
     dispatch({
       type: ADD_REVIEW,
       payload: res.data,
     });
-
-
-
   } catch (error) {
     dispatch({
       type: PROFILE_ERROR,
@@ -1069,3 +1067,22 @@ export const addReview = (text, rate, id) => async (dispatch) => {
   }
 };
 
+//author Ghada
+//Most viewed profiles
+export const getMostViewedProfiles = () => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      "http://localhost:5000/api/profile/most-viewed-people"
+    );
+
+    dispatch({
+      type: GET_MOST_VIEWED_PEOPLE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

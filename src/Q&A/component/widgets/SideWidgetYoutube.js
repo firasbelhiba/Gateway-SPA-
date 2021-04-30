@@ -1,16 +1,35 @@
-import React from "react";
-import Question from "../Question";
+import React, {useEffect, useState} from "react";
+import VideoItem from "./youtubeRec/VideoItem";
+import {getQuestion, youtubeRec} from "../../../actions/questions";
+import {useDispatch, useSelector} from "react-redux";
+import {Header} from "semantic-ui-react";
 
-class SideWidgetFrequentlyAsked extends React.Component {
-    render() {
-        return (
-            <div className="widget widget-user ui segment">
-                <h3 className="title-wd">Youtube videos recommendation
-                </h3>
+const SideWodgetYoutube = ({search}) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        console.log(search)
+        dispatch(youtubeRec(search));
+    }, [dispatch]);
 
+    const videos = useSelector((state) => state.question.videos);
+
+    console.log(videos)
+    const renderedVideos = videos.map((video) => {
+        return <VideoItem key={video.id.videoId} video={video}/>
+    });
+    return (
+        <>
+            <div className="ui raised segment"
+                 style={{display: 'flex', marginBottom: '10px', justifyContent: 'space-between'}}>
+                <div>
+                    <Header as='h6'>Youtube videos recommendation</Header>
+                </div>
             </div>
-        );
-    }
+            <div className="ui relaxed divided list ui segment">
+                {renderedVideos}
+            </div>
+        </>
+    );
 }
 
-export default SideWidgetFrequentlyAsked;
+export default SideWodgetYoutube;

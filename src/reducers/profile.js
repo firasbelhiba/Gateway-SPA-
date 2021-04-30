@@ -14,7 +14,8 @@ import {
   UNFOLLOW,
   NEW_NOTIFICATION,
   REMOVE_NOTIFICATION,
-  GET_SUGGESTIONS
+  GET_SUGGESTIONS,
+  GET_MOST_VIEWED_PEOPLE,
 } from "../actions/types";
 
 const initialState = {
@@ -29,7 +30,8 @@ const initialState = {
   this_profile: null,
   following: {},
   new_notification: false,
-  suggestion_list: []
+  suggestion_list: [],
+  most_viewed_profile_list: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -91,6 +93,13 @@ export default function (state = initialState, action) {
         suggestion_list: payload,
         loading: false,
       };
+    case GET_MOST_VIEWED_PEOPLE:
+      localStorage.setItem("most_viewed_profiles", JSON.stringify(payload));
+      return {
+        ...state,
+        most_viewed_profile_list: payload,
+        loading: false,
+      };
     case GET_REPOS:
       return {
         ...state,
@@ -119,15 +128,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         following: payload,
-        loading: false
+        loading: false,
       };
     case UNFOLLOW:
       localStorage.setItem("following", JSON.stringify(payload));
       return {
         ...state,
         following: payload,
-        loading: false
-      }
+        loading: false,
+      };
     default:
       return state;
   }

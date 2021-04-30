@@ -29,18 +29,20 @@ const This_post = ({
 
   let thisUser = JSON.parse(localStorage.getItem("user"));
 
+  const [text, setText] = useState("");
+  const [emoji, toggleEmoji] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState("");
+  const [message, setMessage] = useState(text + chosenEmoji);
   const changeHandler = (e) => {
-    setChosenEmoji(e.native);
+    let emoji = e.native;
+    setChosenEmoji(emoji);
   };
 
   const emojiPicker = (
     <div>
-      <Picker set="apple" onSelect={(e) => changeHandler(e)} />
+      <Picker onSelect={(e) => changeHandler(e)} />
     </div>
   );
-  const [emoji, toggleEmoji] = useState(false);
-  const [text, setText] = useState("" + chosenEmoji);
 
   return loading || post === null ? (
     <Loading_spinner />
@@ -90,7 +92,7 @@ const This_post = ({
                           type="text"
                           placeholder="Post a comment"
                           onChange={(e) => setText(e.target.value)}
-                          value={chosenEmoji}
+                          value={message}
                         />
                         <i
                           class="fas fa-smile-beam fa-2x ml-2"

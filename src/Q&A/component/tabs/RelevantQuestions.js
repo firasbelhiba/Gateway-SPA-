@@ -16,9 +16,21 @@ const RelevantQuestions = () => {
     return (
         <div className="ui segments" style={{border: '0px'}}>
             <div>
-                {Questions.map(question => (
-                    <UserQuestion details={question} segment="ui segment"/>
-                ))}
+                {Questions.map(question => {
+                    var UpVotes = [];
+                    for (var i in question.upVotes)
+                        UpVotes.push(question.upVotes[i].user);
+
+                    var DownVotes = [];
+                    for (var j in question.downVotes)
+                        DownVotes.push(question.downVotes[j].user);
+                    return (
+                        <div>
+                            <UserQuestion details={question} upVotes={question.upVotes} downVotes={question.downVotes}
+                                          segment="ui segment"/>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     );

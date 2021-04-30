@@ -4,7 +4,7 @@ import {youtubeRec} from "../../../actions/questions";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {Header} from "semantic-ui-react";
 
-const SideWodgetYoutube = ({search, youtubeRec, videos: {loading}}) => {
+const SideWidgetYoutube = ({search, youtubeRec, videos: {loading}}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         youtubeRec(search);
@@ -75,4 +75,4 @@ const SideWodgetYoutube = ({search, youtubeRec, videos: {loading}}) => {
 const mapStateToProps = (state) => ({
     videos: state.question.videos
 });
-export default connect(mapStateToProps, {youtubeRec})(SideWodgetYoutube);
+export default connect(mapStateToProps, {youtubeRec})(SideWidgetYoutube);

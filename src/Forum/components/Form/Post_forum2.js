@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addPost } from "../../../actions/post";
+import { toast } from "react-toastify";
 
 const Post_forum2 = ({ addPost, disable }) => {
   const [title, setTite] = useState("");
@@ -11,16 +12,37 @@ const Post_forum2 = ({ addPost, disable }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("title", title);
-    data.append("text", text);
-    data.append("category", category);
+    if (title === "" && text === "" && category === "") {
+      toast.error("Fill the fields and save !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (title === "") {
+      toast.error("Title is required !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (text === "") {
+      toast.error("Description is required !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (category === "") {
+      toast.error("Category is required !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else {
+      const data = new FormData();
+      data.append("title", title);
+      data.append("text", text);
+      data.append("category", category);
 
-    for (let i = 0; i < image.length; i++) {
-      data.append("image", image[i]);
+      for (let i = 0; i < image.length; i++) {
+        data.append("image", image[i]);
+      }
+
+      addPost(data);
+      toast.success("Post added successfully!!", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }
-
-    addPost(data);
   };
 
   return (
@@ -41,6 +63,7 @@ const Post_forum2 = ({ addPost, disable }) => {
                 name="category"
                 onChange={(e) => setCategory(e.target.value)}
               >
+                <option value="">Select a Category</option>
                 <option value="python">python</option>
                 <option value="spring">spring</option>
                 <option value="angular">angular</option>

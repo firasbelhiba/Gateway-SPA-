@@ -1,15 +1,29 @@
 import React, {useState} from "react";
-import {Segment, Button, Label, Item, Icon,} from 'semantic-ui-react'
+import {Button, Label} from 'semantic-ui-react'
 import '../../styles/FollowQuestion.css'
 import faker from "faker";
+import {followQuestion, unFollowQuestion} from "../../../actions/questions";
+import {useDispatch} from "react-redux";
 
 const FollowQuestion = (props) => {
     const [activeFollow, setActiveFollow] = useState(true);
 
+    const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+
     const handleClickFollow = () => {
+        if (activeFollow) {
+            dispatch(unFollowQuestion(props.details._id, user))
+        } else {
+            dispatch(followQuestion(props.details._id, user))
+
+        }
         setActiveFollow(!activeFollow);
     }
-
+    const handleFollow = () => {
+    }
+    const handleUnFollow = () => {
+    }
     var Answers = [];
     for (var i in props.details.answers)
         Answers.push(props.details.answers[i]);

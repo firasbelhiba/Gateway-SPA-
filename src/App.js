@@ -54,6 +54,7 @@ import Education_edit_form from "./Profile/components/Forms/Education_edit_form"
 import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form";
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
 import Settings from "./settings/pages/Settings";
+import Forum_visitor from "./Forum_Visitor/pages/Forum_visitor";
 
 //Utilities & functions
 import { loadUser } from "./actions/auth";
@@ -131,6 +132,7 @@ function App() {
                 path="/question_details"
                 component={QuestionDetails}
               />
+              <Route exact path="/forum-visitor" component={Forum_visitor} />
 
               <PrivateRoute exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/forum" component={Forum} />

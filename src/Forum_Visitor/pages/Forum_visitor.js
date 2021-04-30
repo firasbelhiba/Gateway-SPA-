@@ -1,129 +1,40 @@
-import React, { Fragment, useEffect, useState } from "react";
-import Suggestions from "../components/Suggestions";
-import User_data from "../components/User_data";
-import Tags from "../components/Tags";
-import Forum_header from "../components/Forum_header";
-import Post_item from "../components/Post_item";
-import Top_profiles from "../components/Top_profiles";
-import Widget_sign_up from "../components/Widget_sign_up";
-import Top_jobs from "../components/Top_jobs";
-import Most_viewed from "../components/Most_viewed";
-import Most_viewed_people from "../components/Most_viewed_people";
-import Post_form from "../components/Form/Post_form";
-import Post_forum2 from "../components/Form/Post_forum2";
+import React, { useEffect, useState } from "react";
+import { Fragment } from "react";
+import Post_item from "../../Forum/components/Post_item";
+import SimpleReactLightbox from "simple-react-lightbox";
+import Top_profiles from "../../Forum/components/Top_profiles";
+import Widget_sign_up from "../../Forum/components/Widget_sign_up";
+import Alert from "../../Shared/layouts/Alert";
+import Most_viewed from "../../Forum/components/Most_viewed";
+import Most_viewed_people from "../../Forum/components/Most_viewed_people";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions/post";
-import PropTypes from "prop-types";
-import { Loading_spinner } from "../../Shared/layouts/Loading_spinner";
-import Filters from "../components/Filters";
-import Alert from "../../Shared/layouts/Alert";
-import { getCurrentProfile } from "../../actions/profile";
-import SimpleReactLightbox from "simple-react-lightbox";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Top_tanitjobs from "../components/Top_tanitjobs";
-import Suggestions_friends from "../../Profile/components/Suggestions_friends";
 
-let classActive = "";
-export const disable = () => {
-  classActive = "";
-};
-
-const Forum = ({
-  getPosts,
-  post: { posts, loading },
-  profile = { profile },
-}) => {
+const Forum_visitor = ({ getPosts, post: { posts, loading }, showActions }) => {
   useEffect(() => {
     getPosts();
-    getCurrentProfile();
-  }, [getPosts, getCurrentProfile]);
+  }, [getPosts]);
 
-  let thisProfile = JSON.parse(localStorage.getItem("profile"));
-
-  const [formState, toggleState] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
   const [searchDate, setDate] = useState("");
   const [searchSort, setSort] = useState("");
-
-  if (formState === "add") {
-    classActive = "active";
-  }
-
-  if (formState === "") {
-    classActive = "";
-  }
-
   let currentDate = new Date();
 
-  function compareLikes(a, b) {
-    if (a.likes.length < b.likes.length) {
-      return 1;
-    }
-    if (a.likes.length > b.likes.length) {
-      return -1;
-    }
-    return 0;
-  }
-  function compareComments(a, b) {
-    if (a.comments.length < b.comments.length) {
-      return 1;
-    }
-    if (a.comments.length > b.comments.length) {
-      return -1;
-    }
-    return 0;
-  }
-
-  return loading ? (
-    <Loading_spinner />
-  ) : (
+  return (
     <Fragment>
       <body oncontextmenu="return false;">
-        <div className={formState === "add" ? "wrapper overlay" : "wrapper"}>
+        <div className="wrapper">
           <main>
             <div className="main-section">
               <div className="container">
                 <div className="main-section-data">
                   <div className="row">
                     <div className="col-lg-3 col-md-4 pd-left-none no-pd">
-                      <div className="main-left-sidebar no-margin">
-                        <User_data thisProfile={thisProfile} />
-                        <Suggestions_friends />
-                        <Top_tanitjobs />
-                        <Tags />
-                      </div>
+                      <div className="main-left-sidebar no-margin"></div>
                     </div>
                     <div className="col-lg-6 col-md-8 no-pd">
                       <div className="main-ws-sec">
-                        <div className="post-topbar">
-                          <div className="user-picy">
-                            <img
-                              src={thisProfile.user.avatar}
-                              alt=""
-                              style={{
-                                width: "50px",
-                                height: "50px",
-                                borderRadius: "50%",
-                              }}
-                            />
-                          </div>
-                          <div className="post-st">
-                            <ul>
-                              <li>
-                                <a
-                                  onClick={() => toggleState("add")}
-                                  className="post-jb active"
-                                  title=""
-                                  style={{ cursor: "pointer" }}
-                                >
-                                  Add post
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-
                         {posts
                           .filter((val) => {
                             if (searchCategory === "") return val;
@@ -202,7 +113,11 @@ const Forum = ({
                           })
                           .map((post) => (
                             <SimpleReactLightbox>
-                              <Post_item key={post && post._id} post={post} />
+                              <Post_item
+                                key={post && post._id}
+                                post={post}
+                                showActions={false}
+                              />
                             </SimpleReactLightbox>
                           ))}
 
@@ -211,6 +126,7 @@ const Forum = ({
                     </div>
                     <div className="col-lg-3 pd-right-none no-pd">
                       <div className="right-sidebar">
+                        <Widget_sign_up />
                         <Alert />
                         <div className="filter-secs">
                           <div className="filter-heading">
@@ -362,9 +278,6 @@ const Forum = ({
                             </div>
                           </div>
                         </div>
-                        <Top_jobs />
-                        <Most_viewed posts={posts} />
-                        <Most_viewed_people />
                       </div>
                     </div>
                   </div>
@@ -372,34 +285,20 @@ const Forum = ({
               </div>
             </div>
           </main>
-          <div className={`post-popup job_post ${classActive}`}>
-            <div className="post-project">
-              <h3>Add post</h3>
-              <Post_forum2 />
-              <a onClick={() => toggleState("")} title="">
-                <i
-                  className="la la-times-circle-o"
-                  style={{ color: "white" }}
-                ></i>
-              </a>
-            </div>
-          </div>
         </div>
       </body>
-      <ToastContainer />
     </Fragment>
   );
 };
 
-Forum.prototype = {
+Forum_visitor.prototype = {
   post: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
+
   getPosts: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
-  profile: state.profile,
 });
-export default connect(mapStateToProps, { getPosts, getCurrentProfile })(Forum);
+
+export default connect(mapStateToProps, { getPosts })(Forum_visitor);

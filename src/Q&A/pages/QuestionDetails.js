@@ -5,7 +5,7 @@ import SideWidgetFrequentlyAsked from "../component/widgets/SideWidgetFrequently
 import Answer from "../component/Answer";
 import "../styles/QuestionDetails.css";
 import {useLocation} from 'react-router-dom';
-import {deleteQuestion, getQuestionById} from "../../actions/questions";
+import {deleteQuestion, getQuestionById, youtubeRec} from "../../actions/questions";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {Loading_spinner} from "../../Shared/layouts/Loading_spinner";
 import {createAnswer} from '../../actions/questions';
@@ -42,9 +42,10 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
     const sortDown = () => {
         dispatch(sort(id, 'asc'))
     }
-    const sortVotes= () => {
+    const sortVotes = () => {
         dispatch(sortByVotes(id))
     }
+
     return loading || question === null ? (
         <Loading_spinner/>
     ) : (
@@ -101,7 +102,7 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
             </div>
             <div className="col-lg-3">
                 <SideWidget/>
-                <SideWidgetYoutube/>
+                <SideWidgetYoutube search={Question.subject}/>
             </div>
         </div>
     );

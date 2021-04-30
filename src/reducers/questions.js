@@ -6,6 +6,7 @@ import {
     CREATE_REPLY,
     DOWNVOTE_QUESTION,
     SOLUTION,
+    YOUTUBE_REC,
     UPVOTE_QUESTION,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
@@ -21,11 +22,12 @@ import {
     SORT_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_ANSWERS_VOTES,
-    DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY, UPDATE_LIKES,
+    DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY,
 } from "../actions/types";
 
 const initialState = {
     questions: [],
+    videos: [],
     question: null,
     loading: true,
     error: {},
@@ -104,6 +106,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 question: payload,
+                loading: false,
+            };
+        case YOUTUBE_REC:
+            return {
+                ...state,
+                videos: payload,
                 loading: false,
             };
         case UPVOTE_QUESTION:

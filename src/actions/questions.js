@@ -22,6 +22,7 @@ import {
     UNFOLLOW_QUESTION,
     FOLLOW_QUESTION,
     ADD_VIEW,
+    YOUTUBE_REC,
     SEARCH_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_QUESTIONS,
@@ -432,6 +433,21 @@ export const unFollowQuestion = (idQ, idU) => async (dispatch) => {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/unFollowQuestion/${idU}`);
         dispatch({
             type: UNFOLLOW_QUESTION,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const youtubeRec = (search) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/youtubeRec/${search}`);
+        dispatch({
+            type: YOUTUBE_REC,
             payload: data,
         });
     } catch (error) {

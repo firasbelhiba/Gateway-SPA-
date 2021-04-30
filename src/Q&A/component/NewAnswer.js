@@ -13,11 +13,14 @@ import {useDispatch} from "react-redux";
 import {Button as ButtonS} from 'semantic-ui-react'
 import Comments from "./Discussion/Comments";
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import UpDown from "./Votes/UpDown";
 
 const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
 export const NewAnswer = (props) => {
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+
     const [activeIndex, setActiveIndex] = useState(null);
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
@@ -55,12 +58,22 @@ export const NewAnswer = (props) => {
     for (var i in props.replies)
         Replies.push(props.replies[i]);
 
+    var UpVotes = [];
+    for (var i in props.UpVote)
+        UpVotes.push(props.UpVote[i].user);
+
+    var DownVotes = [];
+    for (var j in props.DownVotes)
+        DownVotes.push(props.DownVotes[j].user);
+
     return (
         <Grid container wrap="nowrap" spacing={2}>
             <Grid item style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Avatar alt="Remy Sharp" src={imgLink}/>
                 <div style={{marginLeft: "10px", marginTop: "5px"}}>
-                    <Rating UpVotes={props.UpVote} DownVotes={props.DownVotes} idQ={props.idQ} idA={props.idA}/>
+                    <Rating count={UpVotes.length - DownVotes.length} idQ={props.idQ} idA={props.idA}
+                            user={user}
+                            thumbsUp={UpVotes.includes(user)} thumbsDown={DownVotes.includes(user)}/>
                 </div>
             </Grid>
             <Grid justifyContent="left" item xs zeroMinWidth>

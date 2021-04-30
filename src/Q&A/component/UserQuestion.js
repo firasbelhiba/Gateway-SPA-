@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {addView, deleteQuestion, unFollowQuestion, followQuestion} from "../../actions/questions";
 import ReadOnly from "./TextEditor/ReadOnly";
 
+
 const UserQuestion = (props) => {
 
     const formatDate = (date) => {
@@ -44,6 +45,14 @@ const UserQuestion = (props) => {
     for (var i in props.details.following)
         Following.push(props.details.following[i].user);
 
+    var UpVotes = [];
+    for (var i in props.upVotes)
+        UpVotes.push(props.upVotes[i].user);
+
+    var DownVotes = [];
+    for (var j in props.downVotes)
+        DownVotes.push(props.downVotes[j].user);
+
     return (
         <div className={`${props.segment} row`} style={{float: 'left', marginBottom: '10px'}}>
 
@@ -67,8 +76,11 @@ const UserQuestion = (props) => {
                         </Placeholder>
                     </Popup.Content>
                 </Popup>
-                <QuestionVote upVotes={props.details.upVotes} downVotes={props.details.downVotes}
-                              id={props.details._id}/>
+                <div style={{marginLeft: "15px", marginTop: "80px"}}>
+                    <QuestionVote count={UpVotes.length - DownVotes.length}
+                                  thumbsUp={UpVotes.includes(user)} thumbsDown={DownVotes.includes(user)}
+                                  user={user} id={props.details._id}/>
+                </div>
             </div>
             <div className="usr_quest"
                  style={{marginTop: '20px', marginBottom: '5px', marginLeft: '5px', marginRight: '0px'}}>

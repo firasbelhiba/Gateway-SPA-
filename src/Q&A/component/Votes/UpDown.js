@@ -1,9 +1,9 @@
 import React from "react";
-import {upvoteAnswer, downvoteAnswer} from "../../../actions/questions";
+import {downvoteAnswer, upvoteAnswer} from "../../../actions/questions";
 import {useDispatch} from "react-redux";
 import './Rating.css'
 
-const Rating = (props) => {
+const UpDown = (props) => {
     const dispatch = useDispatch();
 
     const handleUpvote = () => {
@@ -38,4 +38,4 @@ const Rating = (props) => {
     );
 }
 
-export default Rating
+export default UpDown;

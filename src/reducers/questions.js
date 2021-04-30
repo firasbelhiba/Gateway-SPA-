@@ -4,11 +4,9 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     CREATE_REPLY,
-    UPVOTE,
+    DOWNVOTE_QUESTION,
     SOLUTION,
-    CANCEL_UPVOTE,
-    DOWNVOTE,
-    CANCEL_DOWNVOTE,
+    UPVOTE_QUESTION,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
@@ -23,7 +21,7 @@ import {
     SORT_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_ANSWERS_VOTES,
-    DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY,
+    DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY, UPDATE_LIKES,
 } from "../actions/types";
 
 const initialState = {
@@ -108,26 +106,19 @@ export default function (state = initialState, action) {
                 question: payload,
                 loading: false,
             };
-        case UPVOTE:
+        case UPVOTE_QUESTION:
             return {
                 ...state,
-                questions: state.questions.map((q) => q._id === payload.idQ ? {...q, upVotes: payload.upVotes} : q)
-                ,
+                questions: state.questions.map((question) =>
+                    question._id === payload.id ? {
+                        ...question,
+                        upVotes: payload.upVotes,
+                        downVotes: payload.downVotes,
+                    } : question
+                ),
                 loading: false,
             };
-        case CANCEL_UPVOTE:
-            return {
-                ...state,
-                question: payload,
-                loading: false,
-            };
-        case DOWNVOTE:
-            return {
-                ...state,
-                question: payload,
-                loading: false,
-            };
-        case CANCEL_DOWNVOTE:
+        case DOWNVOTE_QUESTION:
             return {
                 ...state,
                 question: payload,

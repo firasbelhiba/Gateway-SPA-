@@ -4,73 +4,31 @@ import {upvoteReply, downvoteReply} from "../../../actions/questions";
 import {useDispatch} from "react-redux";
 
 function Rating(props) {
-    const user = JSON.parse(localStorage.getItem('user'))._id;
     const dispatch = useDispatch();
 
-    const [upVotes, setUpVotes] = useState(props.UpVotes);
-    const [downVotes, setDownVotes] = useState(props.DownVotes);
-
-    var UpVotes = [];
-    for (var i in upVotes)
-        UpVotes.push(upVotes[i].user);
-
-    var DownVotes = [];
-    for (var j in downVotes)
-        DownVotes.push(downVotes[j].user);
-
-    const [count, setCount] = useState(UpVotes.length - DownVotes.length);
-
-    const [thumbsUp, setThumbsUp] = useState(UpVotes.includes(user));
-    const [thumbsDown, setThumbsDown] = useState(DownVotes.includes(user));
-    const [Up, setUp] = useState(false);
-    const [Down, setDown] = useState(false);
     const handleUpvote = () => {
-        setThumbsUp(!thumbsUp);
-        setThumbsDown(false);
-        setUp(!Up);
-        setDown(false);
-        if (Down) {
-            setCount(count + 2)
-        } else if (Up) {
-            setCount(count - 1)
-        } else {
-            setCount(count + 1)
-        }
-        dispatch(upvoteReply(props.idQ, props.idA, props.idR, user));
+        dispatch(upvoteReply(props.idQ, props.idA, props.idR, props.user));
     }
     const handleDownvote = () => {
-        setThumbsDown(!thumbsDown);
-        setThumbsUp(false);
-        setUp(false);
-        setDown(!Down);
-        if (Up) {
-            setCount(count - 2)
-        } else if (Down) {
-            setCount(count + 1)
-        } else {
-            setCount(count - 1)
-        }
-        dispatch(downvoteReply(props.idQ, props.idA, props.idR, user));
+        dispatch(downvoteReply(props.idQ, props.idA, props.idR, props.user));
     }
 
     return (
         <div {...props}>
             <button
-                className={`material-icons ${thumbsUp ? "selected" : ""}`}
+                className={`material-icons ${props.thumbsUp ? "selected" : ""}`}
                 id="thumbs_up"
                 onClick={handleUpvote}
             >
                 keyboard_arrow_up
             </button>
             <div
-                className={`count ${thumbsUp ? "up" : ""} ${thumbsDown ? "down" : ""}`}
+                className={`count ${props.thumbsUp ? "up" : ""} ${props.thumbsDown ? "down" : ""}`}
             >
-                {thumbsUp ? count : ""}
-                {thumbsDown ? count : ""}
-                {thumbsUp || thumbsDown ? "" : count}
+                {props.count}
             </div>
             <button
-                className={`material-icons ${thumbsDown ? "selected" : ""}`}
+                className={`material-icons ${props.thumbsDown ? "selected" : ""}`}
                 id="thumbs_down"
                 onClick={handleDownvote}
             >

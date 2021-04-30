@@ -25,14 +25,10 @@ function useQuery() {
 
 const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
     const dispatch = useDispatch();
-
     const [input, setInput] = useState(initialValue);
-
-    console.log(JSON.stringify(input));
 
     let query = useQuery();
     const id = query.get('id');
-    console.log(id);
 
     useEffect(() => {
         getQuestionById(id)

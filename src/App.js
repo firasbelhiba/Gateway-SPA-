@@ -55,6 +55,9 @@ import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form"
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
 import Settings from "./settings/pages/Settings";
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //Utilities & functions
 import { loadUser } from "./actions/auth";
 import {
@@ -200,6 +203,7 @@ function App() {
               <Route component={Notfound} />
             </Switch>
             {/* <Chat /> */}
+            <ToastContainer />
           </section>
         </Fragment>
       </Router>

@@ -9,7 +9,10 @@ const AuthForm = () => {
         <div>
             <LoginGithub clientId="5056fd3842964de4add2"
                 onSuccess={onSuccess}
-                onFailure={onFailure} />
+                onFailure={onFailure}
+                scope={"user:email"}
+                buttonText={"github"}
+            />
         </div>
     )
 }

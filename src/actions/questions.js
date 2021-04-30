@@ -5,13 +5,11 @@ import {
     CREATE_QUESTIONS,
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
-    UPVOTE,
+    UPVOTE_QUESTION,
     GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
-    CANCEL_UPVOTE,
-    DOWNVOTE,
-    CANCEL_DOWNVOTE,
+    DOWNVOTE_QUESTION,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
@@ -24,6 +22,7 @@ import {
     UNFOLLOW_QUESTION,
     FOLLOW_QUESTION,
     ADD_VIEW,
+    YOUTUBE_REC,
     SEARCH_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_QUESTIONS,
@@ -78,7 +77,6 @@ export const createQuestion = (Data) => async (dispatch) => {
             type: CREATE_QUESTIONS,
             payload: data,
         });
-        console.log(data);
     } catch (error) {
         dispatch({
             type: 'ERROR',
@@ -120,7 +118,6 @@ export const createAnswer = (Data, id) => async (dispatch) => {
             type: CREATE_ANSWER,
             payload: data,
         });
-        console.log('fesfes');
     } catch (error) {
         dispatch({
             type: 'ERROR',
@@ -173,8 +170,8 @@ export const createVote = (idQ, idU) => async (dispatch) => {
     try {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/upVote/${idU}`);
         dispatch({
-            type: UPVOTE,
-            payload: {idQ, upVotes: data},
+            type: UPVOTE_QUESTION,
+            payload: {idQ, upVotes: data.upVotes, downVotes: data.downVotes},
         });
     } catch (error) {
         dispatch({
@@ -183,40 +180,13 @@ export const createVote = (idQ, idU) => async (dispatch) => {
         });
     }
 };
-export const CancelVote = (idQ, idU) => async (dispatch) => {
-    try {
-        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/cancelUpVote/${idU}`);
-        dispatch({
-            type: CANCEL_UPVOTE,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: 'ERROR',
-            payload: {msg: error.response.statusText, status: error.response.status},
-        });
-    }
-};
+
 export const createDownVote = (idQ, idU) => async (dispatch) => {
     try {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/downVote/${idU}`);
         dispatch({
-            type: DOWNVOTE,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: 'ERROR',
-            payload: {msg: error.response.statusText, status: error.response.status},
-        });
-    }
-};
-export const CancelDownVote = (idQ, idU) => async (dispatch) => {
-    try {
-        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/cancelDownVote/${idU}`);
-        dispatch({
-            type: CANCEL_DOWNVOTE,
-            payload: data,
+            type: DOWNVOTE_QUESTION,
+            payload: {idQ, upVotes: data.upVotes, downVotes: data.downVotes},
         });
     } catch (error) {
         dispatch({
@@ -463,6 +433,21 @@ export const unFollowQuestion = (idQ, idU) => async (dispatch) => {
         const {data} = await axios.post(`http://localhost:5000/api/q_and_a/${idQ}/unFollowQuestion/${idU}`);
         dispatch({
             type: UNFOLLOW_QUESTION,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const youtubeRec = (search) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/youtubeRec/${search}`);
+        dispatch({
+            type: YOUTUBE_REC,
             payload: data,
         });
     } catch (error) {

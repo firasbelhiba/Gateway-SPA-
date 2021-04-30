@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import { register } from '../../../actions/auth';
 import { Link, Redirect } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 
 
 import './AuthForm.css';
+
 
 const AuthForm = ({ setAlert, register, isAuthenticated }) => {
 
@@ -24,6 +25,8 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
 
     const { name, email, password, password2 } = formData;
 
+
+
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -31,10 +34,35 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
-            setAlert('password does not match', 'danger');
+            toast.error("Password doesn't match", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (email === "") {
+            toast.error("Email required", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
 
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            toast.error("Email address is invalid", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
 
-        } else {
+        } else if (name === "") {
+            toast.error("name is required", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+
+        }
+        else if (password === "") {
+            toast.error("Password is required", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (password.length < 6) {
+            toast.error("Password needs to be 6 characters or more", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        }
+        else {
             register({ name, email, password });
         }
     }
@@ -51,7 +79,6 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                 <div className="login-sec">
                     <ul className="sign-control">
                     </ul>
-                    <ToastContainer />
                     <div className="sign_in_sec current" id="tab-2">
 
                         <div className="dff-tab current" id="tab-3">
@@ -65,7 +92,7 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                                 value={name}
                                                 placeholder="Full Name"
                                                 onChange={e => onChange(e)}
-                                                required
+
                                             />
                                             <i className="la la-user"></i>
                                         </div>
@@ -78,7 +105,7 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                                 value={email}
                                                 placeholder="Email"
                                                 onChange={e => onChange(e)}
-                                                required
+
                                             />
                                             <i className="fas fa-at"></i>
                                         </div>
@@ -90,9 +117,8 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                                 name="password"
                                                 value={password}
                                                 placeholder="Password"
-                                                minLength="6"
                                                 onChange={e => onChange(e)}
-                                                required
+
                                             />
                                             <i className="la la-lock"></i>
                                         </div>
@@ -105,8 +131,7 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                                 value={password2}
                                                 placeholder="Repeat Password"
                                                 onChange={e => onChange(e)}
-                                                minLength="6"
-                                                required
+
                                             />
                                             <i className="la la-lock"></i>
                                         </div>

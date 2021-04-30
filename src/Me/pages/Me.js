@@ -42,7 +42,7 @@ const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }
                                 ) :
                                 (
                                     <Fragment>
-                                        <No_Profile />
+                                        <No_Profile loading={loading} />
                                     </Fragment>)}
                         </div>
                     </div>

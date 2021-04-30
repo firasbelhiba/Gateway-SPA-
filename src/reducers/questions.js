@@ -4,11 +4,10 @@ import {
     GET_QUESTION_BY_ID,
     CREATE_ANSWER,
     CREATE_REPLY,
-    UPVOTE,
+    DOWNVOTE_QUESTION,
     SOLUTION,
-    CANCEL_UPVOTE,
-    DOWNVOTE,
-    CANCEL_DOWNVOTE,
+    YOUTUBE_REC,
+    UPVOTE_QUESTION,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
@@ -28,6 +27,7 @@ import {
 
 const initialState = {
     questions: [],
+    videos: [],
     question: null,
     loading: true,
     error: {},
@@ -108,26 +108,25 @@ export default function (state = initialState, action) {
                 question: payload,
                 loading: false,
             };
-        case UPVOTE:
+        case YOUTUBE_REC:
             return {
                 ...state,
-                questions: state.questions.map((q) => q._id === payload.idQ ? {...q, upVotes: payload.upVotes} : q)
-                ,
+                videos: payload,
                 loading: false,
             };
-        case CANCEL_UPVOTE:
+        case UPVOTE_QUESTION:
             return {
                 ...state,
-                question: payload,
+                questions: state.questions.map((question) =>
+                    question._id === payload.id ? {
+                        ...question,
+                        upVotes: payload.upVotes,
+                        downVotes: payload.downVotes,
+                    } : question
+                ),
                 loading: false,
             };
-        case DOWNVOTE:
-            return {
-                ...state,
-                question: payload,
-                loading: false,
-            };
-        case CANCEL_DOWNVOTE:
+        case DOWNVOTE_QUESTION:
             return {
                 ...state,
                 question: payload,

@@ -2,12 +2,15 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Loading_spinner } from '../../Shared/layouts/Loading_spinner'
 
 import { createProfileViaLinkedin } from '../../actions/profile'
 
-const No_Profile = ({ createProfileViaLinkedin, history }) => {
+const No_Profile = ({ createProfileViaLinkedin, history, loading }) => {
 
     const [loginForm, toggleLoginForm] = useState(false)
+
+    const [isClicked, setIsClicked] = useState(false)
 
     const [formData, setFormData] = useState({
         link: '',
@@ -23,6 +26,7 @@ const No_Profile = ({ createProfileViaLinkedin, history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
+        setIsClicked(true);
         createProfileViaLinkedin(formData, history);
     }
 
@@ -71,7 +75,7 @@ const No_Profile = ({ createProfileViaLinkedin, history }) => {
                     </small>
                     </li>
                 </ul>
-                <button className="button_form" type="submit">Save</button>
+                {!isClicked ? <button className="button_form" type="submit">Save</button> : <Loading_spinner />}
 
             </form>
         </Fragment>
@@ -89,20 +93,20 @@ const No_Profile = ({ createProfileViaLinkedin, history }) => {
         </Fragment>
     )
 
-    return (
-        <Fragment>
-            <span>You don't have yet a profile ? please add some info </span>
+    return loading ? <Loading_spinner /> : <Fragment>
+        <span>You don't have yet a profile ? please add some info </span>
 
-            <div className="user-profy">
-                <Link to="/create-profile" title="">Create Profile</Link>
-            </div>
+        <div className="user-profy">
+            <Link to="/create-profile" title="">Create Profile</Link>
+        </div>
 
-            <div className="login-resources">
-                {!loginForm ? linkedinShowFormButton : createProfile}
-            </div>
+        <div className="login-resources">
+            {!loginForm ? linkedinShowFormButton : createProfile}
+        </div>
 
-        </Fragment>
-    )
+    </Fragment>
+
+
 }
 
 No_Profile.propTypes = {

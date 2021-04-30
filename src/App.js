@@ -56,6 +56,9 @@ import Certification_edit_form from "./Profile/components/Forms/Certification_ed
 import Settings from "./settings/pages/Settings";
 import Forum_visitor from "./Forum_Visitor/pages/Forum_visitor";
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //Utilities & functions
 import { loadUser } from "./actions/auth";
 import {
@@ -202,6 +205,7 @@ function App() {
               <Route component={Notfound} />
             </Switch>
             {/* <Chat /> */}
+            <ToastContainer />
           </section>
         </Fragment>
       </Router>

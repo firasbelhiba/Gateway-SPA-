@@ -8,6 +8,7 @@ import {
     SOLUTION,
     YOUTUBE_REC,
     UPVOTE_QUESTION,
+    BLOG_REC,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
@@ -27,7 +28,8 @@ import {
 
 const initialState = {
     questions: [],
-    videos: [],
+    videos: {loading: true, videos: []},
+    blogs: {loading: true, blogs: []},
     question: null,
     loading: true,
     error: {},
@@ -41,6 +43,8 @@ export default function (state = initialState, action) {
                 ...state,
                 questions: payload,
                 loading: false,
+                blogs: {loading: true, blogs: []},
+                question: initialState.question,
             };
         case GET_FOLLOWED_QUESTIONS:
             return {
@@ -111,8 +115,12 @@ export default function (state = initialState, action) {
         case YOUTUBE_REC:
             return {
                 ...state,
-                videos: payload,
-                loading: false,
+                videos: {loading: false, videos: payload},
+            };
+        case BLOG_REC:
+            return {
+                ...state,
+                blogs: {loading: false, blogs: payload}
             };
         case UPVOTE_QUESTION:
             return {

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { updatePost } from "../../../actions/post";
 import { useLocation } from "react-router-dom";
 import { StepTitle } from "semantic-ui-react";
+import { toast } from "react-toastify";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -19,12 +20,33 @@ const Post_form = ({ post: { post, loading }, updatePost, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("title", title);
-    data.append("text", text);
-    data.append("category", category);
+    if (title === "" && text === "" && category === "") {
+      toast.error("Fill the fields and save !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (title === "") {
+      toast.error("Title is required !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (text === "") {
+      toast.error("Description is required !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (category === "") {
+      toast.error("Category is required !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else {
+      const data = new FormData();
+      data.append("title", title);
+      data.append("text", text);
+      data.append("category", category);
 
-    updatePost(title, text, category, query.get("id"), history);
+      updatePost(title, text, category, query.get("id"), history);
+      toast.success("Post updated successfully!!", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    }
   };
 
   return (
@@ -47,6 +69,7 @@ const Post_form = ({ post: { post, loading }, updatePost, history }) => {
                 onChange={(e) => setCategory(e.target.value)}
                 value={category}
               >
+                <option value="">Select a Category</option>
                 <option value="python">python</option>
                 <option value="spring">spring</option>
                 <option value="angular">angular</option>

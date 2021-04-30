@@ -71,7 +71,7 @@ const Post_item = ({
   if (formState === false) {
     classActiveClose = "";
   }
-  if (auth.isAuthenticated) {
+  if (showActions) {
     for (var i = 0; i < likes.length; i++) {
       if (likes[i].user === this_user._id) {
         found = true;

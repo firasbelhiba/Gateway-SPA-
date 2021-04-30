@@ -717,9 +717,6 @@ export const savePost = (id) => async (dispatch) => {
       type: SAVED_POST,
       payload: res.data,
     });
-    toast.success("Post is saved !", {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
     dispatch(getCurrentProfile());
   } catch (error) {
     dispatch({

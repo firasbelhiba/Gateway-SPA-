@@ -10,6 +10,7 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import { addViews } from "../../actions/post";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   sharePost,
   deleteShare,
@@ -238,7 +239,12 @@ const Post_item = ({
               <ul className="bk-links">
                 <li>
                   <a
-                    onClick={() => savePost(_id)}
+                    onClick={() => {
+                      savePost(_id);
+                      toast.success("Post is saved successfully!!", {
+                        position: toast.POSITION.BOTTOM_LEFT,
+                      });
+                    }}
                     title=""
                     style={{ cursor: "pointer" }}
                   >

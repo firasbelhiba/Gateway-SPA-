@@ -133,7 +133,7 @@ const Post_item = ({
                 </span>
               </div>
             </div>
-            {showActions && (
+            {auth.isAuthenticated && (
               <div className="ed-opts">
                 <a
                   onClick={() => {

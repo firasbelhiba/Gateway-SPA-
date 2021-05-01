@@ -97,6 +97,7 @@ export const GET_FOLLOWED_QUESTIONS = "GET_FOLLOWED_QUESTIONS";
 export const UPVOTE_QUESTION = "UPVOTE_QUESTION";
 export const DOWNVOTE_QUESTION = "DOWNVOTE_QUESTION";
 export const YOUTUBE_REC = "YOUTUBE_REC";
+export const BLOG_REC = "BLOG_REC";
 
 
 // Scrapng types

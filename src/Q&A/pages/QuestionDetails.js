@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from "react";
 import UserQuestion from "../component/UserQuestion";
-import SideWidget from "../component/widgets/SideWidget";
-import SideWidgetFrequentlyAsked from "../component/widgets/SideWidgetFrequentlyAsked";
-import Answer from "../component/Answer";
+import SideWidgetBlogs from "../component/widgets/SideWidgetBlogs";
 import "../styles/QuestionDetails.css";
 import {useLocation} from 'react-router-dom';
-import {deleteQuestion, getQuestionById, youtubeRec} from "../../actions/questions";
+import {getQuestionById} from "../../actions/questions";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {Loading_spinner} from "../../Shared/layouts/Loading_spinner";
-import {createAnswer} from '../../actions/questions';
-import {Divider, Avatar, Grid, Paper} from "@material-ui/core";
+import {Divider} from "@material-ui/core";
 import {NewAnswer} from "../component/NewAnswer";
 import AnswerEditor from "../component/TextEditor/AnswerEditor";
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -101,7 +98,7 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
                 </div>
             </div>
             <div className="col-lg-3">
-                <SideWidget/>
+                <SideWidgetBlogs search={Question.tags}/>
                 <SideWidgetYoutube search={Question.subject}/>
             </div>
         </div>

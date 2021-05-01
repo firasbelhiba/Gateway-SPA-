@@ -113,3 +113,20 @@ export const applyJob = (id) => async (dispatch) => {
       });
     }
   };
+
+  //Add VIEWS
+export const addViews = (id) => async (dispatch) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/jobs/views/${id}`);
+      
+      dispatch({
+        type: ADD_VIEWS,
+        payload: { id, views: res.data },
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        
+      });
+    }
+  };

@@ -244,9 +244,7 @@ export const addViews = (id) => async (dispatch) => {
 };
 
 //Update Post
-export const updatePost = (title, text, category, id, history) => async (
-  dispatch
-) => {
+export const updatePost = (data, id, history) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -254,11 +252,11 @@ export const updatePost = (title, text, category, id, history) => async (
   };
 
   try {
-    const body = JSON.stringify({ title, text, category });
+    //const body = JSON.stringify({ title, text, category, image });
 
     const res = await axios.put(
       `http://localhost:5000/api/posts/${id}`,
-      body,
+      data,
       config
     );
     dispatch({

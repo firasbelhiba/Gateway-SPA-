@@ -349,3 +349,32 @@ export const addReport = (formData,id) => async (dispatch) => {
       });
     }
   };
+
+  // Add new mail
+export const addMail = (formData,id) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/api/jobs/mail/${id}`,
+        formData,
+        config
+      );
+      dispatch({
+        type: ADD_MAIL,
+        
+      });
+     
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };

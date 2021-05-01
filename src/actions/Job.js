@@ -237,3 +237,9 @@ export const clearCurrent = () => {
       type: SET_ACTIVE_MAIL
     };
   };
+
+  export const setActiveReport = () => {
+    return {
+      type: SET_ACTIVE_REPORT
+    };
+  };

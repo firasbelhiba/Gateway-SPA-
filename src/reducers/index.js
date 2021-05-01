@@ -5,7 +5,7 @@ import profile from "./profile";
 import post from "./post";
 import question from "./questions";
 import scraping from "./scraping";
-
+import Job from "./Job";
 
 export default combineReducers({
   alert,
@@ -14,5 +14,6 @@ export default combineReducers({
   post,
   question,
   scraping,
+  Job,
  
 });

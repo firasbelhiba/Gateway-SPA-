@@ -250,3 +250,10 @@ export const clearCurrent = () => {
           type: SET_DISACTIVE
         };
       };
+
+  // Set disactive mail to true
+  export const setDisactiveMail = () => {
+    return {
+      type: SET_DISACTIVE_MAIL
+    };
+  };    

@@ -42,3 +42,23 @@ export const setLoading = () => {
       type: SET_LOADING
     };
   };
+
+ //get Jobs 
+export const getJobs = () => async dispatch => {
+    try {
+      setLoading();
+  
+      const res = await fetch('http://localhost:5000/api/jobs');
+      const data = await res.json();
+  
+      dispatch({
+        type: GET_JOBS,
+        payload: data
+      });
+    } catch (err) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: err.response.statusText
+      });
+    }
+  }; 

@@ -416,3 +416,14 @@ export const addMail = (formData,id) => async (dispatch) => {
       });
     }
   };
+
+
+//search price
+
+  export const searchPrice = (price) => {
+ 
+    return {
+      type: SEARCH_PRICE,
+      payload:price.toString()
+    };
+  };

@@ -282,3 +282,12 @@ export const saveJob = (id) => async (dispatch) => {
       });
     }
   };
+
+  //set hide
+
+  export const setHide = (id) => {
+    return {
+      type: DELETE_JOB,
+      payload:id
+    };
+  };

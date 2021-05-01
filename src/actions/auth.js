@@ -279,6 +279,44 @@ export const setNewPassword = (password, token) => async (dispatch) => {
 
 };
 
+//Register user
+export const registerWithLinkedin = ({ email, password, link, cookie }) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ email, password, link, cookie });
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/users/linkedin",
+      body,
+      config
+    );
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(loadUser());
+
+
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((e) => {
+        toast.error(e.message, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      });
+    }
+    dispatch({
+      type: REGISTER_FAIL,
+    });
+  }
+};
+
 // Logout
 export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });

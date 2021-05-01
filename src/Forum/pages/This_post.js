@@ -28,6 +28,8 @@ const This_post = ({
   }, [getPost]);
 
   let thisUser = JSON.parse(localStorage.getItem("user"));
+  let thisProfile = JSON.parse(localStorage.getItem("profile"));
+
 
   const [text, setText] = useState("");
   const [emoji, toggleEmoji] = useState(false);
@@ -67,6 +69,7 @@ const This_post = ({
                         key={comment._id}
                         comment={comment}
                         postId={post._id}
+                        myAvatar={thisProfile.avatar}
                       />
                     ))}
                   </ul>
@@ -74,7 +77,7 @@ const This_post = ({
                 <div className="post-comment">
                   <div className="cm_img">
                     <img
-                      src={thisUser.avatar}
+                      src={thisProfile.avatar}
                       alt=""
                       style={{ borderRadius: "50%" }}
                     />

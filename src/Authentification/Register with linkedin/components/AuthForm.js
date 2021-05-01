@@ -1,9 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { registerWithLinkedin } from '../../../actions/auth';
 
 
-const AuthForm = () => {
+
+const AuthForm = ({ registerWithLinkedin }) => {
 
     const [formData, setFormData] = useState({
         email: '',
@@ -20,7 +24,7 @@ const AuthForm = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+        registerWithLinkedin({ email, password, link, cookie })
     }
     return (
         <Fragment>
@@ -88,6 +92,9 @@ const AuthForm = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-lg-12 no-pdd">
+                                <button type="submit" value="submit">Register</button>
+                            </div>
                             </form>
                         </div>
 
@@ -98,4 +105,10 @@ const AuthForm = () => {
     )
 }
 
-export default AuthForm
+
+
+AuthForm.propTypes = {
+    registerWithLinkedin: PropTypes.func.isRequired,
+}
+
+export default connect(null, { registerWithLinkedin })(AuthForm)

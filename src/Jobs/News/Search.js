@@ -19,7 +19,7 @@ class Search extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
 
-    this.apiUrl = `https://newsapi.org/v2/sources?language=en&apiKey=1369f7bb456b466caccf2699264b8549`;
+    this.apiUrl = `http://localhost:5000/api/jobs/category/news`;
   }
 
   handleChange(event) {

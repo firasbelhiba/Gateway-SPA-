@@ -149,3 +149,35 @@ export const deleteJob = id => async dispatch => {
       });
     }
   };
+
+
+  
+// Add new job
+export const addJob = (formData) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/jobs/",
+        formData,
+        config
+      );
+      dispatch({
+        type: ADD_JOB,
+        payload: res.data,
+      });
+      dispatch(getJobs())
+      dispatch(loadUser())
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };

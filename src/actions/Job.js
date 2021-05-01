@@ -130,3 +130,22 @@ export const addViews = (id) => async (dispatch) => {
       });
     }
   };
+
+  // Delete JOB from server
+export const deleteJob = id => async dispatch => {
+    try {
+      setLoading();
+  
+      const res = await axios.delete(`http://localhost:5000/api/jobs/${id}`);
+  
+      dispatch({
+        type: DELETE_JOB,
+        payload: id,a:res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: err.response.statusText
+      });
+    }
+  };

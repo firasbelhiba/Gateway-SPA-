@@ -454,3 +454,12 @@ export const addMail = (formData,id) => async (dispatch) => {
       payload:text.toString()
     };
   };
+
+// searchSkills
+  export const searchSkills = (Array) => {
+ 
+    return {
+      type: SEARCH_SKILLS,
+      payload:Array
+    };
+  };

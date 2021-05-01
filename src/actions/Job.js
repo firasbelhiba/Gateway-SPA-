@@ -397,3 +397,22 @@ export const addMail = (formData,id) => async (dispatch) => {
       });
     }
   };
+
+  // getJobByUser
+  export const getJobByUser = () => async dispatch => {
+    try {
+      setLoading();
+      const res = await axios.get("http://localhost:5000/api/jobs/see/me");
+      
+  
+      dispatch({
+        type: GET_JOBS_BY_USER,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: err.response.statusText
+      });
+    }
+  };

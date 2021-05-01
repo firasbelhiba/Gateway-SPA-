@@ -208,4 +208,12 @@ export const addJob = (formData) => async (dispatch) => {
       });
     }
   };
-  
+
+  // Set current log
+export const setCurrent = job => {
+    return {
+      type: SET_CURRENT,
+      payload: job
+    };
+};
+

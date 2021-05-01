@@ -243,3 +243,10 @@ export const clearCurrent = () => {
       type: SET_ACTIVE_REPORT
     };
   };
+
+ // Set disactive to true
+     export const setDisactive = () => {
+        return {
+          type: SET_DISACTIVE
+        };
+      };

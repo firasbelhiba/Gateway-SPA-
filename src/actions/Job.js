@@ -96,3 +96,20 @@ export const addCandidature = (id) => async (dispatch) => {
       });
     }
   };
+
+  //Add apply
+export const applyJob = (id) => async (dispatch) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/jobs/applied/${id}`);
+      
+      dispatch({
+        type: JOB_APPLY,
+        payload: { id, appliedTo: res.data },
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        
+      });
+    }
+  };

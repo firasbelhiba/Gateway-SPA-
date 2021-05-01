@@ -7,7 +7,7 @@ import { Bids_profile } from "../components/Bids_profile";
 import Cover_picture from "../components/Cover_picture";
 import { Feed_profile } from "../components/Feed_profile";
 import { Info_profile } from "../components/Info_profile";
-import { Jobs_profile } from "../components/Jobs_profile";
+import { Jobs_profile } from "../../Jobs/components/Jobs_profile";
 import Main_left_sidebar from "../components/Main_left_sidebar";
 import { People_viewed_profile } from "../components/People_viewed_profile";
 import { Portfolio_profile } from "../components/Portfolio_profile";
@@ -100,12 +100,12 @@ const Profile = ({
                                 <span>Info</span>
                               </a>
                             </li>
-                            <li onClick={() => setId("jobs")}>
-                              <a title="">
-                                <img src="assets/images/ic4.png" alt="" />
-                                <span>Jobs</span>
-                              </a>
-                            </li>
+                            <li data-tab = "saved-jobs" onClick={() => setId("jobs")}>
+                           <a title="">
+                            <img src="assets/images/ic4.png" alt=""/>
+                               <span>Jobs</span>
+                           </a>
+                             </li>
                             <li onClick={() => setId("bids")}>
                               <a title="">
                                 <img src="assets/images/ic5.png" alt="" />

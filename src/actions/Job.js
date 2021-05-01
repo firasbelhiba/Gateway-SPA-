@@ -217,3 +217,9 @@ export const setCurrent = job => {
     };
 };
 
+// Clear current job
+export const clearCurrent = () => {
+    return {
+      type: CLEAR_CURRENT
+    };
+  };

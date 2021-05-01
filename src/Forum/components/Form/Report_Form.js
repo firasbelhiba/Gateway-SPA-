@@ -36,7 +36,7 @@ const Report_Form = ({ addReport, history }) => {
               }
             }}
           >
-            <h1 className="h1">Report post</h1>
+            <h1 className="h1_profile">Report post</h1>
             <fieldset>
               <legend>Why do you want to report?</legend>
               <label className="mt-5" htmlFor="name">

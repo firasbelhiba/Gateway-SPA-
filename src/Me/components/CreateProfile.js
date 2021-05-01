@@ -56,7 +56,7 @@ const CreateProfile = ({ createProfile, history }) => {
             <div className="row">
                 <div className="col-md-12">
                     <form className="form_create" onSubmit={e => onSubmit(e)}>
-                        <h1 className="h1">Create Your profile</h1>
+                        <h1 className="h1_profile">Create Your profile</h1>
 
                         <fieldset>
                             <legend><span className="number">1</span> Let's get some information to make your profile stand out</legend>

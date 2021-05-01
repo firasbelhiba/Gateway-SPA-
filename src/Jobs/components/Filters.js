@@ -1,6 +1,145 @@
-import React,{Fragment} from 'react'
+import React,{Fragment,useEffect,useState,useMemo} from 'react'
+import { connect } from 'react-redux';
+import {searchPrice,getJobs,searchJobType,searchCountry,searchAvailability,searchSkills } from '../../actions/Job';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
+import 'sanitize.css'
 
-export const Filters = () => {
+
+
+
+const Filters = ({searchCountry,searchAvailability,searchSkills,searchPrice,searchJobType,getJobs,Job:{jobs}}) => {
+
+  const [value,setValue]=useState({})
+  const [price,setPrice]=useState(null)
+  const [jobType,setJobType]=useState("")
+  const [country,setCountry]=useState("")
+  const [availability,setAvailability]=useState("")
+  const [skills,setSkills]=useState([])
+
+
+  const options = useMemo(() => countryList().getData(), [])
+  const styles = {
+    valueContainer: (base, state) => {
+      const height = "30px";
+      
+      
+      return { ...base, height };
+    }
+  };
+
+  const changePrice=(e)=>{
+   e.preventDefault()
+   setPrice(e.target.value)
+   function miseEnAttente()
+      {
+      //Traitement
+      getJobs()
+          setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+       }
+       function fonctionAExecuter()
+           {
+           
+             searchPrice(e.target.value)
+          console.log(jobs)
+           }
+           miseEnAttente();
+    
+  }
+  const changeJobType=(e)=>{
+    e.preventDefault()
+    setJobType(e.target.value)
+    function miseEnAttente()
+       {
+       //Traitement
+       getJobs()
+           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           console.log(jobs)
+        }
+        function fonctionAExecuter()
+            {
+              
+            console.log(e.target.value)
+              searchJobType(e.target.value)
+           
+            }
+            miseEnAttente();
+
+     
+   }
+
+   const changeAvailability=(e)=>{
+    e.preventDefault()
+    setAvailability(e.target.value)
+    function miseEnAttente()
+       {
+       //Traitement
+       getJobs()
+           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           console.log(jobs)
+        }
+        function fonctionAExecuter()
+            {
+              
+            console.log(e.target.value)
+              searchAvailability(e.target.value)
+           
+            }
+            miseEnAttente();
+
+     
+   }  
+   const changeSkills=(e)=>{
+    e.preventDefault()
+    setSkills(e.target.value)
+    function miseEnAttente()
+       {
+       //Traitement
+       getJobs()
+           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           console.log(jobs)
+        }
+        function fonctionAExecuter()
+            {
+              
+            console.log(e.target.value)
+              searchSkills(e.target.value)
+           
+            }
+            miseEnAttente();
+     
+   }  
+
+
+const changeHandler = value => {
+   
+  setValue(value)
+       const {label}=value
+       setCountry(label)
+
+       console.log(label)
+    function miseEnAttente()
+    
+       {
+       //Traitement
+       
+       
+       getJobs()
+           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           console.log(jobs)
+        }
+        function fonctionAExecuter()
+            {
+            
+              searchCountry(label)
+           console.log(jobs)
+            }
+            miseEnAttente();
+
+  }
     return (
         <Fragment>
             <div className="col-lg-3">
@@ -19,48 +158,32 @@ export const Filters = () => {
                               <input type="text" name="search-skills" placeholder="Search skills" />
                             </form>
                           </div>
-                          <div className="filter-dd">
-                            <div className="filter-ttl">
-                              <h3>Availabilty</h3>
-                              <a href="#" title>Clear</a>
-                            </div>
-                            <ul className="avail-checks">
-                              <li>
-                                <input type="radio" name="cc" id="c1" />
-                                <label htmlFor="c1">
-                                  <span />
-                                </label>
-                                <small>Hourly</small>
-                              </li>
-                              <li>
-                                <input type="radio" name="cc" id="c2" />
-                                <label htmlFor="c2">
-                                  <span />
-                                </label>
-                                <small>Part Time</small>
-                              </li>
-                              <li>
-                                <input type="radio" name="cc" id="c3" />
-                                <label htmlFor="c3">
-                                  <span />
-                                </label>
-                                <small>Full Time</small>
-                              </li>
-                            </ul>
+                          <div class="filter-dd">
+                        <div class="filter-ttl">
+                       <h3>Availability</h3>
+                           <a href="#" title="">Clear</a>
                           </div>
+                           <form class="job-tp">
+                           <select  value={availability}
+                                 name="availability"
+                                    onChange={(e)=>changeAvailability(e)}>
+                             
+                                <option> </option>
+                                <option>Hourly</option>
+                                 <option>Half time</option>
+                                  <option>full time</option>
+                                 </select>
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                             </form>
+                              </div>
                           <div className="filter-dd">
                             <div className="filter-ttl">
                               <h3>Job Type</h3>
                               <a href="#" title>Clear</a>
                             </div>
                             <form className="job-tp">
-                              <select>
-                                <option>Select a job type</option>
-                                <option>Select a job type</option>
-                                <option>Select a job type</option>
-                                <option>Select a job type</option>
-                              </select>
-                              <i className="fa fa-ellipsis-v" aria-hidden="true" />
+                              
+                            <input type="text" name="search-job-type" placeholder="Search job type" value={jobType} onChange={(e)=>{changeJobType(e)}}/>
                             </form>
                           </div>
                           <div className="filter-dd">
@@ -68,42 +191,23 @@ export const Filters = () => {
                               <h3>Pay Rate / Hr ($)</h3>
                               <a href="#" title>Clear</a>
                             </div>
-                            <div className="rg-slider">
-                              <input className="rn-slider slider-input" type="hidden" defaultValue="5,50" />
-                            </div>
-                            <div className="rg-limit">
-                              <h4>1</h4>
-                              <h4>100+</h4>
-                            </div>
-                          </div>
-                          <div className="filter-dd">
-                            <div className="filter-ttl">
-                              <h3>Experience Level</h3>
-                              <a href="#" title>Clear</a>
-                            </div>
-                            <form className="job-tp">
-                              <select>
-                                <option>Select a experience level</option>
-                                <option>3 years</option>
-                                <option>4 years</option>
-                                <option>5 years</option>
-                              </select>
-                              <i className="fa fa-ellipsis-v" aria-hidden="true" />
+                            
+                            <form>
+                              <input type="number" name="search-price" placeholder="Search price" value={price} onChange={(e)=>{changePrice(e)}}/>
+                             
                             </form>
+                          
+                          
                           </div>
+                         
                           <div className="filter-dd">
                             <div className="filter-ttl">
                               <h3>Countries</h3>
                               <a href="#" title>Clear</a>
                             </div>
                             <form className="job-tp">
-                              <select>
-                                <option>Select a country</option>
-                                <option>United Kingdom</option>
-                                <option>United States</option>
-                                <option>Russia</option>
-                              </select>
-                              <i className="fa fa-ellipsis-v" aria-hidden="true" />
+                            <Select styles={styles} options={options} value={value} onChange={changeHandler} />   
+                              
                             </form>
                           </div>
                         </div>
@@ -112,5 +216,14 @@ export const Filters = () => {
         </Fragment>
     )
 }
+const mapStateToProps = state => ({
+  Job: state.Job,
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  {searchPrice,getJobs,searchJobType,searchCountry,searchAvailability,searchSkills}
+)(Filters);
 
 

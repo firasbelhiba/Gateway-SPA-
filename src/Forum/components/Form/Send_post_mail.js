@@ -43,7 +43,7 @@ const Send_post_mail = ({ sendPostMail, history }) => {
               onSubmit(e);
             }}
           >
-            <h1 className="h1">Send post</h1>
+            <h1 className="h1_profile">Send post</h1>
             <fieldset>
               <label className="mt-5" htmlFor="name">
                 To:

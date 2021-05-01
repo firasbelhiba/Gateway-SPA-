@@ -68,7 +68,7 @@ const Education_edit_form = ({
             <div className="row">
                 <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
-                        <h1 className="h1">Add Your Education</h1>
+                        <h1 className="h1_profile">Add Your Education</h1>
 
                         <fieldset>
                             <legend><span className="number">1</span>Add any school or bootcamp you attended</legend>

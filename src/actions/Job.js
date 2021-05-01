@@ -378,3 +378,22 @@ export const addMail = (formData,id) => async (dispatch) => {
       });
     }
   };
+
+  //delete comment
+  export const deleteComment = (id,id_com) => async dispatch => {
+    try {
+      setLoading();
+  
+      const res = await axios.put(`http://localhost:5000/api/jobs/comment/delete/${id}/${id_com}`);
+  
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: { id, comments: res.data }
+      });
+    } catch (err) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: err.response.statusText
+      });
+    }
+  };

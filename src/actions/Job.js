@@ -79,3 +79,20 @@ export const addLike = (id) => async (dispatch) => {
       });
     }
   };
+
+  //Add candidature
+export const addCandidature = (id) => async (dispatch) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/jobs/candidat/${id}`);
+      
+      dispatch({
+        type: ADD_CANDIDATE,
+        payload: { id, candidates: res.data },
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        
+      });
+    }
+  };

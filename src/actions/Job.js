@@ -181,3 +181,31 @@ export const addJob = (formData) => async (dispatch) => {
       });
     }
   };
+
+  export const updateJob = (formData) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/jobs/${formData._id}`,
+        formData,
+        config
+      );
+      dispatch({
+        type: UPDATE_JOB,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };
+  

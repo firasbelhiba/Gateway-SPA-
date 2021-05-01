@@ -257,3 +257,10 @@ export const clearCurrent = () => {
       type: SET_DISACTIVE_MAIL
     };
   };    
+
+  // Set disactive report to true
+  export const setDisactiveReport = () => {
+    return {
+      type: SET_DISACTIVE_REPORT
+    };
+  };

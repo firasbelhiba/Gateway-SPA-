@@ -436,3 +436,12 @@ export const addMail = (formData,id) => async (dispatch) => {
       payload:text.toString()
     };
   };
+
+  //searchCountry
+  export const searchCountry = (text) => {
+ 
+    return {
+      type: SEARCH_COUNTRY,
+      payload:text.toString()
+    };
+  };

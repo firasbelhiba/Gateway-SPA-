@@ -223,3 +223,10 @@ export const clearCurrent = () => {
       type: CLEAR_CURRENT
     };
   };
+
+   // Set active to true
+   export const setActive = () => {
+    return {
+      type: SET_ACTIVE
+    };
+  };

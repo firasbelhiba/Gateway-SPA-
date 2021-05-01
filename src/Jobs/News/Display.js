@@ -53,25 +53,25 @@ class Display extends Component {
 
   render() {
     return (
-      <div className="cardsContainer">
+      <div className="cardsContainer_iheb">
         {this.state.articles.map((news, i) => {
           return (
-            <div className="card" key={i}>
-              <div className="content">
+            <div className="card_iheb" key={i}>
+              <div className="content_iheb">
                 <h3>
                   <a href={news.url} target="_blank" rel="noopener noreferrer">
                     {news.title}
                   </a>
                 </h3>
                 <p>{news.description}</p>
-                <div className="author">
+                <div className="author_iheb">
                   <p>
                     By <i>{news.author ? news.author : this.props.default}</i>
                   </p>
                   <p>{this.formatDate(news.publishedAt)}</p>
                 </div>
               </div>
-              <div className="image">
+              <div className="image_iheb">
                 <img src={news.urlToImage} alt="" />
               </div>
             </div>

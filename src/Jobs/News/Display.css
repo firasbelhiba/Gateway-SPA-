@@ -1,4 +1,4 @@
-.cardsContainer {
+.cardsContainer_iheb {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -8,7 +8,7 @@
 	margin: 0 auto;
 }
 
-.cardsContainer {
+.cardsContainer_iheb {
 	flex: 1;
 }
 
@@ -22,20 +22,20 @@
 	margin-left: -1px;
 }
 
-.author {
+.author_iheb {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.content {
+.content_iheb {
 	padding-top: 0;
 	width: 58%;
 	padding: 5px;
 }
 
-.card {
+.card_iheb {
 	display: flex;
 	flex-direction: row;
 	width: 49%;
@@ -44,41 +44,41 @@
 	border-bottom: 1px solid grey;
 }
 
-.image {
+.image_iheb {
 	padding-left: 1rem;
 	width: 40%;
 	margin-bottom: 0;
 }
 
-.cardsContainer img {
+.cardsContainer_iheb img {
 	max-width: 300px;
 	width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
-	.cardsContainer {
+	.cardsContainer_iheb {
 		display: flex;
 		flex-direction: column;
 	}
-	.card:nth-child(odd) {
+	.card_iheb:nth-child(odd) {
 		border-right: 0;
 	}
-	.card {
+	.card_iheb {
 		width: 90%;
 	}
 }
 
 @media screen and (max-width: 600px) {
-	.card .image {
+	.card_iheb .image_iheb {
 		order: -2;
 		width: 80%;
 		padding-left: 0;
 		margin-top: 2rem;
 	}
-	.card:nth-child(even) {
+	.card_iheb:nth-child(even) {
 	margin-left: inherit;
 	}
-	.card {
+	.card_iheb {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -86,10 +86,10 @@
 		width: 80%;
 		margin: 0 auto;
 	}
-	.content {
+	.content_iheb {
 		width: 80%;
 	}
-	.cardsContainer {
+	.cardsContainer_iheb {
 		justify-content: center;
 		align-items: center;
 	}

@@ -4,14 +4,15 @@ import VideoChat from './VideoChat';
 
 const Video = () => {
   return (
+    <div className="App">
     <div className="video">
-      <header>
+      
         <h1>job interview with Gateway</h1>
-      </header>
+      
       <main>
         <VideoChat />
       </main>
-      
+      </div>
     </div>
   );
 };

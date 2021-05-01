@@ -115,23 +115,25 @@ const QuizCategories = () => {
   }
 
   return (
-    <Container>
+    <div style={{textAlign:"center"}}>
+    <Container >
       <Paper className={classes.paper}>
         {currentQuizStep === "start" ? (
           <>
             <Typography variant="h1" className={classes.mainTitle}>
               Get Questions:
             </Typography>
-            <form onSubmit={handleSubmit}>
+            <form  onSubmit={handleSubmit} style={{maxWidth: "500px",  margin: "0 auto"}} >
               <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <FormControl fullWidth variant="outlined">
-                    <InputLabel id="category-select-label">
+                    <InputLabel id="category-select-label" width= "100%">
                       Select category:
                     </InputLabel>
                     <Select
                       required
                       name="category"
+                      
                       value={category.id || ""}
                       id="category-select"
                       label="Select category"
@@ -209,6 +211,7 @@ const QuizCategories = () => {
         )}
       </Paper>
     </Container>
+    </div>
   );
 };
 

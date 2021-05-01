@@ -230,3 +230,10 @@ export const clearCurrent = () => {
       type: SET_ACTIVE
     };
   };
+
+   // Set active to true
+   export const setActiveMail = () => {
+    return {
+      type: SET_ACTIVE_MAIL
+    };
+  };

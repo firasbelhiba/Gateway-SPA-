@@ -427,3 +427,12 @@ export const addMail = (formData,id) => async (dispatch) => {
       payload:price.toString()
     };
   };
+
+  //searchJobType 
+  export const searchJobType = (text) => {
+ 
+    return {
+      type: SEARCH_JOB_TYPE,
+      payload:text.toString()
+    };
+  };

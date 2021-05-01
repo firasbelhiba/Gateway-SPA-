@@ -291,3 +291,32 @@ export const saveJob = (id) => async (dispatch) => {
       payload:id
     };
   };
+
+  // Add new comment
+export const addComment = (formData,id) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/jobs/comment/${id}`,
+        formData,
+        config
+      );
+      dispatch({
+        type: ADD_COMME,
+        payload: { id:id, comments: res.data }
+      });
+     
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };

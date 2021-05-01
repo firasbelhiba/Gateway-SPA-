@@ -279,6 +279,22 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                     Jobs
                   </Link>
                 </li>
+                <li>
+                  <Link to="/quiz" title="">
+                    <span>
+                    <i className="far fa-check-square"></i>
+                    </span>
+                    Quiz
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/news" title="">
+                    <span>
+                    <i class="far fa-newspaper"></i>
+                    </span>
+                    News
+                  </Link>
+                </li>
                 {isAuthenticated && message}
                 {isAuthenticated && notification}
               </ul>

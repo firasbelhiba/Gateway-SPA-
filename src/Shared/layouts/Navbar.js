@@ -232,14 +232,25 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <Link to="/forum" title="">
-                    <span>
-                      <i className="far fa-address-card"></i>
-                    </span>
-                    Forum
-                  </Link>
-                </li>
+                {isAuthenticated ? (
+                  <li>
+                    <Link to="/forum" title="">
+                      <span>
+                        <i className="far fa-address-card"></i>
+                      </span>
+                      Forum
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link to="/forum-visitor" title="">
+                      <span>
+                        <i className="far fa-address-card"></i>
+                      </span>
+                      Forum
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link to="/profiles" title="">
                     <span>
@@ -266,6 +277,22 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                       <img src="assets/images/icon5.png" alt="" />
                     </span>
                     Jobs
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/quiz" title="">
+                    <span>
+                    <i className="far fa-check-square"></i>
+                    </span>
+                    Quiz
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/news" title="">
+                    <span>
+                    <i class="far fa-newspaper"></i>
+                    </span>
+                    News
                   </Link>
                 </li>
                 {isAuthenticated && message}

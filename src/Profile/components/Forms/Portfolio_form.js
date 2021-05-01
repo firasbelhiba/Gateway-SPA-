@@ -23,7 +23,7 @@ const Portfolio_form = ({ addPortfolio, history }) => {
             <div className="row">
                 <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
-                        <h1 className="h1">Add an item to your Portfolio</h1>
+                        <h1 className="h1_profile">Add an item to your Portfolio</h1>
 
                         <fieldset>
                             <legend><span className="number">1</span>Add any project or work you have had in the past </legend>

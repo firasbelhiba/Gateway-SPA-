@@ -16,6 +16,7 @@ import {
   REMOVE_NOTIFICATION,
   GET_SUGGESTIONS,
   GET_MOST_VIEWED_PEOPLE,
+  UPDATE_SAVE_JOB,
 } from "../actions/types";
 
 const initialState = {
@@ -137,6 +138,12 @@ export default function (state = initialState, action) {
         following: payload,
         loading: false,
       };
+     case UPDATE_SAVE_JOB:
+        return {
+          ...state,
+          profile: {...state.profile,savedJobs:payload},
+          loading: false,
+           }; 
     default:
       return state;
   }

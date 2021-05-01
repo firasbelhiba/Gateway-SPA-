@@ -1,53 +1,35 @@
-import React,{Fragment} from 'react'
+import React,{Fragment,useEffect,useState} from 'react'
+import axios from 'axios';
 
-export const TopJobDetail = () => {
+ const TopJobDetail = ({TopJob}) => {
+
+  const [job, setJob] = useState({})
+
+  useEffect(() => {
+   
+    async function anyNameFunction() {
+
+      const res = await axios.get(`http://localhost:5000/api/jobs/${TopJob._id}`);
+        
+      setJob(res.data);
+           
+    }   
+    anyNameFunction();
+
+  }, [])
     return (
         <Fragment>
                             <div className="job-info">
                               <div className="job-details">
-                                <h3>Senior Product Designer</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                <h3>{job.title}</h3>
+                                <p>{job.description}</p>
                               </div>
                               <div className="hr-rate">
-                                <span>$25/hr</span>
+                                <span>${job.price}/hr</span>
                               </div>
                             </div>
-                            <div className="job-info">
-                              <div className="job-details">
-                                <h3>Senior UI / UX Designer</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-                              </div>
-                              <div className="hr-rate">
-                                <span>$25/hr</span>
-                              </div>
-                            </div>
-                            <div className="job-info">
-                              <div className="job-details">
-                                <h3>Junior Seo Designer</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-                              </div>
-                              <div className="hr-rate">
-                                <span>$25/hr</span>
-                              </div>
-                            </div>
-                            <div className="job-info">
-                              <div className="job-details">
-                                <h3>Senior PHP Designer</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-                              </div>
-                              <div className="hr-rate">
-                                <span>$25/hr</span>
-                              </div>
-                            </div>
-                            <div className="job-info">
-                              <div className="job-details">
-                                <h3>Senior Developer Designer</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-                              </div>
-                              <div className="hr-rate">
-                                <span>$25/hr</span>
-                              </div>
-                            </div>
+                           
         </Fragment>
     )
 }
+export default TopJobDetail

@@ -10,6 +10,7 @@ import { addLike, removeLike, deletePost } from "../../actions/post";
 import { connect } from "react-redux";
 import { addViews } from "../../actions/post";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   sharePost,
   deleteShare,
@@ -17,7 +18,7 @@ import {
   hidePost,
   deleteHide,
   notifyMe,
-  notifyOtherUser
+  notifyOtherUser,
 } from "../../actions/profile";
 
 import "./items/Css/post_item.css";
@@ -71,24 +72,26 @@ const Post_item = ({
   if (formState === false) {
     classActiveClose = "";
   }
-
-  for (var i = 0; i < likes.length; i++) {
-    if (likes[i].user === this_user._id) {
-      found = true;
-      break;
+  if (showActions) {
+    for (var i = 0; i < likes.length; i++) {
+      if (likes[i].user === this_user._id) {
+        found = true;
+        break;
+      }
     }
-  }
 
-  for (var i = 0; i < profile.hidden_post.length; i++) {
-    if (profile.hidden_post[i].post === _id) {
-      hidden = true;
-      break;
+    for (var i = 0; i < profile.hidden_post.length; i++) {
+      if (profile.hidden_post[i].post === _id) {
+        hidden = true;
+        break;
+      }
     }
+
+    // If you are logged in you get redirected to /forum
   }
 
   const [displayThumbsUp, toggleThumbsUp] = useState(found);
   const [displaySettings, toggleSettings] = useState(true);
-
 
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
@@ -131,93 +134,95 @@ const Post_item = ({
                 </span>
               </div>
             </div>
-            <div className="ed-opts">
-              <a
-                onClick={() => {
-                  toggleSettings(!displaySettings);
-                }}
-                title=""
-                className="ed-opts-open"
-              >
-                <i className="la la-ellipsis-v"></i>
-              </a>
-              <div style={{ color: "white" }}>
-                {!displaySettings
-                  ? (classActive = "active")
-                  : (classActive = "")}
-              </div>
-              <ul className={`ed-options ${classActive}`}>
-                {showActions && (
-                  <Fragment>
-                    {!auth.loading && user === auth.user._id && (
-                      <li className="post_project">
-                        <Link
-                          to={`/edit-post?id=${_id}`}
-                          title=""
-                          style={{ cursor: "pointer" }}
-                          onClick={() => {
-                            localStorage.setItem(
-                              "this_post",
-                              JSON.stringify({ title, text, category, image })
-                            );
-                          }}
-                        >
-                          Edit Post
-                        </Link>
-                      </li>
-                    )}
-                    {!auth.loading && user === auth.user._id && (
-                      <li className="post_project">
+            {auth.isAuthenticated && (
+              <div className="ed-opts">
+                <a
+                  onClick={() => {
+                    toggleSettings(!displaySettings);
+                  }}
+                  title=""
+                  className="ed-opts-open"
+                >
+                  <i className="la la-ellipsis-v"></i>
+                </a>
+                <div style={{ color: "white" }}>
+                  {!displaySettings
+                    ? (classActive = "active")
+                    : (classActive = "")}
+                </div>
+                <ul className={`ed-options ${classActive}`}>
+                  {showActions && (
+                    <Fragment>
+                      {!auth.loading && user === auth.user._id && (
+                        <li className="post_project">
+                          <Link
+                            to={`/edit-post?id=${_id}`}
+                            title=""
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              localStorage.setItem(
+                                "this_post",
+                                JSON.stringify({ title, text, category, image })
+                              );
+                            }}
+                          >
+                            Edit Post
+                          </Link>
+                        </li>
+                      )}
+                      {!auth.loading && user === auth.user._id && (
+                        <li className="post_project">
+                          <a
+                            onClick={(e) => deletePost(_id)}
+                            title=""
+                            style={{ cursor: "pointer" }}
+                          >
+                            Delete Post
+                          </a>
+                        </li>
+                      )}
+                      <li>
                         <a
-                          onClick={(e) => deletePost(_id)}
+                          onClick={() => {
+                            hidePost(_id);
+                            toggleSettings(!displaySettings);
+                          }}
                           title=""
                           style={{ cursor: "pointer" }}
+                        >
+                          Hide
+                        </a>
+                      </li>
+                    </Fragment>
+                  )}
+
+                  {!showActions && (
+                    <Fragment>
+                      <li className="">
+                        <a title="" style={{ cursor: "pointer" }}>
+                          Edit Post
+                        </a>
+                      </li>
+                      <li className="">
+                        <a
+                          style={{ cursor: "pointer" }}
+                          onClick={(e) => deleteShare(_id, idShare)}
+                          title=""
                         >
                           Delete Post
                         </a>
                       </li>
-                    )}
-                    <li>
-                      <a
-                        onClick={() => {
-                          hidePost(_id);
-                          toggleSettings(!displaySettings);
-                        }}
-                        title=""
-                        style={{ cursor: "pointer" }}
-                      >
-                        Hide
-                      </a>
-                    </li>
-                  </Fragment>
-                )}
+                    </Fragment>
+                  )}
 
-                {!showActions && (
-                  <Fragment>
-                    <li className="">
-                      <a title="" style={{ cursor: "pointer" }}>
-                        Edit Post
-                      </a>
-                    </li>
-                    <li className="">
-                      <a
-                        style={{ cursor: "pointer" }}
-                        onClick={(e) => deleteShare(_id, idShare)}
-                        title=""
-                      >
-                        Delete Post
-                      </a>
-                    </li>
-                  </Fragment>
-                )}
-
-                <li>
-                  <Link to={`/report-post?id=${_id}`} title="">
-                    Report Post
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                  <li>
+                    <Link to={`/report-post?id=${_id}`} title="">
+                      Report Post
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
           <div className="epi-sec">
             <ul className="descp">
@@ -230,22 +235,30 @@ const Post_item = ({
                 <span>India</span>
               </li>
             </ul>
-            <ul className="bk-links">
-              <li>
-                <a
-                  onClick={() => savePost(_id)}
-                  title=""
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="la la-bookmark"></i>
-                </a>
-              </li>
-              <li>
-                <Link to={`/send-post-email?id=${_id}`} title="">
-                  <i className="la la-envelope"></i>
-                </Link>
-              </li>
-            </ul>
+            {showActions && (
+              <ul className="bk-links">
+                <li>
+                  <a
+                    onClick={() => {
+                      savePost(_id);
+                      toast.success("Post is saved successfully!!", {
+                        position: toast.POSITION.BOTTOM_LEFT,
+                      });
+                    }}
+                    title=""
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i className="la la-bookmark"></i>
+                  </a>
+                </li>
+
+                <li>
+                  <Link to={`/send-post-email?id=${_id}`} title="">
+                    <i className="la la-envelope"></i>
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
           <div className="job_descp">
             <h3>{title}</h3>
@@ -315,7 +328,10 @@ const Post_item = ({
                           addLike(_id);
                           toggleThumbsUp(!displayThumbsUp);
                           notifyMe(`You liked the post of ${name}`);
-                          notifyOtherUser(`${profile.name} liked your "${title}" post `, user);
+                          notifyOtherUser(
+                            `${profile.name} liked your "${title}" post `,
+                            user
+                          );
                         }}
                       >
                         <i
@@ -340,8 +356,18 @@ const Post_item = ({
                   </Fragment>
                 )}
 
-                <img onClick={() => toggleState(!formState)} style={{ cursor: 'pointer' }} src="assets/images/liked-img.png" alt="" />
-                <span onClick={() => toggleState(!formState)} style={{ cursor: 'pointer' }}>{likes.length}</span>
+                <img
+                  onClick={() => toggleState(!formState)}
+                  style={{ cursor: "pointer" }}
+                  src="assets/images/liked-img.png"
+                  alt=""
+                />
+                <span
+                  onClick={() => toggleState(!formState)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {likes.length}
+                </span>
               </li>
               <li>
                 <Link
@@ -396,16 +422,21 @@ const Post_item = ({
           </div>
         </div>
       </div>
-      <div className={`post-popup job_post ${classActiveClose}`}>
-        <div className="post-project" >
-          <h3>People who liked this post</h3>
-          <Likes_pop_up likes={likes} />
-          <a onClick={() => toggleState(!formState)} title="">
-            <i className="la la-times-circle-o" style={{ color: "#153b44" }}></i>
-          </a>
+      {showActions && (
+        <div className={`post-popup job_post ${classActiveClose}`}>
+          <div className="post-project">
+            <h3>People who liked this post</h3>
+            <Likes_pop_up likes={likes} />
+            <a onClick={() => toggleState(!formState)} title="">
+              <i
+                className="la la-times-circle-o"
+                style={{ color: "#153b44" }}
+              ></i>
+            </a>
+          </div>
         </div>
-      </div>
-    </Fragment >
+      )}
+    </Fragment>
   );
 };
 
@@ -444,5 +475,5 @@ export default connect(mapStateToProps, {
   hidePost,
   deleteHide,
   notifyMe,
-  notifyOtherUser
+  notifyOtherUser,
 })(Post_item);

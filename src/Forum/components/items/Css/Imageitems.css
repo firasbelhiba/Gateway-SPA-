@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+.card-image {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #eee;
+  background-color: #eee;
+  display: inline-block;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  transition: 250ms all ease-in-out;
+}
+
+.card-image:hover {
+  box-shadow: 0 0 10px blue;
+  transform: scale(1.03);
+}

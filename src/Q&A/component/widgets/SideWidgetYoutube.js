@@ -1,23 +1,63 @@
 import React, {useEffect, useState} from "react";
 import VideoItem from "./youtubeRec/VideoItem";
-import {getQuestion, youtubeRec} from "../../../actions/questions";
-import {useDispatch, useSelector} from "react-redux";
+import {youtubeRec} from "../../../actions/questions";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {Header} from "semantic-ui-react";
 
-const SideWodgetYoutube = ({search}) => {
+const SideWidgetYoutube = ({search, youtubeRec, videos: {loading}}) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log(search)
-        dispatch(youtubeRec(search));
+        youtubeRec(search);
     }, [dispatch]);
 
-    const videos = useSelector((state) => state.question.videos);
+    const Videos = useSelector((state) => state.question.videos.videos);
 
-    console.log(videos)
-    const renderedVideos = videos.map((video) => {
+    const renderedVideos = Videos.map((video) => {
         return <VideoItem key={video.id.videoId} video={video}/>
     });
-    return (
+    console.log(loading)
+    return loading ? (
+        <>
+            <div className="ui raised segment">
+                <div>
+                    <Header as='h6'>Recommended Blogs</Header>
+                </div>
+            </div>
+            <div className="ui segments">
+                <div className="ui active inverted dimmer">
+                    <div className="ui indeterminate text loader">Loading Blogs</div>
+                </div>
+                <div className="ui segment">
+                    <div className="ui placeholder">
+                        <div className="header">
+                            <div className="image"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="ui segment">
+                    <div className="ui placeholder">
+                        <div className="header">
+                            <div className="image"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="ui segment">
+                    <div className="ui placeholder">
+                        <div className="header">
+                            <div className="image"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="ui segment">
+                    <div className="ui placeholder">
+                        <div className="header">
+                            <div className="image"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    ) : (
         <>
             <div className="ui raised segment"
                  style={{display: 'flex', marginBottom: '10px', justifyContent: 'space-between'}}>
@@ -25,11 +65,14 @@ const SideWodgetYoutube = ({search}) => {
                     <Header as='h6'>Youtube videos recommendation</Header>
                 </div>
             </div>
-            <div className="ui relaxed divided list ui segment">
+            <div className="ui relaxed divided list ui segment" style={{paddingBottom: '10px'}}>
                 {renderedVideos}
             </div>
         </>
     );
 }
 
-export default SideWodgetYoutube;
+const mapStateToProps = (state) => ({
+    videos: state.question.videos
+});
+export default connect(mapStateToProps, {youtubeRec})(SideWidgetYoutube);

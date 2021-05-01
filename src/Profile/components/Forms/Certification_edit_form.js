@@ -53,7 +53,7 @@ const Certification_edit_form = ({ updateCertification, getCurrentProfile, histo
             <div className="row">
                 <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
-                        <h1 className="h1">Add Certification</h1>
+                        <h1 className="h1_profile">Add Certification</h1>
 
                         <fieldset>
                             <legend><span className="number">1</span>Add any certification that you have had in the past</legend>

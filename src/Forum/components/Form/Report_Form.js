@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { addReport } from "../../../actions/post";
+import { toast } from "react-toastify";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -19,11 +20,23 @@ const Report_Form = ({ addReport, history }) => {
             className="form_create"
             onSubmit={(e) => {
               e.preventDefault();
-              addReport({ reason }, query.get("id"), history);
-              setReason("");
+              if (reason === "") {
+                toast.error("Reason is required !", {
+                  position: toast.POSITION.BOTTOM_LEFT,
+                });
+              } else {
+                addReport({ reason }, query.get("id"), history);
+                toast.success("Report sent sucessfully !", {
+                  position: toast.POSITION.BOTTOM_LEFT,
+                });
+                toast.info("Thanks for your feedback !", {
+                  position: toast.POSITION.BOTTOM_LEFT,
+                });
+                setReason("");
+              }
             }}
           >
-            <h1 className="h1">Report post</h1>
+            <h1 className="h1_profile">Report post</h1>
             <fieldset>
               <legend>Why do you want to report?</legend>
               <label className="mt-5" htmlFor="name">

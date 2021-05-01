@@ -1,0 +1,8 @@
+.SelectorGrid {
+  display: flex;
+}
+
+.SelectorGrid > .item {
+  flex-grow: 1;
+  margin: 0 5px 0 0;
+}

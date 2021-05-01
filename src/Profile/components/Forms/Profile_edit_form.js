@@ -76,7 +76,7 @@ const Profile_edit_form
                 <div className="row">
                     <div className="col-md-12">
                         <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
-                            <h1 className="h1">Edit your profile</h1>
+                            <h1 className="h1_profile">Edit your profile</h1>
 
                             <fieldset>
                                 <legend><span className="number">1</span> Let's get some information to make your profile stand out</legend>

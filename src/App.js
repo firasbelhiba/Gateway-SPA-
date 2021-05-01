@@ -54,6 +54,10 @@ import Education_edit_form from "./Profile/components/Forms/Education_edit_form"
 import Volunteer_edit_form from "./Profile/components/Forms/Volunteer_edit_form";
 import Certification_edit_form from "./Profile/components/Forms/Certification_edit_form";
 import Settings from "./settings/pages/Settings";
+import Forum_visitor from "./Forum_Visitor/pages/Forum_visitor";
+import Video from "./Jobs/video/Video";
+import QuizCategories from "./Jobs/Quiz/QuizCategories";
+import News from "./Jobs/News/News.js";
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -128,12 +132,16 @@ function App() {
               />
 
               <Route exact path="/jobs" component={Jobs} />
+              <Route exact path="/video" component={Video} />
+              <Route exact path="/quiz" component={QuizCategories} />
+              <Route exact path="/news" component={News} />
               <Route exact path="/q_and_a" component={QuestionsSection} />
               <Route
                 exact
                 path="/question_details"
                 component={QuestionDetails}
               />
+              <Route exact path="/forum-visitor" component={Forum_visitor} />
 
               <PrivateRoute exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/forum" component={Forum} />

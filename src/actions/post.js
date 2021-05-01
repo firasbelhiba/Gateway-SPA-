@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { getCurrentProfile, Notify } from "./profile";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import {
   GET_POSTS,
@@ -64,9 +64,8 @@ export const addLike = (id) => async (dispatch) => {
     });
 
     toast.success("You liked this post ! ", {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
-
   } catch (error) {
     dispatch({
       type: POST_ERROR,
@@ -105,7 +104,9 @@ export const deletePost = (id) => async (dispatch) => {
       type: DELETE_POST,
       payload: id,
     });
-    dispatch(setAlert("Post removed", "success"));
+    toast.success("Post is deleted !", {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   } catch (e) {
     dispatch({
       type: POST_ERROR,
@@ -180,7 +181,9 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
       type: REMOVE_COMMENT,
       payload: commentId,
     });
-    dispatch(setAlert("Comment removed", "success"));
+    toast.success("Comment is deleted !", {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   } catch (e) {
     dispatch({
       type: POST_ERROR,
@@ -241,9 +244,7 @@ export const addViews = (id) => async (dispatch) => {
 };
 
 //Update Post
-export const updatePost = (title, text, category, id, history) => async (
-  dispatch
-) => {
+export const updatePost = (data, id, history) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -251,11 +252,11 @@ export const updatePost = (title, text, category, id, history) => async (
   };
 
   try {
-    const body = JSON.stringify({ title, text, category });
+    //const body = JSON.stringify({ title, text, category, image });
 
     const res = await axios.put(
       `http://localhost:5000/api/posts/${id}`,
-      body,
+      data,
       config
     );
     dispatch({

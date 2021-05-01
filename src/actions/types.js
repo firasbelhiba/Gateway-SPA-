@@ -97,6 +97,7 @@ export const GET_FOLLOWED_QUESTIONS = "GET_FOLLOWED_QUESTIONS";
 export const UPVOTE_QUESTION = "UPVOTE_QUESTION";
 export const DOWNVOTE_QUESTION = "DOWNVOTE_QUESTION";
 export const YOUTUBE_REC = "YOUTUBE_REC";
+export const BLOG_REC = "BLOG_REC";
 
 
 // Scrapng types
@@ -105,3 +106,70 @@ export const GET_STACKOVERFLOW_SCRAPED_DATA = "GET_STACKOVERFLOW_SCRAPED_DATA";
 export const SCRAPING_ERROR = "SCRAPING_ERROR";
 export const SCRAPE_TANITJOB = "SCRAPE_TANITJOB";
 export const GET_TANITJOB_SCRAPED_DATA = "GET_TANITJOB_SCRAPED_DATA";
+
+
+
+// job types 
+
+export const GET_JOBS = "GET_JOBS";
+
+export const GET_JOB = "GET_JOB";
+
+export const DELETE_JOB = "DELETE_JOB";
+
+export const ADD_JOB = "ADD_JOB";
+
+export const UPDATE_JOB = "UPDATE_JOB";
+
+export const JOB_ERROR = "JOB_ERROR";
+
+export const UPDATE_LIKE = "UPDATE_LIKE";
+
+export const CLEAR_CURRENT = "CLEAR_CURRENT";
+
+export const SET_CURRENT = "SET_CURRENT";
+
+export const SET_LOADING = "SET_LOADING";
+
+export const SET_ACTIVE = "SET_ACTIVE";
+
+export const SET_DISACTIVE = "SET_DISACTIVE";
+
+export const UPDATE_SAVE_JOB = "UPDATE_SAVE_JOB";
+
+export const ADD_VIEWS = "ADD_VIEWS";
+
+export const ADD_COMME = "ADD_COMME";
+
+export const DELETE_COMMENT = "DELETE_COMMENT";
+
+export const SEARCH_PRICE = "SEARCH_PRICE";
+
+export const SEARCH_JOB_TYPE = "SEARCH_JOB_TYPE";
+
+export const SEARCH_COUNTRY = "SEARCH_COUNTRY";
+
+export const SEARCH_AVAILABILITY = "SEARCH_AVAILABILITY";
+
+export const SEARCH_SKILLS = "SEARCH_SKILLS";
+
+export const GET_JOBS_BY_USER = "GET_JOBS_BY_USER"; 
+
+export const ADD_CANDIDATE = "ADD_CANDIDATE"; 
+
+export const DELETE_CANDIDATE = "DELETE_CANDIDATE"; 
+
+export const JOB_APPLY = "JOB_APPLY"; 
+
+export const SET_ACTIVE_REPORT = "SET_ACTIVE_REPORT";
+
+export const SET_DISACTIVE_REPORT = "SET_DISACTIVE_REPORT";
+
+export const ADD_REP = "ADD_REP"; 
+
+export const SET_ACTIVE_MAIL = "SET_ACTIVE_MAIL";
+
+export const SET_DISACTIVE_MAIL = "SET_DISACTIVE_MAIL";
+
+export const ADD_MAIL = "ADD_MAIL"; 
+

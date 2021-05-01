@@ -19,7 +19,7 @@ import Filters from "../components/Filters";
 import Alert from "../../Shared/layouts/Alert";
 import { getCurrentProfile } from "../../actions/profile";
 import SimpleReactLightbox from "simple-react-lightbox";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Top_tanitjobs from "../components/Top_tanitjobs";
 import Suggestions_friends from "../../Profile/components/Suggestions_friends";
@@ -211,7 +211,6 @@ const Forum = ({
                     </div>
                     <div className="col-lg-3 pd-right-none no-pd">
                       <div className="right-sidebar">
-                        <Widget_sign_up />
                         <Alert />
                         <div className="filter-secs">
                           <div className="filter-heading">
@@ -387,7 +386,6 @@ const Forum = ({
           </div>
         </div>
       </body>
-      <ToastContainer />
     </Fragment>
   );
 };

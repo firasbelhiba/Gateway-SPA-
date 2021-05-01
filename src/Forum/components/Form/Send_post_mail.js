@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { sendPostMail } from "../../../actions/post";
-
+import { toast } from "react-toastify";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -18,7 +18,20 @@ const Send_post_mail = ({ sendPostMail, history }) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    sendPostMail(formData, query.get("id"), history);
+    if (email === "") {
+      toast.error("Email required", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      toast.error("Email address is invalid", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    } else {
+      sendPostMail(formData, query.get("id"), history);
+      toast.success("Mail sent successfully!!", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    }
   };
   return (
     <Fragment>
@@ -30,7 +43,7 @@ const Send_post_mail = ({ sendPostMail, history }) => {
               onSubmit(e);
             }}
           >
-            <h1 className="h1">Send post</h1>
+            <h1 className="h1_profile">Send post</h1>
             <fieldset>
               <label className="mt-5" htmlFor="name">
                 To:

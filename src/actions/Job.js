@@ -61,4 +61,21 @@ export const getJobs = () => async dispatch => {
         payload: err.response.statusText
       });
     }
-  }; 
+  };
+  
+  //Add likes
+export const addLike = (id) => async (dispatch) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/jobs/like/${id}`);
+      
+      dispatch({
+        type: UPDATE_LIKE,
+        payload: { id, likes: res.data },
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        
+      });
+    }
+  };

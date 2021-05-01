@@ -264,3 +264,21 @@ export const clearCurrent = () => {
       type: SET_DISACTIVE_REPORT
     };
   };
+
+   //Save job
+export const saveJob = (id) => async (dispatch) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/jobs/saved/${id}`);
+      
+      dispatch({
+        payload :res.data,
+        type: UPDATE_SAVE_JOB,
+       
+      });
+    } catch (error) {
+      dispatch({
+        type: JOB_ERROR,
+        
+      });
+    }
+  };

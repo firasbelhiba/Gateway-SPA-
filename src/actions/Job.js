@@ -445,3 +445,12 @@ export const addMail = (formData,id) => async (dispatch) => {
       payload:text.toString()
     };
   };
+
+  // searchAvailability
+  export const searchAvailability = (text) => {
+ 
+    return {
+      type: SEARCH_AVAILABILITY,
+      payload:text.toString()
+    };
+  };

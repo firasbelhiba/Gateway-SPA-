@@ -22,6 +22,7 @@ import SimpleReactLightbox from "simple-react-lightbox";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Top_tanitjobs from "../components/Top_tanitjobs";
+import Top_indeed from "../components/Top_indeed";
 import Suggestions_friends from "../../Profile/components/Suggestions_friends";
 
 let classActive = "";
@@ -91,6 +92,7 @@ const Forum = ({
                         <User_data thisProfile={thisProfile} />
                         <Suggestions_friends />
                         <Top_tanitjobs />
+                        <Top_indeed />
                         <Tags />
                       </div>
                     </div>

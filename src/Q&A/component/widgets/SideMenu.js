@@ -4,6 +4,10 @@ import {Menu, Icon} from 'semantic-ui-react'
 export default class SideMenu extends Component {
     state = {}
     handleItemClick = (e, {name}) => this.setState({activeItem: name})
+    handleHome = (e, {name}) => {
+        window.location.href = '/q_and_a'
+        this.setState({activeItem: name})
+    }
 
     render() {
         const {activeItem} = this.state
@@ -17,7 +21,7 @@ export default class SideMenu extends Component {
                         <Menu.Item
                             name='Home'
                             active={activeItem === 'Home'}
-                            onClick={this.handleItemClick}
+                            onClick={this.handleHome}
                         > Home <Icon name='home icon'/>
 
                         </Menu.Item>

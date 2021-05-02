@@ -194,6 +194,7 @@ const QuizCategories = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                style={{backgroundColor:"#153b44"}}
               >
                 Submit
               </Button>

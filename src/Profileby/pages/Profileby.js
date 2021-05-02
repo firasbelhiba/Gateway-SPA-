@@ -22,7 +22,7 @@ import { getProfileById } from "../../actions/profile";
 import { useEffect } from 'react';
 import Follow from '../components/Follow';
 import { Portfolio_profile } from '../../Profile/components/Portfolio_profile';
-
+import Report_profile from '../components/Report_profile'
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -155,6 +155,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             <Follow id={thisProfile._id}
                                                 id_user={thisProfile.user._id}
                                                 followers={thisProfile.follwers} />
+                                            <Report_profile />     
                                             <Widget_portfolio portfolio={thisProfile.portfolio} />
                                         </div>
                                     </div>

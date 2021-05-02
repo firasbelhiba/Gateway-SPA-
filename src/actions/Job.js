@@ -456,10 +456,10 @@ export const addMail = (formData,id) => async (dispatch) => {
   };
 
 // searchSkills
-  export const searchSkills = (Array) => {
+  export const searchSkills = (text) => {
  
     return {
       type: SEARCH_SKILLS,
-      payload:Array
+      payload:text
     };
   };

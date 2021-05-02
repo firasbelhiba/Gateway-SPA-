@@ -231,7 +231,7 @@ export default function (state = initialState, action) {
     case SEARCH_SKILLS:
           return {
             ...state,
-            jobs: state.jobs.filter((job) => job.skills.contains(action.payload)),
+            jobs: state.jobs.filter((job) => job.category.toString().startsWith(action.payload)),
             loading: false,
           };    
         

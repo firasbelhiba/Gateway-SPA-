@@ -142,10 +142,11 @@ import 'sanitize.css'
                      value={category}
                      name="category"
                      onChange={(e)=>setcategory(e.target.value)}>
-                    <option value="python">python</option>
-                    <option value="spring">spring</option>
-                    <option value="angular">angular</option>
-                    <option value=".net">.net</option>
+                    <option value="Science, Technology, Engineering and Mathematics">Science, Technology, Engineering and Mathematics</option>
+                    <option value="Hospitality and Tourism">Hospitality and Tourism</option>
+                    <option value="Education and Training">Education and Training</option>
+                    <option value="Agriculture, Food and Natural Resources">Agriculture, Food and Natural Resources</option>
+                    <option value="Architecture and Construction">Architecture and Construction</option>
                     </select>
                   </div>
                 </div>

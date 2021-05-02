@@ -31,13 +31,6 @@ const QuestionsSection = () => {
                         <div className="col-lg-9">
                             {/** <OptionsBar onChange={this.handleChange}/> **/}
                             <MenuBar onChange={handleChange}/>
-                            <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
-
-                                <QuestionButton/>
-                                <FilterItem/>
-                                <SortItem/>
-                                <Search/>
-                            </div>
                             <Section content={content}/>
                             <Navigation/>
                         </div>

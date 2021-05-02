@@ -98,6 +98,11 @@ export const UPVOTE_QUESTION = "UPVOTE_QUESTION";
 export const DOWNVOTE_QUESTION = "DOWNVOTE_QUESTION";
 export const YOUTUBE_REC = "YOUTUBE_REC";
 export const BLOG_REC = "BLOG_REC";
+export const NEWS_REC = "NEWS_REC";
+export const NEWS_REC_SKILLS = "NEWS_REC_SKILLS";
+export const SAVE_NEWS = "SAVE_NEWS";
+export const GET_SAVED_NEWS = "GET_SAVED_NEWS";
+export const CANCEL_NEWS = "CANCEL_NEWS";
 
 // Scrapng types
 export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";

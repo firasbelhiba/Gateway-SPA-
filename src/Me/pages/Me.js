@@ -51,7 +51,6 @@ const Me = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }
     )
 }
 
-
 Me.propTypes = {
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,

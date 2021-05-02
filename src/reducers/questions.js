@@ -9,6 +9,11 @@ import {
     YOUTUBE_REC,
     UPVOTE_QUESTION,
     BLOG_REC,
+    CANCEL_NEWS,
+    NEWS_REC_SKILLS,
+    NEWS_REC,
+    GET_SAVED_NEWS,
+    SAVE_NEWS,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
@@ -30,6 +35,9 @@ const initialState = {
     questions: [],
     videos: {loading: true, videos: []},
     blogs: {loading: true, blogs: []},
+    news: {loading: true, news: []},
+    newsSkills: {loading: true, news: []},
+    savedNews: {loading: true, news: []},
     question: null,
     loading: true,
     error: {},
@@ -121,6 +129,31 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 blogs: {loading: false, blogs: payload}
+            };
+        case NEWS_REC:
+            return {
+                ...state,
+                news: {loading: false, news: payload}
+            };
+        case GET_SAVED_NEWS:
+            return {
+                ...state,
+                savedNews: {loading: false, news: payload}
+            };
+        case CANCEL_NEWS:
+            return {
+                ...state,
+                savedNews: {news: payload}
+            };
+        case SAVE_NEWS:
+            return {
+                ...state,
+                savedNews: {news: payload}
+            };
+        case NEWS_REC_SKILLS:
+            return {
+                ...state,
+                newsSkills: {loading: false, news: payload}
             };
         case UPVOTE_QUESTION:
             return {

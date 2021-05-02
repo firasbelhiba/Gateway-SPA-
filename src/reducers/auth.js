@@ -36,6 +36,7 @@ export default function (state = initialState, action) {
       localStorage.setItem("user", JSON.stringify(payload.user));
       localStorage.setItem("stackoverflow", null);
       localStorage.setItem("tanitjob", null);
+      localStorage.setItem("indeed", null);
       return {
         ...state,
         ...payload,

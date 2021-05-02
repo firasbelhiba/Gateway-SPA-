@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import TimeAgo from "timeago-react";
 import Gallereact from "gallereact";
 import PropTypes from "prop-types";
@@ -49,6 +49,7 @@ const Post_item = ({
     avatar,
     image,
     category,
+    location,
     views,
   },
   auth,
@@ -96,6 +97,7 @@ const Post_item = ({
   const executeOnClick = (isExpanded) => {
     console.log(isExpanded);
   };
+
   return hidden ? (
     <div>
       <div className="post-bar">
@@ -232,7 +234,7 @@ const Post_item = ({
               </li>
               <li>
                 <img src="assets/images/icon9.png" alt="" />
-                <span>India</span>
+                <span>{location}</span>
               </li>
             </ul>
             {showActions && (

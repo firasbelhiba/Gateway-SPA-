@@ -5,24 +5,15 @@ import {newsRec} from "../../../actions/questions";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {Loading_spinner} from "../../../Shared/layouts/Loading_spinner";
 
-const cards = [...new Array(10)].map((x, i) => ({
-    name: `card ${i}`,
-    img: "https://source.unsplash.com/random"
-}));
+function NewsScrollSkillsSection({search, loading, news}) {
 
-function NewsScrollSection({search, newsRec, news: {loading}}) {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        newsRec(search);
-    }, [dispatch]);
-
-    const news = useSelector((state) => state.question.news.news);
-    console.log(news);
     const News = []
     for (let i in news) {
+        console.log(news[i].subtitle.toUpperCase().includes(search.toUpperCase()))
+        console.log(search.toUpperCase())
         News.push(news[i]);
     }
+    console.log(news)
     return loading ? (
         <div
         >
@@ -34,11 +25,12 @@ function NewsScrollSection({search, newsRec, news: {loading}}) {
                 <div className="ui active inverted dimmer">
                     <div className="ui indeterminate text loader">Loading News Feed</div>
                 </div>
-                <div className="ui placeholder" style={{paddingLeft: '10px', width: "300px", height:300}}>
+                <div className="ui placeholder" style={{paddingLeft: '10px', width: "300px", height: 300}}>
                     <div className="header">
                         <div className="image"/>
                     </div>
                 </div>
+
             </div>
         </div>
     ) : (
@@ -65,8 +57,5 @@ function NewsScrollSection({search, newsRec, news: {loading}}) {
 
 }
 
-const mapStateToProps = (state) => ({
-    news: state.question.news
-});
 
-export default connect(mapStateToProps, {newsRec})(NewsScrollSection);
+export default NewsScrollSkillsSection;

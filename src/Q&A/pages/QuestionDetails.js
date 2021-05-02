@@ -83,15 +83,6 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
                             ))}
                         </div>
                     </div>
-                    {/*<div className="ui small comments row" style={{margin: '0px', padding: '0px'}}>
-                        {Question.answers.map(answer => (
-                            <Answer description={answer.description} replies={answer.replies} userid={Question.user}
-                                    date={answer.date}
-                                    solved={Question.solved} solution={answer.solution} idQ={id} idA={answer._id}
-                                    answerUser={answer.user}/>
-                        ))}
-
-                    </div>*/}
                     <div className="ui threaded comments">
                         <AnswerEditor Qid={id} value={input} setValue={setInput}/>
                     </div>

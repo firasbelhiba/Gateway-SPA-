@@ -98,7 +98,11 @@ export const UPVOTE_QUESTION = "UPVOTE_QUESTION";
 export const DOWNVOTE_QUESTION = "DOWNVOTE_QUESTION";
 export const YOUTUBE_REC = "YOUTUBE_REC";
 export const BLOG_REC = "BLOG_REC";
-
+export const NEWS_REC = "NEWS_REC";
+export const NEWS_REC_SKILLS = "NEWS_REC_SKILLS";
+export const SAVE_NEWS = "SAVE_NEWS";
+export const GET_SAVED_NEWS = "GET_SAVED_NEWS";
+export const CANCEL_NEWS = "CANCEL_NEWS";
 
 // Scrapng types
 export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";
@@ -106,10 +110,9 @@ export const GET_STACKOVERFLOW_SCRAPED_DATA = "GET_STACKOVERFLOW_SCRAPED_DATA";
 export const SCRAPING_ERROR = "SCRAPING_ERROR";
 export const SCRAPE_TANITJOB = "SCRAPE_TANITJOB";
 export const GET_TANITJOB_SCRAPED_DATA = "GET_TANITJOB_SCRAPED_DATA";
+export const GET_INDEED_SCRAPED_DATA = "GET_INDEED_SCRAPED_DATA";
 
-
-
-// job types 
+// job types
 
 export const GET_JOBS = "GET_JOBS";
 
@@ -153,23 +156,22 @@ export const SEARCH_AVAILABILITY = "SEARCH_AVAILABILITY";
 
 export const SEARCH_SKILLS = "SEARCH_SKILLS";
 
-export const GET_JOBS_BY_USER = "GET_JOBS_BY_USER"; 
+export const GET_JOBS_BY_USER = "GET_JOBS_BY_USER";
 
-export const ADD_CANDIDATE = "ADD_CANDIDATE"; 
+export const ADD_CANDIDATE = "ADD_CANDIDATE";
 
-export const DELETE_CANDIDATE = "DELETE_CANDIDATE"; 
+export const DELETE_CANDIDATE = "DELETE_CANDIDATE";
 
-export const JOB_APPLY = "JOB_APPLY"; 
+export const JOB_APPLY = "JOB_APPLY";
 
 export const SET_ACTIVE_REPORT = "SET_ACTIVE_REPORT";
 
 export const SET_DISACTIVE_REPORT = "SET_DISACTIVE_REPORT";
 
-export const ADD_REP = "ADD_REP"; 
+export const ADD_REP = "ADD_REP";
 
 export const SET_ACTIVE_MAIL = "SET_ACTIVE_MAIL";
 
 export const SET_DISACTIVE_MAIL = "SET_DISACTIVE_MAIL";
 
-export const ADD_MAIL = "ADD_MAIL"; 
-
+export const ADD_MAIL = "ADD_MAIL";

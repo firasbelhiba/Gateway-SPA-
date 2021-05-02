@@ -19,9 +19,9 @@ const Volunteer_item = ({ volunteer, deleteVolunteer, showActions }) => {
                 }
 
             </h4>
-            <h1>
+            <h4>
                 {item.title}
-            </h1>
+            </h4>
             <h2 className="mt-2" style={{ color: '#8a97a0' }}>
                 <Moment format='YYYY/MM/DD'>{item.from}</Moment>-{' '}
                 {item.to === null ? ('Now') : (<Moment format='YYYY/MM/DD'>{item.to}</Moment>)}

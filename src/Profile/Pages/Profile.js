@@ -100,16 +100,16 @@ const Profile = ({
                                 <span>Info</span>
                               </a>
                             </li>
-                            <li data-tab = "saved-jobs" onClick={() => setId("jobs")}>
-                           <a title="">
-                            <img src="assets/images/ic4.png" alt=""/>
-                               <span>Jobs</span>
-                           </a>
-                             </li>
+                            <li data-tab="saved-jobs" onClick={() => setId("jobs")}>
+                              <a title="">
+                                <img src="assets/images/ic4.png" alt="" />
+                                <span>Jobs</span>
+                              </a>
+                            </li>
                             <li onClick={() => setId("bids")}>
                               <a title="">
-                                <img src="assets/images/ic5.png" alt="" />
-                                <span>Bids</span>
+                                <i class="fas fa-medal  fa-2x" style={{ color: "rgba(0,0,0,.25)" }}></i>
+                                <span>Score</span>
                               </a>
                             </li>
                             <li onClick={() => setId("portfolio")}>
@@ -150,7 +150,7 @@ const Profile = ({
                         />
                       )}
                       {id === "jobs" && <Jobs_profile />}
-                      {id === "bids" && <Bids_profile />}
+                      {id === "bids" && <Bids_profile score={myProfile.score} />}
                       {id === "portfolio" && (
                         <SimpleReactLightbox>
                           <Portfolio_profile portfolio={myProfile.portfolio} />

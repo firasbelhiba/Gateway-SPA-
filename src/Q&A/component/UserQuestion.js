@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import '../styles/UserQuestion.css';
 import faker from 'faker'
 import {Popup, Placeholder, Dropdown, Divider} from 'semantic-ui-react'
@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addView, deleteQuestion, unFollowQuestion, followQuestion} from "../../actions/questions";
 import ReadOnly from "./TextEditor/ReadOnly";
+import {getProfileById} from "../../actions/profile";
 
 
 const UserQuestion = (props) => {
@@ -26,8 +27,13 @@ const UserQuestion = (props) => {
     }
 
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('user'))._id;
+    useEffect(() => {
+        getProfileById(props.details.user)
+    }, [dispatch]);
 
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+    const profile = JSON.parse(localStorage.getItem('profile'));
+    console.log(profile)
     var Answers = [];
     for (var i in props.details.answers)
         Answers.push(props.details.answers[i]);
@@ -61,7 +67,7 @@ const UserQuestion = (props) => {
             <div className="usr_img wrapper">
                 <Popup
                     flowing hoverable
-                    trigger={<img src={faker.image.avatar()}/>}
+                    trigger={<img src={profile.avatar}/>}
                 >
                     <Popup.Content>
                         <Placeholder>

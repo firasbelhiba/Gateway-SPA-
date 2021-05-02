@@ -1,8 +1,9 @@
-import React, {useCallback, useMemo} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import isHotkey from "is-hotkey";
 import {Editable, withReact, Slate, useSlate} from "slate-react";
 import {createEditor, Editor, Transforms} from "slate";
 import {withHistory} from "slate-history";
+import {Popup } from 'semantic-ui-react'
 
 import Box from "@material-ui/core/Box";
 import FormatBoldIcon from "@material-ui/icons/FormatBold";
@@ -30,6 +31,7 @@ const AnswerEditor = ({value, setValue, Qid}) => {
     const renderElement = useCallback(props => <Element {...props} />, []);
     const renderLeaf = useCallback(props => <Leaf {...props} />, []);
     const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+    const [descriptionerror, setDescriptionserror] = useState(false);
 
     return (
         <Box m={0} borderRadius={8} style={{overflow: "hidden", border: 'solid 1px #3d4953'}}>
@@ -39,6 +41,9 @@ const AnswerEditor = ({value, setValue, Qid}) => {
                 onChange={value => {
                     setValue(value);
                     const content = JSON.stringify(value)
+                    if (content !== '[{"type": "paragraph", "children": [{"text": ""}]}]') {
+                        setDescriptionserror(false)
+                    }
                     localStorage.setItem('answer', content)
                 }}
             >
@@ -99,7 +104,7 @@ const AnswerEditor = ({value, setValue, Qid}) => {
                     <a href="" className="username">
                     </a>
                 </div>
-                <Button id={Qid} style={{fontSize: '14px', marginLeft: 'auto'}}>ADD ANSWER</Button>
+                <Button id={Qid} descriptionerror={descriptionerror} style={{fontSize: '14px', marginLeft: 'auto'}}>ADD ANSWER</Button>
             </div>
         </Box>
 

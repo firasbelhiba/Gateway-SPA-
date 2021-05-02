@@ -26,18 +26,21 @@ function Button(props) {
     const description = localStorage.getItem('answer');
 
     return (
+
         <button
             {...props}
             ref={button}
             onClick={e => {
                 animate(e);
-                const user = JSON.parse(localStorage.getItem('user'))._id;
-                const Reply = {
-                    user,
-                    description,
+                if (!props.descriptionerror) {
+                    const user = JSON.parse(localStorage.getItem('user'))._id;
+                    const Reply = {
+                        user,
+                        description,
+                    }
+                    console.log(props.descriptionerror)
+                    dispatch(createAnswer(Reply, props.id));
                 }
-                console.log(Reply);
-                dispatch(createAnswer(Reply, props.id));
             }}
         >
             {props.children}

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Avatar, Grid} from "@material-ui/core";
 import {Accordion, Icon, Popup} from "semantic-ui-react";
 import AnswerVote from "./AnswerVote";
@@ -14,6 +14,7 @@ import {Button as ButtonS} from 'semantic-ui-react'
 import Comments from "./Discussion/Comments";
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import UpDown from "./Votes/UpDown";
+import {getProfileById} from "../../actions/profile";
 
 const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
@@ -23,7 +24,12 @@ export const NewAnswer = (props) => {
 
     const [activeIndex, setActiveIndex] = useState(null);
     const [show, setShow] = useState(false);
+
     const dispatch = useDispatch();
+    useEffect(() => {
+        getProfileById(props.userid)
+    }, [dispatch]);
+    const profile = JSON.parse(localStorage.getItem('profile'));
 
     const handleClick = (e, titleProps) => {
         const {index} = titleProps
@@ -69,7 +75,7 @@ export const NewAnswer = (props) => {
     return (
         <Grid container wrap="nowrap" spacing={2}>
             <Grid item style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Avatar alt="Remy Sharp" src={imgLink}/>
+                <Avatar alt={profile.avatar} src={profile.avatar}/>
                 <div style={{marginLeft: "10px", marginTop: "5px"}}>
                     <Rating count={UpVotes.length - DownVotes.length} idQ={props.idQ} idA={props.idA}
                             user={user}
@@ -78,7 +84,7 @@ export const NewAnswer = (props) => {
             </Grid>
             <Grid justifyContent="left" item xs zeroMinWidth>
                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <h4 style={{textAlign: "left"}}>Michel Michel</h4>
+                    <h4 style={{textAlign: "left"}}>{profile.name}</h4>
                     {props.solution ?
                         (<h4 style={{color: "green", marginLeft: '20px'}}>Solution <CheckCircleRoundedIcon
                             htmlColor={"green"}/></h4>) :

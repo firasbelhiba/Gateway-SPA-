@@ -36,24 +36,6 @@ const QuestionButton = () => {
     const [tagserror, setTagserror] = useState(false);
     const [descriptionerror, setDescriptionserror] = useState(false);
     const submitDispatch = useDispatch();
-    const handleSubmit1 = () => {
-        if (!subject) {
-            console.log('nuuuuh')
-        } else {
-            const user = JSON.parse(localStorage.getItem('user'))._id;
-            const description = localStorage.getItem('content');
-            const Question = {
-                user,
-                subject,
-                description,
-                category,
-                tags
-            }
-            console.log(Question);
-            submitDispatch(createQuestion(Question))
-            dispatch({type: 'close'});
-        }
-    }
     const handleSubmit = () => {
         if (!subject) {
             setSubjecterror(true)

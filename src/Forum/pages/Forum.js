@@ -46,6 +46,7 @@ const Forum = ({
   }, [getPosts, getCurrentProfile]);
 
   let thisProfile = JSON.parse(localStorage.getItem("profile"));
+  let allPosts = JSON.parse(localStorage.getItem("posts"));
 
   const [formState, toggleState] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
@@ -150,19 +151,19 @@ const Forum = ({
                             else if (
                               searchDate === "today" &&
                               val.date.substr(8, 2) ===
-                                currentDate.toString().substr(8, 2)
+                              currentDate.toString().substr(8, 2)
                             )
                               return val;
                             else if (
                               searchDate === "month" &&
                               parseInt(val.date.substr(5, 2).toString(), 10) ===
-                                currentDate.getMonth() + 1
+                              currentDate.getMonth() + 1
                             )
                               return val;
                             else if (
                               searchDate === "year" &&
                               val.date.substr(0, 4).toString() ===
-                                currentDate.getFullYear().toString()
+                              currentDate.getFullYear().toString()
                             )
                               return val;
                           })
@@ -293,21 +294,6 @@ const Forum = ({
                                   <input
                                     type="radio"
                                     name="cc"
-                                    id="c2"
-                                    onChange={(e) => {
-                                      setDate("week");
-                                    }}
-                                    value={searchDate}
-                                  />
-                                  <label htmlFor="c2">
-                                    <span></span>
-                                  </label>
-                                  <small>This week</small>
-                                </li>
-                                <li>
-                                  <input
-                                    type="radio"
-                                    name="cc"
                                     id="c3"
                                     onChange={(e) => {
                                       setDate("month");
@@ -375,7 +361,7 @@ const Forum = ({
                         </div>
                         <Top_jobs />
                         <Most_viewed posts={posts} />
-                        <Most_viewed_people />
+                        {/* <Most_viewed_people />                         */}
                       </div>
                     </div>
                   </div>

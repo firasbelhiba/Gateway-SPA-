@@ -23,7 +23,7 @@ const Top_indeed = ({ getScrapedDataIndeed }) => {
       </div>
       <div className="suggestions-list">
         {scrapedDataIndeed === null ? (
-          <h1>There is no jobs for the moment ! Visit us later !!</h1>
+          <h2>There is no jobs for the moment ! Visit us later !!</h2>
         ) : (
           scrapedDataIndeed.map((data) => (
             <div className="suggestion-usd">

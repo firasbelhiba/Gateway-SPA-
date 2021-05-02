@@ -22,7 +22,7 @@ const Top_tanitjobs = ({ getScrapedDataTJ }) => {
       </div>
       <div className="suggestions-list">
         {scrapedDataTJ === null ? (
-          <h1>There is no jobs for the moment ! Visit us later !!</h1>
+          <h2>There is no jobs for the moment ! Visit us later !!</h2>
         ) : (
           scrapedDataTJ.map((data) => (
             <div className="suggestion-usd">

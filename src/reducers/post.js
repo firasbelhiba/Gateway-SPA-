@@ -22,6 +22,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_POSTS:
+      localStorage.setItem("posts", JSON.stringify(payload));
       return {
         ...state,
         posts: payload,

@@ -20,7 +20,6 @@ const RelevantQuestions = () => {
     return (
         <div>
             <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
-
                 <QuestionButton/>
                 <FilterItem/>
                 <SortItem/>

@@ -25,7 +25,7 @@ const HOTKEYS = {
     "mod+`": "code"
 };
 
-const RichEditor = ({value, setValue}) => {
+const RichEditor = ({value, setValue, setDesc}) => {
     const renderElement = useCallback(props => <Element {...props} />, []);
     const renderLeaf = useCallback(props => <Leaf {...props} />, []);
     const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -38,6 +38,9 @@ const RichEditor = ({value, setValue}) => {
                 onChange={value => {
                     setValue(value);
                     const content = JSON.stringify(value)
+                    if (content !== '[{"type": "paragraph", "children": [{"text": ""}]}]') {
+                        setDesc(false)
+                    }
                     localStorage.setItem('content', content)
                 }}
             >

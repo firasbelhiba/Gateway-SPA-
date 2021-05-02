@@ -28,6 +28,7 @@ const TotalResults = ({
         className={classes.submitButton}
         variant="contained"
         color="primary"
+        style={{backgroundColor:"#153b44"}}
       >
         Review
       </Button>{" "}
@@ -36,6 +37,7 @@ const TotalResults = ({
         className={classes.submitButton}
         variant="contained"
         color="primary"
+        style={{backgroundColor:"#153b44"}}
       >
         Reset
       </Button>

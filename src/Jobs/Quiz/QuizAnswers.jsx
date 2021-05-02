@@ -84,9 +84,9 @@ const QuizAnswers = ({
   return !processedAnswers || !processedAnswers.length ? (
     <>
       <Typography variant="h1" className={classes.mainTitle}>
-        Answer flowing Questions:
+        Answer folllowing Questions:
       </Typography>
-      <form onSubmit={handleResult}>
+      <form onSubmit={handleResult} style={{maxWidth: "1100px",  margin: "0 auto"}} >
         <Grid container spacing={4}>
           <Grid item xs={12}>
             {quizData.map((quiz) => (
@@ -120,6 +120,7 @@ const QuizAnswers = ({
               className={classes.submitButton}
               variant="contained"
               color="primary"
+              style={{backgroundColor:"#153b44"}}
               type="submit"
             >
               Result

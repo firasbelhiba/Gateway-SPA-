@@ -39,6 +39,7 @@ import 'sanitize.css'
          
        
       }else{
+        setCountry("")
         setValue('');
         setJobType('');
         setcategory('');
@@ -51,7 +52,7 @@ import 'sanitize.css'
         console.log(current)
       }
       
-      },[current]);
+      },[current,active]);
 
     const options = useMemo(() => countryList().getData(), [])
     const styles = {
@@ -78,6 +79,7 @@ import 'sanitize.css'
         skills,
         
       };
+      console.log("aaa");
       updateJob(updJob)
       clearCurrent()
       setDisactive();

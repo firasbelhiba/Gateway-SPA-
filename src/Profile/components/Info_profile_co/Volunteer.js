@@ -22,7 +22,7 @@ const Volunteer = ({ volunteer, showActions }) => {
                 {volunteer.length === 0 ?
 
                     <Fragment>
-                        <h1 className="mb-4">You have no volunteer experiences added yet</h1>
+                        <h4 className="mb-4">You have no volunteer experiences added yet</h4>
                         {
                             showActions &&
                             <Link to='/create-volunteer' title=""

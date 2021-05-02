@@ -136,9 +136,8 @@ const AuthForm = ({ login, isAuthenticated }) => {
                                 ><i className="fa fa-facebook"></i>Login Via Facebook</Link>
                             </li>
                             <li>
-                                <a href="!#" title="" className="tw"
-                                ><i className="fa fa-linkedin"></i>Login Via LinkedIn</a
-                                >
+                                <Link to="/login-with-linkedin" title="" className="tw"
+                                ><i className="fa fa-linkedin"></i>Login Via LinkedIn</Link>
                             </li>
                             <li>
                                 <a style={{ backgroundColor: '#DE5246' }} href="http://localhost:5000/api/users/google" title="" className="tw"

@@ -10,6 +10,7 @@ const Comment_item = ({
   comment: { _id, text, user, name, avatar, date },
   auth,
   deleteComment,
+  
 }) => {
   return (
     <div>

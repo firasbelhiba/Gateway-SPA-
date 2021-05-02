@@ -99,7 +99,7 @@ const Forum = ({
                         <div className="post-topbar">
                           <div className="user-picy">
                             <img
-                              src={thisProfile.user.avatar}
+                              src={thisProfile.avatar}
                               alt=""
                               style={{
                                 width: "50px",

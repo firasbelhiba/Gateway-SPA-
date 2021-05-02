@@ -20,7 +20,7 @@ const Certification = ({ certification, showActions }) => {
                 </h3>
                 {certification.length === 0 ?
                     <Fragment>
-                        <h1 className="mb-4">You have no Certification added yet</h1>
+                        <h4 className="mb-4">You have no Certification added yet</h4>
                         {
                             showActions &&
                             <Link to='/create-certification' title=""

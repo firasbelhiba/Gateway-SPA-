@@ -21,7 +21,7 @@ export const Experience = ({ experience, showActions }) => {
             </h3>
             {experience.length === 0 ?
                 <Fragment>
-                    <h1 className="mb-4">You have no experiences added yet</h1>
+                    <h4 className="mb-4">You have no experiences added yet</h4>
                     {
                         showActions &&
                         <Link to='/create-experience' title=""

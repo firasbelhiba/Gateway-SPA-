@@ -59,8 +59,8 @@ import Video from "./Jobs/video/Video";
 import QuizCategories from "./Jobs/Quiz/QuizCategories";
 import News from "./Jobs/News/News.js";
 
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //Utilities & functions
 import { loadUser } from "./actions/auth";
@@ -73,7 +73,11 @@ import {
 import setAuthToken from "./utils/setAuthToken";
 
 //Scraping
-import { getScrapedData, getScrapedDataTJ } from "./actions/scraping";
+import {
+  getScrapedData,
+  getScrapedDataTJ,
+  getScrapedDataIndeed,
+} from "./actions/scraping";
 
 //Css
 import "./App.css";
@@ -91,6 +95,7 @@ function App() {
     store.dispatch(getSuggestions());
     store.dispatch(getMostViewedProfiles());
     store.dispatch(getScrapedDataTJ());
+    store.dispatch(getScrapedDataIndeed());
   }, []);
 
   return (

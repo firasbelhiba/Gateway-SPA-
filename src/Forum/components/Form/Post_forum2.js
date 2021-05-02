@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { addPost } from "../../../actions/post";
 import { toast } from "react-toastify";
 
-const Post_forum2 = ({ addPost, disable }) => {
+const Post_forum2 = ({ addPost, disable, country, city }) => {
   const [title, setTite] = useState("");
   const [text, setText] = useState("");
   const [category, setCategory] = useState("");
@@ -33,6 +33,7 @@ const Post_forum2 = ({ addPost, disable }) => {
       data.append("title", title);
       data.append("text", text);
       data.append("category", category);
+      data.append("location", country + "," + city);
 
       for (let i = 0; i < image.length; i++) {
         data.append("image", image[i]);

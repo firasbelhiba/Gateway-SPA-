@@ -3,7 +3,7 @@ import {Label, Tab} from 'semantic-ui-react'
 import RelevantQuestions from "../tabs/RelevantQuestions";
 import MyQuestions from "../tabs/MyQuestions";
 import FollowedQuestions from "../tabs/FollowedQuestions";
-import PopularQuestions from "../tabs/PopularQuestions";
+import PopularQuestions from "../News/News";
 
 const panes = [
     {

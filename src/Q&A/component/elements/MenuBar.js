@@ -3,7 +3,8 @@ import {Menu, Label} from 'semantic-ui-react'
 import RelevantQuestions from "../tabs/RelevantQuestions";
 import MyQuestions from "../tabs/MyQuestions";
 import FollowedQuestions from "../tabs/FollowedQuestions";
-import PopularQuestions from "../tabs/PopularQuestions";
+import News from "../News/News";
+import NewsTabs from "../tabs/NewsTabs";
 
 export default class MenuExamplePointing extends Component {
     state = {activeItem: 'Most Relevant For You', content: <RelevantQuestions/>}
@@ -36,11 +37,11 @@ export default class MenuExamplePointing extends Component {
                         My Questions
                     </Menu.Item>
                     <Menu.Item
-                        content={<PopularQuestions/>}
-                        name='Popular This Week'
-                        active={activeItem === 'Popular This Week'}
+                        content={<NewsTabs/>}
+                        name='News for you'
+                        active={activeItem === 'News for you'}
                         onClick={this.handleItemClick}
-                    >Popular This Week
+                    >News for you
                     </Menu.Item>
                     <Menu.Item
                         content={<FollowedQuestions/>}

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Modal} from 'semantic-ui-react';
+import {Button, Modal, Form, Input} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
 import {useDispatch, useSelector} from "react-redux";
 import {createQuestion} from '../../../actions/questions';
@@ -28,25 +28,59 @@ const QuestionButton = () => {
     console.log(JSON.stringify(input));
     const {open, size} = state
 
-    const [subject, setSubject] = useState();
-    const [category, setCategory] = useState();
-    const [tags, setTags] = useState();
-
+    const [subject, setSubject] = useState(null);
+    const [category, setCategory] = useState(null);
+    const [tags, setTags] = useState(null);
+    const [subjecterror, setSubjecterror] = useState(false);
+    const [categoryerror, setCategoryerror] = useState(false);
+    const [tagserror, setTagserror] = useState(false);
+    const [descriptionerror, setDescriptionserror] = useState(false);
     const submitDispatch = useDispatch();
-
-    const handleSubmit = () => {
-        const user = JSON.parse(localStorage.getItem('user'))._id;
-        const description = localStorage.getItem('content');
-        const Question = {
-            user,
-            subject,
-            description,
-            category,
-            tags
+    const handleSubmit1 = () => {
+        if (!subject) {
+            console.log('nuuuuh')
+        } else {
+            const user = JSON.parse(localStorage.getItem('user'))._id;
+            const description = localStorage.getItem('content');
+            const Question = {
+                user,
+                subject,
+                description,
+                category,
+                tags
+            }
+            console.log(Question);
+            submitDispatch(createQuestion(Question))
+            dispatch({type: 'close'});
         }
-        console.log(Question);
-        submitDispatch(createQuestion(Question))
-        dispatch({type: 'close'});
+    }
+    const handleSubmit = () => {
+        if (!subject) {
+            setSubjecterror(true)
+        }
+        if (!category) {
+            setCategoryerror(true)
+        }
+        if (!tags) {
+            setTagserror(true)
+        }
+        if (input === initialValue) {
+            setDescriptionserror(true)
+        }
+        if(subject && category && tags && input !== initialValue){
+            const user = JSON.parse(localStorage.getItem('user'))._id;
+            const description = localStorage.getItem('content');
+            const Question = {
+                user,
+                subject,
+                description,
+                category,
+                tags
+            }
+            console.log(Question);
+            submitDispatch(createQuestion(Question))
+            dispatch({type: 'close'});
+        }
     }
     const user = JSON.parse(localStorage.getItem("user"));
     console.log(user);
@@ -65,33 +99,56 @@ const QuestionButton = () => {
             >
                 <Modal.Header>Post Your Question</Modal.Header>
                 <Modal.Content>
-                    <div className="ui form">
-                        <div className="eight wide field">
+                    <Form>
+                        <Form.Field required>
                             <label>Subject</label>
-                            <input type="text" placeholder="Subject" onChange={event => {
-                                setSubject(event.target.value);
-                                console.log(event.target.value);
-                            }}/>
-                        </div>
-                        <div className="eight wide field">
+                            <Form.Input placeholder="Subject"
+                                        error={subjecterror ? {
+                                            content: 'Please enter Category',
+                                            pointing: 'below'
+                                        } : false}
+                                        fluid
+                                        onChange={event => {
+                                            setSubject(event.target.value);
+                                            setSubjecterror(false)
+                                        }}/>
+
+                        </Form.Field>
+                        <Form.Field required>
                             <label>Category</label>
-                            <input type="text" placeholder="Category" onChange={event => {
-                                setCategory(event.target.value);
-                                console.log(event.target.value);
-                            }}/>
-                        </div>
-                        <div className="eight wide field">
+                            <Form.Input placeholder="Category"
+                                        error={categoryerror ? {
+                                            content: 'Please enter Category',
+                                            pointing: 'below'
+                                        } : false}
+                                        fluid
+                                        onChange={event => {
+                                            setCategory(event.target.value);
+                                            setCategoryerror(false)
+                                        }}/>
+                        </Form.Field>
+                        <Form.Field required
+                                    error={tagserror ? {
+                                        content: 'Please enter at least one tag',
+                                        pointing: 'below',
+                                    } : false}
+                        >
                             <label>Tags</label>
                             <SelectTags onChange={(value) => {
                                 setTags(value);
-                                console.log(value);
+                                setTagserror(false)
                             }}/>
-                        </div>
-                        <div className="field">
+                        </Form.Field>
+                        <Form.Field required
+                                    error={descriptionerror ? {
+                                        content: 'Please enter at least one tag',
+                                        pointing: 'below',
+                                    } : false}
+                        >
                             <label>Description</label>
-                            <RichEditor value={input} setValue={setInput}/>
-                        </div>
-                    </div>
+                            <RichEditor value={input} setValue={setInput} setDesc={setDescriptionserror}/>
+                        </Form.Field>
+                    </Form>
                 </Modal.Content>
                 <Modal.Actions>
                     <button className="ui icon button">

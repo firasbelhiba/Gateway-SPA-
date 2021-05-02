@@ -38,7 +38,7 @@ const User_data = ({ thisProfile }) => {
         <div className="user-profile">
           <div className="username-dt">
             <div className="usr-pic">
-              <img src={thisProfile.user.avatar} alt="" />
+              <img src={thisProfile.avatar} alt="" />
             </div>
           </div>
           <div className="user-specs">

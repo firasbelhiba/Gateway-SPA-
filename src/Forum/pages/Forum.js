@@ -22,6 +22,7 @@ import SimpleReactLightbox from "simple-react-lightbox";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Top_tanitjobs from "../components/Top_tanitjobs";
+import Top_indeed from "../components/Top_indeed";
 import Suggestions_friends from "../../Profile/components/Suggestions_friends";
 
 let classActive = "";
@@ -37,6 +38,11 @@ const Forum = ({
   useEffect(() => {
     getPosts();
     getCurrentProfile();
+    fetch(
+      "https://geolocation-db.com/json/f9902210-97f0-11eb-a459-b997d30983f1"
+    )
+      .then((res) => res.json())
+      .then((data) => localStorage.setItem("location", JSON.stringify(data)));
   }, [getPosts, getCurrentProfile]);
 
   let thisProfile = JSON.parse(localStorage.getItem("profile"));
@@ -75,6 +81,10 @@ const Forum = ({
     return 0;
   }
 
+  let locationDetails = JSON.parse(localStorage.getItem("location"));
+  let country_location = locationDetails.country_name;
+  let city_location = locationDetails.city;
+
   return loading ? (
     <Loading_spinner />
   ) : (
@@ -91,6 +101,7 @@ const Forum = ({
                         <User_data thisProfile={thisProfile} />
                         <Suggestions_friends />
                         <Top_tanitjobs />
+                        <Top_indeed />
                         <Tags />
                       </div>
                     </div>
@@ -99,7 +110,7 @@ const Forum = ({
                         <div className="post-topbar">
                           <div className="user-picy">
                             <img
-                              src={thisProfile.user.avatar}
+                              src={thisProfile.avatar}
                               alt=""
                               style={{
                                 width: "50px",
@@ -375,7 +386,7 @@ const Forum = ({
           <div className={`post-popup job_post ${classActive}`}>
             <div className="post-project">
               <h3>Add post</h3>
-              <Post_forum2 />
+              <Post_forum2 country={country_location} city={city_location} />
               <a onClick={() => toggleState("")} title="">
                 <i
                   className="la la-times-circle-o"

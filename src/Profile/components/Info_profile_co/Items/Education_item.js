@@ -21,8 +21,8 @@ const Education_item = ({ education, deleteEducation, showActions }) => {
             </h4>
 
 
-            <h1>{item.degree}</h1>
-            <h1 className="mt-2 mb-2">Field of study : {item.fieldofstudy}</h1>
+            <h4>{item.degree}</h4>
+            <h2  className="mt-2 mb-2">Field of study : {item.fieldofstudy}</h2>
             <span style={{ color: '#8a97a0' }}>
                 <Moment format='YYYY/MM/DD'>{item.from}</Moment>-{' '}
                 {item.to === null ? ('Now') : (<Moment format='YYYY/MM/DD'>{item.to}</Moment>)}

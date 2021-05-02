@@ -18,7 +18,7 @@ export const Education = ({ education, showActions }) => {
             </h3>
             {education.length === 0 ?
                 <Fragment>
-                    <h1 className="mb-4">You have no education added yet</h1>
+                    <h4 className="mb-4">You have no education added yet</h4>
                     {
                         showActions &&
                         <Link to='/create-education' title=""

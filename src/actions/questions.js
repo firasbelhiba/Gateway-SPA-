@@ -9,6 +9,10 @@ import {
     GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
+    CANCEL_NEWS,
+    NEWS_REC_SKILLS,
+    NEWS_REC,
+    SAVE_NEWS,
     DOWNVOTE_QUESTION,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
@@ -27,7 +31,7 @@ import {
     SEARCH_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_QUESTIONS,
-    SORT_ANSWERS_VOTES,
+    SORT_ANSWERS_VOTES, GET_SAVED_NEWS,
 } from "./types";
 
 export const getQuestion = () => async (dispatch) => {
@@ -473,3 +477,90 @@ export const blogRec = (search) => async (dispatch) => {
         });
     }
 };
+
+export const newsRec = (search) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/newsRec/${search}`);
+        dispatch({
+            type: NEWS_REC,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const newsRecSkills = (search) => async (dispatch) => {
+    const Search = search.join(',') + ' web'
+    console.log(Search);
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/newsRecSkills/${Search}`);
+        dispatch({
+            type: NEWS_REC_SKILLS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const saveNews = (Data, idU) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    try {
+        const {data} = await axios.post(
+            `http://localhost:5000/api/q_and_a/saveNews/${idU}`,
+            Data,
+            config
+        );
+        dispatch({
+            type: SAVE_NEWS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const cancelSaveNews = (idU, idN) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/cancelSaveNews/${idU}/${idN}`);
+        dispatch({
+            type: CANCEL_NEWS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const getNewsSaved = (id) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getNewsSaved/${id}`);
+        dispatch({
+            type: GET_SAVED_NEWS,
+            payload: data,
+        });
+        console.log(data)
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}

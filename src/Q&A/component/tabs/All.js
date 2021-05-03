@@ -2,29 +2,24 @@ import React, {useEffect} from "react";
 import UserQuestion from "../UserQuestion";
 import Navigation from "../elements/Navigation";
 import {useDispatch, useSelector} from "react-redux";
-import {getQuestion, getDomains} from "../../../actions/questions";
+import {getQuestion} from "../../../actions/questions";
 import QuestionButton from "../elements/QuestionButton";
 import FilterItem from "../elements/FilterItem";
 import SortItem from "../elements/SortItem";
 import Search from "../elements/Search";
-import QuestionsSetting from "../elements/QuestionsSetting";
 
-const RelevantQuestions = () => {
-    const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('user'))._id;
+const All = () => {
+    const dispatchQuestion = useDispatch();
 
     useEffect(() => {
-        dispatch(getQuestion());
-        dispatch(getDomains(user));
-    }, [dispatch]);
+        dispatchQuestion(getQuestion());
+    }, [dispatchQuestion]);
 
     const Questions = useSelector((state) => state.question.questions);
-    const Domains = useSelector((state) => state.question.domains);
 
     return (
         <div>
             <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
-                <QuestionsSetting Domains={Domains}/>
                 <QuestionButton/>
                 <FilterItem/>
                 <SortItem/>
@@ -55,4 +50,4 @@ const RelevantQuestions = () => {
     );
 }
 
-export default RelevantQuestions;
+export default All;

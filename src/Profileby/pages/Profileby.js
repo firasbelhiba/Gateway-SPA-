@@ -22,7 +22,7 @@ import { getProfileById } from "../../actions/profile";
 import { useEffect } from 'react';
 import Follow from '../components/Follow';
 import { Portfolio_profile } from '../../Profile/components/Portfolio_profile';
-
+import Report_profile from '../components/Report_profile'
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -56,7 +56,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                 <div className="row">
                                     <div className="col-lg-3">
                                         <Main_left_sidebar
-                                            avatar={thisProfile.user.avatar}
+                                            avatar={thisProfile.avatar}
                                             numberOfFollowers={thisProfile.follwers.length}
                                             numberOfFollowing={thisProfile.following.length}
                                             followers={thisProfile.follwers}
@@ -69,9 +69,9 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             website={thisProfile.website}
                                             showActions={false}
                                         />
-                                        {/* {profile.githubusername && (
-                                            <Profile_Github username={profile.githubusername} />
-                                        )} */}
+                                        {thisProfile.githubusername && (
+                                            <Profile_Github username={thisProfile.githubusername} />
+                                        )}
                                     </div>
                                     <div className="col-lg-6">
                                         <div className="main-ws-sec">
@@ -80,7 +80,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                                     name={thisProfile.user.name}
                                                     status={thisProfile.status}
                                                 />
-                                                <div className="tab-feed st2 settingjb">
+                                                <div class Name="tab-feed st2 settingjb">
                                                     <ul>
                                                         <li onClick={() => setId("feed")} className="">
                                                             <a title="">
@@ -92,12 +92,6 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                                             <a title="">
                                                                 <img src="assets/images/ic2.png" alt="" />
                                                                 <span>Info</span>
-                                                            </a>
-                                                        </li>
-                                                        <li onClick={() => setId("jobs")}>
-                                                            <a title="">
-                                                                <img src="assets/images/ic4.png" alt="" />
-                                                                <span>Jobs</span>
                                                             </a>
                                                         </li>
                                                         <li onClick={() => setId("bids")}>
@@ -138,7 +132,6 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                                     certification={thisProfile.certification}
                                                 />
                                             )}
-                                            {id === "jobs" && <Jobs_profile />}
                                             {id === "bids" && <Bids_profile />}
                                             {id === "portfolio" && <Portfolio_profile portfolio={thisProfile.portfolio} />}
                                             {id === "reviews" && <Review_profile
@@ -155,6 +148,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             <Follow id={thisProfile._id}
                                                 id_user={thisProfile.user._id}
                                                 followers={thisProfile.follwers} />
+                                            <Report_profile id={thisProfile._id} />
                                             <Widget_portfolio portfolio={thisProfile.portfolio} />
                                         </div>
                                     </div>

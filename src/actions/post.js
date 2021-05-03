@@ -122,6 +122,8 @@ export const addPost = (formData) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
+      //const body = JSON.stringify({ title, text, category, image });
+
   try {
     const res = await axios.post(
       "http://localhost:5000/api/posts/",
@@ -132,7 +134,15 @@ export const addPost = (formData) => async (dispatch) => {
       type: ADD_POST,
       payload: res.data,
     });
+
+    toast.success("Post added successfully!!", {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   } catch (error) {
+
+    toast.error(error, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
     dispatch({
       type: POST_ERROR,
       payload: {

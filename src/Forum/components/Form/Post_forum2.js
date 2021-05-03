@@ -33,12 +33,12 @@ const Post_forum2 = ({ addPost, disable, country, city }) => {
       data.append("title", title);
       data.append("text", text);
       data.append("category", category);
-      data.append("location", country + "," + city);
 
       for (let i = 0; i < image.length; i++) {
         data.append("image", image[i]);
       }
-
+      data.append("location", country + "," + city);
+    
       addPost(data);
       toast.success("Post added successfully!!", {
         position: toast.POSITION.BOTTOM_LEFT,

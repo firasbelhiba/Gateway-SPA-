@@ -115,7 +115,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
       >
         <div className="user-info">
           <img
-            // src={this_user.avatar}
+            //src={this_user.avatar}
             style={{ height: "30px", width: "30px" }}
             alt=""
           />
@@ -282,7 +282,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                 <li>
                   <Link to="/quiz" title="">
                     <span>
-                    <i className="far fa-check-square"></i>
+                      <i className="far fa-check-square"></i>
                     </span>
                     Quiz
                   </Link>
@@ -290,7 +290,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading, user } }) => {
                 <li>
                   <Link to="/news" title="">
                     <span>
-                    <i class="far fa-newspaper"></i>
+                      <i class="far fa-newspaper"></i>
                     </span>
                     News
                   </Link>

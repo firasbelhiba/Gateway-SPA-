@@ -12,12 +12,14 @@ import {
     CANCEL_NEWS,
     NEWS_REC_SKILLS,
     NEWS_REC,
+    ADD_DOMAIN,
     GET_SAVED_NEWS,
     SAVE_NEWS,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
     DELETE_ANSWER,
     DELETE_REPLY,
+    CANCEL_DOMAIN,
     SORT_ANSWERS,
     UPVOTE_ANSWER,
     ADD_VIEW,
@@ -27,6 +29,7 @@ import {
     UNFOLLOW_QUESTION,
     SORT_QUESTIONS,
     FILTER_QUESTIONS,
+    GET_DOMAINS,
     SORT_ANSWERS_VOTES,
     DOWNVOTE_ANSWER, DOWNVOTE_REPLY, UPVOTE_REPLY,
 } from "../actions/types";
@@ -38,6 +41,7 @@ const initialState = {
     news: {loading: true, news: []},
     newsSkills: {loading: true, news: []},
     savedNews: {loading: true, news: []},
+    domains: [],
     question: null,
     loading: true,
     error: {},
@@ -149,6 +153,21 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 savedNews: {news: payload}
+            };
+        case ADD_DOMAIN:
+            return {
+                ...state,
+                domains: payload
+            };
+        case GET_DOMAINS:
+            return {
+                ...state,
+                domains: payload
+            };
+        case CANCEL_DOMAIN:
+            return {
+                ...state,
+                domains: payload
             };
         case NEWS_REC_SKILLS:
             return {

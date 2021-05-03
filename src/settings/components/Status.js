@@ -1,6 +1,16 @@
 import React, { Fragment } from 'react'
+import { Line } from 'react-chartjs-2/dist'
 
 const Status = () => {
+    const data = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [
+            {
+                label: 'Views for 2020',
+                data: [0, 1, 14, 12]
+            }
+        ]
+    }
     return (
         <Fragment>
             <div
@@ -18,14 +28,11 @@ const Status = () => {
                                     <div className="pro-bx">
                                         <img src="images/pro-icon1.png" alt="" />
                                         <div className="bx-info">
-                                            <h3>$5,145</h3>
-                                            <h5>Total Income</h5>
+                                            <h3>0</h3>
+                                            <h5>Total Visitors</h5>
                                         </div>
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing.
-                                                            </p>
+
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-12">
@@ -33,14 +40,11 @@ const Status = () => {
                                     <div className="pro-bx">
                                         <img src="images/pro-icon2.png" alt="" />
                                         <div className="bx-info">
-                                            <h3>$4,745</h3>
-                                            <h5>Widthraw</h5>
+                                            <h3>0</h3>
+                                            <h5>Total posts</h5>
                                         </div>
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing.
-                                                            </p>
+
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-12">
@@ -48,14 +52,11 @@ const Status = () => {
                                     <div className="pro-bx">
                                         <img src="images/pro-icon3.png" alt="" />
                                         <div className="bx-info">
-                                            <h3>$1,145</h3>
-                                            <h5>Sent</h5>
+                                            <h3>0</h3>
+                                            <h5>Total following</h5>
                                         </div>
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing.
-                                                            </p>
+
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-12">
@@ -63,16 +64,15 @@ const Status = () => {
                                     <div className="pro-bx">
                                         <img src="images/pro-icon4.png" alt="" />
                                         <div className="bx-info">
-                                            <h3>130</h3>
-                                            <h5>Total Projects</h5>
+                                            <h3>0</h3>
+                                            <h5>Total followers</h5>
                                         </div>
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing.
-                                                            </p>
+
                                 </div>
                             </div>
+                            <Line data={data} />
+
                         </div>
                     </div>
                     <div className="pro-work-status"></div>

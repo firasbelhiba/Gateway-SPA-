@@ -95,7 +95,7 @@ const This_post = ({
                           type="text"
                           placeholder="Post a comment"
                           onChange={(e) => setText(e.target.value)}
-                          value={message}
+                          value={text}
                         />
                         <i
                           class="fas fa-smile-beam fa-2x ml-2"

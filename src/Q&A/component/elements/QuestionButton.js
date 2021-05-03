@@ -25,7 +25,6 @@ const QuestionButton = () => {
         size: undefined,
     })
     const [input, setInput] = useState(initialValue);
-    console.log(JSON.stringify(input));
     const {open, size} = state
 
     const [subject, setSubject] = useState(null);
@@ -64,8 +63,6 @@ const QuestionButton = () => {
             dispatch({type: 'close'});
         }
     }
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
 
     return (
         <>

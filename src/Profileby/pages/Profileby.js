@@ -148,7 +148,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             <Follow id={thisProfile._id}
                                                 id_user={thisProfile.user._id}
                                                 followers={thisProfile.follwers} />
-                                            <Report_profile />
+                                            <Report_profile id={thisProfile._id} />
                                             <Widget_portfolio portfolio={thisProfile.portfolio} />
                                         </div>
                                     </div>

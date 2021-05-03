@@ -31,6 +31,7 @@ import {
   GET_SUGGESTIONS,
   ADD_REVIEW,
   GET_MOST_VIEWED_PEOPLE,
+  PROFILE_REPORTED,
 } from "./types";
 
 // Get profile from the logged in user
@@ -1080,6 +1081,33 @@ export const getMostViewedProfiles = () => async (dispatch) => {
       type: GET_MOST_VIEWED_PEOPLE,
       payload: res.data,
     });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+
+//Report a profile 
+export const reportProfileById = (id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(
+      `http://localhost:5000/api/profile/report/${id}`
+    );
+
+    dispatch({
+      type: PROFILE_REPORTED,
+      payload: res.data,
+    });
+
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

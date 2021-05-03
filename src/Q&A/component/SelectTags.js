@@ -25,7 +25,7 @@ class SelectTags extends Component {
         multiple: true,
         search: true,
         searchQuery: null,
-        value: [],
+        value: this.props.tags,
         options: getOptions(),
     }
 

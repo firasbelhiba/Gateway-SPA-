@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Button, Modal, Form, Input} from 'semantic-ui-react';
+import React, {useState} from 'react';
+import {Button, Modal, Form, Dropdown} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
-import {useDispatch, useSelector} from "react-redux";
-import {createQuestion} from '../../../actions/questions';
+import {useDispatch} from "react-redux";
+import {updateQuestion} from '../../../actions/questions';
 import RichEditor from "../TextEditor/RichEditor";
-import AnswerEditor from "../TextEditor/AnswerEditor";
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -19,17 +18,17 @@ function exampleReducer(state, action) {
 
 const initialValue = [{"type": "paragraph", "children": [{"text": ""}]}];
 
-const QuestionButton = () => {
+const QuestionUpdate = ({details}) => {
     const [state, dispatch] = React.useReducer(exampleReducer, {
         open: false,
         dimmer: undefined,
     })
-    const [input, setInput] = useState(initialValue);
+    const [input, setInput] = useState(JSON.parse(details.description));
     const {open, dimmer} = state
 
-    const [subject, setSubject] = useState(null);
-    const [category, setCategory] = useState(null);
-    const [tags, setTags] = useState(null);
+    const [subject, setSubject] = useState(details.subject);
+    const [category, setCategory] = useState(details.category);
+    const [tags, setTags] = useState(details.tags);
     const [subjecterror, setSubjecterror] = useState(false);
     const [categoryerror, setCategoryerror] = useState(false);
     const [tagserror, setTagserror] = useState(false);
@@ -48,39 +47,39 @@ const QuestionButton = () => {
         if (input === initialValue) {
             setDescriptionserror(true)
         }
-        if(subject && category && tags && input !== initialValue){
-            const user = JSON.parse(localStorage.getItem('user'))._id;
+        if (subject && category && tags && input !== initialValue) {
             const description = localStorage.getItem('content');
             const Question = {
-                user,
                 subject,
                 description,
                 category,
                 tags
             }
             console.log(Question);
-            submitDispatch(createQuestion(Question))
-            dispatch({type: 'close'});
+            submitDispatch(updateQuestion(Question, details._id))
+            dispatch({type: 'CLOSE_MODAL'});
         }
     }
 
     return (
         <>
-            <Button className="ui button" onClick={() => dispatch({type: 'OPEN_MODAL', dimmer: 'blurring'})}>
-                Ask Question
-            </Button>
-
+            <Dropdown.Item
+                icon='clipboard'
+                text='Update'
+                onClick={() => dispatch({type: 'OPEN_MODAL', dimmer: 'blurring'})}
+            />
             <Modal
                 dimmer={dimmer}
                 open={open}
                 onClose={() => dispatch({type: 'CLOSE_MODAL'})}
             >
-                <Modal.Header>Post Your Question</Modal.Header>
+                <Modal.Header>Modify Your Question</Modal.Header>
                 <Modal.Content>
                     <Form>
                         <Form.Field required>
                             <label>Subject</label>
                             <Form.Input placeholder="Subject"
+                                        value={subject}
                                         error={subjecterror ? {
                                             content: 'Please enter Category',
                                             pointing: 'below'
@@ -95,6 +94,7 @@ const QuestionButton = () => {
                         <Form.Field required>
                             <label>Category</label>
                             <Form.Input placeholder="Category"
+                                        value={category}
                                         error={categoryerror ? {
                                             content: 'Please enter Category',
                                             pointing: 'below'
@@ -112,10 +112,13 @@ const QuestionButton = () => {
                                     } : false}
                         >
                             <label>Tags</label>
-                            <SelectTags onChange={(value) => {
-                                setTags(value);
-                                setTagserror(false)
-                            }}/>
+                            <SelectTags
+                                tags={tags}
+
+                                onChange={(value) => {
+                                    setTags(value);
+                                    setTagserror(false)
+                                }}/>
                         </Form.Field>
                         <Form.Field required
                                     error={descriptionerror ? {
@@ -141,4 +144,4 @@ const QuestionButton = () => {
     )
 }
 
-export default QuestionButton;
+export default QuestionUpdate;

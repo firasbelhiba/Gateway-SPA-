@@ -9,6 +9,7 @@ import {
     YOUTUBE_REC,
     UPVOTE_QUESTION,
     BLOG_REC,
+    UPDATE_QUESTIONS,
     CANCEL_NEWS,
     NEWS_REC_SKILLS,
     NEWS_REC,
@@ -101,6 +102,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case CREATE_QUESTIONS:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case UPDATE_QUESTIONS:
             return {
                 ...state,
                 questions: payload,

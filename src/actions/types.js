@@ -107,6 +107,7 @@ export const CANCEL_NEWS = "CANCEL_NEWS";
 export const ADD_DOMAIN = "ADD_DOMAIN";
 export const GET_DOMAINS = "GET_DOMAINS";
 export const CANCEL_DOMAIN = "CANCEL_DOMAIN";
+export const UPDATE_QUESTIONS = "UPDATE_QUESTIONS";
 
 // Scrapng types
 export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";
@@ -138,6 +139,10 @@ export const UPDATE_LIKE = "UPDATE_LIKE";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";
 
 export const SET_CURRENT = "SET_CURRENT";
+
+export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
+
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 export const SET_LOADING = "SET_LOADING";
 
@@ -182,3 +187,5 @@ export const SET_ACTIVE_MAIL = "SET_ACTIVE_MAIL";
 export const SET_DISACTIVE_MAIL = "SET_DISACTIVE_MAIL";
 
 export const ADD_MAIL = "ADD_MAIL";
+
+export const ADD_INTERVIEW = "ADD_INTERVIEW";

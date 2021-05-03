@@ -30,12 +30,16 @@ import {
   ADD_REP,
   SET_ACTIVE_MAIL,
   SET_DISACTIVE_MAIL,
-  ADD_MAIL
+  ADD_MAIL,
+  SET_CURRENT_USER,
+  CLEAR_CURRENT_USER,
+  ADD_INTERVIEW
   }from  "../actions/types";
 
 const initialState = {
     jobs: [],
     current: null,
+    currentUser : null,
     loading: false,
     error: null,
     active : "",
@@ -155,6 +159,17 @@ export default function (state = initialState, action) {
         ...state,
         current: null
       };
+
+      case SET_CURRENT_USER:
+        return {
+          ...state,
+          currentUser: action.payload
+        };
+      case CLEAR_CURRENT_USER:
+        return {
+          ...state,
+          currentUser: null
+        };
     case SET_LOADING:
       return {
         ...state,
@@ -197,7 +212,10 @@ export default function (state = initialState, action) {
               activeMail: ""
             };  
       case ADD_MAIL:
-          return state;                 
+          return state;    
+
+       case ADD_INTERVIEW:
+            return state;                  
 
     case UPDATE_SAVE_JOB:
         return {

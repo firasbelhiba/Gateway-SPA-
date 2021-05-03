@@ -30,6 +30,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SimpleReactLightbox from "simple-react-lightbox";
 import Saved_post_profile from "../components/Saved_post_profile";
 import Suggestions_friends from "../components/Suggestions_friends";
+import Freecourse_suggestions from "../components/Freecourse_suggestions";
 
 
 
@@ -166,6 +167,7 @@ const Profile = ({
                       <Edit_Profile />
                       <Widget_portfolio portfolio={myProfile.portfolio} />
                       <Suggestions_friends />
+                      <Freecourse_suggestions />
                     </div>
                   </div>
                 </div>

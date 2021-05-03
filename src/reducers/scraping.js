@@ -3,16 +3,19 @@ import {
   SCRAPING_ERROR,
   GET_TANITJOB_SCRAPED_DATA,
   GET_INDEED_SCRAPED_DATA,
+  GET_FREECOURSE_SCRAPED_DATA,
 } from "../actions/types";
 
 const initialState = {
   stackoverflow_data: [],
   tanitjob_data: [],
   indeed_data: [],
+  freecourse_data: [],
   loading: true,
   error: {},
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
@@ -38,7 +41,13 @@ export default function (state = initialState, action) {
         indeed_data: payload,
         loading: false,
       };
-
+    case GET_FREECOURSE_SCRAPED_DATA:
+      localStorage.setItem("freecourse", JSON.stringify(payload));
+      return {
+        ...state,
+        freecourse_data: payload,
+        loading: false,
+      };
     case SCRAPING_ERROR:
       return {
         ...state,

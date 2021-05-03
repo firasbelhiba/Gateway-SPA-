@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { Fragment, useEffect } from "react";
 import PrivateRoute from "./routing/PrivateRoute";
 
@@ -9,7 +8,6 @@ import store from "./store";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
   Switch,
 } from "react-router-dom";
 
@@ -29,7 +27,6 @@ import Notfound from "./Shared/layouts/Notfound";
 import { Landing } from "./Shared/landing/pages/Landing";
 
 import Profiles from "./Profiles/pages/Profiles";
-import Chat from "./Shared/layouts/Chat";
 import Messages from "./Messages/pages/Messages";
 import Forum from "./Forum/pages/Forum";
 import Profile from "./Profile/Pages/Profile";
@@ -59,7 +56,8 @@ import Video from "./Jobs/video/Video";
 import QuizCategories from "./Jobs/Quiz/QuizCategories";
 import News from "./Jobs/News/News.js";
 
-import { toast, ToastContainer } from "react-toastify";
+// Alert Toastify 
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Utilities & functions
@@ -77,6 +75,8 @@ import {
   getScrapedData,
   getScrapedDataTJ,
   getScrapedDataIndeed,
+  getScrapedDataFreecourse,
+  getScrapedDataEdx
 } from "./actions/scraping";
 
 //Css
@@ -96,6 +96,13 @@ function App() {
     store.dispatch(getMostViewedProfiles());
     store.dispatch(getScrapedDataTJ());
     store.dispatch(getScrapedDataIndeed());
+    store.dispatch(getScrapedDataFreecourse());
+    store.dispatch(getScrapedDataEdx());
+    fetch(
+      "https://geolocation-db.com/json/f9902210-97f0-11eb-a459-b997d30983f1"
+    )
+      .then((res) => res.json())
+      .then((data) => localStorage.setItem("location", JSON.stringify(data)));
   }, []);
 
   return (
@@ -215,7 +222,6 @@ function App() {
               <PrivateRoute exact path="/settings" component={Settings} />
               <Route component={Notfound} />
             </Switch>
-            {/* <Chat /> */}
             <ToastContainer />
           </section>
         </Fragment>

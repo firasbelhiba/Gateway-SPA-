@@ -11,8 +11,8 @@ const Top_tanitjobs = ({ getScrapedDataTJ }) => {
         <h3>
           {" "}
           <img
-            style={{ width: "30px", height: "30px" }}
-            src="  https://image.winudf.com/v2/image/Y29tLnRhbml0am9icy5jb21fc2NyZWVuc2hvdHNfMF84NmYzNDdkZg/screen-0.jpg?h=355&fakeurl=1&type=.jpg
+            style={{ width: "80px", height: "30px" }}
+            src="https://www.tanitjobs.com/templates/Tanitjobsv7/assets/images/logo-tanitjobs.jpg
               "
             className="mr-1"
           />

@@ -4,6 +4,7 @@ import {
   GET_TANITJOB_SCRAPED_DATA,
   GET_INDEED_SCRAPED_DATA,
   GET_FREECOURSE_SCRAPED_DATA,
+  GET_EDX_SCRAPED_DATA
 } from "../actions/types";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   tanitjob_data: [],
   indeed_data: [],
   freecourse_data: [],
+  edx_data: [],
   loading: true,
   error: {},
 };
@@ -46,6 +48,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         freecourse_data: payload,
+        loading: false,
+      };
+    case GET_EDX_SCRAPED_DATA:
+      localStorage.setItem("edx", JSON.stringify(payload));
+      return {
+        ...state,
+        edx_data: payload,
         loading: false,
       };
     case SCRAPING_ERROR:

@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 import { Bids_profile } from "../components/Bids_profile";
 import Cover_picture from "../components/Cover_picture";
@@ -33,6 +32,7 @@ import Suggestions_friends from "../components/Suggestions_friends";
 import JobForm from "../../Jobs/froms/JobForm"
 import InterviewForm from "../../Jobs/froms/InterviewForm";
 import Freecourse_suggestions from "../components/Freecourse_suggestions";
+import Edx_suggestions from "../components/Edx_suggestions";
 
 
 
@@ -81,6 +81,7 @@ const Profile = ({
                       <Profile_Github username={myProfile.githubusername} />
                     )}
                     <People_viewed_profile views_profile={myProfile.views_profile} />
+                    <Edx_suggestions />
                   </div>
                   <div className="col-lg-6">
                     <div className="main-ws-sec">

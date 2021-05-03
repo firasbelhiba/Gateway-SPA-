@@ -12,13 +12,14 @@ const Most_viewed_people = ({ profile: { most_viewed_profile_list } }) => {
       <div className="suggestions-list">
         {most_viewed_profile_list.map((item) => (
           <div className="suggestion-usd">
-            <img
-              src={item.avatar}
-              alt=""
-              style={{ width: "40px", height: "40px" }}
-            />
             <div className="sgt-text">
-              <h4>{item.name}</h4>
+              <h4>
+                <img
+                  src={item.avatar}
+                  alt=""
+                  style={{ width: "40px", height: "40px" }}
+                  className="mr-3"
+                />{item.name}</h4>
               <span>{item.status}</span>
             </div>
             {/* <span>

@@ -361,7 +361,7 @@ const Forum = ({
                         </div>
                         <Top_jobs />
                         <Most_viewed posts={posts} />
-                        {/* <Most_viewed_people />                         */}
+                        <Most_viewed_people />                        
                       </div>
                     </div>
                   </div>

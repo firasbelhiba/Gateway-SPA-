@@ -32,7 +32,7 @@ const Freecourse_suggestions = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <i className="fas fa-suitcase"></i>
+                                    <i className="fas fa-arrow-circle-up"></i>
                                 </a>
                             </span>
                             <div className="sgt-text">

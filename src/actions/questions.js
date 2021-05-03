@@ -34,6 +34,7 @@ import {
     SEARCH_QUESTIONS,
     FILTER_QUESTIONS,
     SORT_QUESTIONS,
+    UPDATE_QUESTIONS,
     SORT_ANSWERS_VOTES, GET_SAVED_NEWS,
 } from "./types";
 
@@ -83,6 +84,30 @@ export const createQuestion = (Data) => async (dispatch) => {
         );
         dispatch({
             type: CREATE_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const updateQuestion = (Data, id) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    try {
+        const {data} = await axios.post(
+            `http://localhost:5000/api/q_and_a/update/${id}`,
+            Data,
+            config
+        );
+        dispatch({
+            type: UPDATE_QUESTIONS,
             payload: data,
         });
     } catch (error) {

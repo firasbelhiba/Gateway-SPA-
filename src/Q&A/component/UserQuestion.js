@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {addView, deleteQuestion, unFollowQuestion, followQuestion} from "../../actions/questions";
 import ReadOnly from "./TextEditor/ReadOnly";
 import {getProfileById} from "../../actions/profile";
+import QuestionUpdate from "./elements/QuestionUpdate";
 
 
 const UserQuestion = (props) => {
@@ -137,6 +138,8 @@ const UserQuestion = (props) => {
                                 />
                             </Dropdown.Menu>) : (
                             <Dropdown.Menu>
+                                <QuestionUpdate details={props.details}/>
+
                                 <Dropdown.Item
                                     icon='trash'
                                     text='Delete'

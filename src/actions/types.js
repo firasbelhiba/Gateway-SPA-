@@ -107,6 +107,7 @@ export const CANCEL_NEWS = "CANCEL_NEWS";
 export const ADD_DOMAIN = "ADD_DOMAIN";
 export const GET_DOMAINS = "GET_DOMAINS";
 export const CANCEL_DOMAIN = "CANCEL_DOMAIN";
+export const UPDATE_QUESTIONS = "UPDATE_QUESTIONS";
 
 // Scrapng types
 export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";

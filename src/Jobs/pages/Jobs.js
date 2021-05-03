@@ -1,7 +1,7 @@
 import React,{Fragment,useState} from 'react';
 import  Filters  from '../components/Filters' ;
 import  JobPosts  from '../components/JobPosts';
-import  Widget_sign_up  from '../../Forum/components/Widget_sign_up'
+import  WidgetInterview  from '../components/WidgetInterview'
 import  TopJobs  from '../components/TopJobs';
 import  MostViewedJobs  from '../components/MostViewedJobs';
 import { Footer } from '../layout/Footer';
@@ -31,7 +31,7 @@ export const Jobs = () => {
                     <JobPosts />
                     <div className="col-lg-3">
                       <div className="right-sidebar">
-                         <Widget_sign_up/>
+                         <WidgetInterview/>
                          <TopJobs />
                          < MostViewedJobs/>                      
                       </div>

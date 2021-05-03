@@ -3,12 +3,12 @@ import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getJobs , setActive ,getJobByUser,applyJob} from '../../actions/Job';
+import { getJobs , setActive,setActiveMail,setCurrentUser ,getJobByUser,applyJob,setCurrent} from '../../actions/Job';
 import {getProfileById } from '../../actions/profile';
 import PropTypes from 'prop-types';
 
 
-const AcceptCandidate = ({job,acceptJob,Job:{jobs},profile:{profile},applyJob,getProfileById}) => {
+const AcceptCandidate = ({job,acceptJob,Job:{jobs},profile:{profile},applyJob,getProfileById,setCurrentUser,setActiveMail,setCurrent}) => {
     const [active,setActive]= useState(false)
     const [User,setUser] = useState({});
 
@@ -35,7 +35,7 @@ const AcceptCandidate = ({job,acceptJob,Job:{jobs},profile:{profile},applyJob,ge
                  <div className="post-bar">
                         <div className="post_topbar applied-post">
                             <div className="usy-dt">
-                                <img src={User.avatar} alt="" />
+                                <img src={User.avatar} width="30%" alt="" />
                                 <div className="usy-name">
                                     <h3>{User.name}</h3>
                                     <div className="epi-sec epi2">
@@ -82,7 +82,7 @@ const AcceptCandidate = ({job,acceptJob,Job:{jobs},profile:{profile},applyJob,ge
                                         }} title="" className="view-more-pro">View Profile</Link>
                                     {console.log(job.appliedTo)}
                                     <a className="clrbtn" href="#">Message</a>
-                                    <Link className="clrbtn" to="video" >start interview</Link>
+                                    <Link className="clrbtn" to="/myprofile"  onClick={()=>{setCurrent(job);setActiveMail();setCurrentUser(User)}}>add interview</Link>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ const mapStateToProps = state => ({
   
   export default connect(
     mapStateToProps,
-    { getJobByUser ,setActive,applyJob,getProfileById }
+    { getJobByUser ,setActive,applyJob,getProfileById,setCurrentUser,setActiveMail,setCurrent }
   )(AcceptCandidate);
 
 

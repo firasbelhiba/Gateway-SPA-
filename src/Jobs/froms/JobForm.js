@@ -179,13 +179,13 @@ import 'sanitize.css'
                 <div className="col-lg-12">
                   <ul>
                     <li><button type="submit">Post</button></li>
-                    <li><Link to="/jobs" onClick={()=>{setDisactive();clearCurrent();}} title>Cancel</Link></li>
+                    <li><a href ="#" onClick={()=>{setDisactive();clearCurrent();}} title>Cancel</a></li>
                   </ul>
                 </div>
               </div>
             </form>
           </div>
-          <Link to="/jobs" onClick={()=>{setDisactive();clearCurrent();}} title><i className="la la-times-circle-o" /></Link>
+          <a href ="#" onClick={()=>{setDisactive();clearCurrent();}} title><i className="la la-times-circle-o" /></a>
         </div>
       </div>
             

@@ -30,6 +30,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import SimpleReactLightbox from "simple-react-lightbox";
 import Saved_post_profile from "../components/Saved_post_profile";
 import Suggestions_friends from "../components/Suggestions_friends";
+import JobForm from "../../Jobs/froms/JobForm"
+import InterviewForm from "../../Jobs/froms/InterviewForm";
 
 
 
@@ -173,10 +175,11 @@ const Profile = ({
             </div>
           </div>
         </main>
-
+        <JobForm />
         <Overview_form />
         <Location_form />
         <Skills_form />
+        <InterviewForm />
       </div>
     </Fragment>
   );

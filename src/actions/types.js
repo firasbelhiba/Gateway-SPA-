@@ -132,6 +132,10 @@ export const CLEAR_CURRENT = "CLEAR_CURRENT";
 
 export const SET_CURRENT = "SET_CURRENT";
 
+export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
+
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
 export const SET_LOADING = "SET_LOADING";
 
 export const SET_ACTIVE = "SET_ACTIVE";
@@ -175,3 +179,5 @@ export const SET_ACTIVE_MAIL = "SET_ACTIVE_MAIL";
 export const SET_DISACTIVE_MAIL = "SET_DISACTIVE_MAIL";
 
 export const ADD_MAIL = "ADD_MAIL";
+
+export const ADD_INTERVIEW = "ADD_INTERVIEW";

@@ -2,16 +2,19 @@ import React, { useState, useCallback, useEffect } from "react";
 import Video from "twilio-video";
 import Lobby from "./Lobby";
 import Room from "./Room";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getJobs , setActive ,getJobByUser,} from '../../actions/Job';
+import PropTypes from 'prop-types';
 
-const VideoChat = () => {
-  const [username, setUsername] = useState("");
+const VideoChat = ({auth:{user}}) => {
+  
   const [roomName, setRoomName] = useState("");
   const [room, setRoom] = useState(null);
   const [connecting, setConnecting] = useState(false);
 
-  const handleUsernameChange = useCallback((event) => {
-    setUsername(event.target.value);
-  }, []);
+
 
   const handleRoomNameChange = useCallback((event) => {
     setRoomName(event.target.value);
@@ -24,7 +27,7 @@ const VideoChat = () => {
       const data = await fetch("http://localhost:5000/video/token", {
         method: "POST",
         body: JSON.stringify({
-          identity: username,
+          identity: user.name,
           room: roomName,
         }),
         headers: {
@@ -43,7 +46,7 @@ const VideoChat = () => {
           setConnecting(false);
         });
     },
-    [roomName, username]
+    [roomName]
   );
 
   const handleLogout = useCallback(() => {
@@ -85,9 +88,9 @@ const VideoChat = () => {
   } else {
     render = (
       <Lobby
-        username={username}
+        
         roomName={roomName}
-        handleUsernameChange={handleUsernameChange}
+        
         handleRoomNameChange={handleRoomNameChange}
         handleSubmit={handleSubmit}
         connecting={connecting}
@@ -97,4 +100,13 @@ const VideoChat = () => {
   return render;
 };
 
-export default VideoChat;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  { }
+)(VideoChat);
+
+

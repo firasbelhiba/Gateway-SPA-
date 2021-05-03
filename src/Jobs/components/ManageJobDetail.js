@@ -3,10 +3,10 @@ import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getJobs , setActive ,getJobByUser,deleteJob} from '../../actions/Job';
+import { getJobs , setActive ,getJobByUser,deleteJob,setCurrent} from '../../actions/Job';
 import PropTypes from 'prop-types';
 
-const ManageJobDetail = ({job,Job:{jobs},deleteJob}) => {
+const ManageJobDetail = ({job,Job:{jobs,active},deleteJob,setCurrent,setActive}) => {
 
     const [total,setTotal] = useState({});
 
@@ -40,9 +40,10 @@ const ManageJobDetail = ({job,Job:{jobs},deleteJob}) => {
                                             <span className="badge badge-light">{total.totalcandidates}</span 
                                             >Candidates 
                                                                             </button>
-                                        <a href="#">
+                                        <Link to="/myprofile" onClick={()=>{setCurrent(job);setActive()}}>
                                             <i className="far fa-edit"></i>
-                                        </a>
+                                        </Link>
+                                        {console.log(active)}
                                         <Link to="/myprofile" onClick={()=>{deleteJob(job._id)}}>
                                             <i className="far fa-trash-alt"></i>
                                         </Link>
@@ -76,7 +77,7 @@ const mapStateToProps = state => ({
   
   export default connect(
     mapStateToProps,
-    { getJobByUser ,setActive ,deleteJob}
+    { getJobByUser ,setActive ,deleteJob,setCurrent}
   )(ManageJobDetail);
 
 

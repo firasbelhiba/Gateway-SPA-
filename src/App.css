@@ -13,16 +13,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .App-link {
   color: #61dafb;
@@ -35,4 +25,115 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+.App h1 {
+  font-weight: 300;
+  padding: 0.4em 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App main {
+  background: #ffffff;
+  flex-grow: 1;
+}
+
+.App form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.App h2 {
+  font-weight: 300;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.App form > div {
+  width: 100%;
+  margin-bottom: 1em;
+}
+.App form > div > label {
+  display: block;
+  margin-bottom: 0.3em;
+}
+.App form > div > input {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid #333e5a;
+}
+
+.App button {
+  background: #333e5a;
+  color: #fff;
+  font-size: 16px;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.App button:hover {
+  filter: brightness(150%);
+}
+
+.App .room {
+  position: relative;
+}
+.App  .room button {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+.App .room > h3 {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 1em;
+}
+
+.App .local-participant {
+  text-align: center;
+  margin-bottom: 2em;
+}
+.App .remote-participants {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0 2em 2em;
+}
+.App .participant {
+  background: #333e5a;
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.App .participant:last-child {
+  margin-right: 0;
+}
+.App.participant h3 {
+  text-align: center;
+  padding-bottom: 0.5em;
+  color: #fff;
+}
+
+.App video {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 6px;
 }

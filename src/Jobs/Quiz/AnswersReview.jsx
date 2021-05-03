@@ -63,6 +63,7 @@ const AnswersReview = ({ processedAnswers, classes, resetQuiz }) => {
         onClick={resetQuiz}
         variant="contained"
         color="primary"
+        style={{backgroundColor:"#153b44"}}
       >
         Reset
       </Button>

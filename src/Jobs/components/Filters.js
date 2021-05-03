@@ -14,11 +14,11 @@ import 'sanitize.css'
 const Filters = ({searchCountry,searchAvailability,searchSkills,searchPrice,searchJobType,getJobs,Job:{jobs}}) => {
 
   const [value,setValue]=useState({})
-  const [price,setPrice]=useState(null)
+  const [price,setPrice]=useState("")
   const [jobType,setJobType]=useState("")
   const [country,setCountry]=useState("")
   const [availability,setAvailability]=useState("")
-  const [skills,setSkills]=useState([])
+  const [category,setCategory]=useState("")
 
 
   const options = useMemo(() => countryList().getData(), [])
@@ -38,12 +38,19 @@ const Filters = ({searchCountry,searchAvailability,searchSkills,searchPrice,sear
       {
       //Traitement
       getJobs()
-          setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+          setTimeout(fonctionAExecuter, 1200); //On attend 5 secondes avant d'exécuter la fonction
        }
        function fonctionAExecuter()
            {
            
-             searchPrice(e.target.value)
+             
+             searchJobType(jobType)
+             searchSkills(category)
+              
+              searchAvailability(availability)
+              searchCountry(country);
+              searchPrice(e.target.value)
+           
           console.log(jobs)
            }
            miseEnAttente();
@@ -56,15 +63,19 @@ const Filters = ({searchCountry,searchAvailability,searchSkills,searchPrice,sear
        {
        //Traitement
        getJobs()
-           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           setTimeout(fonctionAExecuter, 1200); //On attend 5 secondes avant d'exécuter la fonction
            console.log(jobs)
         }
         function fonctionAExecuter()
             {
               
             console.log(e.target.value)
+              
+              searchPrice(price)
+              searchSkills(category)
+              searchAvailability(availability)
+              searchCountry(country);
               searchJobType(e.target.value)
-           
             }
             miseEnAttente();
 
@@ -78,13 +89,19 @@ const Filters = ({searchCountry,searchAvailability,searchSkills,searchPrice,sear
        {
        //Traitement
        getJobs()
-           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           setTimeout(fonctionAExecuter, 1200); //On attend 5 secondes avant d'exécuter la fonction
            console.log(jobs)
         }
         function fonctionAExecuter()
             {
               
             console.log(e.target.value)
+              
+              searchJobType(jobType)
+              searchPrice(price)
+              searchSkills(category)
+             
+              searchCountry(country);
               searchAvailability(e.target.value)
            
             }
@@ -92,20 +109,25 @@ const Filters = ({searchCountry,searchAvailability,searchSkills,searchPrice,sear
 
      
    }  
-   const changeSkills=(e)=>{
+   const changeCategory=(e)=>{
     e.preventDefault()
-    setSkills(e.target.value)
+    setCategory(e.target.value)
     function miseEnAttente()
        {
        //Traitement
        getJobs()
-           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           setTimeout(fonctionAExecuter, 1200); //On attend 5 secondes avant d'exécuter la fonction
            console.log(jobs)
         }
         function fonctionAExecuter()
             {
               
             console.log(e.target.value)
+              
+              searchJobType(jobType)
+              searchPrice(price)
+              searchAvailability(availability)
+              searchCountry(country);
               searchSkills(e.target.value)
            
             }
@@ -128,12 +150,16 @@ const changeHandler = value => {
        
        
        getJobs()
-           setTimeout(fonctionAExecuter, 500); //On attend 5 secondes avant d'exécuter la fonction
+           setTimeout(fonctionAExecuter, 1200); //On attend 5 secondes avant d'exécuter la fonction
            console.log(jobs)
         }
         function fonctionAExecuter()
             {
             
+              searchSkills(category)
+              searchJobType(jobType)
+              searchPrice(price)
+              searchAvailability(availability)
               searchCountry(label)
            console.log(jobs)
             }
@@ -146,22 +172,33 @@ const changeHandler = value => {
                       <div className="filter-secs">
                         <div className="filter-heading">
                           <h3>Filters</h3>
-                          <a href="#" title>Clear all filters</a>
+                          <Link to="/jobs" onClick={()=>{getJobs();setCategory("");setAvailability("");setJobType("");setPrice("");setCountry("");setValue({})}} title>Clear all filters</Link>
                         </div>
                         <div className="paddy">
-                          <div className="filter-dd">
-                            <div className="filter-ttl">
-                              <h3>Skills</h3>
-                              <a href="#" title>Clear</a>
-                            </div>
-                            <form>
-                              <input type="text" name="search-skills" placeholder="Search skills" />
-                            </form>
+                        <div class="filter-dd">
+                        <div class="filter-ttl">
+                       <h3>Category</h3>
+                           
                           </div>
+                           <form class="job-tp">
+                           <select  value={category}
+                                 name="availability"
+                                    onChange={(e)=>changeCategory(e)}>
+                             
+                                <option> </option>
+                                <option >Science, Technology, Engineering and Mathematics</option>
+                    <option >Hospitality and Tourism</option>
+                    <option >Education and Training</option>
+                    <option >Agriculture, Food and Natural Resources</option>
+                    <option >Architecture and Construction</option>
+                                 </select>
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                             </form>
+                              </div>
                           <div class="filter-dd">
                         <div class="filter-ttl">
                        <h3>Availability</h3>
-                           <a href="#" title="">Clear</a>
+                           
                           </div>
                            <form class="job-tp">
                            <select  value={availability}
@@ -179,7 +216,7 @@ const changeHandler = value => {
                           <div className="filter-dd">
                             <div className="filter-ttl">
                               <h3>Job Type</h3>
-                              <a href="#" title>Clear</a>
+                              
                             </div>
                             <form className="job-tp">
                               
@@ -189,7 +226,7 @@ const changeHandler = value => {
                           <div className="filter-dd">
                             <div className="filter-ttl">
                               <h3>Pay Rate / Hr ($)</h3>
-                              <a href="#" title>Clear</a>
+                             
                             </div>
                             
                             <form>
@@ -203,7 +240,7 @@ const changeHandler = value => {
                           <div className="filter-dd">
                             <div className="filter-ttl">
                               <h3>Countries</h3>
-                              <a href="#" title>Clear</a>
+                              
                             </div>
                             <form className="job-tp">
                             <Select styles={styles} options={options} value={value} onChange={changeHandler} />   

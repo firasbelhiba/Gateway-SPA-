@@ -1,4 +1,4 @@
-select {
+.newsapi select{
   font-size: 1.1em;
   width: 20%;
   margin-top: 5px;
@@ -9,6 +9,7 @@ select {
   margin-bottom: 2px;
   outline: none;
 }
+
 @media screen and (max-width: 1200px) {
 	select{
     width:35%;

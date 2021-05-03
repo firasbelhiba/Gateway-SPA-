@@ -35,7 +35,7 @@ const Lobby = ({
         />
       </div>
 
-      <button type="submit" disabled={connecting}>
+      <button type="submit" style={{backgroundColor:"#153b44"}} disabled={connecting}>
         {connecting ? "Connecting" : "Join"}
       </button>
     </form>

@@ -4,6 +4,7 @@ import Display from './Display.js';
 import './Display.css';
 import Outlet from './Outlet.js';
 import './Outlet.css';
+import '../../App.css';
 
 
 class Search extends Component {
@@ -41,9 +42,10 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
+      <div className="newsapi">
         <h4 >Select from {this.state.count} News Outlets</h4>
-        <select value={this.state.value} onChange={this.handleChange}>
+        <select  value={this.state.value} onChange={this.handleChange}>
           
           {this.state.data.map((outlet, i) => {
             return (
@@ -55,6 +57,7 @@ class Search extends Component {
         </select>
         <Outlet default={this.state.value} />
         <Display default={this.state.value} />
+      </div>
       </div>
     );
   }

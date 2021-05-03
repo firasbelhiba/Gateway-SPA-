@@ -8,6 +8,15 @@ export default class SideMenu extends Component {
         window.location.href = '/q_and_a'
         this.setState({activeItem: name})
     }
+    handleAll = (e, {name}) => {
+        window.location.href = '/allQuestions'
+        this.setState({activeItem: name})
+    }
+
+    handlePopular = (e, {name}) => {
+        window.location.href = '/popular'
+        this.setState({activeItem: name})
+    }
 
     render() {
         const {activeItem} = this.state
@@ -28,18 +37,17 @@ export default class SideMenu extends Component {
                         <Menu.Item
                             name='All'
                             active={activeItem === 'All'}
-                            onClick={this.handleItemClick}
+                            onClick={this.handleAll}
                         >All Questions <Icon name='world icon'/></Menu.Item>
                         <Menu.Item
                             name='Popular'
                             active={activeItem === 'Popular'}
-                            onClick={this.handleItemClick}
+                            onClick={this.handlePopular}
                         >Popular <Icon name='paper plane icon'/></Menu.Item>
                     </Menu.Menu>
                 </Menu.Item>
                 <Menu.Item>
                     <Menu.Header>Domains</Menu.Header>
-
                     <Menu.Menu>
                         <Menu.Item
                             name='Programming'

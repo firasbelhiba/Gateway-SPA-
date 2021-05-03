@@ -10,7 +10,7 @@ const Search = () => {
         dispatch(searchQuestion(text))
     }
     return (
-        <div className="ui action input" style={{width: '390px'}}>
+        <div className="ui action input">
             <input type="text" placeholder="Search..." onChange={(e) => setText(e.target.value)}/>
             <button className="ui icon button" onClick={handleSearch}>
                 <i className="search icon"/>

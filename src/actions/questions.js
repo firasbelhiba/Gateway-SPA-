@@ -9,10 +9,13 @@ import {
     GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
+    CANCEL_DOMAIN,
     CANCEL_NEWS,
     NEWS_REC_SKILLS,
     NEWS_REC,
+    GET_DOMAINS,
     SAVE_NEWS,
+    ADD_DOMAIN,
     DOWNVOTE_QUESTION,
     CREATE_ANSWER_REPORT,
     DELETE_QUESTION,
@@ -564,3 +567,58 @@ export const getNewsSaved = (id) => async (dispatch) => {
         });
     }
 }
+
+export const addDomain = (Data, idU) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    try {
+        const {data} = await axios.post(
+            `http://localhost:5000/api/q_and_a/addDomain/${idU}`,
+            Data,
+            config
+        );
+        dispatch({
+            type: ADD_DOMAIN,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const getDomains = (id) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getDomains/${id}`);
+        dispatch({
+            type: GET_DOMAINS,
+            payload: data,
+        });
+        console.log(data)
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}
+
+export const cancelDomains = (idU, category) => async (dispatch) => {
+    try {
+        const {data} = await axios.post(`http://localhost:5000/api/q_and_a/cancelDomains/${idU}/${category}`);
+        dispatch({
+            type: CANCEL_DOMAIN,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};

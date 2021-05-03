@@ -5,6 +5,7 @@ import {
   GET_TANITJOB_SCRAPED_DATA,
   GET_INDEED_SCRAPED_DATA,
   GET_FREECOURSE_SCRAPED_DATA,
+  GET_EDX_SCRAPED_DATA
 } from "./types";
 
 //Get scraped data
@@ -73,6 +74,26 @@ export const getScrapedDataFreecourse = () => async (dispatch) => {
 
     dispatch({
       type: GET_FREECOURSE_SCRAPED_DATA,
+      payload: res.data,
+    });
+  } catch (e) {
+    dispatch({
+      type: SCRAPING_ERROR,
+      payload: { msg: e.response.statusText, status: e.response.status },
+    });
+  }
+};
+
+
+//Get scraped data edx
+export const getScrapedDataEdx = () => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      "http://localhost:5000/api/scrape/get-scraped-data-edx"
+    );
+
+    dispatch({
+      type: GET_EDX_SCRAPED_DATA,
       payload: res.data,
     });
   } catch (e) {

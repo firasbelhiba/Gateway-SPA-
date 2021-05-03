@@ -170,10 +170,6 @@ const AuthForm = ({ setAlert, register, isAuthenticated }) => {
                                                 ><i className="fab fa-google"></i>Login Via Google</a
                                                 >
                                             </li>
-                                            <li>
-                                                <Link to='/login-with-github' style={{ backgroundColor: '#24292e' }} href="!#" title="" className="tw"
-                                                ><i className="fab fa-github"></i>Login Via Github</Link>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>

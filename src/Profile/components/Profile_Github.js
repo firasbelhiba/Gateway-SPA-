@@ -13,7 +13,14 @@ const Profile_Github = ({ username, getGithubRepos, repos }) => {
     return (
         <div className="suggestions full-width">
             <div className="sd-title">
-                <h3>Github repos</h3>
+                <h3>
+                    {" "}
+                    <img
+                        style={{ width: "30px", height: "30px" }}
+                        src="http://pngimg.com/uploads/github/github_PNG40.png"
+                        className="mr-1"
+                    />
+                    Github repos</h3>
                 <i className="la la-ellipsis-v"></i>
             </div>
             <div className="suggestions-list">

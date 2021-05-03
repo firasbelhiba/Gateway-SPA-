@@ -11,10 +11,11 @@ const Freecourse_suggestions = () => {
                 <h3>
                     {" "}
                     <img
-                        style={{ width: "30px", height: "30px" }}
-                        src="https://play-lh.googleusercontent.com/_sJ-ST-crO8lxIzTv44xv_hiZvA6X7X2-8jSjhha2RfYcGSgACRod38yA6dfmcJHy_M"
+                        style={{ width: "180px", height: "30px" }}
+                        src="https://www.freecoursesonline.me/wp-content/uploads/2018/12/FreeCoursesOnline.Me_.logo_.png"
                         className="mr-1"
                     />
+                    <hr />
             Get Free courses Now !
           </h3>
                 <i className="la la-ellipsis-v"></i>

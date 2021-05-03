@@ -56,7 +56,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                 <div className="row">
                                     <div className="col-lg-3">
                                         <Main_left_sidebar
-                                            avatar={thisProfile.user.avatar}
+                                            avatar={thisProfile.avatar}
                                             numberOfFollowers={thisProfile.follwers.length}
                                             numberOfFollowing={thisProfile.following.length}
                                             followers={thisProfile.follwers}
@@ -69,9 +69,9 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                             website={thisProfile.website}
                                             showActions={false}
                                         />
-                                        {/* {profile.githubusername && (
-                                            <Profile_Github username={profile.githubusername} />
-                                        )} */}
+                                        {thisProfile.githubusername && (
+                                            <Profile_Github username={thisProfile.githubusername} />
+                                        )}
                                     </div>
                                     <div className="col-lg-6">
                                         <div className="main-ws-sec">

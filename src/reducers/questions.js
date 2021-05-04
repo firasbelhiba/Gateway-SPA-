@@ -14,6 +14,7 @@ import {
     NEWS_REC_SKILLS,
     NEWS_REC,
     ADD_DOMAIN,
+    UPDATE_ANSWER,
     GET_SAVED_NEWS,
     SAVE_NEWS,
     CREATE_ANSWER_REPORT,
@@ -212,6 +213,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case DELETE_ANSWER:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case UPDATE_ANSWER:
             return {
                 ...state,
                 question: payload,

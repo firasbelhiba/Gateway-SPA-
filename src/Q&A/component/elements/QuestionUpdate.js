@@ -29,11 +29,14 @@ const QuestionUpdate = ({details}) => {
     const [subject, setSubject] = useState(details.subject);
     const [category, setCategory] = useState(details.category);
     const [tags, setTags] = useState(details.tags);
+
     const [subjecterror, setSubjecterror] = useState(false);
     const [categoryerror, setCategoryerror] = useState(false);
     const [tagserror, setTagserror] = useState(false);
     const [descriptionerror, setDescriptionserror] = useState(false);
+
     const submitDispatch = useDispatch();
+
     const handleSubmit = () => {
         if (!subject) {
             setSubjecterror(true)

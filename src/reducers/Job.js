@@ -52,7 +52,7 @@ export default function (state = initialState, action) {
     
     switch (action.type) {
       case GET_JOBS:
-        return {
+         return {
           ...state,
           jobs: action.payload,
           loading: false

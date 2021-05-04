@@ -5,11 +5,7 @@ import PrivateRoute from "./routing/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Authentification
 import Signup from "./Authentification/Sign up/Pages/Signup";
@@ -56,7 +52,7 @@ import Video from "./Jobs/video/Video";
 import QuizCategories from "./Jobs/Quiz/QuizCategories";
 import News from "./Jobs/News/News.js";
 
-// Alert Toastify 
+// Alert Toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -67,6 +63,7 @@ import {
   getCurrentProfile,
   getSuggestions,
   getMostViewedProfiles,
+  getMostTalentedPeople,
 } from "./actions/profile";
 import setAuthToken from "./utils/setAuthToken";
 
@@ -76,7 +73,7 @@ import {
   getScrapedDataTJ,
   getScrapedDataIndeed,
   getScrapedDataFreecourse,
-  getScrapedDataEdx
+  getScrapedDataEdx,
 } from "./actions/scraping";
 
 //Css
@@ -98,6 +95,7 @@ function App() {
     store.dispatch(getScrapedDataIndeed());
     store.dispatch(getScrapedDataFreecourse());
     store.dispatch(getScrapedDataEdx());
+    store.dispatch(getMostTalentedPeople());
     fetch(
       "https://geolocation-db.com/json/f9902210-97f0-11eb-a459-b997d30983f1"
     )

@@ -1,6 +1,11 @@
 import React from "react";
+import Most_talented_item from "../components/items/Most_talented_item";
 
 const Top_profiles = () => {
+  let mostTalentedList = JSON.parse(
+    localStorage.getItem("most_talented_people")
+  );
+
   return (
     <div>
       <div className="posts-section">
@@ -10,156 +15,9 @@ const Top_profiles = () => {
             <i className="la la-ellipsis-v"></i>
           </div>
           <div className="profiles-slider">
-            <div className="user-profy">
-              <img src="assets/images/resources/user1.png" alt="" />
-              <h3>John Doe</h3>
-              <span>Graphic Designer</span>
-              <ul>
-                <li>
-                  <a href="#" title="" className="followw">
-                    Follow
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="envlp">
-                    <img src="assets/images/envelop.png" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="hire">
-                    hire
-                  </a>
-                </li>
-              </ul>
-              <a href="#" title="">
-                View Profile
-              </a>
-            </div>
-            <div className="user-profy">
-              <img src="assets/images/resources/user2.png" alt="" />
-              <h3>John Doe</h3>
-              <span>Graphic Designer</span>
-              <ul>
-                <li>
-                  <a href="#" title="" className="followw">
-                    Follow
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="envlp">
-                    <img src="assets/images/envelop.png" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="hire">
-                    hire
-                  </a>
-                </li>
-              </ul>
-              <a href="#" title="">
-                View Profile
-              </a>
-            </div>
-            <div className="user-profy">
-              <img src="assets/images/resources/user3.png" alt="" />
-              <h3>John Doe</h3>
-              <span>Graphic Designer</span>
-              <ul>
-                <li>
-                  <a href="#" title="" className="followw">
-                    Follow
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="envlp">
-                    <img src="assets/images/envelop.png" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="hire">
-                    hire
-                  </a>
-                </li>
-              </ul>
-              <a href="#" title="">
-                View Profile
-              </a>
-            </div>
-            <div className="user-profy">
-              <img src="assets/images/resources/user1.png" alt="" />
-              <h3>John Doe</h3>
-              <span>Graphic Designer</span>
-              <ul>
-                <li>
-                  <a href="#" title="" className="followw">
-                    Follow
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="envlp">
-                    <img src="assets/images/envelop.png" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="hire">
-                    hire
-                  </a>
-                </li>
-              </ul>
-              <a href="#" title="">
-                View Profile
-              </a>
-            </div>
-            <div className="user-profy">
-              <img src="assets/images/resources/user2.png" alt="" />
-              <h3>John Doe</h3>
-              <span>Graphic Designer</span>
-              <ul>
-                <li>
-                  <a href="#" title="" className="followw">
-                    Follow
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="envlp">
-                    <img src="assets/images/envelop.png" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="hire">
-                    hire
-                  </a>
-                </li>
-              </ul>
-              <a href="#" title="">
-                View Profile
-              </a>
-            </div>
-            <div className="user-profy">
-              <img src="assets/images/resources/user3.png" alt="" />
-              <h3>John Doe</h3>
-              <span>Graphic Designer</span>
-              <ul>
-                <li>
-                  <a href="#" title="" className="followw">
-                    Follow
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="envlp">
-                    <img src="assets/images/envelop.png" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="" className="hire">
-                    hire
-                  </a>
-                </li>
-              </ul>
-              <a href="#" title="">
-                View Profile
-              </a>
-            </div>
+            {mostTalentedList.map((item) => (
+              <Most_talented_item item={item} />
+            ))}
           </div>
         </div>
       </div>

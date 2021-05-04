@@ -229,10 +229,6 @@ const Post_item = ({
           <div className="epi-sec">
             <ul className="descp">
               <li>
-                <img src="assets/images/icon8.png" alt="" />
-                <span>Epic Coder</span>
-              </li>
-              <li>
                 <img src="assets/images/icon9.png" alt="" />
                 <span>{location}</span>
               </li>

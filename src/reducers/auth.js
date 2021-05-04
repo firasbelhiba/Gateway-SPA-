@@ -39,6 +39,7 @@ export default function (state = initialState, action) {
       localStorage.setItem("indeed", null);
       localStorage.setItem("freecourse", null);
       localStorage.setItem("edx", null);
+      localStorage.setItem("most_talented_people", null);
       return {
         ...state,
         ...payload,

@@ -15,9 +15,11 @@ const Top_profiles = () => {
             <i className="la la-ellipsis-v"></i>
           </div>
           <div className="profiles-slider">
-            {mostTalentedList.map((item) => (
-              <Most_talented_item item={item} />
-            ))}
+            {mostTalentedList === null ? (
+              <h2>No users for the moment ! Come back later or refresh !</h2>
+            ) : (
+              mostTalentedList.map((item) => <Most_talented_item item={item} />)
+            )}
           </div>
         </div>
       </div>

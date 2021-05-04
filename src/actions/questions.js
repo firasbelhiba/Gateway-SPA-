@@ -11,6 +11,7 @@ import {
     SOLUTION,
     CANCEL_DOMAIN,
     CANCEL_NEWS,
+    UPDATE_ANSWER,
     NEWS_REC_SKILLS,
     NEWS_REC,
     GET_DOMAINS,
@@ -108,6 +109,30 @@ export const updateQuestion = (Data, id) => async (dispatch) => {
         );
         dispatch({
             type: UPDATE_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const updateAnswer = (Data, idQ, idA) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    try {
+        const {data} = await axios.post(
+            `http://localhost:5000/api/q_and_a/updateAnswer/${idQ}/${idA}`,
+            Data,
+            config
+        );
+        dispatch({
+            type: UPDATE_ANSWER,
             payload: data,
         });
     } catch (error) {

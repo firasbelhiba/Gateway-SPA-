@@ -15,6 +15,7 @@ import Comments from "./Discussion/Comments";
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import UpDown from "./Votes/UpDown";
 import {getProfileById} from "../../actions/profile";
+import AnswerUpdate from "./elements/AnswerUpdate";
 
 const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
@@ -131,7 +132,11 @@ export const NewAnswer = (props) => {
                     <div className="react-links" style={{marginLeft: '130px', position: "absolute", marginTop: "3px"}}>
                         <Button size="small" color="primary" onClick={() => handleShow()}>Reply</Button>
                         {JSON.parse(localStorage.getItem('user'))._id === props.answerUser ? (
-                            <Button size="small" onClick={handleDelete}>Delete</Button>
+                            <>
+                                <Button size="small" onClick={handleDelete}>Delete</Button>
+                                <AnswerUpdate Qid={props.idQ} Aid={props.idA}
+                                              initialValue={props.description}/>
+                            </>
                         ) : (<></>)}
                     </div>
                 </div>

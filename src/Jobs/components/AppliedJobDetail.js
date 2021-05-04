@@ -41,7 +41,7 @@ const [ active,setActive] = useState(false);
                         <div className="p-all saved-post">
                             <div className="usy-dt">
                                 <div className="wordpressdevlp">
-                                    <h2>Senior Wordpress Developer</h2>
+                                    <h2>{job.title}</h2>
                                     <p>
                                         <i className="la la-clock-o"></i>Posted on {moment(job.date).fromNow()}
                                                                         </p>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setDisactiveMail,addJob,getJobs, updateJob ,clearCurrent,addMail} from '../../actions/Job';
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const MailForm = ({Job:{activeMail,current,active},auth:{user}, setDisactiveMail ,clearCurrent ,addMail}) => {
     const [to, setTo] = useState('');
@@ -32,7 +33,23 @@ const MailForm = ({Job:{activeMail,current,active},auth:{user}, setDisactiveMail
 
     const onSub=(e)=>{
         e.preventDefault()
-       
+        if (message === "" && subject === "" && User === null) {
+          toast.error("Fill the fields and save !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else if (message === "") {
+          toast.error("message is required !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else if (subject === "") {
+          toast.error("subject is required !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else if (User === "") {
+          toast.error("User is required !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else {
        if(current){
           const newMail={
               
@@ -46,10 +63,12 @@ const MailForm = ({Job:{activeMail,current,active},auth:{user}, setDisactiveMail
        
         clearCurrent()
         setDisactiveMail();
-       
+        toast.success("Mail is sent !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
        
       }
-
+    }
     return (
         <Fragment>
     <div className={`post-popup job_post ${activeMail}`} >

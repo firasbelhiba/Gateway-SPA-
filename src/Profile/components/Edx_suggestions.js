@@ -16,29 +16,36 @@ const Edx_suggestions = () => {
                 <i className="la la-ellipsis-v"></i>
             </div>
             <div className="suggestions-list">
-                {edxSuggestions.map(item => (
-                    <div className="suggestion-usd">
-                        <span>
-                            <a
-                                href={"https://www.edx.org" + item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <i className="fas fa-arrow-circle-up"></i>
-                            </a></span>
-                        <div className="sgt-text">
-                            <h4>{item.title}</h4>
-                            <span>
-                                {item.certification} - {item.numberOfCertification}
-                            </span>
-                            <br />
-                            <span>
-                                {item.description}
-                            </span>
-                        </div>
+                {edxSuggestions === null ? (
+                    <h2>There is no jobs for the moment ! Visit us later !!</h2>
+                ) : (
 
-                    </div>
-                ))}
+                    edxSuggestions.map(item => (
+                        <div className="suggestion-usd">
+                            <span>
+                                <a
+                                    href={"https://www.edx.org" + item.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i className="fas fa-arrow-circle-up"></i>
+                                </a></span>
+                            <div className="sgt-text">
+                                <h4>{item.title}</h4>
+                                <span>
+                                    {item.certification} - {item.numberOfCertification}
+                                </span>
+                                <br />
+                                <span>
+                                    {item.description}
+                                </span>
+                            </div>
+
+                        </div>
+                    ))
+
+                )}
+
             </div>
         </div>
     )

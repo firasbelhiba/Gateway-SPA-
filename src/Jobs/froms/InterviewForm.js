@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { setDisactiveMail,addJob,getJobs, updateJob ,clearCurrent,addInterview,clearCurrentUser} from '../../actions/Job';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
+import { toast } from "react-toastify";
 
 
 const InterviewForm = ({Job:{activeMail,current,currentUser,active},auth:{user}, setDisactiveMail ,clearCurrent ,addInterview,clearCurrentUser}) => {
@@ -30,6 +31,24 @@ const InterviewForm = ({Job:{activeMail,current,currentUser,active},auth:{user},
 
     const onSub=(e)=>{
         e.preventDefault()
+
+        if (subject === "" && date === "" && room === "") {
+          toast.error("Fill the fields and save !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else if (subject === "") {
+          toast.error("subject is required !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else if (date ===""|| new Date(date)- new Date()<=0) {
+          toast.error("date is not valid !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else if (room === "") {
+          toast.error("room is required !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        } else {
        
        if(current){
           const newMail={
@@ -46,9 +65,12 @@ const InterviewForm = ({Job:{activeMail,current,currentUser,active},auth:{user},
        
         clearCurrent()
         setDisactiveMail();
-       
+        toast.success("interview is scheduled !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
        
       }
+    }
 
     return (
         <Fragment>

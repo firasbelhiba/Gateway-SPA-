@@ -165,7 +165,7 @@ export const addJob = (formData) => async (dispatch) => {
     };
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/jobs/",
+        "http://localhost:5000/api/jobs",
         formData,
         config
       );

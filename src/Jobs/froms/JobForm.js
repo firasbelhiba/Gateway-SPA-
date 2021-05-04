@@ -7,15 +7,16 @@ import { setDisactive,addJob,getJobs, updateJob ,clearCurrent,setDisactiveReport
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
 import 'sanitize.css'
+import { toast } from "react-toastify";
 
  const JobForm = ({Job:{active,current}, setDisactive , addJob,getJobs,updateJob,clearCurrent ,setDisactiveReport}) => {
   const [value, setValue] = useState('aaaaaa');
     const [location, setCountry] = useState('aaaaaa');
-    const [title, setJobType] = useState('');
-    const [category, setcategory] = useState('python');
-    const [availability, setAvailability] = useState('');
+    const [title, setJobType] = useState('aaaa');
+    const [category, setcategory] = useState('Science, Technology, Engineering and Mathematics');
+    const [availability, setAvailability] = useState('Full Time');
     const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState('aaa');
     const [skills, setSkills] = useState([]);
 
    
@@ -42,8 +43,8 @@ import 'sanitize.css'
         setCountry("")
         setValue('');
         setJobType('');
-        setcategory('');
-        setAvailability('');
+        setcategory('Science, Technology, Engineering and Mathematics');
+        setAvailability('Full Time');
         setPrice('');
         setDescription('');
         
@@ -66,6 +67,43 @@ import 'sanitize.css'
    
     const onSub=(e)=>{
       e.preventDefault()
+      if (title === "" && location === "" && category === ""&& price ===""&& description===""&& skills.length===0&& availability==="") {
+        toast.error("Fill the fields and save !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+      } else if (location === "") {
+        toast.error("location is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+      } else if (price === "") {
+        toast.error("price is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+      } else if (category === "") {
+        toast.error("Category is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+       }else if (description === "") {
+        toast.error("description is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+       } 
+       else if (skills.length===0) {
+        toast.error("skills is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+       }  
+       else if (availability === "") {
+        toast.error("availability is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+       }  
+       else if (title === "") {
+        toast.error("title is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+       }  
+       else{
      
      if(current){
       const updJob = {
@@ -83,6 +121,9 @@ import 'sanitize.css'
       updateJob(updJob)
       clearCurrent()
       setDisactive();
+      toast.success("job is updated !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
      }
      else{
 
@@ -99,8 +140,11 @@ import 'sanitize.css'
       addJob(newJob);
       setDisactive();
       clearCurrent()
+      toast.success("job is added !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
      }
-       
+    } 
   
        
         
@@ -167,9 +211,9 @@ import 'sanitize.css'
                     <select  value={availability}
                      name="availability"
                      onChange={(e)=>setAvailability(e.target.value)}>
-                      <option>Full Time</option>
-                      <option>Half time</option>
-                      <option>Hourly</option>
+                      <option value="Full Time">Full Time</option>
+                      <option value ="Half time">Half time</option>
+                      <option value="Hourly">Hourly</option>
                     </select>
                   </div>
                 </div>

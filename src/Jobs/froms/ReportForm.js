@@ -2,7 +2,7 @@ import React,{Fragment,useState, useMemo,useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setDisactiveReport,addJob,getJobs, updateJob ,clearCurrent,addReport} from '../../actions/Job';
-
+import { toast } from "react-toastify";
 
  const ReportForm = ({Job:{activeReport,current},auth:{user}, setDisactiveReport ,clearCurrent ,addReport}) => {
  
@@ -18,6 +18,11 @@ import { setDisactiveReport,addJob,getJobs, updateJob ,clearCurrent,addReport} f
         },[current])
     const onSub=(e)=>{
       e.preventDefault()
+      if (reason === "" ) {
+        toast.error("reason is required !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+      }  else {
      
      if(current){
         const newReport={
@@ -31,9 +36,11 @@ import { setDisactiveReport,addJob,getJobs, updateJob ,clearCurrent,addReport} f
       clearCurrent()
       setDisactiveReport();
      
-     
+      toast.success("Report is sent !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }
-  
+    }
  return (
    <Fragment>
     <div className={`post-popup job_post ${activeReport}`} >

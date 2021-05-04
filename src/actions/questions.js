@@ -9,6 +9,8 @@ import {
     GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
+    GET_SETTING,
+    GET_BLOCK,
     CANCEL_DOMAIN,
     CANCEL_NEWS,
     UPDATE_ANSWER,
@@ -626,7 +628,7 @@ export const addDomain = (Data, idU) => async (dispatch) => {
     };
     try {
         const {data} = await axios.post(
-            `http://localhost:5000/api/q_and_a/addDomain/${idU}`,
+            `http://localhost:5000/api/q_and_a/addBloc/${idU}`,
             Data,
             config
         );
@@ -641,6 +643,21 @@ export const addDomain = (Data, idU) => async (dispatch) => {
         });
     }
 };
+
+export const getBlock = (id) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getBlock/${id}`);
+        dispatch({
+            type: GET_BLOCK,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}
 
 export const getDomains = (id) => async (dispatch) => {
     try {

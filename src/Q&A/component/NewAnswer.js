@@ -122,7 +122,7 @@ export const NewAnswer = (props) => {
                         </Accordion.Title>
                         <div style={{width: "500px", paddingTop: '4px'}}>
                             <ToggleDisplay show={show}>
-                                <Reply Qid={props.idQ} Aid={props.idA}/>
+                                <Reply block={props.block} Qid={props.idQ} Aid={props.idA}/>
                             </ToggleDisplay>
                         </div>
                         <Accordion.Content active={activeIndex === 0}>

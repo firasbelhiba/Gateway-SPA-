@@ -11,6 +11,7 @@ import {
     BLOG_REC,
     UPDATE_QUESTIONS,
     CANCEL_NEWS,
+    GET_BLOCK,
     NEWS_REC_SKILLS,
     NEWS_REC,
     ADD_DOMAIN,
@@ -46,6 +47,8 @@ const initialState = {
     domains: [],
     question: null,
     loading: true,
+    settings: [],
+    block: [],
     error: {},
 };
 
@@ -71,6 +74,11 @@ export default function (state = initialState, action) {
                 ...state,
                 questions: payload,
                 loading: false,
+            };
+        case GET_BLOCK:
+            return {
+                ...state,
+                block: payload
             };
         case FILTER_QUESTIONS:
             return {

@@ -21,7 +21,7 @@ function Reply(props) {
                     <a href="" className="username">
                     </a>
                 </div>
-                <Button reply={text} idQ={props.Qid} idA={props.Aid}>Reply</Button>
+                <Button block={props.block} reply={text} idQ={props.Qid} idA={props.Aid}>Reply</Button>
             </div>
         </div>
     );

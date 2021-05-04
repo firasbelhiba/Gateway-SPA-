@@ -3,7 +3,7 @@ import UserQuestion from "../component/UserQuestion";
 import SideWidgetBlogs from "../component/widgets/SideWidgetBlogs";
 import "../styles/QuestionDetails.css";
 import {useLocation} from 'react-router-dom';
-import {getQuestionById} from "../../actions/questions";
+import {getQuestionById, getBlock} from "../../actions/questions";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {Loading_spinner} from "../../Shared/layouts/Loading_spinner";
 import {Divider} from "@material-ui/core";
@@ -20,18 +20,19 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
+const QuestionDetails = ({getQuestionById, getBlock, question: {question, loading, block}}) => {
     const dispatch = useDispatch();
     const [input, setInput] = useState(initialValue);
+    const user = JSON.parse(localStorage.getItem('user'))._id;
 
     let query = useQuery();
     const id = query.get('id');
 
     useEffect(() => {
+        getBlock(user)
         getQuestionById(id)
     }, [dispatch]);
     const Question = useSelector((state) => state.question.question);
-
 
     const sortUp = () => {
         dispatch(sort(id, 'dsc'))
@@ -71,6 +72,7 @@ const QuestionDetails = ({getQuestionById, question: {question, loading}}) => {
                                 <div>
                                     <NewAnswer description={answer.description} replies={answer.replies}
                                                userid={Question.user}
+                                               block={block.reply}
                                                date={answer.date}
                                                solved={Question.solved} solution={answer.solution} idQ={id}
                                                idA={answer._id}
@@ -102,4 +104,4 @@ const mapStateToProps = (state) => ({
     profile: state.profile,
 });
 
-export default connect(mapStateToProps, {getQuestionById})(QuestionDetails);
+export default connect(mapStateToProps, {getQuestionById, getBlock})(QuestionDetails);

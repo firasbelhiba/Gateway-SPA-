@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Modal, Form, Input} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
-import {useDispatch, useSelector} from "react-redux";
-import {createQuestion} from '../../../actions/questions';
+import {useDispatch, useSelector, connect} from "react-redux";
+import {createQuestion, getBlock} from '../../../actions/questions';
 import RichEditor from "../TextEditor/RichEditor";
 import AnswerEditor from "../TextEditor/AnswerEditor";
 
@@ -19,14 +19,18 @@ function exampleReducer(state, action) {
 
 const initialValue = [{"type": "paragraph", "children": [{"text": ""}]}];
 
-const QuestionButton = () => {
+const QuestionButton = ({user, getBlock, question: {block}}) => {
     const [state, dispatch] = React.useReducer(exampleReducer, {
         open: false,
         dimmer: undefined,
     })
+
+    useEffect(() => {
+        getBlock(user)
+    }, [dispatch]);
+    console.log(block.question)
     const [input, setInput] = useState(initialValue);
     const {open, dimmer} = state
-
     const [subject, setSubject] = useState(null);
     const [category, setCategory] = useState(null);
     const [tags, setTags] = useState(null);
@@ -35,6 +39,7 @@ const QuestionButton = () => {
     const [tagserror, setTagserror] = useState(false);
     const [descriptionerror, setDescriptionserror] = useState(false);
     const submitDispatch = useDispatch();
+
     const handleSubmit = () => {
         if (!subject) {
             setSubjecterror(true)
@@ -48,7 +53,7 @@ const QuestionButton = () => {
         if (input === initialValue) {
             setDescriptionserror(true)
         }
-        if(subject && category && tags && input !== initialValue){
+        if (subject && category && tags && input !== initialValue) {
             const user = JSON.parse(localStorage.getItem('user'))._id;
             const description = localStorage.getItem('content');
             const Question = {
@@ -132,7 +137,7 @@ const QuestionButton = () => {
                     <button className="ui icon button">
                         <i className="cloud upload icon"/>
                     </button>
-                    <Button positive onClick={handleSubmit}>
+                    <Button positive disabled={!block.question} onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Modal.Actions>
@@ -141,4 +146,8 @@ const QuestionButton = () => {
     )
 }
 
-export default QuestionButton;
+const mapStateToProps = (state) => ({
+    question: state.question,
+});
+
+export default connect(mapStateToProps, {getBlock})(QuestionButton);

@@ -110,6 +110,8 @@ export const GET_DOMAINS = "GET_DOMAINS";
 export const CANCEL_DOMAIN = "CANCEL_DOMAIN";
 export const UPDATE_QUESTIONS = "UPDATE_QUESTIONS";
 export const UPDATE_ANSWER = "UPDATE_ANSWER";
+export const GET_SETTING = "GET_SETTING";
+export const GET_BLOCK = "GET_BLOCK";
 
 // Scrapig types
 export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";

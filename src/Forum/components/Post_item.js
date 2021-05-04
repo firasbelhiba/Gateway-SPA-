@@ -385,6 +385,9 @@ const Post_item = ({
                 <a
                   onClick={() => {
                     sharePost(_id);
+                    toast.success("Post is shared !", {
+                      position: toast.POSITION.BOTTOM_LEFT,
+                    });
                   }}
                   className="com"
                 >

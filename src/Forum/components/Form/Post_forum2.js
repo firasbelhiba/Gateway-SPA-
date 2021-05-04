@@ -38,7 +38,7 @@ const Post_forum2 = ({ addPost, disable, country, city }) => {
         data.append("image", image[i]);
       }
       data.append("location", country + "," + city);
-    
+
       addPost(data);
       toast.success("Post added successfully!!", {
         position: toast.POSITION.BOTTOM_LEFT,
@@ -65,10 +65,21 @@ const Post_forum2 = ({ addPost, disable, country, city }) => {
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="">Select a Category</option>
-                <option value="python">python</option>
-                <option value="spring">spring</option>
-                <option value="angular">angular</option>
-                <option value=".net">.net</option>
+                <option value="Science, Technology, Engineering and Mathematics">
+                  Science, Technology, Engineering and Mathematics
+                </option>
+                <option value="Hospitality and Tourism">
+                  Hospitality and Tourism
+                </option>
+                <option value="Education and Training">
+                  Education and Training
+                </option>
+                <option value="Agriculture, Food and Natural Resources">
+                  Agriculture, Food and Natural Resources
+                </option>
+                <option value="Architecture and Construction">
+                  Architecture and Construction
+                </option>
               </select>
             </div>
           </div>

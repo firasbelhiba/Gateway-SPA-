@@ -47,19 +47,7 @@ const Saved_post_profile = ({ savedPost, unsavePost }) => {
                   </a>
                 </div>
               </div>
-              <div className="epi-sec">
-                <ul className="descp">
-                  <li>
-                    <img src="assets/images/icon8.png" alt="" />
-                    <span>Epic Coder</span>
-                  </li>
-                  <li>
-                    <img src="assets/images/icon9.png" alt="" />
-                    <span>India</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="job_descp">
+              <div className="job_descp mt-4">
                 <h3>{post.title}</h3>
                 <ul className="job-dt"></ul>
                 <p>

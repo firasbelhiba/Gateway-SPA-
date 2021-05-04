@@ -21,6 +21,15 @@ const RelevantQuestions = () => {
     const Questions = useSelector((state) => state.question.questions);
     const Domains = useSelector((state) => state.question.domains);
 
+    var domains = [];
+    for (var i in Domains)
+        domains.push(Domains[i].category.toUpperCase());
+
+    var QuestionsRelevant = [];
+    for (var i in Questions)
+        if (domains.includes(Questions[i].category.toUpperCase()))
+            QuestionsRelevant.push(Questions[i]);
+
     return (
         <div>
             <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -32,7 +41,7 @@ const RelevantQuestions = () => {
             </div>
             <div className="ui segments" style={{border: '0px'}}>
                 <div>
-                    {Questions.map(question => {
+                    {QuestionsRelevant.map(question => {
                         var UpVotes = [];
                         for (var i in question.upVotes)
                             UpVotes.push(question.upVotes[i].user);

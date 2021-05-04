@@ -41,7 +41,13 @@ export const Bids_profile = ({ score }) => {
                         <a title="" className="overview-open">{item.category}</a>
                     </h3>
                     <h2>
-                        <a title="" className="overview-open">Badge : {item.badge} </a>
+                        <a title="" className="overview-open">Badge : {item.badge}
+                            {item.score >= 0 && item.score < 1000 && <img style={{ width: '200px', height: '200px' }} src="assets/images/Badges/Beginner.png" />}
+                            {item.score >= 1000 && item.score < 3000 && <img style={{ width: '200px', height: '200px' }} src="assets/images/Badges/Intermediate.png" />}
+                            {item.score >= 3000 && item.score < 6000 && <img style={{ width: '200px', height: '200px' }} src="assets/images/Badges/Advanced.png" />}
+                            {item.score >= 6000 && item.score < 12000 && <img style={{ width: '200px', height: '200px' }} src="assets/images/Badges/Expert.png" />}
+                            {item.score >= 12000 && <img style={{ width: '200px', height: '200px' }} src="assets/images/Badges/Master.png" />}
+                        </a>
                     </h2>
                     <p>
                         Score : {item.score}

@@ -32,6 +32,7 @@ import {
   ADD_REVIEW,
   GET_MOST_VIEWED_PEOPLE,
   PROFILE_REPORTED,
+  GET_MOST_TALENTED_PEOPLE,
 } from "./types";
 
 // Get profile from the logged in user
@@ -1089,8 +1090,7 @@ export const getMostViewedProfiles = () => async (dispatch) => {
   }
 };
 
-
-//Report a profile 
+//Report a profile
 export const reportProfileById = (id) => async (dispatch) => {
   try {
     const config = {
@@ -1107,7 +1107,24 @@ export const reportProfileById = (id) => async (dispatch) => {
       type: PROFILE_REPORTED,
       payload: res.data,
     });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
+//author Ghada
+//Most talented people
+export const getMostTalentedPeople = () => async (dispatch) => {
+  try {
+    const res = await axios.get("http://localhost:5000/api/profile/talented");
+
+    dispatch({
+      type: GET_MOST_TALENTED_PEOPLE,
+      payload: res.data,
+    });
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

@@ -9,10 +9,12 @@ import {
     YOUTUBE_REC,
     UPVOTE_QUESTION,
     BLOG_REC,
+    UPDATE_QUESTIONS,
     CANCEL_NEWS,
     NEWS_REC_SKILLS,
     NEWS_REC,
     ADD_DOMAIN,
+    UPDATE_ANSWER,
     GET_SAVED_NEWS,
     SAVE_NEWS,
     CREATE_ANSWER_REPORT,
@@ -101,6 +103,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case CREATE_QUESTIONS:
+            return {
+                ...state,
+                questions: payload,
+                loading: false,
+            };
+        case UPDATE_QUESTIONS:
             return {
                 ...state,
                 questions: payload,
@@ -205,6 +213,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case DELETE_ANSWER:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case UPDATE_ANSWER:
             return {
                 ...state,
                 question: payload,

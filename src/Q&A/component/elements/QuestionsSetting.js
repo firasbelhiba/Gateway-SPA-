@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Button, Modal, Select, Statistic} from 'semantic-ui-react'
 import SelectedDomains from "./SelectedDomains";
 import SelectDomain from "./SelectDomain";
-import {useDispatch} from "react-redux";
-import {addDomain} from "../../../actions/questions";
+import {connect, useDispatch} from "react-redux";
+import {addDomain, getALLDomains, getBlock} from "../../../actions/questions";
+import _ from "lodash";
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -16,7 +17,7 @@ function exampleReducer(state, action) {
     }
 }
 
-const QuestionsSetting = ({Domains}) => {
+const QuestionsSetting = ({Domains, getALLDomains, question: {alldomains}}) => {
     const [state, dispatch] = React.useReducer(exampleReducer, {
         open: false,
         dimmer: undefined,
@@ -26,6 +27,9 @@ const QuestionsSetting = ({Domains}) => {
     const [category, setCategory] = useState(null);
 
     const Sdispatch = useDispatch();
+    useEffect(() => {
+        getALLDomains()
+    }, [dispatch]);
 
     const handleAccept = () => {
         if (category !== null) {
@@ -39,6 +43,14 @@ const QuestionsSetting = ({Domains}) => {
     }
     const handleSelected = (value) => {
         setCategory(value)
+    }
+    var Options = []
+    for (var i in alldomains) {
+        Options.push({
+            key: alldomains[i].name,
+            text: alldomains[i].name,
+            value: _.snakeCase(alldomains[i].name),
+        })
     }
     return (
         <div>
@@ -64,7 +76,7 @@ const QuestionsSetting = ({Domains}) => {
                         <Statistic.Value>Add a domain</Statistic.Value>
                     </Statistic>
                     <div>
-                        <SelectDomain getDomain={handleSelected}/>
+                        <SelectDomain alldomains={Options} getDomain={handleSelected}/>
                     </div>
                 </Modal.Content>
                 <Modal.Actions>
@@ -81,4 +93,8 @@ const QuestionsSetting = ({Domains}) => {
 }
 
 
-export default QuestionsSetting
+const mapStateToProps = (state) => ({
+    question: state.question,
+});
+
+export default connect(mapStateToProps, {getALLDomains})(QuestionsSetting);

@@ -78,6 +78,9 @@ import {
 
 //Css
 import "./App.css";
+import AllQuestions from "./Q&A/pages/AllQuestions";
+import PopularQuestions from "./Q&A/pages/PopularQuestions";
+import DomainsSection from "./Q&A/pages/DomainsSection";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -150,6 +153,21 @@ function App() {
                 exact
                 path="/question_details"
                 component={QuestionDetails}
+              />
+              <Route
+                  exact
+                  path="/allQuestions"
+                  component={AllQuestions}
+              />
+              <Route
+                  exact
+                  path="/popular"
+                  component={PopularQuestions}
+              />
+              <Route
+                  exact
+                  path="/domain"
+                  component={DomainsSection}
               />
               <Route exact path="/forum-visitor" component={Forum_visitor} />
 

@@ -20,13 +20,14 @@ const getOptions = () =>
 
 
 class SelectTags extends Component {
+
     state = {
         isFetching: false,
         multiple: true,
         search: true,
         searchQuery: null,
         value: this.props.tags,
-        options: getOptions(),
+        options: this.props.tagsOptionns,
     }
 
     handleChange = (e, {value}) => {
@@ -43,7 +44,7 @@ class SelectTags extends Component {
                 selection
                 multiple={multiple}
                 search={search}
-                options={options}
+                options={this.props.tagsOptionns}
                 value={value}
                 placeholder='Select Tags'
                 onChange={this.handleChange}

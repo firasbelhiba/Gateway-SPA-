@@ -30,8 +30,14 @@ export const NewAnswer = (props) => {
     useEffect(() => {
         getProfileById(props.userid)
     }, [dispatch]);
-    const profile = JSON.parse(localStorage.getItem('profile'));
+    const profiles = JSON.parse(localStorage.getItem('profiles'));
 
+    var profile = null
+
+    for (var i in profiles) {
+        if (profiles[i].user === props.answerUser)
+            profile = profiles[i]
+    }
     const handleClick = (e, titleProps) => {
         const {index} = titleProps
         const newIndex = activeIndex === index ? -1 : index

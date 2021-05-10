@@ -48,7 +48,7 @@ export default class MenuExamplePointing extends Component {
                         name='Followed'
                         active={activeItem === 'Followed'}
                         onClick={this.handleItemClick}
-                    >Followed <Label color='teal'>1</Label>
+                    >Followed
                     </Menu.Item>
                 </Menu>
             </div>

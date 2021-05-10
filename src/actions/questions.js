@@ -9,7 +9,9 @@ import {
     GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
+    GET_SCORES,
     GET_SETTING,
+    GET_ALL_DOMAINS,
     GET_BLOCK,
     CANCEL_DOMAIN,
     CANCEL_NEWS,
@@ -549,10 +551,9 @@ export const newsRec = (search) => async (dispatch) => {
 };
 
 export const newsRecSkills = (search) => async (dispatch) => {
-    const Search = search.join(',') + ' web'
-    console.log(Search);
+    console.log(search);
     try {
-        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/newsRecSkills/${Search}`);
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/newsRecSkills/${search}`);
         dispatch({
             type: NEWS_REC_SKILLS,
             payload: data,
@@ -628,7 +629,7 @@ export const addDomain = (Data, idU) => async (dispatch) => {
     };
     try {
         const {data} = await axios.post(
-            `http://localhost:5000/api/q_and_a/addBloc/${idU}`,
+            `http://localhost:5000/api/q_and_a/addDomain/${idU}`,
             Data,
             config
         );
@@ -689,3 +690,33 @@ export const cancelDomains = (idU, category) => async (dispatch) => {
         });
     }
 };
+
+export const getALLDomains = () => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getALLDomains/`);
+        dispatch({
+            type: GET_ALL_DOMAINS,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}
+
+export const getScores = () => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getScores/`);
+        dispatch({
+            type: GET_SCORES,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}

@@ -112,6 +112,8 @@ export const UPDATE_QUESTIONS = "UPDATE_QUESTIONS";
 export const UPDATE_ANSWER = "UPDATE_ANSWER";
 export const GET_SETTING = "GET_SETTING";
 export const GET_BLOCK = "GET_BLOCK";
+export const GET_ALL_DOMAINS = "GET_ALL_DOMAINS";
+export const GET_SCORES = "GET_SCORES";
 
 // Scrapig types
 export const SCRAPE_STACKOVERFLOW = "SCRAPE_STACKOVERFLOW";

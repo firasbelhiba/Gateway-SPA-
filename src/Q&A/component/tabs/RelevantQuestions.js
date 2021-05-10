@@ -35,7 +35,7 @@ const RelevantQuestions = () => {
             <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
                 <QuestionsSetting Domains={Domains}/>
                 <QuestionButton user={user}/>
-                <FilterItem/>
+                <FilterItem Domains={Domains}/>
                 <SortItem/>
                 <Search/>
             </div>

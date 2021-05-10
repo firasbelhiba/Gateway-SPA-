@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Navigation from "../component/elements/Navigation";
 import SideWidget from "../component/widgets/SideWidget";
 import SideWidgetFrequentlyAsked from "../component/widgets/SideWidgetFrequentlyAsked"
@@ -12,9 +12,17 @@ import SideMenu from "../component/widgets/SideMenu";
 import '../styles/UserQuestion.css';
 import '../styles/QuestionSection.css';
 import MenuBar from "../component/elements/MenuBar";
+import {connect, useDispatch} from "react-redux";
+import {getALLDomains} from "../../actions/questions";
 
-const QuestionsSection = () => {
+const QuestionsSection = ({getALLDomains, question: {alldomains}}) => {
     const [content, setContent] = useState(<RelevantQuestions/>)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        getALLDomains()
+    }, [dispatch]);
+
     const handleChange = (content) => {
         setContent(content)
     }
@@ -25,7 +33,7 @@ const QuestionsSection = () => {
                     <div className="row">
                         <div className="col-lg-3">
                             <div className="sidebar">
-                                <SideMenu/>
+                                <SideMenu Domains={alldomains}/>
                             </div>
                         </div>
                         <div className="col-lg-9">
@@ -38,11 +46,14 @@ const QuestionsSection = () => {
                 </div>
                 <div className="col-lg-3">
                     <SideWidget/>
-                    <SideWidgetFrequentlyAsked/>
                 </div>
             </div>
         </section>
     );
 }
 
-export default QuestionsSection;
+const mapStateToProps = (state) => ({
+    question: state.question,
+});
+
+export default connect(mapStateToProps, {getALLDomains})(QuestionsSection);

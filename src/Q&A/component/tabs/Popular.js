@@ -21,7 +21,7 @@ const Popular = () => {
         <div>
             <div className="ui segments" style={{border: '0px'}}>
                 <div>
-                    {Questions.map(question => {
+                    {Questions.sort((a, b) => parseInt(b.views) - parseInt(a.views)).map(question => {
                         var UpVotes = [];
                         for (var i in question.upVotes)
                             UpVotes.push(question.upVotes[i].user);

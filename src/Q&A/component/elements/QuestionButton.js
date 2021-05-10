@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Modal, Form, Input} from 'semantic-ui-react';
+import {Button, Modal, Form} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
 import {useDispatch, useSelector, connect} from "react-redux";
-import {createQuestion, getBlock} from '../../../actions/questions';
+import {createQuestion, getALLDomains, getBlock} from '../../../actions/questions';
 import RichEditor from "../TextEditor/RichEditor";
-import AnswerEditor from "../TextEditor/AnswerEditor";
+import SelectDomain from "../SelectDomain";
+import _ from "lodash";
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -19,7 +20,7 @@ function exampleReducer(state, action) {
 
 const initialValue = [{"type": "paragraph", "children": [{"text": ""}]}];
 
-const QuestionButton = ({user, getBlock, question: {block}}) => {
+const QuestionButton = ({getALLDomains, user, getBlock, question: {block, alldomains}}) => {
     const [state, dispatch] = React.useReducer(exampleReducer, {
         open: false,
         dimmer: undefined,
@@ -27,8 +28,10 @@ const QuestionButton = ({user, getBlock, question: {block}}) => {
 
     useEffect(() => {
         getBlock(user)
+        getALLDomains()
     }, [dispatch]);
-    console.log(block.question)
+
+    console.log(alldomains)
     const [input, setInput] = useState(initialValue);
     const {open, dimmer} = state
     const [subject, setSubject] = useState(null);
@@ -65,10 +68,20 @@ const QuestionButton = ({user, getBlock, question: {block}}) => {
             }
             console.log(Question);
             submitDispatch(createQuestion(Question))
-            dispatch({type: 'close'});
+            dispatch({type: 'CLOSE_MODAL'});
         }
     }
-
+    var tagsOptionns = []
+    for (var i in alldomains) {
+        if (category !== null && alldomains[i].name.toUpperCase() === category.toUpperCase())
+            for (var j in alldomains[i].tags) {
+                tagsOptionns.push({
+                    key: alldomains[i].tags[j],
+                    text: alldomains[i].tags[j],
+                    value: _.snakeCase(alldomains[i].tags[j])
+                })
+            }
+    }
     return (
         <>
             <Button className="ui button" onClick={() => dispatch({type: 'OPEN_MODAL', dimmer: 'blurring'})}>
@@ -97,18 +110,18 @@ const QuestionButton = ({user, getBlock, question: {block}}) => {
                                         }}/>
 
                         </Form.Field>
-                        <Form.Field required>
+                        <Form.Field required
+                                    error={categoryerror ? {
+                                        content: 'Please enter Category',
+                                        pointing: 'below'
+                                    } : false}>
                             <label>Category</label>
-                            <Form.Input placeholder="Category"
-                                        error={categoryerror ? {
-                                            content: 'Please enter Category',
-                                            pointing: 'below'
-                                        } : false}
-                                        fluid
-                                        onChange={event => {
-                                            setCategory(event.target.value);
-                                            setCategoryerror(false)
-                                        }}/>
+                            <SelectDomain
+                                alldomains={alldomains}
+                                onChange={(value) => {
+                                    setCategory(value);
+                                    setCategoryerror(false)
+                                }}/>
                         </Form.Field>
                         <Form.Field required
                                     error={tagserror ? {
@@ -117,10 +130,12 @@ const QuestionButton = ({user, getBlock, question: {block}}) => {
                                     } : false}
                         >
                             <label>Tags</label>
-                            <SelectTags onChange={(value) => {
-                                setTags(value);
-                                setTagserror(false)
-                            }}/>
+                            <SelectTags
+                                tagsOptionns={tagsOptionns}
+                                onChange={(value) => {
+                                    setTags(value);
+                                    setTagserror(false)
+                                }}/>
                         </Form.Field>
                         <Form.Field required
                                     error={descriptionerror ? {
@@ -150,4 +165,4 @@ const mapStateToProps = (state) => ({
     question: state.question,
 });
 
-export default connect(mapStateToProps, {getBlock})(QuestionButton);
+export default connect(mapStateToProps, {getBlock, getALLDomains})(QuestionButton);

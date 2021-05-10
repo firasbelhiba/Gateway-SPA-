@@ -6,12 +6,14 @@ import {
     CREATE_REPLY,
     DOWNVOTE_QUESTION,
     SOLUTION,
+    GET_SCORES,
     YOUTUBE_REC,
     UPVOTE_QUESTION,
     BLOG_REC,
     UPDATE_QUESTIONS,
     CANCEL_NEWS,
     GET_BLOCK,
+    GET_ALL_DOMAINS,
     NEWS_REC_SKILLS,
     NEWS_REC,
     ADD_DOMAIN,
@@ -50,6 +52,8 @@ const initialState = {
     settings: [],
     block: [],
     error: {},
+    alldomains: [],
+    scores: [],
 };
 
 export default function (state = initialState, action) {
@@ -62,6 +66,16 @@ export default function (state = initialState, action) {
                 loading: false,
                 blogs: {loading: true, blogs: []},
                 question: initialState.question,
+            };
+        case GET_ALL_DOMAINS:
+            return {
+                ...state,
+                alldomains: payload
+            };
+        case GET_SCORES:
+            return {
+                ...state,
+                scores: payload
             };
         case GET_FOLLOWED_QUESTIONS:
             return {
@@ -205,7 +219,13 @@ export default function (state = initialState, action) {
         case DOWNVOTE_QUESTION:
             return {
                 ...state,
-                question: payload,
+                questions: state.questions.map((question) =>
+                    question._id === payload.id ? {
+                        ...question,
+                        upVotes: payload.upVotes,
+                        downVotes: payload.downVotes,
+                    } : question
+                ),
                 loading: false,
             };
         case CREATE_ANSWER_REPORT:

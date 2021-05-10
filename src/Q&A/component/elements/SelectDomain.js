@@ -17,8 +17,9 @@ class SelectDomain extends Component {
         search: true,
         searchQuery: null,
         value: null,
-        options: getOptions(),
+        options: this.props.alldomains,
     }
+
 
     handleChange = (e, {value}) => {
         this.setState({value})

@@ -33,8 +33,15 @@ const UserQuestion = (props) => {
     }, [dispatch]);
 
     const user = JSON.parse(localStorage.getItem('user'))._id;
-    const profile = JSON.parse(localStorage.getItem('profile'));
-    console.log(profile)
+    const profiles = JSON.parse(localStorage.getItem('profiles'));
+
+    var profile = null
+
+    for (var i in profiles) {
+        if (profiles[i].user === props.details.user)
+            profile = profiles[i]
+    }
+
     var Answers = [];
     for (var i in props.details.answers)
         Answers.push(props.details.answers[i]);
@@ -66,23 +73,7 @@ const UserQuestion = (props) => {
             <div className="ui top left attached label">{props.details.category}</div>
 
             <div className="usr_img wrapper">
-                <Popup
-                    flowing hoverable
-                    trigger={<img src={profile.avatar}/>}
-                >
-                    <Popup.Content>
-                        <Placeholder>
-                            <Placeholder.Header image>
-                                <Placeholder.Line/>
-                                <Placeholder.Line/>
-                            </Placeholder.Header>
-                            <Placeholder.Paragraph>
-                                <Placeholder.Line length='medium'/>
-                                <Placeholder.Line length='short'/>
-                            </Placeholder.Paragraph>
-                        </Placeholder>
-                    </Popup.Content>
-                </Popup>
+                <img src={profile.avatar}/>
                 <div style={{marginLeft: "15px", marginTop: "80px"}}>
                     <QuestionVote count={UpVotes.length - DownVotes.length}
                                   thumbsUp={UpVotes.includes(user)} thumbsDown={DownVotes.includes(user)}

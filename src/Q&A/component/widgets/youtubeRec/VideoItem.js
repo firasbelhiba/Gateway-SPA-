@@ -32,14 +32,6 @@ const VideoItem = ({video}) => {
                     </div>
                 </div>
             </Modal.Content>
-            <Modal.Actions>
-                <Button basic color='red' inverted onClick={() => setOpen(false)}>
-                    <Icon name='remove'/> No
-                </Button>
-                <Button color='green' inverted onClick={() => setOpen(false)}>
-                    <Icon name='checkmark'/> Yes
-                </Button>
-            </Modal.Actions>
         </Modal>
     )
 };

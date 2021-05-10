@@ -68,7 +68,7 @@ const QuestionDetails = ({getQuestionById, getBlock, question: {question, loadin
                             </ButtonGroup>
                         </div>
                         <div style={{padding: "40px 20px"}}>
-                            {Question.answers.map(answer => (
+                            {Question.answers.sort((a, b) => parseInt(b.views) - parseInt(a.views)).map(answer => (
                                 <div>
                                     <NewAnswer description={answer.description} replies={answer.replies}
                                                userid={Question.user}

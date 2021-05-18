@@ -3,8 +3,9 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../../actions/profile';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+
 
 const Experience_form = ({ addExperience, history }) => {
 
@@ -26,13 +27,26 @@ const Experience_form = ({ addExperience, history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        addExperience(formData, history);
+        if (company === "" && title === "") {
+            toast.error("Fill the fields and save !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (company === "") {
+            toast.error("Company is required !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (title === "") {
+            toast.error("Title is required !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else {
+            addExperience(formData, history);
+        }
     }
 
 
     return (
         <Fragment>
-            <ToastContainer />
             <div className="row">
                 <div className="col-md-12">
                     <form action="index.html" method="post" className="form_create" onSubmit={e => onSubmit(e)}>
@@ -48,7 +62,7 @@ const Experience_form = ({ addExperience, history }) => {
                                 name="title"
                                 value={title}
                                 onChange={e => onChange(e)}
-                                required />
+                            />
                             <small className="form-text">
                                 Could be your own company or one you work for
                             </small>
@@ -60,7 +74,7 @@ const Experience_form = ({ addExperience, history }) => {
                                 name="company"
                                 value={company}
                                 onChange={e => onChange(e)}
-                                required />
+                            />
                             <small className="form-text">
                                 Could be your own or a company website
                             </small>

@@ -132,7 +132,7 @@ const Profileby = ({ getProfileById, profile: { this_profile, loading }, showAct
                                                     certification={thisProfile.certification}
                                                 />
                                             )}
-                                            {id === "bids" && <Bids_profile />}
+                                            {id === "bids" && <Bids_profile score={thisProfile.score} />}
                                             {id === "portfolio" && <Portfolio_profile portfolio={thisProfile.portfolio} />}
                                             {id === "reviews" && <Review_profile
                                                 avatar={myProfile.avatar}

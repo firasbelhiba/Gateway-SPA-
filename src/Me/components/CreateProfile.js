@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { createProfile } from '../../actions/profile';
 import './Css/CreateProfile.css';
-import { ToastContainer } from 'react-toastify';
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProfile = ({ createProfile, history }) => {
@@ -47,12 +47,30 @@ const CreateProfile = ({ createProfile, history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        createProfile(formData, history)
+        if (company === "" && location === "" && status === "") {
+            toast.error("Fill the fields and save !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (company === "") {
+            toast.error("Company is required !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (location === "") {
+            toast.error("Location is required !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else if (status === "") {
+            toast.error("Status is required !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+            });
+        } else {
+
+            createProfile(formData, history)
+        }
     }
 
     return (
         <Fragment>
-            <ToastContainer />
             <div className="row">
                 <div className="col-md-12">
                     <form className="form_create" onSubmit={e => onSubmit(e)}>

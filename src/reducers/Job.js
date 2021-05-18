@@ -52,7 +52,7 @@ export default function (state = initialState, action) {
     
     switch (action.type) {
       case GET_JOBS:
-        return {
+         return {
           ...state,
           jobs: action.payload,
           loading: false
@@ -225,31 +225,31 @@ export default function (state = initialState, action) {
     case SEARCH_PRICE:
           return {
             ...state,
-            jobs: state.jobs.filter((job) => job.price.toString().startsWith(action.payload)),
+            jobs: state.jobs.filter((job) => job.price.toString().toUpperCase().startsWith(action.payload.toUpperCase())),
             loading: false,
           };  
     case SEARCH_JOB_TYPE:
             return {
               ...state,
-              jobs: state.jobs.filter((job) => job.title.toString().startsWith(action.payload)),
+              jobs: state.jobs.filter((job) => job.title.toString().toUpperCase().startsWith(action.payload.toUpperCase())),
               loading: false,
             };  
     case SEARCH_COUNTRY:
         return {
             ...state,
-            jobs: state.jobs.filter((job) => job.location.toString().startsWith(action.payload)),
+            jobs: state.jobs.filter((job) => job.location.toString().toUpperCase().startsWith(action.payload.toUpperCase())),
             loading: false,
             };   
     case SEARCH_AVAILABILITY:
           return {
             ...state,
-            jobs: state.jobs.filter((job) => job.availability.toString().startsWith(action.payload)),
+            jobs: state.jobs.filter((job) => job.availability.toString().toUpperCase().startsWith(action.payload.toUpperCase())),
             loading: false,
           };  
     case SEARCH_SKILLS:
           return {
             ...state,
-            jobs: state.jobs.filter((job) => job.category.toString().startsWith(action.payload)),
+            jobs: state.jobs.filter((job) => job.category.toString().toUpperCase().startsWith(action.payload.toUpperCase())),
             loading: false,
           };    
         

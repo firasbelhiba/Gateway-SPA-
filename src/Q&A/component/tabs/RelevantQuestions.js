@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import UserQuestion from "../UserQuestion";
 import Navigation from "../elements/Navigation";
 import {useDispatch, useSelector} from "react-redux";
-import {getQuestion, getDomains} from "../../../actions/questions";
+import {getQuestion, getSettings, getDomains} from "../../../actions/questions";
 import QuestionButton from "../elements/QuestionButton";
 import FilterItem from "../elements/FilterItem";
 import SortItem from "../elements/SortItem";
@@ -34,8 +34,8 @@ const RelevantQuestions = () => {
         <div>
             <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
                 <QuestionsSetting Domains={Domains}/>
-                <QuestionButton/>
-                <FilterItem/>
+                <QuestionButton user={user}/>
+                <FilterItem Domains={Domains}/>
                 <SortItem/>
                 <Search/>
             </div>

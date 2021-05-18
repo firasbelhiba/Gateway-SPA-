@@ -24,6 +24,7 @@ function Button(props) {
 
     return (
         <button
+            disabled={!props.block}
             {...props}
             ref={button}
             onClick={e => {

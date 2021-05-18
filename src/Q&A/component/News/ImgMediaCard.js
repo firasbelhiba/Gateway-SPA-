@@ -26,6 +26,7 @@ export default function ImgMediaCard(props) {
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('user'))._id;
     const handleSaveNews = () => {
+        console.log(props.item, user)
         dispatch(saveNews(props.item, user))
     }
     const classes = useStyles();
@@ -64,7 +65,8 @@ export default function ImgMediaCard(props) {
                             <Button size="small" color="primary" onClick={handleSaveNews}>
                                 Save
                             </Button>
-                            <Button size="small" color="primary">
+                            <Button size="small" color="primary" href={props.item.link}
+                            >
                                 Learn More
                             </Button>
                         </div>

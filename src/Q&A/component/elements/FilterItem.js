@@ -1,22 +1,30 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Dropdown} from 'semantic-ui-react'
-import {useDispatch} from "react-redux";
-import {filterQuestion} from "../../../actions/questions";
+import {connect, useDispatch} from "react-redux";
+import {filterQuestion, getALLDomains, getBlock} from "../../../actions/questions";
 
-const FilterItem = () => {
+const FilterItem = ({Domains, getALLDomains, question: {alldomains}}) => {
     const dispatch = useDispatch();
+    useEffect(() => {
+        getALLDomains()
+    }, [dispatch]);
+    console.log(alldomains)
+    console.log(Domains)
 
-    const filterHTML = () => {
-        dispatch(filterQuestion('html'))
+    var tags = []
+    for (var i in Domains) {
+        for (var j in alldomains) {
+            if (Domains[i].category.toUpperCase() === alldomains[j].name.toUpperCase()) {
+                for (var k in alldomains[j].tags)
+                    tags.push(alldomains[j].tags[k])
+            }
+        }
     }
-    const filterPHP = () => {
-        dispatch(filterQuestion('php'))
-    }
-    const filterCSS = () => {
-        dispatch(filterQuestion('css'))
-    }
-    const filterJavaScript = () => {
-        dispatch(filterQuestion('javascript'))
+    console.log(tags)
+
+    const handleFilter = (e,{value}) => {
+        console.log(value)
+        dispatch(filterQuestion(value))
     }
     return (
         <Dropdown
@@ -29,13 +37,16 @@ const FilterItem = () => {
         >
             <Dropdown.Menu>
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
-                <Dropdown.Item onClick={filterHTML}>HTML</Dropdown.Item>
-                <Dropdown.Item onClick={filterPHP}>PHP</Dropdown.Item>
-                <Dropdown.Item onClick={filterCSS}>CSS</Dropdown.Item>
-                <Dropdown.Item onClick={filterJavaScript}>JavaScript</Dropdown.Item>
+                {tags.map(tag => (
+                    <Dropdown.Item value={tag} onClick={handleFilter}>{tag}</Dropdown.Item>
+                ))}
             </Dropdown.Menu>
         </Dropdown>
     );
 }
 
-export default FilterItem;
+const mapStateToProps = (state) => ({
+    question: state.question,
+});
+
+export default connect(mapStateToProps, {getALLDomains})(FilterItem);

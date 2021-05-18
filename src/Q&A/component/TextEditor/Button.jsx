@@ -22,7 +22,6 @@ function Button(props) {
 
     const dispatch = useDispatch();
 
-
     const description = localStorage.getItem('answer');
 
     return (
@@ -30,6 +29,7 @@ function Button(props) {
         <button
             {...props}
             ref={button}
+            disabled={!props.block}
             onClick={e => {
                 animate(e);
                 if (!props.descriptionerror) {

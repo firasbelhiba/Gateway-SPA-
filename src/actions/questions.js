@@ -9,8 +9,13 @@ import {
     GET_FOLLOWED_QUESTIONS,
     CREATE_REPLY,
     SOLUTION,
+    GET_SCORES,
+    GET_SETTING,
+    GET_ALL_DOMAINS,
+    GET_BLOCK,
     CANCEL_DOMAIN,
     CANCEL_NEWS,
+    UPDATE_ANSWER,
     NEWS_REC_SKILLS,
     NEWS_REC,
     GET_DOMAINS,
@@ -108,6 +113,30 @@ export const updateQuestion = (Data, id) => async (dispatch) => {
         );
         dispatch({
             type: UPDATE_QUESTIONS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: error.response.statusText, status: error.response.status},
+        });
+    }
+};
+
+export const updateAnswer = (Data, idQ, idA) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    try {
+        const {data} = await axios.post(
+            `http://localhost:5000/api/q_and_a/updateAnswer/${idQ}/${idA}`,
+            Data,
+            config
+        );
+        dispatch({
+            type: UPDATE_ANSWER,
             payload: data,
         });
     } catch (error) {
@@ -522,10 +551,9 @@ export const newsRec = (search) => async (dispatch) => {
 };
 
 export const newsRecSkills = (search) => async (dispatch) => {
-    const Search = search.join(',') + ' web'
-    console.log(Search);
+    console.log(search);
     try {
-        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/newsRecSkills/${Search}`);
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/newsRecSkills/${search}`);
         dispatch({
             type: NEWS_REC_SKILLS,
             payload: data,
@@ -617,6 +645,21 @@ export const addDomain = (Data, idU) => async (dispatch) => {
     }
 };
 
+export const getBlock = (id) => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getBlock/${id}`);
+        dispatch({
+            type: GET_BLOCK,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}
+
 export const getDomains = (id) => async (dispatch) => {
     try {
         const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getDomains/${id}`);
@@ -647,3 +690,33 @@ export const cancelDomains = (idU, category) => async (dispatch) => {
         });
     }
 };
+
+export const getALLDomains = () => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getALLDomains/`);
+        dispatch({
+            type: GET_ALL_DOMAINS,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}
+
+export const getScores = () => async (dispatch) => {
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/q_and_a/getScores/`);
+        dispatch({
+            type: GET_SCORES,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+            payload: {msg: e.response.statusText, status: e.response.status},
+        });
+    }
+}

@@ -6,14 +6,18 @@ import {
     CREATE_REPLY,
     DOWNVOTE_QUESTION,
     SOLUTION,
+    GET_SCORES,
     YOUTUBE_REC,
     UPVOTE_QUESTION,
     BLOG_REC,
     UPDATE_QUESTIONS,
     CANCEL_NEWS,
+    GET_BLOCK,
+    GET_ALL_DOMAINS,
     NEWS_REC_SKILLS,
     NEWS_REC,
     ADD_DOMAIN,
+    UPDATE_ANSWER,
     GET_SAVED_NEWS,
     SAVE_NEWS,
     CREATE_ANSWER_REPORT,
@@ -45,7 +49,11 @@ const initialState = {
     domains: [],
     question: null,
     loading: true,
+    settings: [],
+    block: [],
     error: {},
+    alldomains: [],
+    scores: [],
 };
 
 export default function (state = initialState, action) {
@@ -59,6 +67,16 @@ export default function (state = initialState, action) {
                 blogs: {loading: true, blogs: []},
                 question: initialState.question,
             };
+        case GET_ALL_DOMAINS:
+            return {
+                ...state,
+                alldomains: payload
+            };
+        case GET_SCORES:
+            return {
+                ...state,
+                scores: payload
+            };
         case GET_FOLLOWED_QUESTIONS:
             return {
                 ...state,
@@ -70,6 +88,11 @@ export default function (state = initialState, action) {
                 ...state,
                 questions: payload,
                 loading: false,
+            };
+        case GET_BLOCK:
+            return {
+                ...state,
+                block: payload
             };
         case FILTER_QUESTIONS:
             return {
@@ -196,7 +219,13 @@ export default function (state = initialState, action) {
         case DOWNVOTE_QUESTION:
             return {
                 ...state,
-                question: payload,
+                questions: state.questions.map((question) =>
+                    question._id === payload.id ? {
+                        ...question,
+                        upVotes: payload.upVotes,
+                        downVotes: payload.downVotes,
+                    } : question
+                ),
                 loading: false,
             };
         case CREATE_ANSWER_REPORT:
@@ -212,6 +241,12 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case DELETE_ANSWER:
+            return {
+                ...state,
+                question: payload,
+                loading: false,
+            };
+        case UPDATE_ANSWER:
             return {
                 ...state,
                 question: payload,

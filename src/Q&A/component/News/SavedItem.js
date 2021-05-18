@@ -26,7 +26,8 @@ const SavedItem = ({item, user}) => {
                     <Button size="huge" color="primary" onClick={handleCancelSaved}>
                         cancel save
                     </Button>
-                    <Button size="huge" color="primary">
+                    <Button size="small" color="primary" href={item.link}
+                    >
                         Learn More
                     </Button>
                     <Typography variant="strong" color="black" component="p"

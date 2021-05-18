@@ -17,6 +17,7 @@ import {
   GET_SUGGESTIONS,
   GET_MOST_VIEWED_PEOPLE,
   UPDATE_SAVE_JOB,
+  GET_MOST_TALENTED_PEOPLE,
 } from "../actions/types";
 
 const initialState = {
@@ -33,6 +34,7 @@ const initialState = {
   new_notification: false,
   suggestion_list: [],
   most_viewed_profile_list: [],
+  most_talented_people_list: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -101,6 +103,13 @@ export default function (state = initialState, action) {
         most_viewed_profile_list: payload,
         loading: false,
       };
+    case GET_MOST_TALENTED_PEOPLE:
+      localStorage.setItem("most_talented_people", JSON.stringify(payload));
+      return {
+        ...state,
+        most_talented_people_list: payload,
+        loading: false,
+      };
     case GET_REPOS:
       return {
         ...state,
@@ -138,12 +147,12 @@ export default function (state = initialState, action) {
         following: payload,
         loading: false,
       };
-     case UPDATE_SAVE_JOB:
-        return {
-          ...state,
-          profile: {...state.profile,savedJobs:payload},
-          loading: false,
-           }; 
+    case UPDATE_SAVE_JOB:
+      return {
+        ...state,
+        profile: { ...state.profile, savedJobs: payload },
+        loading: false,
+      };
     default:
       return state;
   }

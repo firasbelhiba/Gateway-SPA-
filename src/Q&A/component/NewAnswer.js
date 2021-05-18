@@ -15,6 +15,7 @@ import Comments from "./Discussion/Comments";
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import UpDown from "./Votes/UpDown";
 import {getProfileById} from "../../actions/profile";
+import AnswerUpdate from "./elements/AnswerUpdate";
 
 const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
@@ -29,8 +30,14 @@ export const NewAnswer = (props) => {
     useEffect(() => {
         getProfileById(props.userid)
     }, [dispatch]);
-    const profile = JSON.parse(localStorage.getItem('profile'));
+    const profiles = JSON.parse(localStorage.getItem('profiles'));
 
+    var profile = null
+
+    for (var i in profiles) {
+        if (profiles[i].user === props.answerUser)
+            profile = profiles[i]
+    }
     const handleClick = (e, titleProps) => {
         const {index} = titleProps
         const newIndex = activeIndex === index ? -1 : index
@@ -121,7 +128,7 @@ export const NewAnswer = (props) => {
                         </Accordion.Title>
                         <div style={{width: "500px", paddingTop: '4px'}}>
                             <ToggleDisplay show={show}>
-                                <Reply Qid={props.idQ} Aid={props.idA}/>
+                                <Reply block={props.block} Qid={props.idQ} Aid={props.idA}/>
                             </ToggleDisplay>
                         </div>
                         <Accordion.Content active={activeIndex === 0}>
@@ -131,7 +138,11 @@ export const NewAnswer = (props) => {
                     <div className="react-links" style={{marginLeft: '130px', position: "absolute", marginTop: "3px"}}>
                         <Button size="small" color="primary" onClick={() => handleShow()}>Reply</Button>
                         {JSON.parse(localStorage.getItem('user'))._id === props.answerUser ? (
-                            <Button size="small" onClick={handleDelete}>Delete</Button>
+                            <>
+                                <Button size="small" onClick={handleDelete}>Delete</Button>
+                                <AnswerUpdate Qid={props.idQ} Aid={props.idA}
+                                              initialValue={props.description}/>
+                            </>
                         ) : (<></>)}
                     </div>
                 </div>

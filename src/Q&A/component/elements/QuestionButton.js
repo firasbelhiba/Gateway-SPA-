@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Modal, Form, Input} from 'semantic-ui-react';
+import {Button, Modal, Form} from 'semantic-ui-react';
 import SelectTags from "../SelectTags";
-import {useDispatch, useSelector} from "react-redux";
-import {createQuestion} from '../../../actions/questions';
+import {useDispatch, useSelector, connect} from "react-redux";
+import {createQuestion, getALLDomains, getBlock} from '../../../actions/questions';
 import RichEditor from "../TextEditor/RichEditor";
-import AnswerEditor from "../TextEditor/AnswerEditor";
+import SelectDomain from "../SelectDomain";
+import _ from "lodash";
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -19,14 +20,20 @@ function exampleReducer(state, action) {
 
 const initialValue = [{"type": "paragraph", "children": [{"text": ""}]}];
 
-const QuestionButton = () => {
+const QuestionButton = ({getALLDomains, user, getBlock, question: {block, alldomains}}) => {
     const [state, dispatch] = React.useReducer(exampleReducer, {
         open: false,
         dimmer: undefined,
     })
+
+    useEffect(() => {
+        getBlock(user)
+        getALLDomains()
+    }, [dispatch]);
+
+    console.log(alldomains)
     const [input, setInput] = useState(initialValue);
     const {open, dimmer} = state
-
     const [subject, setSubject] = useState(null);
     const [category, setCategory] = useState(null);
     const [tags, setTags] = useState(null);
@@ -35,6 +42,7 @@ const QuestionButton = () => {
     const [tagserror, setTagserror] = useState(false);
     const [descriptionerror, setDescriptionserror] = useState(false);
     const submitDispatch = useDispatch();
+
     const handleSubmit = () => {
         if (!subject) {
             setSubjecterror(true)
@@ -48,7 +56,7 @@ const QuestionButton = () => {
         if (input === initialValue) {
             setDescriptionserror(true)
         }
-        if(subject && category && tags && input !== initialValue){
+        if (subject && category && tags && input !== initialValue) {
             const user = JSON.parse(localStorage.getItem('user'))._id;
             const description = localStorage.getItem('content');
             const Question = {
@@ -60,10 +68,20 @@ const QuestionButton = () => {
             }
             console.log(Question);
             submitDispatch(createQuestion(Question))
-            dispatch({type: 'close'});
+            dispatch({type: 'CLOSE_MODAL'});
         }
     }
-
+    var tagsOptionns = []
+    for (var i in alldomains) {
+        if (category !== null && alldomains[i].name.toUpperCase() === category.toUpperCase())
+            for (var j in alldomains[i].tags) {
+                tagsOptionns.push({
+                    key: alldomains[i].tags[j],
+                    text: alldomains[i].tags[j],
+                    value: _.snakeCase(alldomains[i].tags[j])
+                })
+            }
+    }
     return (
         <>
             <Button className="ui button" onClick={() => dispatch({type: 'OPEN_MODAL', dimmer: 'blurring'})}>
@@ -92,18 +110,18 @@ const QuestionButton = () => {
                                         }}/>
 
                         </Form.Field>
-                        <Form.Field required>
+                        <Form.Field required
+                                    error={categoryerror ? {
+                                        content: 'Please enter Category',
+                                        pointing: 'below'
+                                    } : false}>
                             <label>Category</label>
-                            <Form.Input placeholder="Category"
-                                        error={categoryerror ? {
-                                            content: 'Please enter Category',
-                                            pointing: 'below'
-                                        } : false}
-                                        fluid
-                                        onChange={event => {
-                                            setCategory(event.target.value);
-                                            setCategoryerror(false)
-                                        }}/>
+                            <SelectDomain
+                                alldomains={alldomains}
+                                onChange={(value) => {
+                                    setCategory(value);
+                                    setCategoryerror(false)
+                                }}/>
                         </Form.Field>
                         <Form.Field required
                                     error={tagserror ? {
@@ -112,10 +130,12 @@ const QuestionButton = () => {
                                     } : false}
                         >
                             <label>Tags</label>
-                            <SelectTags onChange={(value) => {
-                                setTags(value);
-                                setTagserror(false)
-                            }}/>
+                            <SelectTags
+                                tagsOptionns={tagsOptionns}
+                                onChange={(value) => {
+                                    setTags(value);
+                                    setTagserror(false)
+                                }}/>
                         </Form.Field>
                         <Form.Field required
                                     error={descriptionerror ? {
@@ -132,7 +152,7 @@ const QuestionButton = () => {
                     <button className="ui icon button">
                         <i className="cloud upload icon"/>
                     </button>
-                    <Button positive onClick={handleSubmit}>
+                    <Button positive disabled={!block.question} onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Modal.Actions>
@@ -141,4 +161,8 @@ const QuestionButton = () => {
     )
 }
 
-export default QuestionButton;
+const mapStateToProps = (state) => ({
+    question: state.question,
+});
+
+export default connect(mapStateToProps, {getBlock, getALLDomains})(QuestionButton);

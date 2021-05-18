@@ -17,6 +17,10 @@ export default class SideMenu extends Component {
         window.location.href = '/popular'
         this.setState({activeItem: name})
     }
+    handleDomain = (e, {name}) => {
+        console.log(name)
+        window.location.href = '/domain?domain='+name
+    }
 
     render() {
         const {activeItem} = this.state
@@ -49,23 +53,16 @@ export default class SideMenu extends Component {
                 <Menu.Item>
                     <Menu.Header>Domains</Menu.Header>
                     <Menu.Menu>
-                        <Menu.Item
-                            name='Programming'
-                            active={activeItem === 'Programming'}
-                            onClick={this.handleItemClick}
-                        > Programming <Icon name='computer icon'/>
+                        {this.props.Domains.map(domain => (
+                                <Menu.Item
+                                    name={domain.name}
+                                    active={activeItem === domain.name}
+                                    onClick={this.handleDomain}
+                                > {domain.name} <Icon name={domain.icon}/>
 
-                        </Menu.Item>
-                        <Menu.Item
-                            name='Math'
-                            active={activeItem === 'Math'}
-                            onClick={this.handleItemClick}
-                        >Math <Icon name='calculator icon'/></Menu.Item>
-                        <Menu.Item
-                            name='Physics '
-                            active={activeItem === 'Physics '}
-                            onClick={this.handleItemClick}
-                        >Physics <Icon name='bolt icon'/></Menu.Item>
+                                </Menu.Item>
+                            )
+                        )}
                     </Menu.Menu>
                 </Menu.Item>
             </Menu>

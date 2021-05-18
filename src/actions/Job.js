@@ -141,11 +141,12 @@ export const deleteJob = id => async dispatch => {
       setLoading();
   
       const res = await axios.delete(`http://localhost:5000/api/jobs/${id}`);
-  
+       
       dispatch({
         type: DELETE_JOB,
         payload: id,a:res.data
       });
+      console.log(res.status)
     } catch (err) {
       dispatch({
         type: JOB_ERROR,
@@ -165,7 +166,7 @@ export const addJob = (formData) => async (dispatch) => {
     };
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/jobs/",
+        "http://localhost:5000/api/jobs",
         formData,
         config
       );
@@ -508,6 +509,6 @@ export const addInterview = (formData,id) => async (dispatch) => {
  
     return {
       type: SEARCH_SKILLS,
-      payload:text
+      payload:text.toString()
     };
   };

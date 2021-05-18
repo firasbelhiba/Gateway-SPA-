@@ -103,7 +103,7 @@ const Post_item = ({
       <div className="post-bar">
         <div className="post_topbar">
           <div className="usy-dt ">
-            <h1>This post from {name} is hidden</h1>
+            <h2>This post from {name} is hidden</h2>
           </div>
           <br />
           <a
